@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finance Industry Overview — June 2026</title>
+<meta name="description" content="Layered map of the finance industry: regulation and central banks, five value-chain layers, foundation pillars, a flow-of-funds diagram, and a six-jurisdiction lens (US, EU, UK, Mainland China, Hong Kong, UAE).">
+<!-- Anti-FOUC: set theme before first paint -->
+<script>
+  (function(){
+    var s = null;
+    try { s = localStorage.getItem('voltai-theme'); } catch (e) {}
+    var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', s || (dark ? 'dark' : 'light'));
+  })();
+</script>
+<style>
+  /* ═══════════════════════════════
+     DARK TOKENS  (default)
+  ═══════════════════════════════ */
+  :root {
+    color-scheme: dark;
+    --bg-page:          #080b12;
+    --text-body:        #e0e4f0;
+    --h1-color:         #d4c090;
+    --subtitle-color:   #7a82a0;
+    /* controls */
+    --ctrl-bg:          #0f1220;
+    --ctrl-border:      #1e2438;
+    --ctrl-btn:         #7880a8;
+    --ctrl-active-bg:   #b88a10;
+    --ctrl-active:      #fff;
+    /* regulation / central-bank paradigm (teal) */
+    --reg-bg:           linear-gradient(135deg, #061614 0%, #0c2422 100%);
+    --reg-border:       #1a8070;
+    --reg-shadow:       rgba(26,144,128,.28);
+    --reg-badge-bg:     #1a9080;
+    --reg-badge-color:  #bffaf2;
+    --reg-h2:           #38c0a8;
+    --reg-p:            #6ab0a0;
+    --reg-tag-bg:       rgba(26,144,128,.16);
+    --reg-tag-border:   rgba(26,144,128,.40);
+    --reg-tag-color:    #3cc0a8;
+    /* connectors */
+    --conn-line-1:      linear-gradient(to bottom, #1a9080, #b88a10);
+    --conn-line-2:      linear-gradient(to bottom, #b88a10, #7a50c8);
+    --conn-arrow-gold:  #b88a10;
+    --conn-arrow-pur:   #7a50c8;
+    --conn-label:       #6a7298;
+    --conn-label-bd:    #222a48;
+    /* section headers */
+    --sector-hdr:       #c89a20;
+    --pillar-hdr:       #9070e0;
+    /* value-chain layer cards (gold) */
+    --layer-bg:         linear-gradient(160deg, #181208 0%, #100c05 100%);
+    --layer-border:     #2e240a;
+    --layer-hover:      #b88a10;
+    --layer-num:        #8a6a20;
+    --layer-h3:         #d0a048;
+    --layer-p:          #a08a5c;
+    --layer-stag:       #c89a28;
+    --layer-stag-bg:    rgba(184,138,16,.12);
+    --layer-hot-border: #5a4410;
+    --layer-hot-h3:     #e8b850;
+    /* pillar cards (purple) */
+    --pil-bg:           linear-gradient(160deg, #100c1c 0%, #090714 100%);
+    --pil-border:       #241a40;
+    --pil-hover:        #7a50c8;
+    --pil-h3:           #a084f0;
+    --pil-p:            #9488c4;
+    --nbadge-bg:        #7a50c8;
+    --nbadge-color:     #f0ebff;
+    /* force / info cards (indigo) */
+    --force-bg:         #0c0f1a;
+    --force-border:     #1a2036;
+    --force-num:        #2a3258;
+    --force-h3:         #8090e0;
+    --force-p:          #8088b0;
+    --force-stat:       #a0a8e0;
+    --force-stat-bg:    rgba(72,80,144,.14);
+    --force-stat-bd:    rgba(96,108,180,.30);
+    /* jurisdiction cards (blue) */
+    --jur-bg:           linear-gradient(160deg, #0a1322 0%, #070d18 100%);
+    --jur-border:       #18284a;
+    --jur-hover:        #3a78d0;
+    --jur-h3:           #70a8f0;
+    --jur-p:            #8098b8;
+    --jur-kpi:          #e8c860;
+    --jur-kpi-label:    #7888a8;
+    --jur-tag:          #8ab4f0;
+    --jur-tag-bg:       rgba(58,120,208,.12);
+    /* flow-of-funds diagram */
+    --orbit:            #1c2238;
+    --center-fill:      #0a1a1a;
+    --center-ring:      #1a9080;
+    --node-fill:        #0e1120;
+    --node-ring:        #b88a10;
+    --flow-cap:         #c89a20;
+    --flow-ret:         #3cc0a8;
+    --lbl-phase:        #7078a0;
+    --lbl-step:         #dfe4f4;
+    --lbl-sub:          #8890b4;
+    --lbl-num:          #f0e4c0;
+    --lbl-cap:          #c89a20;
+    --lbl-ret:          #48c8b0;
+    --center-title:     #48d0b8;
+    --center-sub:       #70b0a4;
+    --plumb-bg:         rgba(26,144,128,.10);
+    --plumb-border:     rgba(26,144,128,.45);
+    --plumb-text:       #48c0a8;
+    /* page sections, legend, footnote */
+    --pst-color:        #6a7298;
+    --pst-line:         #1a2038;
+    --legend-color:     #7078a0;
+    --foot-color:       #5a6288;
+    --foot-border:      #161c30;
+  }
+
+  /* ═══════════════════════════════
+     LIGHT TOKENS
+  ═══════════════════════════════ */
+  html[data-theme="light"] {
+    color-scheme: light;
+    --bg-page:          #f4f6fc;
+    --text-body:        #181a28;
+    --h1-color:         #28200c;
+    --subtitle-color:   #5a6280;
+    --ctrl-bg:          #ffffff;
+    --ctrl-border:      #dde4f0;
+    --ctrl-btn:         #6a7898;
+    --ctrl-active-bg:   #a07808;
+    --ctrl-active:      #fff;
+    --reg-bg:           linear-gradient(135deg, #e0faf6 0%, #d4f4ee 100%);
+    --reg-border:       #40a090;
+    --reg-shadow:       rgba(26,144,128,.12);
+    --reg-badge-bg:     #0e7868;
+    --reg-badge-color:  #fff;
+    --reg-h2:           #0a5848;
+    --reg-p:            #286858;
+    --reg-tag-bg:       rgba(26,144,128,.07);
+    --reg-tag-border:   rgba(26,144,128,.22);
+    --reg-tag-color:    #0a6858;
+    --conn-line-1:      linear-gradient(to bottom, #2a9080, #a07808);
+    --conn-line-2:      linear-gradient(to bottom, #a07808, #6030b0);
+    --conn-arrow-gold:  #a07808;
+    --conn-arrow-pur:   #6030b0;
+    --conn-label:       #7a84a8;
+    --conn-label-bd:    #c8d0e8;
+    --sector-hdr:       #906008;
+    --pillar-hdr:       #5030a8;
+    --layer-bg:         linear-gradient(160deg, #fffbec 0%, #fff6d8 100%);
+    --layer-border:     #e0cc70;
+    --layer-hover:      #a07808;
+    --layer-num:        #8a6a20;
+    --layer-h3:         #7c4808;
+    --layer-p:          #5c4a28;
+    --layer-stag:       #885008;
+    --layer-stag-bg:    rgba(152,88,8,.09);
+    --layer-hot-border: #c8a030;
+    --layer-hot-h3:     #884010;
+    --pil-bg:           linear-gradient(160deg, #f2eeff 0%, #eae0ff 100%);
+    --pil-border:       #c0a8f0;
+    --pil-hover:        #5030a8;
+    --pil-h3:           #3820a0;
+    --pil-p:            #463870;
+    --nbadge-bg:        #5030a8;
+    --nbadge-color:     #f4eeff;
+    --force-bg:         #f0f2fc;
+    --force-border:     #d0d8f0;
+    --force-num:        #c8d2f0;
+    --force-h3:         #2840a0;
+    --force-p:          #404870;
+    --force-stat:       #3048a0;
+    --force-stat-bg:    rgba(56,80,160,.07);
+    --force-stat-bd:    rgba(56,80,160,.20);
+    --jur-bg:           linear-gradient(160deg, #eef4ff 0%, #e4eefc 100%);
+    --jur-border:       #b8cce8;
+    --jur-hover:        #2860b0;
+    --jur-h3:           #1c4c94;
+    --jur-p:            #3a4c68;
+    --jur-kpi:          #8c5a08;
+    --jur-kpi-label:    #5a6a88;
+    --jur-tag:          #1c4c94;
+    --jur-tag-bg:       rgba(40,96,176,.08);
+    --orbit:            #d4dcee;
+    --center-fill:      #e6f8f4;
+    --center-ring:      #2a9080;
+    --node-fill:        #ffffff;
+    --node-ring:        #a07808;
+    --flow-cap:         #a07808;
+    --flow-ret:         #0e7868;
+    --lbl-phase:        #6a7494;
+    --lbl-step:         #1c2034;
+    --lbl-sub:          #4c5674;
+    --lbl-num:          #6a4a08;
+    --lbl-cap:          #8a6008;
+    --lbl-ret:          #0a6858;
+    --center-title:     #0a5848;
+    --center-sub:       #2a6a5c;
+    --plumb-bg:         rgba(26,144,128,.07);
+    --plumb-border:     rgba(26,144,128,.35);
+    --plumb-text:       #0a6858;
+    --pst-color:        #6a7494;
+    --pst-line:         #dde4f0;
+    --legend-color:     #5a6888;
+    --foot-color:       #6a7494;
+    --foot-border:      #dde4f0;
+  }
+
+  /* ═══════════════════════════════
+     BASE
+  ═══════════════════════════════ */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg-page);
+    color: var(--text-body);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 24px 64px;
+  }
+
+  /* ── CONTROLS ── */
+  .controls {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 100;
+  }
+  .theme-btn {
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    border: 1px solid var(--ctrl-border);
+    background: var(--ctrl-bg);
+    cursor: pointer;
+    font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .lang-toggle {
+    display: flex;
+    background: var(--ctrl-bg);
+    border: 1px solid var(--ctrl-border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  }
+  .lang-toggle button {
+    padding: 7px 16px;
+    font-size: 13px; font-weight: 600;
+    border: none; cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    background: transparent;
+    color: var(--ctrl-btn);
+    letter-spacing: 0.04em;
+  }
+  .lang-toggle button.active { background: var(--ctrl-active-bg); color: var(--ctrl-active); }
+
+  /* ── PAGE HEADER ── */
+  h1 {
+    font-size: 22px; font-weight: 600;
+    color: var(--h1-color);
+    margin-bottom: 6px;
+    text-align: center;
+    letter-spacing: 0.03em;
+  }
+  .subtitle {
+    font-size: 13px;
+    color: var(--subtitle-color);
+    margin-bottom: 52px;
+    text-align: center;
+  }
+
+  /* ── CHART WRAPPER ── */
+  .chart {
+    width: 100%;
+    max-width: 960px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ── REGULATORY PARADIGM ── */
+  .regulatory {
+    width: 100%;
+    background: var(--reg-bg);
+    border: 1.5px solid var(--reg-border);
+    border-radius: 14px;
+    padding: 22px 28px;
+    box-shadow: 0 0 32px var(--reg-shadow);
+  }
+  .regulatory .badge {
+    display: inline-block;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--reg-badge-bg); color: var(--reg-badge-color);
+    border-radius: 4px; padding: 2px 8px; margin-bottom: 10px;
+  }
+  .regulatory h2 { font-size: 19px; font-weight: 700; color: var(--reg-h2); margin-bottom: 6px; }
+  .regulatory p  { font-size: 13px; color: var(--reg-p); line-height: 1.6; }
+  .regulatory .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .regulatory .tag {
+    font-size: 11px;
+    background: var(--reg-tag-bg);
+    border: 1px solid var(--reg-tag-border);
+    color: var(--reg-tag-color);
+    border-radius: 20px; padding: 3px 12px;
+  }
+
+  /* ── CONNECTORS ── */
+  .connector {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 4px 0; gap: 2px;
+  }
+  .connector .line   { width: 2px; height: 18px; }
+  .connector .line-1 { background: var(--conn-line-1); }
+  .connector .line-2 { background: var(--conn-line-2); }
+  .connector .arrow  { width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; }
+  .connector .arrow-gold { border-top: 8px solid var(--conn-arrow-gold); }
+  .connector .arrow-pur  { border-top: 8px solid var(--conn-arrow-pur); }
+  .connector-label {
+    font-size: 10px; color: var(--conn-label);
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 2px 10px;
+    border: 1px dashed var(--conn-label-bd);
+    border-radius: 20px; margin: 3px 0;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section { width: 100%; }
+  .section-header {
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-header::before,
+  .section-header::after { content: ""; flex: 1; height: 1px; background: currentColor; opacity: 0.18; }
+  .sectors-header { color: var(--sector-hdr); }
+  .pillars-header { color: var(--pillar-hdr); }
+
+  /* ── GRIDS ── */
+  .cards-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  .cards-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+
+  /* ── VALUE-CHAIN LAYER CARDS ── */
+  .layer-card {
+    background: var(--layer-bg);
+    border: 1.5px solid var(--layer-border);
+    border-radius: 12px; padding: 16px 14px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .layer-card:hover { border-color: var(--layer-hover); transform: translateY(-2px); }
+  .layer-card .num  { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: var(--layer-num); text-transform: uppercase; margin-bottom: 6px; }
+  .layer-card .icon { font-size: 22px; margin-bottom: 8px; }
+  .layer-card h3    { font-size: 13px; font-weight: 700; color: var(--layer-h3); margin-bottom: 5px; }
+  .layer-card p     { font-size: 11px; color: var(--layer-p); line-height: 1.55; }
+  .layer-card .sub-tags { display: flex; flex-direction: column; gap: 3px; margin-top: 8px; }
+  .layer-card .sub-tag  { font-size: 9.5px; color: var(--layer-stag); background: var(--layer-stag-bg); border-radius: 4px; padding: 2px 6px; width: fit-content; }
+  .layer-card.hot   { border-color: var(--layer-hot-border); }
+  .layer-card.hot h3 { color: var(--layer-hot-h3); }
+
+  /* ── PILLAR CARDS ── */
+  .pillar-card {
+    background: var(--pil-bg);
+    border: 1.5px solid var(--pil-border);
+    border-radius: 12px; padding: 16px 14px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .pillar-card:hover { border-color: var(--pil-hover); transform: translateY(-2px); }
+  .pillar-card .icon { font-size: 22px; margin-bottom: 8px; }
+  .pillar-card h3    { font-size: 13px; font-weight: 700; color: var(--pil-h3); margin-bottom: 5px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .pillar-card p     { font-size: 11px; color: var(--pil-p); line-height: 1.55; }
+  .new-badge {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    background: var(--nbadge-bg); color: var(--nbadge-color);
+    border-radius: 3px; padding: 1px 5px;
+  }
+
+  /* ── PAGE SECTIONS ── */
+  .page-section { width: 100%; max-width: 960px; margin-top: 52px; }
+  .page-section-title {
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--pst-color);
+    text-align: center; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .page-section-title::before,
+  .page-section-title::after { content: ""; flex: 1; height: 1px; background: var(--pst-line); }
+
+  /* ── FLOW-OF-FUNDS DIAGRAM ── */
+  .flow-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .flow-wrap svg { display: block; width: 100%; min-width: 620px; height: auto; margin: 0 auto; }
+  .flow-wrap svg text { font-family: inherit; }
+  .orbit-ring   { fill: none; stroke: var(--orbit); stroke-width: 1.5; stroke-dasharray: 2 5; }
+  .center-bg    { fill: var(--center-fill); stroke: var(--center-ring); stroke-width: 2; }
+  .node-bg      { fill: var(--node-fill); stroke: var(--node-ring); stroke-width: 2.5; }
+  .arc-cap      { fill: none; stroke: var(--flow-cap); stroke-width: 2.2; }
+  .arc-ret      { fill: none; stroke: var(--flow-ret); stroke-width: 1.8; stroke-dasharray: 6 4; }
+  .tip-cap      { fill: var(--flow-cap); }
+  .tip-ret      { fill: var(--flow-ret); }
+  .lbl-num      { fill: var(--lbl-num); font-size: 15px; font-weight: 700; }
+  .lbl-phase    { fill: var(--lbl-phase); font-size: 10px; font-weight: 700; letter-spacing: .08em; }
+  .lbl-step     { fill: var(--lbl-step); font-size: 14px; font-weight: 700; }
+  .lbl-sub      { fill: var(--lbl-sub); font-size: 11px; }
+  .lbl-cap      { fill: var(--lbl-cap); font-size: 11px; font-weight: 600; }
+  .lbl-ret-phase { fill: var(--lbl-ret); font-size: 10px; font-weight: 700; letter-spacing: .08em; }
+  .lbl-ret      { fill: var(--lbl-ret); font-size: 11px; font-weight: 600; }
+  .center-title { fill: var(--center-title); font-size: 12px; font-weight: 700; letter-spacing: .06em; }
+  .center-sub   { fill: var(--center-sub); font-size: 10.5px; }
+  .plumb-bg     { fill: var(--plumb-bg); stroke: var(--plumb-border); stroke-width: 1.2; stroke-dasharray: 4 3; }
+  .plumb-text   { fill: var(--plumb-text); font-size: 11px; font-weight: 700; letter-spacing: .08em; }
+
+  .swipe-hint { display: none; margin-top: 6px; font-size: 10px; letter-spacing: .06em; color: var(--pst-color); text-align: center; }
+
+  .flow-chips { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin: 14px 0 22px; }
+  .chip {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 600; letter-spacing: .04em;
+    padding: 4px 12px; border-radius: 20px; border: 1px solid;
+  }
+  .chip-cap { color: var(--flow-cap); border-color: var(--flow-cap); }
+  .chip-ret { color: var(--flow-ret); border-color: var(--flow-ret); }
+  .chip-cb  { color: var(--center-ring); border-color: var(--center-ring); }
+  .sw       { display: inline-block; width: 18px; border-top: 2px solid currentColor; }
+  .sw-ret   { border-top-style: dashed; }
+  .sw-cb    { width: 10px; height: 10px; border: 2px solid currentColor; border-radius: 50%; }
+
+  .flow-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .flow-card {
+    background: var(--force-bg);
+    border: 1.5px solid var(--force-border);
+    border-radius: 12px; padding: 16px;
+  }
+  .flow-card .step { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--layer-stag); margin-bottom: 6px; }
+  .flow-card h3    { font-size: 13px; font-weight: 700; color: var(--force-h3); margin-bottom: 5px; }
+  .flow-card p     { font-size: 11.5px; color: var(--force-p); line-height: 1.6; }
+  .flow-card.wide  { grid-column: 1 / -1; background: var(--reg-bg); border-color: var(--reg-border); }
+  .flow-card.wide .step { color: var(--reg-tag-color); }
+  .flow-card.wide h3    { color: var(--reg-h2); }
+  .flow-card.wide p     { color: var(--reg-p); }
+
+  /* ── JURISDICTION CARDS ── */
+  .jur-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .jur-card {
+    background: var(--jur-bg);
+    border: 1.5px solid var(--jur-border);
+    border-radius: 12px; padding: 18px 16px;
+    display: flex; flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .jur-card:hover { border-color: var(--jur-hover); transform: translateY(-2px); }
+  .jur-head  { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .jur-head .flag { font-size: 20px; line-height: 1; }
+  .jur-head h3    { font-size: 13px; font-weight: 700; color: var(--jur-h3); }
+  .jur-head .code {
+    margin-left: auto;
+    font-size: 9.5px; font-weight: 700; letter-spacing: .1em;
+    color: var(--jur-tag); background: var(--jur-tag-bg);
+    border-radius: 4px; padding: 2px 6px;
+  }
+  .jur-card dl { display: grid; grid-template-columns: auto 1fr; gap: 5px 10px; font-size: 11px; line-height: 1.5; margin-bottom: 12px; }
+  .jur-card dt { color: var(--jur-tag); font-weight: 700; white-space: nowrap; }
+  .jur-card dd { color: var(--jur-p); }
+  .jur-card .kpi       { margin-top: auto; font-size: 20px; font-weight: 800; color: var(--jur-kpi); line-height: 1.2; }
+  .jur-card .kpi-label { font-size: 10px; color: var(--jur-kpi-label); margin-top: 2px; }
+
+  /* ── FORCE / TREND CARDS ── */
+  .force-card {
+    background: var(--force-bg);
+    border: 1.5px solid var(--force-border);
+    border-radius: 12px; padding: 18px 16px;
+  }
+  .force-card .force-num { font-size: 28px; font-weight: 800; color: var(--force-num); line-height: 1; margin-bottom: 8px; }
+  .force-card h3  { font-size: 13px; font-weight: 700; color: var(--force-h3); margin-bottom: 6px; }
+  .force-card p   { font-size: 11px; color: var(--force-p); line-height: 1.6; }
+  .force-card .stat {
+    display: inline-block; margin-top: 10px; font-size: 10px;
+    color: var(--force-stat); background: var(--force-stat-bg);
+    border: 1px solid var(--force-stat-bd); border-radius: 4px; padding: 2px 8px;
+  }
+
+  /* ── LEGEND & FOOTNOTE ── */
+  .legend { margin-top: 48px; display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+  .legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--legend-color); }
+  .legend-dot  { width: 10px; height: 10px; border-radius: 50%; }
+  .footnote {
+    width: 100%; max-width: 960px;
+    margin-top: 28px; padding-top: 16px;
+    border-top: 1px solid var(--foot-border);
+    font-size: 11px; line-height: 1.6;
+    color: var(--foot-color); text-align: center;
+  }
+
+  @media (max-width: 800px) {
+    .cards-5 { grid-template-columns: repeat(2, 1fr); }
+    .cards-4 { grid-template-columns: repeat(2, 1fr); }
+    .cards-3 { grid-template-columns: 1fr; }
+    .jur-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 668px) {
+    .swipe-hint { display: block; }
+  }
+  @media (max-width: 460px) {
+    body { padding: 72px 16px 48px; }
+    .regulatory { padding: 18px; }
+    .cards-5, .cards-4, .jur-grid, .flow-grid { grid-template-columns: 1fr; }
+    .flow-card.wide { grid-column: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Controls -->
+<div class="controls">
+  <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Switch theme" aria-label="Switch theme">🌙</button>
+  <div class="lang-toggle" role="group" aria-label="Language">
+    <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+    <button id="btn-zh" onclick="setLang('zh')">中文</button>
+  </div>
+</div>
+
+<h1 data-en="Finance Industry — Full Overview (as of June 2026)"
+    data-zh="金融行业全览（截至2026年6月）">Finance Industry — Full Overview (as of June 2026)</h1>
+<p class="subtitle"
+   data-en="Regulation &amp; Central Banks · Five Value-Chain Layers · Foundation Pillars · Six-Jurisdiction Lens"
+   data-zh="监管与中央银行 · 五大价值链层级 · 基础支柱 · 六大法域视角">Regulation &amp; Central Banks · Five Value-Chain Layers · Foundation Pillars · Six-Jurisdiction Lens</p>
+
+<div class="chart">
+
+  <!-- ══ REGULATION & CENTRAL BANKS (paradigm) ══ -->
+  <div class="regulatory">
+    <div class="badge" data-en="Higher-Order Force" data-zh="高阶驱动力">Higher-Order Force</div>
+    <h2 data-en="Regulation, Central Banks &amp; Financial Plumbing"
+        data-zh="监管、中央银行与金融基础设施">Regulation, Central Banks &amp; Financial Plumbing</h2>
+    <p data-en="Not a sector — the cross-cutting field that sets the rules, the money and the rails for every layer below. Central banks set policy rates, act as lender of last resort and run the RTGS systems; global standard setters (BCBS, FSB, IOSCO, CPMI, FATF) write the playbook that national authorities adopt — from the Fed, ECB and Bank of England to the PBoC, HKMA and CBUAE."
+       data-zh="并非某一赛道，而是为下方每一层级设定规则、货币与通道的横向场域。中央银行制定政策利率、充当最后贷款人并运营实时全额结算（RTGS）系统；全球标准制定机构（BCBS、FSB、IOSCO、CPMI、FATF）制定规则框架，由各地监管机构落地实施——从美联储、欧洲央行、英格兰银行，到中国人民银行、香港金管局与阿联酋央行。">
+      Not a sector — the cross-cutting field that sets the rules, the money and the rails for every layer below. Central banks set policy rates, act as lender of last resort and run the RTGS systems; global standard setters (BCBS, FSB, IOSCO, CPMI, FATF) write the playbook that national authorities adopt — from the Fed, ECB and Bank of England to the PBoC, HKMA and CBUAE.
+    </p>
+    <div class="tags">
+      <span class="tag" data-en="Basel III Capital"    data-zh="巴塞尔III资本">Basel III Capital</span>
+      <span class="tag" data-en="FSB · IOSCO · FATF"   data-zh="FSB · IOSCO · FATF">FSB · IOSCO · FATF</span>
+      <span class="tag" data-en="T+1 Settlement"       data-zh="T+1 结算">T+1 Settlement</span>
+      <span class="tag" data-en="ISO 20022 Messaging"  data-zh="ISO 20022 报文">ISO 20022 Messaging</span>
+      <span class="tag" data-en="Stock Connect · CIPS" data-zh="互联互通 · CIPS">Stock Connect · CIPS</span>
+      <span class="tag" data-en="CBUAE · DIFC · ADGM"  data-zh="阿联酋央行 · DIFC · ADGM">CBUAE · DIFC · ADGM</span>
+    </div>
+  </div>
+
+  <!-- Connector 1 -->
+  <div class="connector">
+    <div class="line line-1"></div>
+    <div class="connector-label" data-en="governs &amp; spans across" data-zh="统摄并贯穿所有层级">governs &amp; spans across</div>
+    <div class="line line-1"></div>
+    <div class="arrow arrow-gold"></div>
+  </div>
+
+  <!-- ══ FIVE VALUE-CHAIN LAYERS ══ -->
+  <div class="section">
+    <div class="section-header sectors-header"
+         data-en="Five Value-Chain Layers — Upper Layer"
+         data-zh="五大价值链层级 — 上层">Five Value-Chain Layers — Upper Layer</div>
+    <div class="cards-5">
+
+      <div class="layer-card">
+        <div class="num" data-en="Layer 1" data-zh="第一层">Layer 1</div>
+        <div class="icon">🏦</div>
+        <h3 data-en="Capital Formation" data-zh="资本形成">Capital Formation</h3>
+        <p data-en="Banks lend and underwrite; equity and debt capital markets, syndicated loans, private credit and securitization turn savings into funding for firms and governments."
+           data-zh="银行放贷与承销；股权与债务资本市场、银团贷款、私募信贷与资产证券化，把储蓄转化为企业与政府的融资。">
+          Banks lend and underwrite; equity and debt capital markets, syndicated loans, private credit and securitization turn savings into funding for firms and governments.
+        </p>
+        <div class="sub-tags">
+          <span class="sub-tag" data-en="ECM · DCM · Sukuk"      data-zh="股权 · 债权 · 伊斯兰债券">ECM · DCM · Sukuk</span>
+          <span class="sub-tag" data-en="Loans · Private Credit" data-zh="贷款 · 私募信贷">Loans · Private Credit</span>
+          <span class="sub-tag" data-en="ABS · CLOs"             data-zh="ABS · CLO">ABS · CLOs</span>
+        </div>
+      </div>
+
+      <div class="layer-card">
+        <div class="num" data-en="Layer 2" data-zh="第二层">Layer 2</div>
+        <div class="icon">📈</div>
+        <h3 data-en="Trading &amp; Market Structure" data-zh="交易与市场结构">Trading &amp; Market Structure</h3>
+        <p data-en="Exchanges, ATSs/MTFs, dealers and RFQ platforms match buyers and sellers. Best-execution rules, repo funding and benchmarks (SOFR, LPR, HIBOR, EIBOR) set the terms."
+           data-zh="交易所、另类交易系统/多边交易设施、交易商与询价平台撮合买卖双方；最佳执行规则、回购融资与基准利率（SOFR、LPR、HIBOR、EIBOR）决定交易条件。">
+          Exchanges, ATSs/MTFs, dealers and RFQ platforms match buyers and sellers. Best-execution rules, repo funding and benchmarks (SOFR, LPR, HIBOR, EIBOR) set the terms.
+        </p>
+        <div class="sub-tags">
+          <span class="sub-tag" data-en="NYSE · HKEX · SSE · DFM" data-zh="纽交所 · 港交所 · 上交所 · DFM">NYSE · HKEX · SSE · DFM</span>
+          <span class="sub-tag" data-en="OTC · RFQ · Repo"        data-zh="场外 · 询价 · 回购">OTC · RFQ · Repo</span>
+          <span class="sub-tag" data-en="SOFR · LPR · HIBOR"      data-zh="SOFR · LPR · HIBOR">SOFR · LPR · HIBOR</span>
+        </div>
+      </div>
+
+      <div class="layer-card">
+        <div class="num" data-en="Layer 3" data-zh="第三层">Layer 3</div>
+        <div class="icon">🔐</div>
+        <h3 data-en="Post-Trade &amp; Custody" data-zh="交易后与托管">Post-Trade &amp; Custody</h3>
+        <p data-en="CCPs novate and net trades, CSDs settle delivery-versus-payment, custodians safekeep and service assets. Cycles differ: T+1 in the US, T+0/T+1 for A-shares, T+2 in Hong Kong and the UAE."
+           data-zh="中央对手方（CCP）进行合约更替与净额轧差，中央证券存管机构（CSD）完成券款对付（DvP），托管行负责资产保管与服务。结算周期各异：美国T+1，A股T+0/T+1，香港与阿联酋T+2。">
+          CCPs novate and net trades, CSDs settle delivery-versus-payment, custodians safekeep and service assets. Cycles differ: T+1 in the US, T+0/T+1 for A-shares, T+2 in Hong Kong and the UAE.
+        </p>
+        <div class="sub-tags">
+          <span class="sub-tag" data-en="DTCC · LCH · CSDC"           data-zh="DTCC · LCH · 中国结算">DTCC · LCH · CSDC</span>
+          <span class="sub-tag" data-en="DvP · T+1"                   data-zh="券款对付 · T+1">DvP · T+1</span>
+          <span class="sub-tag" data-en="Custody · Corporate Actions" data-zh="托管 · 公司行动">Custody · Corporate Actions</span>
+        </div>
+      </div>
+
+      <div class="layer-card hot">
+        <div class="num" data-en="Layer 4 · ISO 20022" data-zh="第四层 · ISO 20022">Layer 4 · ISO 20022</div>
+        <div class="icon">💸</div>
+        <h3 data-en="Payments &amp; Money Movement" data-zh="支付与资金流动">Payments &amp; Money Movement</h3>
+        <p data-en="RTGS for large values, batch rails for bulk, 24/7 instant payments, card schemes and cross-border correspondent banking — now largely on ISO 20022 messaging."
+           data-zh="大额走RTGS，批量走批处理通道，另有7×24即时支付、银行卡组织与跨境代理行网络——如今大多已迁移至 ISO 20022 报文标准。">
+          RTGS for large values, batch rails for bulk, 24/7 instant payments, card schemes and cross-border correspondent banking — now largely on ISO 20022 messaging.
+        </p>
+        <div class="sub-tags">
+          <span class="sub-tag" data-en="Fedwire · CNAPS · UAEFTS" data-zh="Fedwire · CNAPS · UAEFTS">Fedwire · CNAPS · UAEFTS</span>
+          <span class="sub-tag" data-en="FedNow · FPS · Aani"      data-zh="FedNow · 转数快 · Aani">FedNow · FPS · Aani</span>
+          <span class="sub-tag" data-en="SWIFT · CIPS · mBridge"   data-zh="SWIFT · CIPS · mBridge">SWIFT · CIPS · mBridge</span>
+        </div>
+      </div>
+
+      <div class="layer-card">
+        <div class="num" data-en="Layer 5" data-zh="第五层">Layer 5</div>
+        <div class="icon">🧭</div>
+        <h3 data-en="Asset &amp; Wealth Management" data-zh="资产与财富管理">Asset &amp; Wealth Management</h3>
+        <p data-en="Mutual funds, ETFs, UCITS, hedge and private-equity funds, pensions and sovereign wealth funds (ADIA, Mubadala, CIC) allocate long-term capital across every market above."
+           data-zh="共同基金、ETF、UCITS、对冲与私募股权基金、养老金及主权财富基金（ADIA、穆巴达拉、中投）在上述各市场中配置长期资本。">
+          Mutual funds, ETFs, UCITS, hedge and private-equity funds, pensions and sovereign wealth funds (ADIA, Mubadala, CIC) allocate long-term capital across every market above.
+        </p>
+        <div class="sub-tags">
+          <span class="sub-tag" data-en="ETFs · UCITS · OFCs" data-zh="ETF · UCITS · OFC">ETFs · UCITS · OFCs</span>
+          <span class="sub-tag" data-en="PE · Private Credit" data-zh="私募股权 · 私募信贷">PE · Private Credit</span>
+          <span class="sub-tag" data-en="SWFs · Pensions"     data-zh="主权基金 · 养老金">SWFs · Pensions</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Connector 2 -->
+  <div class="connector">
+    <div class="line line-2"></div>
+    <div class="connector-label" data-en="built on" data-zh="建立在以下支柱之上">built on</div>
+    <div class="line line-2"></div>
+    <div class="arrow arrow-pur"></div>
+  </div>
+
+  <!-- ══ FOUNDATION PILLARS ══ -->
+  <div class="section">
+    <div class="section-header pillars-header"
+         data-en="Foundation Pillars — Lower Layer"
+         data-zh="基础支柱 — 下层">Foundation Pillars — Lower Layer</div>
+    <div class="cards-4">
+
+      <div class="pillar-card">
+        <div class="icon">🛡️</div>
+        <h3 data-en="Risk Management" data-zh="风险管理">Risk Management</h3>
+        <p data-en="Market, credit, liquidity, operational and model risk. VaR and Expected Shortfall, stress tests, Basel capital (CET1 ≥ 4.5% of RWA) and liquidity ratios (LCR, NSFR ≥ 100%)."
+           data-zh="市场、信用、流动性、操作与模型风险。风险价值（VaR）与预期损失（ES）、压力测试、巴塞尔资本要求（CET1 ≥ 风险加权资产的4.5%）及流动性指标（LCR、NSFR ≥ 100%）。">
+          Market, credit, liquidity, operational and model risk. VaR and Expected Shortfall, stress tests, Basel capital (CET1 ≥ 4.5% of RWA) and liquidity ratios (LCR, NSFR ≥ 100%).
+        </p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="icon">🧬</div>
+        <h3 data-en="Data &amp; Technology" data-zh="数据与技术">Data &amp; Technology</h3>
+        <p data-en="Identifiers (ISIN, LEI, FIGI, USCC), messages (FIX, FpML, ISO 20022) and systems (OMS/EMS, core banking, ledgers). Money is decimal, idempotent and reconciled."
+           data-zh="标识符（ISIN、LEI、FIGI、统一社会信用代码）、报文（FIX、FpML、ISO 20022）与系统（OMS/EMS、核心银行、账簿）。金额用十进制、操作幂等、账务可对账。">
+          Identifiers (ISIN, LEI, FIGI, USCC), messages (FIX, FpML, ISO 20022) and systems (OMS/EMS, core banking, ledgers). Money is decimal, idempotent and reconciled.
+        </p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="icon">📒</div>
+        <h3 data-en="Accounting &amp; Reporting" data-zh="会计与报告">Accounting &amp; Reporting</h3>
+        <p data-en="US GAAP vs IFRS, with CAS and HKFRS converged to IFRS. Fair-value Levels 1–3, CECL vs IFRS 9 expected losses, regulatory and trade reporting, AAOIFI for Islamic banks."
+           data-zh="美国通用会计准则与国际财务报告准则（IFRS）；中国企业会计准则与香港财务报告准则均已与IFRS趋同。公允价值第一至第三层级、CECL 与 IFRS 9 预期信用损失、监管与交易报告，伊斯兰银行另遵循 AAOIFI 标准。">
+          US GAAP vs IFRS, with CAS and HKFRS converged to IFRS. Fair-value Levels 1–3, CECL vs IFRS 9 expected losses, regulatory and trade reporting, AAOIFI for Islamic banks.
+        </p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="icon">🪙</div>
+        <h3>
+          <span data-en="Fintech &amp; Digital Assets" data-zh="金融科技与数字资产">Fintech &amp; Digital Assets</span>
+          <span class="new-badge" data-en="Emerging" data-zh="新兴">Emerging</span>
+        </h3>
+        <p data-en="Neobanks, super-app payments, open finance, stablecoin regimes (GENIUS Act, MiCA, Hong Kong, CBUAE), CBDCs (e-CNY, Digital Dirham, mBridge) and tokenized funds."
+           data-zh="数字银行、超级应用支付、开放金融、稳定币监管框架（GENIUS法案、MiCA、香港、阿联酋央行）、央行数字货币（数字人民币、数字迪拉姆、mBridge）以及代币化基金。">
+          Neobanks, super-app payments, open finance, stablecoin regimes (GENIUS Act, MiCA, Hong Kong, CBUAE), CBDCs (e-CNY, Digital Dirham, mBridge) and tokenized funds.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ══ FLOW OF FUNDS ══ -->
+<div class="page-section">
+  <div class="page-section-title"
+       data-en="How Money &amp; Risk Flow"
+       data-zh="资金与风险如何流动">How Money &amp; Risk Flow</div>
+
+  <div class="flow-wrap">
+  <svg viewBox="0 0 860 640" role="img" aria-labelledby="flow-title">
+    <title id="flow-title">Flow of funds around a ring: savers to intermediaries to markets to borrowers and issuers, with returns and risk flowing back to savers; central bank and regulators at the centre; payment, clearing, settlement and custody plumbing underneath.</title>
+    <defs>
+      <marker id="m-cap" markerWidth="9" markerHeight="6.5" refX="8" refY="3.25" orient="auto">
+        <polygon class="tip-cap" points="0 0, 9 3.25, 0 6.5"/>
+      </marker>
+      <marker id="m-ret" markerWidth="9" markerHeight="6.5" refX="8" refY="3.25" orient="auto">
+        <polygon class="tip-ret" points="0 0, 9 3.25, 0 6.5"/>
+      </marker>
+    </defs>
+
+    <!-- orbit track -->
+    <circle cx="430" cy="300" r="190" class="orbit-ring"/>
+
+    <!-- ── CAPITAL: clockwise 01 → 02 → 03 → 04 ── -->
+    <path d="M 471.8,114.7 A 190 190 0 0 1 615.3,258.2" class="arc-cap" marker-end="url(#m-cap)"/>
+    <path d="M 615.3,341.8 A 190 190 0 0 1 471.8,485.3" class="arc-cap" marker-end="url(#m-cap)"/>
+    <path d="M 388.2,485.3 A 190 190 0 0 1 244.7,341.8" class="arc-cap" marker-end="url(#m-cap)"/>
+    <text x="590" y="150" class="lbl-cap" text-anchor="start"
+          data-en="deposits · premiums · fund units" data-zh="存款 · 保费 · 基金份额">deposits · premiums · fund units</text>
+    <text x="590" y="458" class="lbl-cap" text-anchor="start"
+          data-en="buy securities" data-zh="购买证券">buy securities</text>
+    <text x="270" y="458" class="lbl-cap" text-anchor="end"
+          data-en="IPOs · bond issues" data-zh="IPO · 债券发行">IPOs · bond issues</text>
+
+    <!-- ── LOOP-BACK: returns & risk, 04 → 01, outside the ring ── -->
+    <path d="M 219,263.6 C 175,180 330,60 390.5,95.6" class="arc-ret" marker-end="url(#m-ret)"/>
+    <text x="226" y="128" class="lbl-ret-phase" text-anchor="end"
+          data-en="RETURNS &amp; RISK" data-zh="回报与风险">RETURNS &amp; RISK</text>
+    <text x="226" y="143" class="lbl-ret" text-anchor="end"
+          data-en="interest · dividends · coupons" data-zh="利息 · 股息 · 票息">interest · dividends · coupons</text>
+
+    <!-- ── CENTRE: central bank & regulators ── -->
+    <circle cx="430" cy="300" r="66" class="center-bg"/>
+    <text x="430" y="286" class="center-title" text-anchor="middle"
+          data-en="CENTRAL BANK" data-zh="中央银行">CENTRAL BANK</text>
+    <text x="430" y="301" class="center-title" text-anchor="middle"
+          data-en="&amp; REGULATORS" data-zh="与监管机构">&amp; REGULATORS</text>
+    <text x="430" y="319" class="center-sub" text-anchor="middle"
+          data-en="policy rate · LoLR" data-zh="政策利率 · 最后贷款人">policy rate · LoLR</text>
+    <text x="430" y="332" class="center-sub" text-anchor="middle"
+          data-en="RTGS · supervision" data-zh="RTGS · 审慎监管">RTGS · supervision</text>
+
+    <!-- ── NODE 01 — top: savers & investors ── -->
+    <circle cx="430" cy="110" r="34" class="node-bg"/>
+    <text x="430" y="115" class="lbl-num" text-anchor="middle">01</text>
+    <text x="430" y="30" class="lbl-phase" text-anchor="middle"
+          data-en="SURPLUS UNITS" data-zh="资金盈余方">SURPLUS UNITS</text>
+    <text x="430" y="47" class="lbl-step" text-anchor="middle"
+          data-en="Savers &amp; Investors" data-zh="储蓄者与投资者">Savers &amp; Investors</text>
+    <text x="430" y="62" class="lbl-sub" text-anchor="middle"
+          data-en="households · pensions" data-zh="家庭 · 养老金">households · pensions</text>
+
+    <!-- ── NODE 02 — right: intermediaries ── -->
+    <circle cx="620" cy="300" r="34" class="node-bg"/>
+    <text x="620" y="305" class="lbl-num" text-anchor="middle">02</text>
+    <text x="664" y="286" class="lbl-phase" text-anchor="start"
+          data-en="POOL &amp; TRANSFORM" data-zh="汇集与转换">POOL &amp; TRANSFORM</text>
+    <text x="664" y="303" class="lbl-step" text-anchor="start"
+          data-en="Intermediaries" data-zh="金融中介">Intermediaries</text>
+    <text x="664" y="318" class="lbl-sub" text-anchor="start"
+          data-en="banks · insurers · funds" data-zh="银行 · 保险 · 基金">banks · insurers · funds</text>
+
+    <!-- ── NODE 03 — bottom: markets ── -->
+    <circle cx="430" cy="490" r="34" class="node-bg"/>
+    <text x="430" y="495" class="lbl-num" text-anchor="middle">03</text>
+    <text x="430" y="546" class="lbl-phase" text-anchor="middle"
+          data-en="PRICE &amp; ALLOCATE" data-zh="定价与配置">PRICE &amp; ALLOCATE</text>
+    <text x="430" y="562" class="lbl-step" text-anchor="middle"
+          data-en="Markets" data-zh="金融市场">Markets</text>
+    <text x="430" y="577" class="lbl-sub" text-anchor="middle"
+          data-en="primary · secondary" data-zh="一级 · 二级市场">primary · secondary</text>
+
+    <!-- ── NODE 04 — left: borrowers & issuers ── -->
+    <circle cx="240" cy="300" r="34" class="node-bg"/>
+    <text x="240" y="305" class="lbl-num" text-anchor="middle">04</text>
+    <text x="196" y="286" class="lbl-phase" text-anchor="end"
+          data-en="DEFICIT UNITS" data-zh="资金短缺方">DEFICIT UNITS</text>
+    <text x="196" y="303" class="lbl-step" text-anchor="end"
+          data-en="Borrowers &amp; Issuers" data-zh="借款人与发行人">Borrowers &amp; Issuers</text>
+    <text x="196" y="318" class="lbl-sub" text-anchor="end"
+          data-en="firms · governments" data-zh="企业 · 政府">firms · governments</text>
+
+    <!-- ── PLUMBING ── -->
+    <rect x="150" y="596" width="560" height="34" rx="17" class="plumb-bg"/>
+    <text x="430" y="618" class="plumb-text" text-anchor="middle"
+          data-en="PLUMBING — payments · clearing · settlement · custody"
+          data-zh="基础设施 —— 支付 · 清算 · 结算 · 托管">PLUMBING — payments · clearing · settlement · custody</text>
+  </svg>
+  </div>
+  <p class="swipe-hint" data-en="← swipe to see the full diagram →" data-zh="← 左右滑动查看完整图示 →">← swipe to see the full diagram →</p>
+
+  <div class="flow-chips">
+    <span class="chip chip-cap"><span class="sw"></span><span data-en="Capital: savers → users" data-zh="资本：储蓄方 → 使用方">Capital: savers → users</span></span>
+    <span class="chip chip-ret"><span class="sw sw-ret"></span><span data-en="Returns &amp; risk flow back" data-zh="回报与风险回流">Returns &amp; risk flow back</span></span>
+    <span class="chip chip-cb"><span class="sw sw-cb"></span><span data-en="Central bank &amp; regulators" data-zh="中央银行与监管机构">Central bank &amp; regulators</span></span>
+  </div>
+
+  <div class="flow-grid">
+    <div class="flow-card">
+      <div class="step" data-en="01 · Supply" data-zh="01 · 供给">01 · Supply</div>
+      <h3 data-en="Savers &amp; Investors" data-zh="储蓄者与投资者">Savers &amp; Investors</h3>
+      <p data-en="Households, pension funds, insurers and sovereign wealth funds supply capital as deposits, premiums and investments, and bear risk in return for interest, dividends and coupons."
+         data-zh="家庭、养老基金、保险公司与主权财富基金以存款、保费和投资的形式提供资本，并以承担风险换取利息、股息与票息。">
+        Households, pension funds, insurers and sovereign wealth funds supply capital as deposits, premiums and investments, and bear risk in return for interest, dividends and coupons.
+      </p>
+    </div>
+    <div class="flow-card">
+      <div class="step" data-en="02 · Pool &amp; transform" data-zh="02 · 汇集与转换">02 · Pool &amp; transform</div>
+      <h3 data-en="Intermediaries" data-zh="金融中介">Intermediaries</h3>
+      <p data-en="Funds and insurers pool savings and invest them through markets. Banks transform short-term deposits into long-term loans and usually lend straight to borrowers, skipping markets; most credit in Mainland China and the euro area flows that way."
+         data-zh="基金与保险公司汇集储蓄并通过市场进行投资。银行把短期存款转化为长期贷款，通常直接贷给借款人而不经过市场；中国内地与欧元区的大部分信贷即以此方式发放。">
+        Funds and insurers pool savings and invest them through markets. Banks transform short-term deposits into long-term loans and usually lend straight to borrowers, skipping markets; most credit in Mainland China and the euro area flows that way.
+      </p>
+    </div>
+    <div class="flow-card">
+      <div class="step" data-en="03 · Price &amp; allocate" data-zh="03 · 定价与配置">03 · Price &amp; allocate</div>
+      <h3 data-en="Markets" data-zh="金融市场">Markets</h3>
+      <p data-en="Primary markets raise new capital (IPOs, bonds, sukuk). Secondary markets — NYSE, HKEX, SSE, ADX, DFM — provide liquidity and price discovery but no new cash for the issuer. Savers can also buy securities directly, without an intermediary."
+         data-zh="一级市场募集新资本（IPO、债券、伊斯兰债券）。二级市场（纽交所、港交所、上交所、阿布扎比证券交易所、迪拜金融市场）提供流动性与价格发现，但不为发行人带来新增资金。储蓄者也可绕过中介直接购买证券。">
+        Primary markets raise new capital (IPOs, bonds, sukuk). Secondary markets — NYSE, HKEX, SSE, ADX, DFM — provide liquidity and price discovery but no new cash for the issuer. Savers can also buy securities directly, without an intermediary.
+      </p>
+    </div>
+    <div class="flow-card">
+      <div class="step" data-en="04 · Use" data-zh="04 · 使用">04 · Use</div>
+      <h3 data-en="Borrowers &amp; Issuers" data-zh="借款人与发行人">Borrowers &amp; Issuers</h3>
+      <p data-en="Firms, households and governments put the capital to work and pay it back as interest, coupons and dividends — the returns that flow back to savers."
+         data-zh="企业、家庭与政府运用资本，并以利息、票息和股息的形式偿付——这些回报最终回流至储蓄者。">
+        Firms, households and governments put the capital to work and pay it back as interest, coupons and dividends — the returns that flow back to savers.
+      </p>
+    </div>
+    <div class="flow-card wide">
+      <div class="step" data-en="Centre &amp; base" data-zh="中心与底座">Centre &amp; base</div>
+      <h3 data-en="Central Banks, Regulators &amp; Plumbing" data-zh="中央银行、监管机构与金融基础设施">Central Banks, Regulators &amp; Plumbing</h3>
+      <p data-en="Central banks set the policy rate, act as lender of last resort and run RTGS systems (Fedwire, T2, CHAPS, CNAPS, CHATS, UAEFTS); regulators license and supervise every node. Underneath, payments, clearing, settlement and custody move the cash and securities legs — where stress usually shows first."
+         data-zh="中央银行制定政策利率、充当最后贷款人并运营RTGS系统（Fedwire、T2、CHAPS、CNAPS、CHATS、UAEFTS）；监管机构对每个节点实施准入与监管。底层的支付、清算、结算与托管负责资金与证券的交收——压力往往最先在这里显现。">
+        Central banks set the policy rate, act as lender of last resort and run RTGS systems (Fedwire, T2, CHAPS, CNAPS, CHATS, UAEFTS); regulators license and supervise every node. Underneath, payments, clearing, settlement and custody move the cash and securities legs — where stress usually shows first.
+      </p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ SIX-JURISDICTION LENS ══ -->
+<div class="page-section">
+  <div class="page-section-title"
+       data-en="Six-Jurisdiction Lens"
+       data-zh="六大法域视角">Six-Jurisdiction Lens</div>
+  <div class="jur-grid">
+
+    <div class="jur-card">
+      <div class="jur-head">
+        <span class="flag">🇺🇸</span>
+        <h3 data-en="United States" data-zh="美国">United States</h3>
+        <span class="code">US</span>
+      </div>
+      <dl>
+        <dt data-en="Regulators" data-zh="监管">Regulators</dt>
+        <dd data-en="Fed · OCC · FDIC · SEC · CFTC · FINRA · CFPB" data-zh="美联储 · OCC · FDIC · SEC · CFTC · FINRA · CFPB">Fed · OCC · FDIC · SEC · CFTC · FINRA · CFPB</dd>
+        <dt data-en="Rails" data-zh="通道">Rails</dt>
+        <dd data-en="Fedwire · CHIPS · ACH · RTP · FedNow" data-zh="Fedwire · CHIPS · ACH · RTP · FedNow">Fedwire · CHIPS · ACH · RTP · FedNow</dd>
+        <dt data-en="Note" data-zh="要点">Note</dt>
+        <dd data-en="Market-based system; USD is the main global funding currency." data-zh="以市场为主导的体系；美元是全球主要融资货币。">Market-based system; USD is the main global funding currency.</dd>
+      </dl>
+      <div class="kpi">T+1</div>
+      <div class="kpi-label" data-en="Equity settlement since 28 May 2024" data-zh="自2024年5月28日起的股票结算周期">Equity settlement since 28 May 2024</div>
+    </div>
+
+    <div class="jur-card">
+      <div class="jur-head">
+        <span class="flag">🇪🇺</span>
+        <h3 data-en="European Union" data-zh="欧盟">European Union</h3>
+        <span class="code">EU</span>
+      </div>
+      <dl>
+        <dt data-en="Regulators" data-zh="监管">Regulators</dt>
+        <dd data-en="ECB/SSM · EBA · ESMA · national NCAs · AMLA" data-zh="欧洲央行/SSM · EBA · ESMA · 各国主管机构 · AMLA">ECB/SSM · EBA · ESMA · national NCAs · AMLA</dd>
+        <dt data-en="Rails" data-zh="通道">Rails</dt>
+        <dd data-en="T2 · EURO1 · SEPA · SCT Inst" data-zh="T2 · EURO1 · SEPA · SCT Inst">T2 · EURO1 · SEPA · SCT Inst</dd>
+        <dt data-en="Note" data-zh="要点">Note</dt>
+        <dd data-en="Single rulebook: MiFID II, EMIR, CRR3, MiCA, DORA." data-zh="统一规则手册：MiFID II、EMIR、CRR3、MiCA、DORA。">Single rulebook: MiFID II, EMIR, CRR3, MiCA, DORA.</dd>
+      </dl>
+      <div class="kpi">T+1</div>
+      <div class="kpi-label" data-en="Planned for 11 Oct 2027 ⚠️ verify" data-zh="计划于2027年10月11日实施 ⚠️ 待核实">Planned for 11 Oct 2027 ⚠️ verify</div>
+    </div>
+
+    <div class="jur-card">
+      <div class="jur-head">
+        <span class="flag">🇬🇧</span>
+        <h3 data-en="United Kingdom" data-zh="英国">United Kingdom</h3>
+        <span class="code">UK</span>
+      </div>
+      <dl>
+        <dt data-en="Regulators" data-zh="监管">Regulators</dt>
+        <dd data-en="BoE · PRA · FCA" data-zh="英格兰银行 · PRA · FCA">BoE · PRA · FCA</dd>
+        <dt data-en="Rails" data-zh="通道">Rails</dt>
+        <dd data-en="CHAPS · Bacs · Faster Payments" data-zh="CHAPS · Bacs · Faster Payments">CHAPS · Bacs · Faster Payments</dd>
+        <dt data-en="Note" data-zh="要点">Note</dt>
+        <dd data-en="Post-Brexit rulebook diverging from the EU (Basel 3.1, Consumer Duty)." data-zh="脱欧后规则逐步与欧盟分化（巴塞尔3.1、消费者责任规则）。">Post-Brexit rulebook diverging from the EU (Basel 3.1, Consumer Duty).</dd>
+      </dl>
+      <div class="kpi">T+1</div>
+      <div class="kpi-label" data-en="Planned for 11 Oct 2027 ⚠️ verify" data-zh="计划于2027年10月11日实施 ⚠️ 待核实">Planned for 11 Oct 2027 ⚠️ verify</div>
+    </div>
+
+    <div class="jur-card">
+      <div class="jur-head">
+        <span class="flag">🇨🇳</span>
+        <h3 data-en="Mainland China" data-zh="中国内地">Mainland China</h3>
+        <span class="code">CN</span>
+      </div>
+      <dl>
+        <dt data-en="Regulators" data-zh="监管">Regulators</dt>
+        <dd data-en="PBoC · NFRA · CSRC · SAFE" data-zh="中国人民银行 · 金融监管总局 · 证监会 · 外汇局">PBoC · NFRA · CSRC · SAFE</dd>
+        <dt data-en="Rails" data-zh="通道">Rails</dt>
+        <dd data-en="CNAPS · IBPS · NetsUnion · CIPS · UnionPay" data-zh="CNAPS · IBPS · 网联 · CIPS · 银联">CNAPS · IBPS · NetsUnion · CIPS · UnionPay</dd>
+        <dt data-en="Note" data-zh="要点">Note</dt>
+        <dd data-en="Bank-based system; capital-account controls; crypto trading banned since 2021." data-zh="以银行为主导；资本项目管制；2021年起禁止加密货币交易。">Bank-based system; capital-account controls; crypto trading banned since 2021.</dd>
+      </dl>
+      <div class="kpi">T+0 / T+1</div>
+      <div class="kpi-label" data-en="A-shares: securities / cash settlement" data-zh="A股：证券 / 资金交收">A-shares: securities / cash settlement</div>
+    </div>
+
+    <div class="jur-card">
+      <div class="jur-head">
+        <span class="flag">🇭🇰</span>
+        <h3 data-en="Hong Kong SAR" data-zh="中国香港特区">Hong Kong SAR</h3>
+        <span class="code">HK</span>
+      </div>
+      <dl>
+        <dt data-en="Regulators" data-zh="监管">Regulators</dt>
+        <dd data-en="HKMA · SFC · IA" data-zh="香港金管局 · 证监会 · 保监局">HKMA · SFC · IA</dd>
+        <dt data-en="Rails" data-zh="通道">Rails</dt>
+        <dd data-en="CHATS (HKD/USD/EUR/RMB) · FPS" data-zh="CHATS（港元/美元/欧元/人民币）· 转数快">CHATS (HKD/USD/EUR/RMB) · FPS</dd>
+        <dt data-en="Note" data-zh="要点">Note</dt>
+        <dd data-en="Gateway to the Mainland via Stock, Bond and Swap Connect; offshore RMB (CNH) hub." data-zh="通过沪深港通、债券通与互换通连接内地；离岸人民币（CNH）中心。">Gateway to the Mainland via Stock, Bond and Swap Connect; offshore RMB (CNH) hub.</dd>
+      </dl>
+      <div class="kpi">7.75–7.85</div>
+      <div class="kpi-label" data-en="HKD per USD — Linked Exchange Rate System" data-zh="港元兑美元——联系汇率制度">HKD per USD — Linked Exchange Rate System</div>
+    </div>
+
+    <div class="jur-card">
+      <div class="jur-head">
+        <span class="flag">🇦🇪</span>
+        <h3 data-en="United Arab Emirates" data-zh="阿联酋">United Arab Emirates</h3>
+        <span class="code">UAE</span>
+      </div>
+      <dl>
+        <dt data-en="Regulators" data-zh="监管">Regulators</dt>
+        <dd data-en="CBUAE · SCA · VARA (Dubai) · DFSA (DIFC) · FSRA (ADGM)" data-zh="阿联酋央行 · SCA · VARA（迪拜）· DFSA（DIFC）· FSRA（ADGM）">CBUAE · SCA · VARA (Dubai) · DFSA (DIFC) · FSRA (ADGM)</dd>
+        <dt data-en="Rails" data-zh="通道">Rails</dt>
+        <dd data-en="UAEFTS · Aani · Jaywan · WPS" data-zh="UAEFTS · Aani · Jaywan · WPS">UAEFTS · Aani · Jaywan · WPS</dd>
+        <dt data-en="Note" data-zh="要点">Note</dt>
+        <dd data-en="Onshore civil law beside common-law free zones; Islamic and conventional banking side by side." data-zh="在岸大陆法体系与普通法自贸区并存；伊斯兰银行与传统银行并行。">Onshore civil law beside common-law free zones; Islamic and conventional banking side by side.</dd>
+      </dl>
+      <div class="kpi">3.6725</div>
+      <div class="kpi-label" data-en="AED per USD — fixed peg" data-zh="迪拉姆兑美元——固定汇率">AED per USD — fixed peg</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══ CROSS-BORDER LINKS ══ -->
+<div class="page-section">
+  <div class="page-section-title"
+       data-en="Cross-Border Links"
+       data-zh="跨境连接">Cross-Border Links</div>
+  <div class="cards-3">
+
+    <div class="force-card">
+      <div class="force-num">01</div>
+      <h3 data-en="Mainland–Hong Kong Connect" data-zh="内地与香港互联互通">Mainland–Hong Kong Connect</h3>
+      <p data-en="Stock Connect (2014/2016), Bond Connect (2017/2021), Swap Connect (2023) and Wealth Management Connect (2021) open each market through Hong Kong while Mainland capital controls stay in place."
+         data-zh="沪深港通（2014/2016）、债券通（2017/2021）、互换通（2023）与跨境理财通（2021）经由香港打通两地市场，同时保留内地资本管制。">
+        Stock Connect (2014/2016), Bond Connect (2017/2021), Swap Connect (2023) and Wealth Management Connect (2021) open each market through Hong Kong while Mainland capital controls stay in place.
+      </p>
+      <div class="stat" data-en="Closed-loop flows" data-zh="资金闭环流动">Closed-loop flows</div>
+    </div>
+
+    <div class="force-card">
+      <div class="force-num">02</div>
+      <h3 data-en="Cross-Border Payment Rails" data-zh="跨境支付通道">Cross-Border Payment Rails</h3>
+      <p data-en="SWIFT messaging over correspondent banks (ISO 20022 after the Nov 2025 MT cut-over); CIPS for RMB; the mBridge multi-CBDC platform (PBoC, HKMA, CBUAE, BoT, SAMA); Payment Connect linking Hong Kong FPS with Mainland IBPS."
+         data-zh="基于代理行网络的SWIFT报文（2025年11月MT报文退役后转用ISO 20022）；人民币跨境支付系统CIPS；多边央行数字货币桥mBridge（人民银行、香港金管局、阿联酋央行、泰国央行、沙特央行）；连接香港转数快与内地网上支付跨行清算系统的“跨境支付通”。">
+        SWIFT messaging over correspondent banks (ISO 20022 after the Nov 2025 MT cut-over); CIPS for RMB; the mBridge multi-CBDC platform (PBoC, HKMA, CBUAE, BoT, SAMA); Payment Connect linking Hong Kong FPS with Mainland IBPS.
+      </p>
+      <div class="stat" data-en="⚠️ verify current status" data-zh="⚠️ 请核实最新状态">⚠️ verify current status</div>
+    </div>
+
+    <div class="force-card">
+      <div class="force-num">03</div>
+      <h3 data-en="UAE: Onshore vs Free Zones" data-zh="阿联酋：在岸与自贸区">UAE: Onshore vs Free Zones</h3>
+      <p data-en="DIFC (2004) and ADGM (2015) run their own common-law-based legal systems, courts and regulators (DFSA, FSRA) beside federal law, the CBUAE and SCA. Same country, different rulebooks — always name the regime."
+         data-zh="迪拜国际金融中心（DIFC，2004）与阿布扎比全球市场（ADGM，2015）拥有各自以普通法为基础的法律体系、法院与监管机构（DFSA、FSRA），与联邦法律、阿联酋央行及SCA并行。同一国家、不同规则——务必注明适用体制。">
+        DIFC (2004) and ADGM (2015) run their own common-law-based legal systems, courts and regulators (DFSA, FSRA) beside federal law, the CBUAE and SCA. Same country, different rulebooks — always name the regime.
+      </p>
+      <div class="stat" data-en="Onshore · DIFC · ADGM" data-zh="在岸 · DIFC · ADGM">Onshore · DIFC · ADGM</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══ TRENDS & OPEN QUESTIONS ══ -->
+<div class="page-section">
+  <div class="page-section-title"
+       data-en="Trends to Watch — as of June 2026"
+       data-zh="值得关注的趋势 — 截至2026年6月">Trends to Watch — as of June 2026</div>
+  <div class="cards-3">
+
+    <div class="force-card">
+      <div class="force-num">01</div>
+      <h3 data-en="Settlement Compression" data-zh="结算周期压缩">Settlement Compression</h3>
+      <p data-en="EU, UK and Swiss moves to T+1 (Oct 2027), Hong Kong's settlement-cycle review, tokenized collateral and atomic-settlement pilots."
+         data-zh="欧盟、英国与瑞士迈向T+1（2027年10月）、香港结算周期检讨、代币化抵押品与原子结算试点。">
+        EU, UK and Swiss moves to T+1 (Oct 2027), Hong Kong's settlement-cycle review, tokenized collateral and atomic-settlement pilots.
+      </p>
+      <div class="stat" data-en="⚠️ verify current status" data-zh="⚠️ 请核实最新状态">⚠️ verify current status</div>
+    </div>
+
+    <div class="force-card">
+      <div class="force-num">02</div>
+      <h3 data-en="Capital Rules Diverge" data-zh="资本规则分化">Capital Rules Diverge</h3>
+      <p data-en="Basel III final reforms: EU CRR3 live, UK Basel 3.1 due 2027, US endgame pending; FRTB timing differs by region."
+         data-zh="巴塞尔III最终改革：欧盟CRR3已生效，英国巴塞尔3.1定于2027年，美国“终局”规则仍待落地；各地FRTB实施时间不一。">
+        Basel III final reforms: EU CRR3 live, UK Basel 3.1 due 2027, US endgame pending; FRTB timing differs by region.
+      </p>
+      <div class="stat" data-en="⚠️ verify current status" data-zh="⚠️ 请核实最新状态">⚠️ verify current status</div>
+    </div>
+
+    <div class="force-card">
+      <div class="force-num">03</div>
+      <h3 data-en="Stablecoin Licensing" data-zh="稳定币牌照">Stablecoin Licensing</h3>
+      <p data-en="GENIUS Act rules (US), MiCA (EU), Hong Kong's Stablecoins Ordinance and CBUAE payment-token rules set who may issue and where tokens may be used to pay."
+         data-zh="美国GENIUS法案细则、欧盟MiCA、香港《稳定币条例》与阿联酋央行支付代币规则，界定谁可发行、在何处可用于支付。">
+        GENIUS Act rules (US), MiCA (EU), Hong Kong's Stablecoins Ordinance and CBUAE payment-token rules set who may issue and where tokens may be used to pay.
+      </p>
+      <div class="stat" data-en="⚠️ verify current status" data-zh="⚠️ 请核实最新状态">⚠️ verify current status</div>
+    </div>
+
+    <div class="force-card">
+      <div class="force-num">04</div>
+      <h3 data-en="CBDCs &amp; Tokenization" data-zh="央行数字货币与代币化">CBDCs &amp; Tokenization</h3>
+      <p data-en="e-CNY pilots, mBridge, the Digital Dirham, e-HKD and digital-euro preparation; tokenized money-market funds and Treasuries used as collateral."
+         data-zh="数字人民币试点、mBridge、数字迪拉姆、数码港元与数字欧元筹备；代币化货币基金与美国国债被用作抵押品。">
+        e-CNY pilots, mBridge, the Digital Dirham, e-HKD and digital-euro preparation; tokenized money-market funds and Treasuries used as collateral.
+      </p>
+      <div class="stat" data-en="⚠️ verify current status" data-zh="⚠️ 请核实最新状态">⚠️ verify current status</div>
+    </div>
+
+    <div class="force-card">
+      <div class="force-num">05</div>
+      <h3 data-en="China's Credit Cycle" data-zh="中国信贷周期">China's Credit Cycle</h3>
+      <p data-en="Resolving property-developer and LGFV debt, monetary easing, and further opening of onshore markets to foreign investors."
+         data-zh="化解房地产开发商与地方政府融资平台债务、货币宽松，以及境内市场对外资的进一步开放。">
+        Resolving property-developer and LGFV debt, monetary easing, and further opening of onshore markets to foreign investors.
+      </p>
+      <div class="stat" data-en="⚠️ verify current status" data-zh="⚠️ 请核实最新状态">⚠️ verify current status</div>
+    </div>
+
+    <div class="force-card">
+      <div class="force-num">06</div>
+      <h3 data-en="AI in Finance" data-zh="金融业中的AI">AI in Finance</h3>
+      <p data-en="Model-risk expectations (SR 11-7, SS1/23), EU AI Act high-risk credit scoring, China's generative-AI measures, and explainability for credit decisions."
+         data-zh="模型风险监管要求（SR 11-7、SS1/23）、欧盟《人工智能法》将信用评分列为高风险、中国生成式AI管理办法，以及信贷决策的可解释性。">
+        Model-risk expectations (SR 11-7, SS1/23), EU AI Act high-risk credit scoring, China's generative-AI measures, and explainability for credit decisions.
+      </p>
+      <div class="stat" data-en="⚠️ verify current status" data-zh="⚠️ 请核实最新状态">⚠️ verify current status</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══ LEGEND ══ -->
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#1a9080;"></div><span data-en="Regulation &amp; Central Banks (Paradigm)" data-zh="监管与中央银行（范式）">Regulation &amp; Central Banks (Paradigm)</span></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#b88a10;"></div><span data-en="Value-Chain Layers (Upper)" data-zh="价值链层级（上层）">Value-Chain Layers (Upper)</span></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#7a50c8;"></div><span data-en="Foundation Pillars (Lower)" data-zh="基础支柱（下层）">Foundation Pillars (Lower)</span></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#3a78d0;"></div><span data-en="Jurisdiction Lens" data-zh="法域视角">Jurisdiction Lens</span></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#485090;"></div><span data-en="Cross-Border Links &amp; Trends" data-zh="跨境连接与趋势">Cross-Border Links &amp; Trends</span></div>
+  <div class="legend-item"><span data-en="⚠️ = verify current status" data-zh="⚠️ = 请核实最新状态">⚠️ = verify current status</span></div>
+</div>
+
+<p class="footnote"
+   data-en="Educational overview — not investment, legal or tax advice. Structural facts as of June 2026; items marked ⚠️ may have changed."
+   data-zh="教育性概览——不构成投资、法律或税务建议。结构性信息截至2026年6月；标注 ⚠️ 的内容可能已有变化。">Educational overview — not investment, legal or tax advice. Structural facts as of June 2026; items marked ⚠️ may have changed.</p>
+
+<script>
+  let currentLang = 'en';
+  const TITLES = { en: 'Finance Industry Overview — June 2026', zh: '金融行业全览 — 2026年6月' };
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.title = TITLES[lang];
+    document.querySelectorAll('[data-en]').forEach(el => { el.innerHTML = el.dataset[lang]; });
+  }
+
+  function toggleTheme() {
+    const cur  = document.documentElement.getAttribute('data-theme') || 'dark';
+    const next = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('voltai-theme', next); } catch (e) {}
+    updateThemeIcon(next);
+  }
+
+  function updateThemeIcon(theme) {
+    const btn = document.getElementById('theme-btn');
+    if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    updateThemeIcon(document.documentElement.getAttribute('data-theme') || 'dark');
+    if (location.hash === '#zh') setLang('zh');
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+      let stored = null;
+      try { stored = localStorage.getItem('voltai-theme'); } catch (err) {}
+      if (!stored) {
+        const t = e.matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+        updateThemeIcon(t);
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
