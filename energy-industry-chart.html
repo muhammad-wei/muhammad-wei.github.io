@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Energy Industry Overview — UAE/GCC 2026</title>
+<title>Energy Industry Overview — Global &amp; China, 2026</title>
+<meta name="description" content="Layered map of the global energy industry in 2026 with a China focus: geopolitics and the Hormuz shock, five value-chain layers, industry pillars, a China lens, a four-region snapshot (US, EU, Middle East/GCC, India), and where software startups win.">
 <!-- Anti-FOUC: set theme before first paint -->
 <script>
   (function(){
@@ -80,13 +81,22 @@
     /* page section */
     --pst-color:        #3a4060;
     --pst-line:         #1e2230;
-    /* UAE cards */
-    --uae-bg:           linear-gradient(160deg, #1a1508 0%, #110f05 100%);
-    --uae-border:       #2d2508;
-    --uae-h3:           #d4aa40;
-    --uae-p:            #5a4820;
-    --uae-kpi:          #e8c060;
-    --uae-kpi-label:    #7a6030;
+    /* China lens cards */
+    --cn-bg:            linear-gradient(160deg, #1c0c0a 0%, #120706 100%);
+    --cn-border:        #3a1612;
+    --cn-h3:            #e0705a;
+    --cn-p:             #8a5448;
+    --cn-kpi:           #f0c050;
+    --cn-kpi-label:     #8a5040;
+    /* global region cards */
+    --reg-bg:           #0d1518;
+    --reg-border:       #182a30;
+    --reg-code:         #4aa0b0;
+    --reg-code-bg:      rgba(58,144,160,.14);
+    --reg-h3:           #6ab8c8;
+    --reg-p:            #4e747c;
+    --reg-kpi:          #88cad6;
+    --reg-kpi-label:    #3e6870;
     /* opportunity cards */
     --opp-bg:           #0f1220;
     --opp-border:       #1a1d30;
@@ -169,12 +179,20 @@
     --force-stat-bd:    rgba(64,96,160,.18);
     --pst-color:        #8090a0;
     --pst-line:         #e0e4f0;
-    --uae-bg:           linear-gradient(160deg, #fff8e0 0%, #fff0c8 100%);
-    --uae-border:       #d4b040;
-    --uae-h3:           #805010;
-    --uae-p:            #7a6020;
-    --uae-kpi:          #905020;
-    --uae-kpi-label:    #a07030;
+    --cn-bg:            linear-gradient(160deg, #fff3ef 0%, #ffe8e1 100%);
+    --cn-border:        #e8b0a0;
+    --cn-h3:            #a82a1a;
+    --cn-p:             #7a4036;
+    --cn-kpi:           #b8321e;
+    --cn-kpi-label:     #9a5a48;
+    --reg-bg:           #eef6f8;
+    --reg-border:       #b4d6de;
+    --reg-code:         #1a6070;
+    --reg-code-bg:      rgba(26,96,112,.08);
+    --reg-h3:           #1a5a6a;
+    --reg-p:            #3e5e66;
+    --reg-kpi:          #166070;
+    --reg-kpi-label:    #5a8088;
     --opp-bg:           #f0f2fa;
     --opp-border:       #c8d0ec;
     --opp-hover:        #6070c0;
@@ -433,19 +451,40 @@
     border: 1px solid var(--force-stat-bd); border-radius: 4px; padding: 2px 8px;
   }
 
-  /* ── UAE LENS ── */
-  .uae-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-  .uae-card {
-    background: var(--uae-bg);
-    border: 1.5px solid var(--uae-border);
+  /* ── CHINA LENS ── */
+  .cn-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .cn-card {
+    background: var(--cn-bg);
+    border: 1.5px solid var(--cn-border);
     border-radius: 12px;
     padding: 16px 14px;
+    display: flex;
+    flex-direction: column;
   }
-  .uae-card .icon      { font-size: 22px; margin-bottom: 8px; }
-  .uae-card h3         { font-size: 13px; font-weight: 700; color: var(--uae-h3); margin-bottom: 6px; }
-  .uae-card p          { font-size: 11px; color: var(--uae-p); line-height: 1.6; }
-  .uae-card .kpi       { margin-top: 8px; font-size: 15px; font-weight: 700; color: var(--uae-kpi); line-height: 1.2; }
-  .uae-card .kpi-label { font-size: 9.5px; color: var(--uae-kpi-label); margin-top: 2px; }
+  .cn-card .icon      { font-size: 22px; margin-bottom: 8px; }
+  .cn-card h3         { font-size: 13px; font-weight: 700; color: var(--cn-h3); margin-bottom: 6px; }
+  .cn-card p          { font-size: 11px; color: var(--cn-p); line-height: 1.6; }
+  .cn-card .kpi       { margin-top: auto; padding-top: 10px; font-size: 15px; font-weight: 700; color: var(--cn-kpi); line-height: 1.2; }
+  .cn-card .kpi-label { font-size: 9.5px; color: var(--cn-kpi-label); margin-top: 2px; }
+
+  /* ── GLOBAL REGIONS ── */
+  .region-card {
+    background: var(--reg-bg);
+    border: 1.5px solid var(--reg-border);
+    border-radius: 12px;
+    padding: 16px 14px;
+    display: flex;
+    flex-direction: column;
+  }
+  .region-card .code {
+    font-size: 10px; font-weight: 800; letter-spacing: 0.1em;
+    color: var(--reg-code); background: var(--reg-code-bg);
+    border-radius: 4px; padding: 2px 7px; margin-bottom: 8px; width: fit-content;
+  }
+  .region-card h3         { font-size: 13px; font-weight: 700; color: var(--reg-h3); margin-bottom: 6px; }
+  .region-card p          { font-size: 11px; color: var(--reg-p); line-height: 1.6; }
+  .region-card .kpi       { margin-top: auto; padding-top: 10px; font-size: 15px; font-weight: 700; color: var(--reg-kpi); line-height: 1.2; }
+  .region-card .kpi-label { font-size: 9.5px; color: var(--reg-kpi-label); margin-top: 2px; }
 
   /* ── SOFTWARE OPPORTUNITIES ── */
   .opp-card {
@@ -485,12 +524,12 @@
 
   @media (max-width: 760px) {
     .cards-5 { grid-template-columns: repeat(2, 1fr); }
-    .cards-4, .uae-grid { grid-template-columns: repeat(2, 1fr); }
+    .cards-4, .cn-grid { grid-template-columns: repeat(2, 1fr); }
     .cards-3 { grid-template-columns: 1fr; }
     .decision-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 420px) {
-    .cards-5, .cards-4, .uae-grid { grid-template-columns: 1fr; }
+    .cards-5, .cards-4, .cn-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -505,11 +544,11 @@
   </div>
 </div>
 
-<h1 data-en="Energy Industry — Full Overview (UAE / GCC, 2026)"
-    data-zh="能源行业全览（UAE / GCC，2026）">Energy Industry — Full Overview (UAE / GCC, 2026)</h1>
+<h1 data-en="Energy Industry — Full Overview (Global, China Focus, 2026)"
+    data-zh="能源行业全览（全球视角·聚焦中国，2026）">Energy Industry — Full Overview (Global, China Focus, 2026)</h1>
 <p class="subtitle"
-   data-en="Five Value-Chain Layers · Geopolitics & Integration · Industry Pillars · UAE Lens"
-   data-zh="五大价值链层级 · 地缘政治与系统整合 · 行业支柱 · UAE 视角">Five Value-Chain Layers · Geopolitics & Integration · Industry Pillars · UAE Lens</p>
+   data-en="Five Value-Chain Layers · Geopolitics &amp; Integration · Industry Pillars · China Lens · Global Regions"
+   data-zh="五大价值链层级 · 地缘政治与系统整合 · 行业支柱 · 中国视角 · 全球区域">Five Value-Chain Layers · Geopolitics &amp; Integration · Industry Pillars · China Lens · Global Regions</p>
 
 <div class="chart">
 
@@ -518,13 +557,15 @@
     <div class="badge" data-en="Higher-Order Force" data-zh="高阶驱动力">Higher-Order Force</div>
     <h2 data-en="Geopolitics, Energy Security &amp; System Integration"
         data-zh="地缘政治、能源安全与系统整合">Geopolitics, Energy Security &amp; System Integration</h2>
-    <p data-en="Not a layer — a <strong>strategic field that spans all five value-chain layers</strong>, determining how each is built, financed, and connected. China bolsters domestic resilience &amp; dominates new-tech supply chains; Europe pivots from Russian fuels; the US onshores critical minerals. Industrial policy (IRA, CBAM, GCC localization) has replaced climate idealism."
-       data-zh="并非某一层级——而是<strong>横跨所有五大价值链层级的战略场域</strong>，决定着每一层级的建设、融资与衔接方式。中国强化国内能源韧性并主导新技术供应链；欧洲摆脱对俄罗斯燃料的依赖；美国推进关键矿产本土化。产业政策（IRA、CBAM、GCC本地化要求）已取代气候理想主义。">
-      Not a layer — a <strong>strategic field that spans all five value-chain layers</strong>, determining how each is built, financed, and connected. China bolsters domestic resilience &amp; dominates new-tech supply chains; Europe pivots from Russian fuels; the US onshores critical minerals. Industrial policy (IRA, CBAM, GCC localization) has replaced climate idealism.
+    <p data-en="Not a layer — a <strong>strategic field that spans all five value-chain layers</strong>, determining how each is built, financed, and connected. In 2026 the Iran war shut the Strait of Hormuz, triggering the largest oil-supply disruption on record and the IEA's biggest-ever emergency stock release. China, the top crude importer, leaned on stockpiles and electrification while dominating clean-tech supply chains and critical-mineral refining. Europe is legislating Russian gas out by 2027; the US is the #1 LNG exporter but is unwinding IRA credits. Industrial policy (tariffs, CBAM, export controls, local content) has replaced climate idealism."
+       data-zh="并非某一层级——而是<strong>横跨所有五大价值链层级的战略场域</strong>，决定着每一层级的建设、融资与衔接方式。2026年伊朗战争导致霍尔木兹海峡封锁，引发有记录以来最大规模的石油供应中断，IEA随即启动史上最大规模的应急储备释放。作为全球最大原油进口国，中国依靠石油储备与电气化缓冲冲击，同时主导清洁技术供应链与关键矿产精炼。欧洲立法于2027年前全面退出俄罗斯天然气；美国稳居全球第一大LNG出口国，却在收缩IRA补贴。产业政策（关税、CBAM、出口管制、本地化要求）已取代气候理想主义。">
+      Not a layer — a <strong>strategic field that spans all five value-chain layers</strong>, determining how each is built, financed, and connected. In 2026 the Iran war shut the Strait of Hormuz, triggering the largest oil-supply disruption on record and the IEA's biggest-ever emergency stock release. China, the top crude importer, leaned on stockpiles and electrification while dominating clean-tech supply chains and critical-mineral refining. Europe is legislating Russian gas out by 2027; the US is the #1 LNG exporter but is unwinding IRA credits. Industrial policy (tariffs, CBAM, export controls, local content) has replaced climate idealism.
     </p>
     <div class="tags">
+      <span class="tag" data-en="Hormuz Shock"             data-zh="霍尔木兹冲击">Hormuz Shock</span>
       <span class="tag" data-en="Geopolitical Competition" data-zh="地缘政治博弈">Geopolitical Competition</span>
       <span class="tag" data-en="Industrial Policy"        data-zh="产业政策">Industrial Policy</span>
+      <span class="tag" data-en="Clean-Tech Supply Chains" data-zh="清洁技术供应链">Clean-Tech Supply Chains</span>
       <span class="tag" data-en="Sector Coupling"          data-zh="行业耦合">Sector Coupling</span>
       <span class="tag" data-en="Energy Security"          data-zh="能源安全">Energy Security</span>
       <span class="tag" data-en="Carbon Constraint"        data-zh="碳约束">Carbon Constraint</span>
@@ -551,14 +592,14 @@
         <div class="num" data-en="Layer 1" data-zh="第一层">Layer 1</div>
         <div class="icon">⛏️</div>
         <h3 data-en="Upstream" data-zh="上游">Upstream</h3>
-        <p data-en="Oil, gas, coal extraction. 2026 upstream investment ~US$485B (▼3% YoY). Dominated by NOCs (ADNOC, Aramco, CNPC) and supermajors. Capital-intensive, hard to enter."
-           data-zh="石油、天然气、煤炭开采。2026年上游投资约4850亿美元（同比▼3%）。由国家石油公司（ADNOC、沙特阿美、中石油）与超级大型石油公司主导，资本密集，进入壁垒高。">
-          Oil, gas, coal extraction. 2026 upstream investment ~US$485B (▼3% YoY). Dominated by NOCs (ADNOC, Aramco, CNPC) and supermajors. Capital-intensive, hard to enter.
+        <p data-en="Oil, gas, coal extraction. 2026: oil-supply investment falls a 3rd straight year to &lt;US$500B; gas hits a decade-high ~US$330B; coal ~US$180B, led by China (IEA). Dominated by NOCs (Aramco, CNPC, Sinopec, CNOOC, ADNOC) and supermajors. Capital-intensive, hard to enter."
+           data-zh="石油、天然气、煤炭开采。2026年石油供应投资连续第三年下滑至5000亿美元以下；天然气投资升至十年高点约3300亿美元；煤炭供应投资约1800亿美元，以中国为主（IEA）。由国家石油公司（沙特阿美、中石油、中石化、中海油、ADNOC）与超级大型石油公司主导，资本密集，进入壁垒高。">
+          Oil, gas, coal extraction. 2026: oil-supply investment falls a 3rd straight year to &lt;US$500B; gas hits a decade-high ~US$330B; coal ~US$180B, led by China (IEA). Dominated by NOCs (Aramco, CNPC, Sinopec, CNOOC, ADNOC) and supermajors. Capital-intensive, hard to enter.
         </p>
         <div class="sub-tags">
-          <span class="sub-tag" data-en="Oil &amp; Gas E&amp;P" data-zh="油气勘探开采">Oil &amp; Gas E&amp;P</span>
-          <span class="sub-tag" data-en="NOCs / Supermajors"    data-zh="国家石油公司">NOCs / Supermajors</span>
-          <span class="sub-tag" data-en="$485B Capex"           data-zh="4850亿美元资本支出">$485B Capex</span>
+          <span class="sub-tag" data-en="Oil &amp; Gas E&amp;P"        data-zh="油气勘探开采">Oil &amp; Gas E&amp;P</span>
+          <span class="sub-tag" data-en="NOCs / Supermajors"           data-zh="国家石油公司">NOCs / Supermajors</span>
+          <span class="sub-tag" data-en="Oil &lt;$500B · Gas ~$330B" data-zh="石油&lt;5000亿 · 天然气~3300亿美元">Oil &lt;$500B · Gas ~$330B</span>
         </div>
       </div>
 
@@ -566,14 +607,14 @@
         <div class="num" data-en="Layer 2" data-zh="第二层">Layer 2</div>
         <div class="icon">🛢️</div>
         <h3 data-en="Midstream" data-zh="中游">Midstream</h3>
-        <p data-en="Pipelines, LNG terminals, refineries, gas processing. Hot subsegment: LNG as US races to capture global gas trade. BESS capex ~US$20B in 2026 after a ~50% jump last year."
-           data-zh="管道、液化天然气终端、炼油厂、天然气加工。最热门子板块：美国争夺全球天然气贸易份额，LNG量价齐升；电池储能系统（BESS）资本支出约200亿美元，去年同比激增约50%。">
-          Pipelines, LNG terminals, refineries, gas processing. Hot subsegment: LNG as US races to capture global gas trade. BESS capex ~US$20B in 2026 after a ~50% jump last year.
+        <p data-en="Pipelines, LNG, refineries, storage. 2026 flashpoint: Hormuz flows collapsed and a strike on Ras Laffan cut ~17% of Qatar's LNG capacity, while US LNG exports hit records. China, the top crude importer, buffered with ~1.4 bn bbl of stocks. Battery storage capex &gt;US$100B (IEA)."
+           data-zh="管道、LNG、炼油、储运。2026年焦点：霍尔木兹海峡航运几近中断，拉斯拉凡遇袭致卡塔尔约17%的LNG产能停摆，美国LNG出口则再创新高。全球最大原油进口国中国凭借约14亿桶石油库存缓冲冲击。电池储能投资超过1000亿美元（IEA）。">
+          Pipelines, LNG, refineries, storage. 2026 flashpoint: Hormuz flows collapsed and a strike on Ras Laffan cut ~17% of Qatar's LNG capacity, while US LNG exports hit records. China, the top crude importer, buffered with ~1.4 bn bbl of stocks. Battery storage capex &gt;US$100B (IEA).
         </p>
         <div class="sub-tags">
-          <span class="sub-tag" data-en="Pipelines / LNG"  data-zh="管道 / 液化天然气">Pipelines / LNG</span>
-          <span class="sub-tag" data-en="BESS ~$20B"       data-zh="BESS ~200亿美元">BESS ~$20B</span>
-          <span class="sub-tag" data-en="Gas Processing"   data-zh="天然气处理">Gas Processing</span>
+          <span class="sub-tag" data-en="Pipelines / LNG"    data-zh="管道 / 液化天然气">Pipelines / LNG</span>
+          <span class="sub-tag" data-en="Storage &gt;$100B" data-zh="储能 &gt;1000亿美元">Storage &gt;$100B</span>
+          <span class="sub-tag" data-en="Hormuz Risk"        data-zh="霍尔木兹风险">Hormuz Risk</span>
         </div>
       </div>
 
@@ -581,9 +622,9 @@
         <div class="num" data-en="Layer 3 · Active" data-zh="第三层 · 热点">Layer 3 · Active</div>
         <div class="icon">☀️</div>
         <h3 data-en="Generation" data-zh="发电">Generation</h3>
-        <p data-en="Solar + wind approaching ~4,000 GW in 2026, near parity with global coal + gas capacity. Nuclear SMRs are the new bet. Emerging: green/blue hydrogen, geothermal, fusion R&amp;D."
-           data-zh="2026年太阳能+风能装机接近4000 GW，趋近与全球煤电+气电装机总量持平。核能小型模块化反应堆（SMR）成为新赌注。新兴方向：绿氢/蓝氢、地热、聚变研发。">
-          Solar + wind approaching ~4,000 GW in 2026, near parity with global coal + gas capacity. Nuclear SMRs are the new bet. Emerging: green/blue hydrogen, geothermal, fusion R&amp;D.
+        <p data-en="Solar + wind approaching ~4,000 GW in 2026, near parity with global coal + gas capacity. China built over half of 2025's new solar and ~¾ of new wind; its solar fleet overtook coal in Jul 2026. Nuclear is back (~80 GW under construction, SMRs the new bet). Emerging: green/blue hydrogen, geothermal, fusion R&amp;D."
+           data-zh="2026年全球太阳能+风能装机接近4000 GW，趋近与全球煤电+气电装机总量持平。2025年中国贡献了全球过半新增光伏与约四分之三新增风电；2026年7月中国光伏装机首次超过煤电。核电回归（在建约80 GW，小型模块化反应堆SMR成为新赌注）。新兴方向：绿氢/蓝氢、地热、聚变研发。">
+          Solar + wind approaching ~4,000 GW in 2026, near parity with global coal + gas capacity. China built over half of 2025's new solar and ~¾ of new wind; its solar fleet overtook coal in Jul 2026. Nuclear is back (~80 GW under construction, SMRs the new bet). Emerging: green/blue hydrogen, geothermal, fusion R&amp;D.
         </p>
         <div class="sub-tags">
           <span class="sub-tag" data-en="Solar / Wind"     data-zh="太阳能 / 风能">Solar / Wind</span>
@@ -596,14 +637,14 @@
         <div class="num" data-en="Layer 4 · Bottleneck" data-zh="第四层 · 瓶颈">Layer 4 · Bottleneck</div>
         <div class="icon">🔌</div>
         <h3 data-en="Grid &amp; Distribution" data-zh="电网与配电">Grid &amp; Distribution</h3>
-        <p data-en="The chokepoint of the entire transition. Aging infrastructure + soaring data-center demand + intermittent renewables = fastest-growing segment globally. Where most software startups concentrate."
-           data-zh="整个能源转型的瓶颈。老旧基础设施＋激增的数据中心需求＋间歇性可再生能源，造就了全球增速最快的细分市场，也是软件创业公司最集中的赛道。">
-          The chokepoint of the entire transition. Aging infrastructure + soaring data-center demand + intermittent renewables = fastest-growing segment globally. Where most software startups concentrate.
+        <p data-en="The chokepoint of the entire transition. Aging infrastructure + soaring data-center demand + intermittent renewables; grid spend ~US$550B in 2026 (IEA). China leads: State Grid's record ¥4T plan for 2026–30, and spot markets across 29 provincial grids. Where most software startups concentrate."
+           data-zh="整个能源转型的瓶颈。老旧基础设施＋激增的数据中心需求＋间歇性可再生能源；2026年全球电网投资约5500亿美元（IEA）。中国领跑：国家电网“十五五”4万亿元投资计划创历史纪录，电力现货市场覆盖29个省级电网。也是软件创业公司最集中的赛道。">
+          The chokepoint of the entire transition. Aging infrastructure + soaring data-center demand + intermittent renewables; grid spend ~US$550B in 2026 (IEA). China leads: State Grid's record ¥4T plan for 2026–30, and spot markets across 29 provincial grids. Where most software startups concentrate.
         </p>
         <div class="sub-tags">
           <span class="sub-tag" data-en="Smart Grid Software" data-zh="智能电网软件">Smart Grid Software</span>
           <span class="sub-tag" data-en="Battery Dispatch"    data-zh="电池调度">Battery Dispatch</span>
-          <span class="sub-tag" data-en="Demand Response"     data-zh="需求响应">Demand Response</span>
+          <span class="sub-tag" data-en="Spot Markets / VPP"  data-zh="现货市场 / 虚拟电厂">Spot Markets / VPP</span>
         </div>
       </div>
 
@@ -611,12 +652,12 @@
         <div class="num" data-en="Layer 5" data-zh="第五层">Layer 5</div>
         <div class="icon">🚗</div>
         <h3 data-en="End-Use" data-zh="终端使用">End-Use</h3>
-        <p data-en="EVs ~24M units in 2026 (+15% YoY, ≈22–26% of light-vehicle sales). Building electrification, industrial decarbonization, energy management. Most software-rich layer."
-           data-zh="2026年全球电动汽车销量约2400万辆（同比+15%，约占轻型车销量22–26%）。建筑电气化、工业脱碳、能源管理。软件含量最高的层级。">
-          EVs ~24M units in 2026 (+15% YoY, ≈22–26% of light-vehicle sales). Building electrification, industrial decarbonization, energy management. Most software-rich layer.
+        <p data-en="EVs ~23M in 2026 (~28% of new car sales, IEA). China sold &gt;13M in 2025 (~55% of its new cars), and Chinese brands supply ~60% of EVs worldwide. Building electrification, industrial decarbonization, energy management. Most software-rich layer."
+           data-zh="2026年全球电动汽车销量约2300万辆（约占新车销量28%，IEA）。2025年中国销量超过1300万辆（约占其新车销量55%），中国品牌供应全球约60%的电动汽车。建筑电气化、工业脱碳、能源管理。软件含量最高的层级。">
+          EVs ~23M in 2026 (~28% of new car sales, IEA). China sold &gt;13M in 2025 (~55% of its new cars), and Chinese brands supply ~60% of EVs worldwide. Building electrification, industrial decarbonization, energy management. Most software-rich layer.
         </p>
         <div class="sub-tags">
-          <span class="sub-tag" data-en="EVs ~24M"                 data-zh="电动汽车 ~2400万辆">EVs ~24M</span>
+          <span class="sub-tag" data-en="EVs ~23M"                 data-zh="电动汽车 ~2300万辆">EVs ~23M</span>
           <span class="sub-tag" data-en="Building Electrification" data-zh="建筑电气化">Building Electrification</span>
           <span class="sub-tag" data-en="Industrial Decarb."       data-zh="工业脱碳">Industrial Decarb.</span>
         </div>
@@ -643,9 +684,9 @@
       <div class="pillar-card">
         <div class="icon">🏔️</div>
         <h3 data-en="Resources" data-zh="资源">Resources</h3>
-        <p data-en="Raw fuel: oil &amp; gas reserves, solar irradiance, wind regimes, uranium. Increasingly: critical minerals (lithium, cobalt, nickel, rare earths). Directly sets production upper limits."
-           data-zh="原材料燃料：油气储量、太阳辐射、风能资源、铀矿。日益重要的关键矿产：锂、钴、镍、稀土。直接决定任何国家或企业的产能上限。">
-          Raw fuel: oil &amp; gas reserves, solar irradiance, wind regimes, uranium. Increasingly: critical minerals (lithium, cobalt, nickel, rare earths). Directly sets production upper limits.
+        <p data-en="Raw fuel: oil &amp; gas reserves, solar irradiance, wind regimes, uranium. Increasingly: critical minerals (lithium, cobalt, nickel, rare earths), where China's refining dominance and export controls set the terms. Directly sets production upper limits."
+           data-zh="原材料燃料：油气储量、太阳辐射、风能资源、铀矿。日益重要的关键矿产：锂、钴、镍、稀土，中国的精炼主导地位与出口管制左右着供应格局。直接决定任何国家或企业的产能上限。">
+          Raw fuel: oil &amp; gas reserves, solar irradiance, wind regimes, uranium. Increasingly: critical minerals (lithium, cobalt, nickel, rare earths), where China's refining dominance and export controls set the terms. Directly sets production upper limits.
         </p>
       </div>
 
@@ -661,9 +702,9 @@
       <div class="pillar-card">
         <div class="icon">💰</div>
         <h3 data-en="Capital" data-zh="资本">Capital</h3>
-        <p data-en="Financing carrier. Energy is among the most capex-heavy industries on earth. SWFs, project finance, PPAs, and infrastructure debt physically move steel and silicon."
-           data-zh="融资载体。能源是地球上资本支出最密集的行业之一。主权财富基金、项目融资、购电协议（PPA）与基础设施债务推动实物投资落地。">
-          Financing carrier. Energy is among the most capex-heavy industries on earth. SWFs, project finance, PPAs, and infrastructure debt physically move steel and silicon.
+        <p data-en="Financing carrier. Energy is among the most capex-heavy industries on earth. SWFs, state-owned enterprises &amp; policy banks, project finance, PPAs, and infrastructure debt physically move steel and silicon. China leads public energy R&amp;D; the US leads energy VC."
+           data-zh="融资载体。能源是地球上资本支出最密集的行业之一。主权财富基金、国有企业与政策性银行、项目融资、购电协议（PPA）与基础设施债务推动实物投资落地。中国在能源公共研发投入上领先，美国则是能源风险投资中心。">
+          Financing carrier. Energy is among the most capex-heavy industries on earth. SWFs, state-owned enterprises &amp; policy banks, project finance, PPAs, and infrastructure debt physically move steel and silicon. China leads public energy R&amp;D; the US leads energy VC.
         </p>
       </div>
 
@@ -673,9 +714,9 @@
           <span data-en="Policy &amp; Carbon" data-zh="政策与碳约束">Policy &amp; Carbon</span>
           <span class="new-badge" data-en="Emerging" data-zh="新兴">Emerging</span>
         </h3>
-        <p data-en="Net-zero mandates, ESG disclosure (EU CSRD, ISSB, UAE rules), industrial policy (IRA, CBAM), and the carbon price itself. Historically an externality; now a co-equal pillar shaping every investment decision."
-           data-zh="净零目标、ESG信息披露（EU CSRD、ISSB、UAE规则）、产业政策（IRA、CBAM）及碳价本身。历来被视为外部性因素，现已成为主导每项投资决策的并列支柱。">
-          Net-zero mandates, ESG disclosure (EU CSRD, ISSB, UAE rules), industrial policy (IRA, CBAM), and the carbon price itself. Historically an externality; now a co-equal pillar shaping every investment decision.
+        <p data-en="Net-zero mandates, ESG disclosure (EU CSRD, ISSB, China's exchange rules), industrial policy (IRA → OBBBA, CBAM, China's Five-Year Plans), and the carbon price itself; China's national ETS is the world's largest. Historically an externality; now a co-equal pillar shaping every investment decision."
+           data-zh="净零目标、ESG信息披露（EU CSRD、ISSB、中国交易所可持续发展报告规则）、产业政策（IRA → OBBBA、CBAM、中国五年规划）及碳价本身；中国全国碳市场为全球最大碳市场。历来被视为外部性因素，现已成为主导每项投资决策的并列支柱。">
+          Net-zero mandates, ESG disclosure (EU CSRD, ISSB, China's exchange rules), industrial policy (IRA → OBBBA, CBAM, China's Five-Year Plans), and the carbon price itself; China's national ETS is the world's largest. Historically an externality; now a co-equal pillar shaping every investment decision.
         </p>
       </div>
 
@@ -695,9 +736,9 @@
     <div class="force-card">
       <div class="force-num">01</div>
       <h3 data-en="Demand Exploding, Supply Can't Keep Up" data-zh="需求激增，供给难以跟上">Demand Exploding, Supply Can't Keep Up</h3>
-      <p data-en="Global energy demand grew ~1.3% in 2025; electricity demand grew ~3% (+800 TWh). The driver is no longer just population — it's AI data centers, transport electrification, and heating/cooling."
-         data-zh="2025年全球能源需求增长约1.3%；电力需求增长约3%（+800 TWh）。驱动力不再只是人口增长，而是AI数据中心、交通电气化和供暖/制冷需求。">
-        Global energy demand grew ~1.3% in 2025; electricity demand grew ~3% (+800 TWh). The driver is no longer just population — it's AI data centers, transport electrification, and heating/cooling.
+      <p data-en="Global energy demand grew ~1.3% in 2025; electricity demand grew ~3% (+800 TWh). The driver is no longer just population — it's AI data centers, transport electrification, and heating/cooling. China's power demand rose 5.3% in H1 2026."
+         data-zh="2025年全球能源需求增长约1.3%；电力需求增长约3%（+800 TWh）。驱动力不再只是人口增长，而是AI数据中心、交通电气化和供暖/制冷需求。2026年上半年中国用电量增长5.3%。">
+        Global energy demand grew ~1.3% in 2025; electricity demand grew ~3% (+800 TWh). The driver is no longer just population — it's AI data centers, transport electrification, and heating/cooling. China's power demand rose 5.3% in H1 2026.
       </p>
       <span class="stat"
             data-en="Data centers: 27 GW PPAs (Oct 2025) · &gt;43% of global PPAs"
@@ -707,78 +748,155 @@
     <div class="force-card">
       <div class="force-num">02</div>
       <h3 data-en="Transition Slowed, Not Stopped" data-zh="转型放缓，但未停止">Transition Slowed, Not Stopped</h3>
-      <p data-en="Total global energy investment passed US$3.3T in 2025, with US$2.2T flowing into clean energy. Renewables hit a record US$675B (10% CAGR since 2020), but flat real-terms investment is forecast through 2030."
-         data-zh="2025年全球能源投资总额突破3.3万亿美元，其中2.2万亿美元流入清洁能源。可再生能源投资创下6750亿美元历史纪录（2020年以来年复合增长率10%），但预计2030年前实际投资将维持平稳。">
-        Total global energy investment passed US$3.3T in 2025, with US$2.2T flowing into clean energy. Renewables hit a record US$675B (10% CAGR since 2020), but flat real-terms investment is forecast through 2030.
+      <p data-en="Global energy investment is set to hit a record US$3.4T in 2026, with US$2.2T in clean energy — nearly double fossil fuels (US$1.2T). Renewables (~US$665B) have dipped, largely because of China, while grid and storage spending is rising almost everywhere."
+         data-zh="2026年全球能源投资预计创下3.4万亿美元新高，其中清洁能源2.2万亿美元，接近化石燃料（1.2万亿美元）的两倍。可再生能源投资（约6650亿美元）有所回落，主要源于中国；电网与储能投资则几乎在所有地区上升。">
+        Global energy investment is set to hit a record US$3.4T in 2026, with US$2.2T in clean energy — nearly double fossil fuels (US$1.2T). Renewables (~US$665B) have dipped, largely because of China, while grid and storage spending is rising almost everywhere.
       </p>
       <span class="stat"
-            data-en="$3.3T total · $2.2T clean · $675B renewables"
-            data-zh="总计3.3万亿美元 · 清洁能源2.2万亿 · 可再生能源6750亿">$3.3T total · $2.2T clean · $675B renewables</span>
+            data-en="$3.4T total · $2.2T clean · $1.2T fossil (IEA)"
+            data-zh="总计3.4万亿美元 · 清洁能源2.2万亿 · 化石燃料1.2万亿（IEA）">$3.4T total · $2.2T clean · $1.2T fossil (IEA)</span>
     </div>
 
     <div class="force-card">
       <div class="force-num">03</div>
       <h3 data-en="Geopolitics Back at the Center" data-zh="地缘政治重回中心">Geopolitics Back at the Center</h3>
-      <p data-en="Energy security has returned to the top of every national agenda. Industrial policy — local content, tariffs, subsidies — has displaced climate idealism as the dominant logic. The easy gains are over; the next decade is execution."
-         data-zh="能源安全已重回各国政策议程首位。产业政策——本地含量要求、关税、补贴——已取代气候理想主义，成为主导逻辑。触手可得的果实已所剩无几，未来十年是执行力的比拼。">
-        Energy security has returned to the top of every national agenda. Industrial policy — local content, tariffs, subsidies — has displaced climate idealism as the dominant logic. The easy gains are over; the next decade is execution.
+      <p data-en="The 2026 Hormuz closure turned energy security from talking point to emergency: IEA members made a record 400M-barrel stock release and Brent spiked above US$120. Industrial policy — local content, tariffs, subsidies, export controls — has displaced climate idealism as the dominant logic. The easy gains are over; the next decade is execution."
+         data-zh="2026年霍尔木兹海峡封锁让能源安全从议题变为紧急状态：IEA成员国创纪录地释放4亿桶应急石油储备，布伦特油价一度突破120美元。产业政策——本地含量要求、关税、补贴、出口管制——已取代气候理想主义，成为主导逻辑。触手可得的果实已所剩无几，未来十年是执行力的比拼。">
+        The 2026 Hormuz closure turned energy security from talking point to emergency: IEA members made a record 400M-barrel stock release and Brent spiked above US$120. Industrial policy — local content, tariffs, subsidies, export controls — has displaced climate idealism as the dominant logic. The easy gains are over; the next decade is execution.
       </p>
-      <span class="stat" data-en="IRA · CBAM · GCC Localization Mandates" data-zh="IRA · CBAM · GCC本地化要求">IRA · CBAM · GCC Localization Mandates</span>
+      <span class="stat" data-en="Hormuz · CBAM · OBBBA · China Export Controls" data-zh="霍尔木兹 · CBAM · OBBBA · 中国出口管制">Hormuz · CBAM · OBBBA · China Export Controls</span>
     </div>
 
   </div>
 </div>
 
 
-<!-- ══ UAE LENS ══ -->
+<!-- ══ CHINA LENS ══ -->
 <div class="page-section" style="max-width:960px">
   <div class="page-section-title"
-       data-en="UAE-Specific Lens — Contradictory Strategy, Fully Funded"
-       data-zh="UAE 视角 — 双轨并行，全力押注">UAE-Specific Lens — Contradictory Strategy, Fully Funded</div>
-  <div class="uae-grid">
+       data-en="China Lens — Electrostate in the Making"
+       data-zh="中国视角 — 电气化强国的崛起">China Lens — Electrostate in the Making</div>
+  <div class="cn-grid">
 
-    <div class="uae-card">
-      <div class="icon">🛢️</div>
-      <h3 data-en="Hydrocarbons" data-zh="油气">Hydrocarbons</h3>
-      <p data-en="ADNOC remains a global top-tier oil major. Barakah nuclear supplies ~25% of UAE electricity. Khazna Solar PV adds 1.5 GW toward Abu Dhabi's 18 GW solar target by 2035."
-         data-zh="ADNOC仍为全球顶级石油公司。巴拉卡核电站满负荷后供应约25%的UAE电力。哈兹纳太阳能电站新增1.5 GW，助力阿布扎比2035年实现18 GW太阳能目标。">
-        ADNOC remains a global top-tier oil major. Barakah nuclear supplies ~25% of UAE electricity. Khazna Solar PV adds 1.5 GW toward Abu Dhabi's 18 GW solar target by 2035.
+    <div class="cn-card">
+      <div class="icon">🏭</div>
+      <h3 data-en="Clean-Tech Supply Chains" data-zh="清洁技术供应链">Clean-Tech Supply Chains</h3>
+      <p data-en="The world's clean-tech workshop: &gt;80% of every solar manufacturing stage and of battery-cell output, and top refiner for 19 of 20 strategic minerals (~70% avg. share). Chinese automakers supplied ~60% of global EV sales in 2025."
+         data-zh="全球清洁技术的“世界工厂”：光伏制造各环节及电池电芯产量的全球份额均超过80%，在20种战略矿产中的19种居精炼首位（平均份额约70%）。2025年中国车企供应了全球约60%的电动汽车。">
+        The world's clean-tech workshop: &gt;80% of every solar manufacturing stage and of battery-cell output, and top refiner for 19 of 20 strategic minerals (~70% avg. share). Chinese automakers supplied ~60% of global EV sales in 2025.
       </p>
-      <div class="kpi">18 GW</div>
-      <div class="kpi-label" data-en="Abu Dhabi solar target by 2035" data-zh="阿布扎比2035年太阳能目标">Abu Dhabi solar target by 2035</div>
+      <div class="kpi">&gt;80%</div>
+      <div class="kpi-label" data-en="Global share: solar supply chain &amp; battery cells (IEA)" data-zh="全球份额：光伏全产业链与电池电芯（IEA）">Global share: solar supply chain &amp; battery cells (IEA)</div>
     </div>
 
-    <div class="uae-card">
-      <div class="icon">🌱</div>
-      <h3 data-en="Renewables — Masdar" data-zh="可再生能源 — Masdar">Renewables — Masdar</h3>
-      <p data-en="Masdar (ADNOC + Mubadala + TAQA) targets 100 GW renewable portfolio by 2030, already operating across six continents. Apr 2026: reported $2.2B JV with TotalEnergies, 9 Asian countries."
-         data-zh="Masdar（ADNOC + Mubadala + TAQA 联合持股）目标2030年前实现100 GW可再生能源组合，已在六大洲布局运营。2026年4月据报与道达尔能源签署22亿美元合资协议，覆盖9个亚洲国家。">
-        Masdar (ADNOC + Mubadala + TAQA) targets 100 GW renewable portfolio by 2030, already operating across six continents. Apr 2026: reported $2.2B JV with TotalEnergies, 9 Asian countries.
+    <div class="cn-card">
+      <div class="icon">☀️</div>
+      <h3 data-en="Solar Overtakes Coal" data-zh="光伏装机超越煤电">Solar Overtakes Coal</h3>
+      <p data-en="Record 2025: +315 GW solar, +119 GW wind. In July 2026 solar capacity (~1,286 GW) edged past coal (~1,285 GW) for the first time. The 15th Five-Year renewables plan (Jul 2026) targets 2,800 GW of wind + solar by 2030."
+         data-zh="2025年新增光伏315 GW、风电119 GW，均创历史纪录。2026年7月，光伏装机（约12.86亿千瓦）首次超过煤电（约12.85亿千瓦）。“十五五”可再生能源规划（2026年7月）提出2030年风光装机达28亿千瓦。">
+        Record 2025: +315 GW solar, +119 GW wind. In July 2026 solar capacity (~1,286 GW) edged past coal (~1,285 GW) for the first time. The 15th Five-Year renewables plan (Jul 2026) targets 2,800 GW of wind + solar by 2030.
       </p>
-      <div class="kpi">100 GW</div>
-      <div class="kpi-label" data-en="Masdar renewable target by 2030" data-zh="Masdar 2030年可再生能源目标">Masdar renewable target by 2030</div>
+      <div class="kpi">~1,970 GW</div>
+      <div class="kpi-label" data-en="Solar + wind installed, Jul 2026 (NEA)" data-zh="风光累计装机，2026年7月（国家能源局）">Solar + wind installed, Jul 2026 (NEA)</div>
     </div>
 
-    <div class="uae-card">
-      <div class="icon">⚗️</div>
-      <h3 data-en="Hydrogen Strategy" data-zh="氢能战略">Hydrogen Strategy</h3>
-      <p data-en="National Hydrogen Strategy (Cabinet-approved 2023). Goal: −25% emissions in hard-to-abate sectors by 2031 (heavy industry, transport, aviation, shipping)."
-         data-zh="国家氢能战略（2023年内阁批准）。目标：2031年前在难以脱碳行业（重工业、陆运、航空、航运）实现碳排放减少25%。">
-        National Hydrogen Strategy (Cabinet-approved 2023). Goal: −25% emissions in hard-to-abate sectors by 2031 (heavy industry, transport, aviation, shipping).
+    <div class="cn-card">
+      <div class="icon">🔌</div>
+      <h3 data-en="Grid Super-Build" data-zh="电网超级建设">Grid Super-Build</h3>
+      <p data-en="State Grid plans a record ¥4T of fixed-asset investment in 2026–30, +40% on the previous five years (~¥5T with China Southern Grid): UHV corridors to carry western wind and solar east, plus distribution upgrades for EVs and storage."
+         data-zh="国家电网“十五五”期间计划固定资产投资4万亿元，创历史新高，较“十四五”增长40%（连同南方电网合计近5万亿元），重点建设“西电东送”特高压通道，并升级配电网以承接电动汽车与储能。">
+        State Grid plans a record ¥4T of fixed-asset investment in 2026–30, +40% on the previous five years (~¥5T with China Southern Grid): UHV corridors to carry western wind and solar east, plus distribution upgrades for EVs and storage.
       </p>
-      <div class="kpi">1.4 → 7.5 → 15 Mt</div>
-      <div class="kpi-label" data-en="Hydrogen targets: 2031 / 2040 / 2050" data-zh="氢能目标：2031 / 2040 / 2050年">Hydrogen targets: 2031 / 2040 / 2050</div>
+      <div class="kpi" data-en="¥4T" data-zh="4万亿元">¥4T</div>
+      <div class="kpi-label" data-en="State Grid investment plan, 2026–2030" data-zh="国家电网“十五五”投资计划">State Grid investment plan, 2026–2030</div>
     </div>
 
-    <div class="uae-card">
+    <div class="cn-card">
+      <div class="icon">📈</div>
+      <h3 data-en="Power-Market Reform" data-zh="电力市场化改革">Power-Market Reform</h3>
+      <p data-en="Spot markets now run in 29 provincial grids (11 in formal operation). Since June 2025, new wind and solar sell at market prices (Doc. 136). Goal: a unified national power market by 2030. Virtual power plants are policy-backed, with private capital explicitly invited."
+         data-zh="电力现货市场已覆盖29个省级电网（其中11个转入正式运行）。2025年6月起，新能源上网电量全面进入市场交易（136号文）。目标是2030年基本建成全国统一电力市场。虚拟电厂获政策力推，并明确鼓励民营资本参与。">
+        Spot markets now run in 29 provincial grids (11 in formal operation). Since June 2025, new wind and solar sell at market prices (Doc. 136). Goal: a unified national power market by 2030. Virtual power plants are policy-backed, with private capital explicitly invited.
+      </p>
+      <div class="kpi">&gt;50 GW</div>
+      <div class="kpi-label" data-en="VPP capacity target by 2030 (&gt;20 GW by 2027)" data-zh="2030年虚拟电厂规模目标（2027年&gt;20 GW）">VPP capacity target by 2030 (&gt;20 GW by 2027)</div>
+    </div>
+
+    <div class="cn-card">
+      <div class="icon">🛡️</div>
+      <h3 data-en="Electrification = Energy Security" data-zh="电气化即能源安全">Electrification = Energy Security</h3>
+      <p data-en="The Hormuz shock stress-tested the electrostate: crude imports fell ~32% in Q2 2026 as ~1.4 bn bbl of stocks and EVs absorbed the hit. EVs displaced ~36 Mt of oil in H1 2026, more than the UK uses in six months."
+         data-zh="霍尔木兹危机对“电气化国家”模式进行了压力测试：2026年二季度原油进口下降约32%，约14亿桶石油库存与电动汽车共同吸收冲击。上半年电动汽车替代石油约3600万吨，超过英国半年的石油消费量。">
+        The Hormuz shock stress-tested the electrostate: crude imports fell ~32% in Q2 2026 as ~1.4 bn bbl of stocks and EVs absorbed the hit. EVs displaced ~36 Mt of oil in H1 2026, more than the UK uses in six months.
+      </p>
+      <div class="kpi">~55%</div>
+      <div class="kpi-label" data-en="EV share of new-car sales, 2025 (&gt;60% in some 2026 months)" data-zh="2025年新车销量中电动汽车占比（2026年部分月份超60%）">EV share of new-car sales, 2025 (&gt;60% in some 2026 months)</div>
+    </div>
+
+    <div class="cn-card">
       <div class="icon">🎯</div>
-      <h3 data-en="Net-Zero 2050" data-zh="净零 2050">Net-Zero 2050</h3>
-      <p data-en="UAE Energy Strategy 2050. Backed by Federal Decree-Law No. 11 of 2024 on Climate Change. Key actors: MoEI, MoCCAE, Mubadala, ADQ, ADIA, Masdar, TAQA, ADNOC, DEWA."
-         data-zh="UAE能源战略2050。以2024年第11号联邦法令（气候变化法）为法律支撑。关键执行方：能源工业部、气候部、Mubadala、ADQ、ADIA、Masdar、TAQA、ADNOC、DEWA。">
-        UAE Energy Strategy 2050. Backed by Federal Decree-Law No. 11 of 2024 on Climate Change. Key actors: MoEI, MoCCAE, Mubadala, ADQ, ADIA, Masdar, TAQA, ADNOC, DEWA.
+      <h3 data-en="Dual-Carbon &amp; Carbon Market" data-zh="双碳目标与碳市场">Dual-Carbon &amp; Carbon Market</h3>
+      <p data-en="Peak CO₂ before 2030, neutrality before 2060. 2035 NDC: cut net GHG 7–10% from peak, 3,600 GW of wind + solar, &gt;30% non-fossil energy. The national ETS, the world's largest at ~8 Gt CO₂, added steel, cement and aluminium in 2025."
+         data-zh="2030年前碳达峰、2060年前碳中和。2035年国家自主贡献目标：温室气体净排放较峰值下降7–10%，风光装机达36亿千瓦，非化石能源占比超过30%。全国碳市场覆盖约80亿吨CO₂，为全球最大，并于2025年纳入钢铁、水泥和铝冶炼行业。">
+        Peak CO₂ before 2030, neutrality before 2060. 2035 NDC: cut net GHG 7–10% from peak, 3,600 GW of wind + solar, &gt;30% non-fossil energy. The national ETS, the world's largest at ~8 Gt CO₂, added steel, cement and aluminium in 2025.
       </p>
-      <div class="kpi">~32% → 38% → 100%</div>
-      <div class="kpi-label" data-en="Clean-energy share: 2030 / 2035 / 2050" data-zh="清洁能源占比：2030 / 2035 / 2050年">Clean-energy share: 2030 / 2035 / 2050</div>
+      <div class="kpi">2030 → 2060</div>
+      <div class="kpi-label" data-en="Carbon peak → carbon neutrality" data-zh="碳达峰 → 碳中和">Carbon peak → carbon neutrality</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══ GLOBAL REGIONS ══ -->
+<div class="page-section" style="max-width:960px">
+  <div class="page-section-title"
+       data-en="Global Regions — Snapshot"
+       data-zh="全球区域速览">Global Regions — Snapshot</div>
+  <div class="cards-4">
+
+    <div class="region-card">
+      <div class="code">US</div>
+      <h3 data-en="United States" data-zh="美国">United States</h3>
+      <p data-en="World's #1 LNG exporter, with new Gulf Coast capacity ramping up. Gas-plant approvals hit a 25-year high in 2025, led by the US and much of it for data centres. OBBBA (2025) phases out IRA wind/solar credits and ended EV credits. Still the global hub for energy VC."
+         data-zh="全球第一大LNG出口国，墨西哥湾沿岸新增液化产能持续爬坡。2025年燃气电厂审批量创25年新高，美国领跑，其中大量服务于数据中心。《大而美法案》（OBBBA，2025）逐步取消IRA风光税收抵免，并终止电动车抵免。美国仍是全球能源风险投资中心。">
+        World's #1 LNG exporter, with new Gulf Coast capacity ramping up. Gas-plant approvals hit a 25-year high in 2025, led by the US and much of it for data centres. OBBBA (2025) phases out IRA wind/solar credits and ended EV credits. Still the global hub for energy VC.
+      </p>
+      <div class="kpi">&gt;120 Mt</div>
+      <div class="kpi-label" data-en="LNG exports on track for 2026" data-zh="2026年LNG出口预计规模">LNG exports on track for 2026</div>
+    </div>
+
+    <div class="region-card">
+      <div class="code">EU</div>
+      <h3 data-en="European Union" data-zh="欧盟">European Union</h3>
+      <p data-en="Russian gas ban adopted Jan 2026: short-term LNG barred from Apr 2026, long-term LNG from 2027, pipeline gas by late 2027. CBAM's definitive phase began Jan 2026, putting a carbon price on imported steel, aluminium and cement, a direct cost for Chinese exporters."
+         data-zh="2026年1月正式通过俄罗斯天然气禁令：短期LNG合同自2026年4月起禁止，长期LNG合同自2027年起禁止，管道气最晚于2027年底退出。碳边境调节机制（CBAM）于2026年1月进入正式实施期，对进口钢铁、铝、水泥等计征碳成本，中国出口企业直接承压。">
+        Russian gas ban adopted Jan 2026: short-term LNG barred from Apr 2026, long-term LNG from 2027, pipeline gas by late 2027. CBAM's definitive phase began Jan 2026, putting a carbon price on imported steel, aluminium and cement, a direct cost for Chinese exporters.
+      </p>
+      <div class="kpi">~75%</div>
+      <div class="kpi-label" data-en="EU energy investment in electricity &amp; electrification, 2026 (IEA)" data-zh="2026年欧盟能源投资中电力与电气化占比（IEA）">EU energy investment in electricity &amp; electrification, 2026 (IEA)</div>
+    </div>
+
+    <div class="region-card">
+      <div class="code">GCC</div>
+      <h3 data-en="Middle East / GCC" data-zh="中东 / 海湾">Middle East / GCC</h3>
+      <p data-en="Ground zero of the 2026 shock: Hormuz closed and Ras Laffan, Fujairah and Ruwais were hit. Qatar lost ~17% of its LNG export capacity for 3–5 years. The transition push continues: Masdar targets 100 GW by 2030, and Barakah nuclear supplies ~25% of UAE power."
+         data-zh="2026年能源冲击的“震中”：霍尔木兹海峡封锁，拉斯拉凡、富查伊拉、鲁韦斯等能源设施遇袭。卡塔尔约17%的LNG出口产能受损，修复需3–5年。能源转型仍在推进：Masdar目标2030年可再生能源装机100 GW，巴拉卡核电站供应阿联酋约25%的电力。">
+        Ground zero of the 2026 shock: Hormuz closed and Ras Laffan, Fujairah and Ruwais were hit. Qatar lost ~17% of its LNG export capacity for 3–5 years. The transition push continues: Masdar targets 100 GW by 2030, and Barakah nuclear supplies ~25% of UAE power.
+      </p>
+      <div class="kpi">−17%</div>
+      <div class="kpi-label" data-en="Qatar LNG export capacity knocked out (Mar 2026)" data-zh="卡塔尔LNG出口产能受损（2026年3月）">Qatar LNG export capacity knocked out (Mar 2026)</div>
+    </div>
+
+    <div class="region-card">
+      <div class="code">IN</div>
+      <h3 data-en="India" data-zh="印度">India</h3>
+      <p data-en="Fastest-growing major energy market. Crossed 300 GW of non-fossil capacity in Jul 2026, 60% of the way to its 2030 goal. Among the most exposed to Hormuz through Gulf crude, LNG and LPG; the crisis added ~US$22B to its fossil-fuel import bill (CREA)."
+         data-zh="增长最快的主要能源市场。2026年7月非化石能源装机突破300 GW，已完成2030年目标的60%。经由海湾进口原油、LNG与液化石油气，是受霍尔木兹危机冲击最深的经济体之一；危机使其化石能源进口成本增加约220亿美元（CREA）。">
+        Fastest-growing major energy market. Crossed 300 GW of non-fossil capacity in Jul 2026, 60% of the way to its 2030 goal. Among the most exposed to Hormuz through Gulf crude, LNG and LPG; the crisis added ~US$22B to its fossil-fuel import bill (CREA).
+      </p>
+      <div class="kpi">300 → 500 GW</div>
+      <div class="kpi-label" data-en="Non-fossil capacity: Jul 2026 → 2030 target" data-zh="非化石能源装机：2026年7月 → 2030年目标">Non-fossil capacity: Jul 2026 → 2030 target</div>
     </div>
 
   </div>
@@ -796,8 +914,8 @@
       <div class="opp-num" data-en="Space 01" data-zh="赛道 01">Space 01</div>
       <div class="icon">⚡</div>
       <h3 data-en="Grid Intelligence &amp; Battery Dispatch" data-zh="电网智能与电池调度">Grid Intelligence &amp; Battery Dispatch</h3>
-      <p data-en="AI for storage trading, renewable forecasting, demand response." data-zh="AI赋能储能交易、可再生能源预测与需求响应。">AI for storage trading, renewable forecasting, demand response.</p>
-      <div class="examples">Rewbi · Octopus/Kraken · Stem</div>
+      <p data-en="AI for storage trading, renewable forecasting, demand response. China's provincial spot markets are a new arena." data-zh="AI赋能储能交易、可再生能源预测与需求响应。中国的省级现货市场是新战场。">AI for storage trading, renewable forecasting, demand response. China's provincial spot markets are a new arena.</p>
+      <div class="examples">Rewbi · Octopus/Kraken · Stem · Envision EnOS · Tsintergy 清能互联</div>
     </div>
 
     <div class="opp-card">
@@ -805,7 +923,7 @@
       <div class="icon">🏢</div>
       <h3 data-en="Building &amp; Industrial Energy Mgmt." data-zh="建筑与工业能源管理">Building &amp; Industrial Energy Mgmt.</h3>
       <p data-en="HVAC waste reduction, industrial load monitoring, demand-side flexibility." data-zh="暖通空调节能、工业负载监测、需求侧灵活调控。">HVAC waste reduction, industrial load monitoring, demand-side flexibility.</p>
-      <div class="examples">BrainBox AI · Verdigris · 75F · Nectar</div>
+      <div class="examples">BrainBox AI · Verdigris · 75F · Nectar · Acrel 安科瑞</div>
     </div>
 
     <div class="opp-card">
@@ -820,16 +938,16 @@
       <div class="opp-num" data-en="Space 04" data-zh="赛道 04">Space 04</div>
       <div class="icon">☀️</div>
       <h3 data-en="Distributed Solar / Storage Ops." data-zh="分布式太阳能/储能运营">Distributed Solar / Storage Ops.</h3>
-      <p data-en="DER orchestration, virtual power plants, residential aggregation." data-zh="分布式能源调度、虚拟电厂、居民侧聚合管理。">DER orchestration, virtual power plants, residential aggregation.</p>
-      <div class="examples">Elastic Energy · EIPGRID · Tibo Energy</div>
+      <p data-en="DER orchestration, virtual power plants, residential aggregation. China targets &gt;50 GW of VPPs by 2030." data-zh="分布式能源调度、虚拟电厂、居民侧聚合管理。中国目标2030年虚拟电厂规模超过5000万千瓦。">DER orchestration, virtual power plants, residential aggregation. China targets &gt;50 GW of VPPs by 2030.</p>
+      <div class="examples">Elastic Energy · EIPGRID · Tibo Energy · Longshine 朗新 · Huawei FusionSolar</div>
     </div>
 
     <div class="opp-card">
       <div class="opp-num" data-en="Space 05" data-zh="赛道 05">Space 05</div>
       <div class="icon">🌍</div>
       <h3 data-en="Carbon &amp; ESG Accounting" data-zh="碳排放与ESG核算">Carbon &amp; ESG Accounting</h3>
-      <p data-en="Emissions tracking now mandatory under EU CSRD, UAE/UK disclosure rules." data-zh="碳排放追踪现已成为EU CSRD、UAE/英国信息披露规则下的强制性要求。">Emissions tracking now mandatory under EU CSRD, UAE/UK disclosure rules.</p>
-      <div class="examples">Persefoni · Sweep · Watershed</div>
+      <p data-en="Emissions tracking now mandatory under EU CSRD and CBAM, ISSB-based rules, and China's expanding ETS." data-zh="碳排放追踪现已成为EU CSRD与CBAM、ISSB系列准则及中国不断扩容的全国碳市场下的强制性要求。">Emissions tracking now mandatory under EU CSRD and CBAM, ISSB-based rules, and China's expanding ETS.</p>
+      <div class="examples">Persefoni · Sweep · Watershed · Carbonstop 碳阻迹 · Envision Ark</div>
     </div>
 
   </div>
@@ -839,26 +957,27 @@
 <!-- ══ DECISION FRAMING ══ -->
 <div class="page-section" style="max-width:960px">
   <div class="page-section-title"
-       data-en="Decision Framing — Dubai-Based, LLM + CV + Full-Stack"
-       data-zh="决策框架 — 以迪拜为基地，LLM + CV + 全栈">Decision Framing — Dubai-Based, LLM + CV + Full-Stack</div>
+       data-en="Decision Framing — China Market, LLM + CV + Full-Stack"
+       data-zh="决策框架 — 中国市场，LLM + CV + 全栈">Decision Framing — China Market, LLM + CV + Full-Stack</div>
   <div class="decision-grid">
 
     <div class="decision-card bad">
       <h3 data-en="✕  Bad Fits" data-zh="✕  不适合的方向">✕  Bad Fits</h3>
       <ul>
-        <li data-en="Upstream (capex + geophysics expertise required)"              data-zh="上游（需要大量资本支出与地球物理专业知识）">Upstream (capex + geophysics expertise required)</li>
-        <li data-en="Generation hardware (capex-heavy, commodity)"                  data-zh="发电硬件（资本密集，产品同质化）">Generation hardware (capex-heavy, commodity)</li>
-        <li data-en="Grid hardware (requires utility partnerships)"                  data-zh="电网硬件（需要与公用事业公司建立伙伴关系）">Grid hardware (requires utility partnerships)</li>
-        <li data-en="Anything competing head-on with Masdar / ADNOC in-house tech"  data-zh="任何与Masdar / ADNOC内部技术正面竞争的方向">Anything competing head-on with Masdar / ADNOC in-house tech</li>
+        <li data-en="Upstream (capex + geophysics expertise; held by CNPC / Sinopec / CNOOC)"          data-zh="上游（资本与地球物理专业门槛高，由中石油/中石化/中海油把持）">Upstream (capex + geophysics expertise; held by CNPC / Sinopec / CNOOC)</li>
+        <li data-en="Generation hardware (brutal price war and overcapacity in solar and batteries)"   data-zh="发电硬件（光伏与电池领域价格战惨烈、产能过剩）">Generation hardware (brutal price war and overcapacity in solar and batteries)</li>
+        <li data-en="Grid hardware (gated by State Grid / China Southern Grid procurement)"            data-zh="电网硬件（受国家电网/南方电网集中采购体系制约）">Grid hardware (gated by State Grid / China Southern Grid procurement)</li>
+        <li data-en="Anything competing head-on with SOE or Huawei Digital Power in-house platforms"   data-zh="任何与国企或华为数字能源自有平台正面竞争的方向">Anything competing head-on with SOE or Huawei Digital Power in-house platforms</li>
       </ul>
     </div>
 
     <div class="decision-card good">
       <h3 data-en="✓  Good Fits" data-zh="✓  适合的方向">✓  Good Fits</h3>
       <ul>
-        <li data-en="End-use software — commercial / industrial energy management"                                                            data-zh="终端使用软件——商业/工业能源管理">End-use software — commercial / industrial energy management</li>
-        <li data-en="Regulatory / compliance intelligence — UAE rule complexity (Islamic finance + Net Zero + sectoral mandates)"             data-zh="监管/合规智能——UAE规则复杂性（伊斯兰金融 + 净零 + 行业授权）">Regulatory / compliance intelligence — UAE rule complexity (Islamic finance + Net Zero + sectoral mandates)</li>
-        <li data-en="Distributed energy / solar ops — UAE rooftop solar + GCC-wide DER expansion needs vendor-neutral tools"                 data-zh="分布式能源/太阳能运营——UAE屋顶太阳能及GCC区域DER扩展需要中立供应商工具">Distributed energy / solar ops — UAE rooftop solar + GCC-wide DER expansion needs vendor-neutral tools</li>
+        <li data-en="Spot-market trading &amp; forecasting software — 29 provincial markets, with new renewables now selling at market prices"                         data-zh="现货市场交易与预测软件——29个省级现货市场，新能源已全面入市交易">Spot-market trading &amp; forecasting software — 29 provincial markets, with new renewables now selling at market prices</li>
+        <li data-en="VPP &amp; C&amp;I storage optimisation — &gt;50 GW VPP target by 2030, with private capital explicitly invited"                                    data-zh="虚拟电厂与工商业储能优化——2030年虚拟电厂目标超5000万千瓦，明确鼓励民营资本参与">VPP &amp; C&amp;I storage optimisation — &gt;50 GW VPP target by 2030, with private capital explicitly invited</li>
+        <li data-en="CBAM / carbon-footprint compliance for Chinese exporters — LLM document intelligence across EU rules and China's ETS"                             data-zh="面向中国出口企业的CBAM/碳足迹合规——以LLM文件智能贯通欧盟规则与全国碳市场">CBAM / carbon-footprint compliance for Chinese exporters — LLM document intelligence across EU rules and China's ETS</li>
+        <li data-en="Ops software for Chinese clean-tech going abroad (Middle East, SE Asia, Africa) — solar imports to crisis-hit markets rose 120–150% in Q1 2026 (IEA)" data-zh="服务中国清洁能源出海的运营软件（中东、东南亚、非洲）——2026年一季度受危机冲击市场的光伏进口同比增长120–150%（IEA）">Ops software for Chinese clean-tech going abroad (Middle East, SE Asia, Africa) — solar imports to crisis-hit markets rose 120–150% in Q1 2026 (IEA)</li>
       </ul>
     </div>
 
@@ -872,7 +991,8 @@
   <div class="legend-item"><div class="legend-dot" style="background:#c97a20;"></div><span data-en="Value-Chain Layers (Upper)" data-zh="价值链层级（上层）">Value-Chain Layers (Upper)</span></div>
   <div class="legend-item"><div class="legend-dot" style="background:#2a8a6a;"></div><span data-en="Industry Pillars (Lower)" data-zh="行业支柱（下层）">Industry Pillars (Lower)</span></div>
   <div class="legend-item"><div class="legend-dot" style="background:#2a8a6a; opacity:0.5;"></div><span data-en="Emerging Pillar" data-zh="新兴支柱">Emerging Pillar</span></div>
-  <div class="legend-item"><div class="legend-dot" style="background:#d4aa40;"></div><span data-en="UAE Lens" data-zh="UAE 视角">UAE Lens</span></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#d04a3a;"></div><span data-en="China Lens" data-zh="中国视角">China Lens</span></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#3a90a0;"></div><span data-en="Global Regions" data-zh="全球区域">Global Regions</span></div>
   <div class="legend-item"><div class="legend-dot" style="background:#5060a0;"></div><span data-en="Software Opportunities" data-zh="软件机会">Software Opportunities</span></div>
 </div>
 
