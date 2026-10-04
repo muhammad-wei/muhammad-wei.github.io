@@ -594,7 +594,7 @@ body {
 }
 .intro--banner h1 {
   position: relative;
-  font-size: 68px;
+  font-size: 56px;
   font-weight: 900;
   line-height: 1;
   z-index: 1;
@@ -663,7 +663,7 @@ body {
     height: 380px;
   }
   .intro--banner h1 {
-    font-size: 55px;
+    font-size: 48px;
   }
   .intro--banner img {
     width: 430px;
@@ -680,7 +680,7 @@ body {
     height: 305px;
   }
   .intro--banner h1 {
-    font-size: 44px;
+    font-size: 40px;
   }
   .intro--banner img {
     width: 330px;
@@ -702,7 +702,8 @@ body {
     height: 360px;
   }
   .intro--banner h1 {
-    font-size: 55px;
+    margin-top: 50px;
+    font-size: min(55px, 11vw);
   }
   .intro--banner img {
     display: none;
