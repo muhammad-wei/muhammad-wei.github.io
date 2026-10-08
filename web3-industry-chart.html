@@ -7,7 +7,8 @@
 <!-- Anti-FOUC: set theme before first paint -->
 <script>
   (function(){
-    var s = localStorage.getItem('voltai-theme');
+    var s = null;
+    try { s = localStorage.getItem('voltai-theme'); } catch (e) {}
     var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     document.documentElement.setAttribute('data-theme', s || (dark ? 'dark' : 'light'));
   })();
@@ -21,11 +22,11 @@
     --bg-page:          #080b12;
     --text-body:        #e0e4f0;
     --h1-color:         #d4c090;
-    --subtitle-color:   #404860;
+    --subtitle-color:   #7a82a0;
     /* controls */
     --ctrl-bg:          #0f1220;
     --ctrl-border:      #1e2438;
-    --ctrl-btn:         #505880;
+    --ctrl-btn:         #7880a8;
     --ctrl-active-bg:   #b88a10;
     --ctrl-active:      #fff;
     /* regulatory / institutional paradigm (teal) */
@@ -35,7 +36,7 @@
     --reg-badge-bg:     #1a9080;
     --reg-badge-color:  #bffaf2;
     --reg-h2:           #38c0a8;
-    --reg-p:            #246858;
+    --reg-p:            #6ab0a0;
     --reg-tag-bg:       rgba(26,144,128,.16);
     --reg-tag-border:   rgba(26,144,128,.40);
     --reg-tag-color:    #24b098;
@@ -44,18 +45,18 @@
     --conn-line-2:      linear-gradient(to bottom, #b88a10, #7a50c8);
     --conn-arrow-gold:  #b88a10;
     --conn-arrow-pur:   #7a50c8;
-    --conn-label:       #2a3258;
+    --conn-label:       #6b78b8;
     --conn-label-bd:    #161c34;
     /* section headers */
     --sector-hdr:       #b88a10;
-    --pillar-hdr:       #8060d0;
+    --pillar-hdr:       #9070e0;
     /* sector layer cards (gold) */
     --layer-bg:         linear-gradient(160deg, #181208 0%, #100c05 100%);
     --layer-border:     #282008;
     --layer-hover:      #b88a10;
-    --layer-num:        #4a3808;
+    --layer-num:        #a17a11;
     --layer-h3:         #c09040;
-    --layer-p:          #4a3818;
+    --layer-p:          #a08a5c;
     --layer-stag:       #a07808;
     --layer-stag-bg:    rgba(184,138,16,.10);
     --layer-hot-border: #3a2a08;
@@ -65,48 +66,48 @@
     --pil-border:       #1a1230;
     --pil-hover:        #7a50c8;
     --pil-h3:           #8868d8;
-    --pil-p:            #342660;
+    --pil-p:            #9488c4;
     --nbadge-bg:        #7a50c8;
     --nbadge-color:     #f0ebff;
     /* macro force cards */
     --force-bg:         #0c0f1a;
     --force-border:     #161b2e;
     --force-num:        #141830;
-    --force-h3:         #6070b8;
-    --force-p:          #2c3458;
-    --force-stat:       #485090;
+    --force-h3:         #8090e0;
+    --force-p:          #8088b0;
+    --force-stat:       #a0a8e0;
     --force-stat-bg:    rgba(72,80,144,.10);
     --force-stat-bd:    rgba(72,80,144,.22);
     /* sector scoreboard cards */
     --sec-bg:           linear-gradient(160deg, #181408 0%, #0f0e05 100%);
     --sec-border:       #242008;
     --sec-h3:           #bfa040;
-    --sec-p:            #4a3c18;
+    --sec-p:            #997c32;
     --sec-kpi:          #e0c050;
-    --sec-kpi-label:    #786020;
+    --sec-kpi-label:    #9c7d2a;
     /* allocation cards */
     --alloc-bg:         #0d101c;
     --alloc-border:     #181e32;
     --alloc-h3:         #7080b8;
-    --alloc-p:          #2c3458;
+    --alloc-p:          #6c7ab6;
     --alloc-pct:        #d0a020;
-    --alloc-pct-label:  #484060;
+    --alloc-pct-label:  #8378a5;
     /* bull / bear */
     --bear-bg:          linear-gradient(135deg, #180808 0%, #0e0505 100%);
     --bear-border:      #320d0d;
-    --bear-h3:          #b84040;
-    --bear-li:          #5a2c2c;
+    --bear-h3:          #c65b5b;
+    --bear-li:          #b46666;
     --bear-mark:        #882828;
     --bull-bg:          linear-gradient(135deg, #081618 0%, #040e0c 100%);
     --bull-border:      #0d3028;
     --bull-h3:          #38b890;
-    --bull-li:          #245640;
+    --bull-li:          #3b8e69;
     --bull-mark:        #249c70;
     /* page sections */
-    --pst-color:        #2c3258;
+    --pst-color:        #6e78b7;
     --pst-line:         #161c32;
     /* legend */
-    --legend-color:     #323660;
+    --legend-color:     #7078a0;
   }
 
   /* ═══════════════════════════════
@@ -445,7 +446,17 @@
   .legend { margin-top: 48px; display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
   .legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--legend-color); }
   .legend-dot  { width: 10px; height: 10px; border-radius: 50%; }
+  .footnote {
+    width: 100%; max-width: 960px;
+    margin-top: 28px; padding-top: 16px;
+    border-top: 1px solid var(--pst-line);
+    font-size: 11px; line-height: 1.6;
+    color: var(--legend-color); text-align: center;
+  }
 
+  @media (max-width: 1024px) {
+    body { padding-top: 72px; }   /* clear the fixed controls */
+  }
   @media (max-width: 800px) {
     .cards-5, .sec-grid { grid-template-columns: repeat(2, 1fr); }
     .cards-4 { grid-template-columns: repeat(2, 1fr); }
@@ -481,9 +492,9 @@
     <div class="badge" data-en="Higher-Order Force" data-zh="高阶驱动力">Higher-Order Force</div>
     <h2 data-en="Regulatory Architecture &amp; Institutional Rails"
         data-zh="监管架构与机构通道">Regulatory Architecture &amp; Institutional Rails</h2>
-    <p data-en="Not a sector — a <strong>cross-cutting strategic field</strong> that determines how every Web3 layer is built, funded, and connected. GENIUS Act (U.S., signed July 2025), MiCA (EU July 2026 cliff), and HK/SG/UAE frameworks have created the first coherent global regulatory skeleton for crypto as an investable asset class."
-       data-zh="并非某一赛道，而是<strong>横跨所有 Web3 层级的战略场域</strong>，决定着每一层级的构建、融资与衔接方式。GENIUS 法案（美国，2025年7月签署）、MiCA（欧盟，2026年7月执行截止）以及香港/新加坡/UAE 框架，共同为加密货币作为可投资资产类别构建起首个全球监管骨架。">
-      Not a sector — a <strong>cross-cutting strategic field</strong> that determines how every Web3 layer is built, funded, and connected. GENIUS Act (U.S., signed July 2025), MiCA (EU July 2026 cliff), and HK/SG/UAE frameworks have created the first coherent global regulatory skeleton for crypto as an investable asset class.
+    <p data-en="Not a sector — a <strong>cross-cutting strategic field</strong> that determines how every Web3 layer is built, funded, and connected. GENIUS Act (U.S., signed July 2025; effective by Jan 2027), MiCA (EU, fully applicable since July 2026), and HK/SG/UAE frameworks have created the first coherent global regulatory skeleton for crypto as an investable asset class."
+       data-zh="并非某一赛道，而是<strong>横跨所有 Web3 层级的战略场域</strong>，决定着每一层级的构建、融资与衔接方式。GENIUS 法案（美国，2025年7月签署，最迟2027年1月生效）、MiCA（欧盟，2026年7月起全面适用）以及香港/新加坡/UAE 框架，共同为加密货币作为可投资资产类别构建起首个全球监管骨架。">
+      Not a sector — a <strong>cross-cutting strategic field</strong> that determines how every Web3 layer is built, funded, and connected. GENIUS Act (U.S., signed July 2025; effective by Jan 2027), MiCA (EU, fully applicable since July 2026), and HK/SG/UAE frameworks have created the first coherent global regulatory skeleton for crypto as an investable asset class.
     </p>
     <div class="tags">
       <span class="tag" data-en="GENIUS Act (U.S.)"          data-zh="GENIUS 法案（美国）">GENIUS Act (U.S.)</span>
@@ -491,7 +502,7 @@
       <span class="tag" data-en="Spot BTC ETFs $101B AUM"    data-zh="现货 BTC ETF 1010亿美元">Spot BTC ETFs $101B AUM</span>
       <span class="tag" data-en="U.S. Strategic BTC Reserve" data-zh="美国战略比特币储备">U.S. Strategic BTC Reserve</span>
       <span class="tag" data-en="JPM Kinexys &gt;$5B/day"   data-zh="摩根大通 Kinexys &gt;50亿美元/天">JPM Kinexys &gt;$5B/day</span>
-      <span class="tag" data-en="OCC Letter 1183 (Banks + Public Chains)" data-zh="OCC 解释函1183（银行可使用公链）">OCC Letter 1183</span>
+      <span class="tag" data-en="OCC Letter 1183 (Banks + Public Chains)" data-zh="OCC 解释函1183（银行可使用公链）">OCC Letter 1183 (Banks + Public Chains)</span>
     </div>
   </div>
 
@@ -574,14 +585,14 @@
         <div class="num" data-en="Sector 5" data-zh="赛道 5">Sector 5</div>
         <div class="icon">⚠️</div>
         <h3 data-en="Risk Vectors" data-zh="风险向量">Risk Vectors</h3>
-        <p data-en="KelpDAO exploit $290–292M (April 2026) → $13B DeFi deleveraging in 48h; attributed to Lazarus Group. Every top-8 L2 except Arbitrum runs a centralized sequencer. USDT (58.8%) outside MiCA — EU cliff July 1, 2026."
-           data-zh="KelpDAO漏洞约2.9–2.92亿美元（2026年4月）→ 48小时内DeFi去杠杆130亿美元；归因于Lazarus组织。除Arbitrum外，所有前8大L2均使用中心化排序器。USDT（58.8%）不符合MiCA要求——欧盟执法截止日2026年7月1日。">
-          KelpDAO exploit $290–292M (April 2026) → $13B DeFi deleveraging in 48h; attributed to Lazarus Group. Every top-8 L2 except Arbitrum runs a centralized sequencer. USDT (58.8%) outside MiCA — EU cliff July 1, 2026.
+        <p data-en="KelpDAO exploit $290–292M (April 2026) → $13B DeFi deleveraging in 48h; attributed to Lazarus Group. Every major L2, Arbitrum included, still runs a centralized sequencer. USDT (58.8%) is outside MiCA and was delisted for EU users when the transition ended on July 1, 2026."
+           data-zh="KelpDAO漏洞约2.9–2.92亿美元（2026年4月）→ 48小时内DeFi去杠杆130亿美元；归因于Lazarus组织。包括Arbitrum在内，所有主要L2仍使用中心化排序器。USDT（58.8%）不符合MiCA要求，已于2026年7月1日过渡期结束时对欧盟用户下架。">
+          KelpDAO exploit $290–292M (April 2026) → $13B DeFi deleveraging in 48h; attributed to Lazarus Group. Every major L2, Arbitrum included, still runs a centralized sequencer. USDT (58.8%) is outside MiCA and was delisted for EU users when the transition ended on July 1, 2026.
         </p>
         <div class="sub-tags">
           <span class="sub-tag" data-en="Bridge Risk"      data-zh="跨链风险">Bridge Risk</span>
           <span class="sub-tag" data-en="L2 Centralization" data-zh="L2中心化">L2 Centralization</span>
-          <span class="sub-tag" data-en="MiCA Cliff"       data-zh="MiCA执法截止">MiCA Cliff</span>
+          <span class="sub-tag" data-en="MiCA Delisting"   data-zh="MiCA下架">MiCA Delisting</span>
         </div>
       </div>
 
@@ -615,18 +626,18 @@
       <div class="pillar-card">
         <div class="icon">⚙️</div>
         <h3 data-en="Technology" data-zh="技术">Technology</h3>
-        <p data-en="EVM ecosystem (ETH + 73 L2s), Solana/Move VMs, ZK proof systems, ERC-4337, Chainlink CCIP. Near-term frontier: Firedancer, EIP-7702 (Pectra), Solana Alpenglow (12.8s → &lt;150ms finality, Q3 2026)."
-           data-zh="EVM生态（ETH + 73条L2）、Solana/Move虚拟机、ZK证明系统、ERC-4337、Chainlink CCIP。近期前沿：Firedancer、EIP-7702（Pectra升级）、Solana Alpenglow（终局时间12.8秒→150毫秒以内，预计Q3 2026）。">
-          EVM ecosystem (ETH + 73 L2s), Solana/Move VMs, ZK proof systems, ERC-4337, Chainlink CCIP. Near-term frontier: Firedancer, EIP-7702 (Pectra), Solana Alpenglow (12.8s → &lt;150ms finality, Q3 2026).
+        <p data-en="EVM ecosystem (ETH + 73 L2s), Solana/Move VMs, ZK proof systems, ERC-4337, Chainlink CCIP. Near-term frontier: Firedancer, Ethereum Glamsterdam (Q4 2026), Solana Alpenglow (12.8s → &lt;150ms finality; on testnet since Sept 2026)."
+           data-zh="EVM生态（ETH + 73条L2）、Solana/Move虚拟机、ZK证明系统、ERC-4337、Chainlink CCIP。近期前沿：Firedancer、以太坊Glamsterdam升级（2026年Q4）、Solana Alpenglow（终局时间12.8秒→150毫秒以内；2026年9月起在测试网运行）。">
+          EVM ecosystem (ETH + 73 L2s), Solana/Move VMs, ZK proof systems, ERC-4337, Chainlink CCIP. Near-term frontier: Firedancer, Ethereum Glamsterdam (Q4 2026), Solana Alpenglow (12.8s → &lt;150ms finality; on testnet since Sept 2026).
         </p>
       </div>
 
       <div class="pillar-card">
         <div class="icon">🌊</div>
         <h3 data-en="Liquidity" data-zh="流动性">Liquidity</h3>
-        <p data-en="$94B global DeFi TVL; $20.57T Q1 2026 trading volume (90.6% derivatives); $323B stablecoins (75% of crypto trading volume); Chainlink CCIP $28T+ cumulative value secured."
-           data-zh="全球DeFi TVL 940亿美元；2026年Q1交易量20.57万亿美元（90.6%为衍生品）；稳定币3230亿美元（占加密货币交易量75%）；Chainlink CCIP累计保障价值超28万亿美元。">
-          $94B global DeFi TVL; $20.57T Q1 2026 trading volume (90.6% derivatives); $323B stablecoins (75% of crypto trading volume); Chainlink CCIP $28T+ cumulative value secured.
+        <p data-en="~$85B global DeFi TVL; $20.57T Q1 2026 trading volume (90.6% derivatives); $323B stablecoins (75% of crypto trading volume); Chainlink CCIP $28T+ cumulative value secured."
+           data-zh="全球DeFi TVL约850亿美元；2026年Q1交易量20.57万亿美元（90.6%为衍生品）；稳定币3230亿美元（占加密货币交易量75%）；Chainlink CCIP累计保障价值超28万亿美元。">
+          ~$85B global DeFi TVL; $20.57T Q1 2026 trading volume (90.6% derivatives); $323B stablecoins (75% of crypto trading volume); Chainlink CCIP $28T+ cumulative value secured.
         </p>
       </div>
 
@@ -795,9 +806,9 @@
       <div class="pct">0–10%</div>
       <div class="pct-label" data-en="of crypto allocation" data-zh="加密配置占比">of crypto allocation</div>
       <h3 data-en="SOL + Selective Alts" data-zh="SOL + 精选山寨">SOL + Selective Alts</h3>
-      <p data-en="High-throughput utility exposure. Mid-to-high risk tolerance only. Avoid undifferentiated altcoin index — CMC Altcoin Season Index 39–47 (well below 75 threshold). SOL ETFs launched Oct 28, 2025; $213M Q1 inflows. Alpenglow upgrade expected Q3 2026."
-         data-zh="高吞吐量效用敞口。仅适合中高风险承受能力。避免无差异化山寨币指数——CMC山寨季指数39–47（远低于75的阈值）。SOL ETF于2025年10月28日上市；Q1净流入2.13亿美元。Alpenglow升级预计2026年Q3。">
-        High-throughput utility exposure. Mid-to-high risk tolerance only. Avoid undifferentiated altcoin index — CMC Altcoin Season Index 39–47 (well below 75 threshold). SOL ETFs launched Oct 28, 2025; $213M Q1 inflows. Alpenglow upgrade expected Q3 2026.
+      <p data-en="High-throughput utility exposure. Mid-to-high risk tolerance only. Avoid undifferentiated altcoin index — CMC Altcoin Season Index 39–47 (well below 75 threshold). SOL ETFs launched Oct 28, 2025; $213M Q1 inflows. Alpenglow on testnet since Sept 2026; mainnet targeted late 2026."
+         data-zh="高吞吐量效用敞口。仅适合中高风险承受能力。避免无差异化山寨币指数——CMC山寨季指数39–47（远低于75的阈值）。SOL ETF于2025年10月28日上市；Q1净流入2.13亿美元。Alpenglow已于2026年9月上线测试网，主网目标2026年底。">
+        High-throughput utility exposure. Mid-to-high risk tolerance only. Avoid undifferentiated altcoin index — CMC Altcoin Season Index 39–47 (well below 75 threshold). SOL ETFs launched Oct 28, 2025; $213M Q1 inflows. Alpenglow on testnet since Sept 2026; mainnet targeted late 2026.
       </p>
     </div>
 
@@ -819,8 +830,8 @@
 <!-- ══ BULL / BEAR SCENARIOS ══ -->
 <div class="page-section">
   <div class="page-section-title"
-       data-en="12–18 Month Scenarios"
-       data-zh="12–18个月情景预判">12–18 Month Scenarios</div>
+       data-en="12–18 Month Scenarios (from May 2026)"
+       data-zh="12–18个月情景预判（自2026年5月起）">12–18 Month Scenarios (from May 2026)</div>
   <div class="decision-grid">
 
     <div class="decision-card bear">
@@ -828,8 +839,8 @@
       <ul>
         <li data-en="MiCA July 1 cliff forces USDT off EU venues without a regulated bridge product → correlated EU DEX/perp liquidity drains"
             data-zh="MiCA 7月1日截止日迫使USDT退出欧盟交易所，且无合规替代品 → 欧盟DEX/永续合约流动性联动下降">MiCA July 1 cliff forces USDT off EU venues without a regulated bridge product → correlated EU DEX/perp liquidity drains</li>
-        <li data-en="Second major bridge exploit pushes DeFi TVL from ~$130B to below $80B; restaking TVL falls from ~$17B to &lt;$8B"
-            data-zh="第二次大型跨链桥漏洞将DeFi TVL从约1300亿美元推低至800亿以下；再质押TVL从约170亿降至80亿以下">Second major bridge exploit pushes DeFi TVL from ~$130B to below $80B; restaking TVL falls from ~$17B to &lt;$8B</li>
+        <li data-en="Second major bridge exploit cuts DeFi TVL ~40% from ~$85B; restaking TVL falls from ~$17B to &lt;$8B"
+            data-zh="第二次大型跨链桥漏洞使DeFi TVL从约850亿美元下降约40%；再质押TVL从约170亿降至80亿以下">Second major bridge exploit cuts DeFi TVL ~40% from ~$85B; restaking TVL falls from ~$17B to &lt;$8B</li>
         <li data-en="L2 token unlocks (ARB Jun 16, OP monthly, STRK May 15, EIGEN Jun 1, SUI Jun 1) total 8–15% of float with no offsetting ETF demand"
             data-zh="L2代币解锁（ARB 6月16日、OP每月、STRK 5月15日、EIGEN 6月1日、SUI 6月1日）总计占流通量8–15%，无ETF需求对冲">L2 token unlocks (ARB Jun 16, OP monthly, STRK May 15, EIGEN Jun 1, SUI Jun 1) total 8–15% of float with no offsetting ETF demand</li>
         <li data-en="Web3 consumer continues collapse: gaming retention fails, Farcaster wallet pivot doesn't flywheel, NFT volumes stay $100–200M/mo"
@@ -868,6 +879,10 @@
   <div class="legend-item"><div class="legend-dot" style="background:#d0a020;"></div><span data-en="Sector Scoreboard / Allocation" data-zh="赛道计分板 / 配置">Sector Scoreboard / Allocation</span></div>
 </div>
 
+<p class="footnote"
+   data-en="Educational overview — not investment, legal or tax advice. Market data as of May 2026 unless dated otherwise."
+   data-zh="教育性概览——不构成投资、法律或税务建议。除另有注明外，市场数据截至2026年5月。">Educational overview — not investment, legal or tax advice. Market data as of May 2026 unless dated otherwise.</p>
+
 <script>
   let currentLang = 'en';
 
@@ -883,7 +898,7 @@
     const cur  = document.documentElement.getAttribute('data-theme') || 'dark';
     const next = cur === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('voltai-theme', next);
+    try { localStorage.setItem('voltai-theme', next); } catch (e) {}
     updateThemeIcon(next);
   }
 
@@ -895,7 +910,9 @@
   document.addEventListener('DOMContentLoaded', function () {
     updateThemeIcon(document.documentElement.getAttribute('data-theme') || 'dark');
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
-      if (!localStorage.getItem('voltai-theme')) {
+      let stored = null;
+      try { stored = localStorage.getItem('voltai-theme'); } catch (err) {}
+      if (!stored) {
         const t = e.matches ? 'dark' : 'light';
         document.documentElement.setAttribute('data-theme', t);
         updateThemeIcon(t);
