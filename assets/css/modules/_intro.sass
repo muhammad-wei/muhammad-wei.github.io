@@ -86,7 +86,7 @@
     & > a
       max-width: 250px
       text-decoration: none
-      color: $muted-gray
+      color: #858585
       transition: color .2s ease-in-out
 
       &:hover
@@ -159,7 +159,8 @@
       img
         display: none
 
-@media (max-width: 600px) and (max-height: 750px)
+// cards need ~790px at narrow widths (3-line headline + four card descriptions)
+@media (max-width: 600px) and (max-height: 800px)
 
   .intro
 
