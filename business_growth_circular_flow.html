@@ -6,7 +6,8 @@
 <title>Business Growth Circular Framework</title>
 <script>
   (function(){
-    var s = localStorage.getItem('voltai-theme');
+    var s = null;
+    try { s = localStorage.getItem('voltai-theme'); } catch (e) {}
     var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     document.documentElement.setAttribute('data-theme', s || (dark ? 'dark' : 'light'));
   })();
@@ -18,17 +19,17 @@
     --bg-page:       #08090f;
     --text-body:     #dde2f0;
     --h1-color:      #c8d0e8;
-    --subtitle-color:#3a4268;
+    --subtitle-color:#6d78ad;
     --ctrl-bg:       #0f1224;
     --ctrl-border:   #1e2440;
-    --ctrl-btn:      #505888;
+    --ctrl-btn:      #747dae;
     --ctrl-active-bg:#b88a10;
     --ctrl-active:   #fff;
     /* phase colors */
     --disc:   #c89020;
-    --build:  #b05818;
-    --launch: #1878b0;
-    --scale:  #2858c8;
+    --build:  #c0601a;
+    --launch: #1a81bd;
+    --scale:  #4b76db;
     /* SVG */
     --orbit:       #1a1e30;
     --center-fill: #0e1120;
@@ -37,44 +38,44 @@
     --conn-neutral:#2e3660;
     --conn-arrow:  #3a4470;
     --loop-dash:   #c89020;
-    --lbl-phase:   #505888;
+    --lbl-phase:   #6e77aa;
     --lbl-step:    #b8c4e0;
     --lbl-num:     #e0e8ff;
     /* step cards */
     --card-disc-bg:    linear-gradient(160deg,#1c1508,#120f04);
     --card-disc-border:#382c10;
     --card-disc-h:     #d4a030;
-    --card-disc-p:     #5a4820;
+    --card-disc-p:     #9c7d37;
     --card-disc-badge: #c89020;
     --card-build-bg:   linear-gradient(160deg,#1c1008,#100a04);
     --card-build-border:#381808;
     --card-build-h:    #c07830;
-    --card-build-p:    #583018;
+    --card-build-p:    #be6834;
     --card-build-badge:#b05818;
     --card-launch-bg:  linear-gradient(160deg,#081420,#040e14);
     --card-launch-border:#102030;
     --card-launch-h:   #40a0d8;
-    --card-launch-p:   #205068;
+    --card-launch-p:   #3688b0;
     --card-launch-badge:#1878b0;
     --card-scale-bg:   linear-gradient(160deg,#080e28,#040818);
     --card-scale-border:#102040;
     --card-scale-h:    #5888e0;
-    --card-scale-p:    #203068;
+    --card-scale-p:    #627acf;
     --card-scale-badge:#2858c8;
     /* principle + use-case */
     --prin-bg:     #0d1020;
     --prin-border: #181e38;
-    --prin-h:      #6878b8;
-    --prin-p:      #2c3460;
+    --prin-h:      #6b7bba;
+    --prin-p:      #6e7abc;
     --use-bg:      #0d1020;
     --use-border:  #181e38;
-    --use-h:       #5878b0;
-    --use-p:       #283058;
+    --use-h:       #5f7eb3;
+    --use-p:       #6e7bbd;
     --use-num:     #141a34;
     /* page sections */
-    --pst-color:   #2c3460;
+    --pst-color:   #6a77bb;
     --pst-line:    #141830;
-    --legend-color:#303660;
+    --legend-color:#6e77b6;
   }
 
   /* ═══════════════ LIGHT TOKENS ═══════════════ */
@@ -268,7 +269,6 @@
 
   .step-card .phase-label {
     font-size: 10px; font-weight: 600; margin-bottom: 10px;
-    opacity: .7;
   }
   .step-card.disc   .phase-label { color: var(--card-disc-h); }
   .step-card.build  .phase-label { color: var(--card-build-h); }
@@ -314,6 +314,9 @@
   .legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--legend-color); }
   .legend-dot  { width: 10px; height: 10px; border-radius: 50%; }
 
+  @media (max-width: 1024px) {
+    body { padding-top: 72px; }   /* clear the fixed controls */
+  }
   @media (max-width: 700px) {
     .prin-grid { grid-template-columns: repeat(2, 1fr); }
     .use-grid  { grid-template-columns: 1fr; }
@@ -327,7 +330,7 @@
 <body>
 
 <div class="controls">
-  <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">🌙</button>
+  <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Switch theme">🌙</button>
   <div class="lang-toggle">
     <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
     <button id="btn-zh" onclick="setLang('zh')">中文</button>
@@ -615,8 +618,8 @@
     <div class="prin-card">
       <div class="pnum">01</div>
       <h3 data-en="Narrow Before Broad" data-zh="先窄后宽">Narrow Before Broad</h3>
-      <p data-en="Resist expanding your audience until you have deep traction with a narrow one. Premature broadening is the leading cause of positioning failure."
-         data-zh="在对窄众群体形成深度牵引之前，抵制扩大受众的冲动。过早拓宽是定位失败的首要原因。">Resist expanding your audience until you have deep traction with a narrow one. Premature broadening is the leading cause of positioning failure.</p>
+      <p data-en="Resist expanding your audience until you have deep traction with a narrow one. Premature broadening is a common cause of positioning failure."
+         data-zh="在对窄众群体形成深度牵引之前，抵制扩大受众的冲动。过早拓宽是定位失败的常见原因。">Resist expanding your audience until you have deep traction with a narrow one. Premature broadening is a common cause of positioning failure.</p>
     </div>
     <div class="prin-card">
       <div class="pnum">02</div>
@@ -633,8 +636,8 @@
     <div class="prin-card">
       <div class="pnum">04</div>
       <h3 data-en="The Loop Never Ends" data-zh="循环永不停止">The Loop Never Ends</h3>
-      <p data-en="There is no final state. Step 8 always feeds back into Step 1. The most successful operators run multiple loops in parallel."
-         data-zh="没有终态。第8步永远反哺第1步。最成功的运营者同时并行运行多个循环。">There is no final state. Step 8 always feeds back into Step 1. The most successful operators run multiple loops in parallel.</p>
+      <p data-en="There is no final state. Step 8 always feeds back into Step 1. Mature operators often run multiple loops in parallel."
+         data-zh="没有终态。第8步永远反哺第1步。成熟的运营者往往同时并行运行多个循环。">There is no final state. Step 8 always feeds back into Step 1. Mature operators often run multiple loops in parallel.</p>
     </div>
     <div class="prin-card">
       <div class="pnum">05</div>
@@ -654,15 +657,15 @@
     <div class="use-card">
       <div class="icon">🚀</div>
       <h3 data-en="New Venture" data-zh="新创业">New Venture</h3>
-      <p data-en="Begin at Step 1 with no product in mind. Run a research sprint (Steps 1–3), build sprint (Steps 4–5), launch sprint (Steps 6–7), and review sprint (Step 8). Allocate no more than 8–12 weeks to a complete first cycle."
-         data-zh="从第1步开始，不预设产品。依次完成探索冲刺（第1–3步）、构建冲刺（第4–5步）、发布冲刺（第6–7步）和复盘冲刺（第8步）。首个完整循环不超过8–12周。">Begin at Step 1 with no product in mind. Run a research sprint (Steps 1–3), build sprint (Steps 4–5), launch sprint (Steps 6–7), and review sprint (Step 8). Allocate no more than 8–12 weeks to a complete first cycle.</p>
+      <p data-en="Begin at Step 1 with no product in mind. Run a discovery sprint (Steps 1–2), build sprint (Steps 3–4), launch sprint (Steps 5–6), and scale-and-review sprint (Steps 7–8). Allocate no more than 8–12 weeks to a complete first cycle."
+         data-zh="从第1步开始，不预设产品。依次完成探索冲刺（第1–2步）、构建冲刺（第3–4步）、发布冲刺（第5–6步）和扩展复盘冲刺（第7–8步）。首个完整循环不超过8–12周。">Begin at Step 1 with no product in mind. Run a discovery sprint (Steps 1–2), build sprint (Steps 3–4), launch sprint (Steps 5–6), and scale-and-review sprint (Steps 7–8). Allocate no more than 8–12 weeks to a complete first cycle.</p>
       <div class="tip" data-en="⏱ 8–12 weeks per cycle" data-zh="⏱ 每轮循环8–12周">⏱ 8–12 weeks per cycle</div>
     </div>
     <div class="use-card">
       <div class="icon">🔧</div>
       <h3 data-en="Existing Business" data-zh="现有业务">Existing Business</h3>
-      <p data-en="Diagnose which step you are stalled at. Most stalled businesses are stuck at Step 2 (shallow pain discovery), Step 5 (over-built MVP), or Step 6 (trust assumed rather than built). Return to that step and work forward."
-         data-zh="诊断您在哪一步陷入停滞。大多数停滞的业务卡在第2步（痛点挖掘浅薄）、第5步（过度开发MVP）或第6步（预设信任而非主动建立）。回到该步骤，向前推进。">Diagnose which step you are stalled at. Most stalled businesses are stuck at Step 2 (shallow pain discovery), Step 5 (over-built MVP), or Step 6 (trust assumed rather than built). Return to that step and work forward.</p>
+      <p data-en="Diagnose which step you are stalled at. Stalled businesses are commonly stuck at Step 2 (shallow pain discovery), Step 5 (over-built MVP), or Step 6 (trust assumed rather than built). Return to that step and work forward."
+         data-zh="诊断您在哪一步陷入停滞。停滞的业务常卡在第2步（痛点挖掘浅薄）、第5步（过度开发MVP）或第6步（预设信任而非主动建立）。回到该步骤，向前推进。">Diagnose which step you are stalled at. Stalled businesses are commonly stuck at Step 2 (shallow pain discovery), Step 5 (over-built MVP), or Step 6 (trust assumed rather than built). Return to that step and work forward.</p>
       <div class="tip" data-en="🔍 Diagnose the stall point" data-zh="🔍 诊断停滞点">🔍 Diagnose the stall point</div>
     </div>
     <div class="use-card">
@@ -700,7 +703,7 @@
     const cur  = document.documentElement.getAttribute('data-theme') || 'dark';
     const next = cur === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('voltai-theme', next);
+    try { localStorage.setItem('voltai-theme', next); } catch (e) {}
     updateThemeIcon(next);
   }
 
@@ -712,7 +715,9 @@
   document.addEventListener('DOMContentLoaded', function () {
     updateThemeIcon(document.documentElement.getAttribute('data-theme') || 'dark');
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
-      if (!localStorage.getItem('voltai-theme')) {
+      let stored = null;
+      try { stored = localStorage.getItem('voltai-theme'); } catch (err) {}
+      if (!stored) {
         const t = e.matches ? 'dark' : 'light';
         document.documentElement.setAttribute('data-theme', t);
         updateThemeIcon(t);
