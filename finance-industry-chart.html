@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Finance Industry Overview — June 2026</title>
+<title>Finance Industry Overview — October 2026</title>
 <meta name="description" content="Layered map of the finance industry: regulation and central banks, five value-chain layers, foundation pillars, a flow-of-funds diagram, and a six-jurisdiction lens (US, EU, UK, Mainland China, Hong Kong, UAE).">
 <!-- Anti-FOUC: set theme before first paint -->
 <script>
@@ -501,6 +501,9 @@
     color: var(--foot-color); text-align: center;
   }
 
+  @media (max-width: 1024px) {
+    body { padding-top: 72px; }   /* clear the fixed controls */
+  }
   @media (max-width: 800px) {
     .cards-5 { grid-template-columns: repeat(2, 1fr); }
     .cards-4 { grid-template-columns: repeat(2, 1fr); }
@@ -529,8 +532,8 @@
   </div>
 </div>
 
-<h1 data-en="Finance Industry — Full Overview (as of June 2026)"
-    data-zh="金融行业全览（截至2026年6月）">Finance Industry — Full Overview (as of June 2026)</h1>
+<h1 data-en="Finance Industry — Full Overview (as of October 2026)"
+    data-zh="金融行业全览（截至2026年10月）">Finance Industry — Full Overview (as of October 2026)</h1>
 <p class="subtitle"
    data-en="Regulation &amp; Central Banks · Five Value-Chain Layers · Foundation Pillars · Six-Jurisdiction Lens"
    data-zh="监管与中央银行 · 五大价值链层级 · 基础支柱 · 六大法域视角">Regulation &amp; Central Banks · Five Value-Chain Layers · Foundation Pillars · Six-Jurisdiction Lens</p>
@@ -899,7 +902,7 @@
         <dd data-en="Single rulebook: MiFID II, EMIR, CRR3, MiCA, DORA." data-zh="统一规则手册：MiFID II、EMIR、CRR3、MiCA、DORA。">Single rulebook: MiFID II, EMIR, CRR3, MiCA, DORA.</dd>
       </dl>
       <div class="kpi">T+1</div>
-      <div class="kpi-label" data-en="Planned for 11 Oct 2027 ⚠️ verify" data-zh="计划于2027年10月11日实施 ⚠️ 待核实">Planned for 11 Oct 2027 ⚠️ verify</div>
+      <div class="kpi-label" data-en="From 11 Oct 2027 — CSDR amended in 2025" data-zh="2027年10月11日起实施——CSDR已于2025年修订">From 11 Oct 2027 — CSDR amended in 2025</div>
     </div>
 
     <div class="jur-card">
@@ -917,7 +920,7 @@
         <dd data-en="Post-Brexit rulebook diverging from the EU (Basel 3.1, Consumer Duty)." data-zh="脱欧后规则逐步与欧盟分化（巴塞尔3.1、消费者责任规则）。">Post-Brexit rulebook diverging from the EU (Basel 3.1, Consumer Duty).</dd>
       </dl>
       <div class="kpi">T+1</div>
-      <div class="kpi-label" data-en="Planned for 11 Oct 2027 ⚠️ verify" data-zh="计划于2027年10月11日实施 ⚠️ 待核实">Planned for 11 Oct 2027 ⚠️ verify</div>
+      <div class="kpi-label" data-en="From 11 Oct 2027, alongside the EU and Switzerland" data-zh="2027年10月11日起实施，与欧盟、瑞士同步">From 11 Oct 2027, alongside the EU and Switzerland</div>
     </div>
 
     <div class="jur-card">
@@ -998,11 +1001,11 @@
     <div class="force-card">
       <div class="force-num">02</div>
       <h3 data-en="Cross-Border Payment Rails" data-zh="跨境支付通道">Cross-Border Payment Rails</h3>
-      <p data-en="SWIFT messaging over correspondent banks (ISO 20022 after the Nov 2025 MT cut-over); CIPS for RMB; the mBridge multi-CBDC platform (PBoC, HKMA, CBUAE, BoT, SAMA); Payment Connect linking Hong Kong FPS with Mainland IBPS."
-         data-zh="基于代理行网络的SWIFT报文（2025年11月MT报文退役后转用ISO 20022）；人民币跨境支付系统CIPS；多边央行数字货币桥mBridge（人民银行、香港金管局、阿联酋央行、泰国央行、沙特央行）；连接香港转数快与内地网上支付跨行清算系统的“跨境支付通”。">
-        SWIFT messaging over correspondent banks (ISO 20022 after the Nov 2025 MT cut-over); CIPS for RMB; the mBridge multi-CBDC platform (PBoC, HKMA, CBUAE, BoT, SAMA); Payment Connect linking Hong Kong FPS with Mainland IBPS.
+      <p data-en="SWIFT messaging over correspondent banks (ISO 20022 after the Nov 2025 MT cut-over); CIPS for RMB; the mBridge multi-CBDC platform (PBoC, HKMA, CBUAE, BoT; Macao since 2026); Payment Connect (since Jun 2025) linking Hong Kong FPS with Mainland IBPS."
+         data-zh="基于代理行网络的SWIFT报文（2025年11月MT报文退役后转用ISO 20022）；人民币跨境支付系统CIPS；多边央行数字货币桥mBridge（人民银行、香港金管局、阿联酋央行、泰国央行；澳门金管局2026年加入）；连接香港转数快与内地网上支付跨行清算系统的“跨境支付通”（2025年6月上线）。">
+        SWIFT messaging over correspondent banks (ISO 20022 after the Nov 2025 MT cut-over); CIPS for RMB; the mBridge multi-CBDC platform (PBoC, HKMA, CBUAE, BoT; Macao since 2026); Payment Connect (since Jun 2025) linking Hong Kong FPS with Mainland IBPS.
       </p>
-      <div class="stat" data-en="⚠️ verify current status" data-zh="⚠️ 请核实最新状态">⚠️ verify current status</div>
+      <div class="stat" data-en="SWIFT · CIPS · mBridge · Payment Connect" data-zh="SWIFT · CIPS · mBridge · 跨境支付通">SWIFT · CIPS · mBridge · Payment Connect</div>
     </div>
 
     <div class="force-card">
@@ -1022,48 +1025,48 @@
 <!-- ══ TRENDS & OPEN QUESTIONS ══ -->
 <div class="page-section">
   <div class="page-section-title"
-       data-en="Trends to Watch — as of June 2026"
-       data-zh="值得关注的趋势 — 截至2026年6月">Trends to Watch — as of June 2026</div>
+       data-en="Trends to Watch — as of October 2026"
+       data-zh="值得关注的趋势 — 截至2026年10月">Trends to Watch — as of October 2026</div>
   <div class="cards-3">
 
     <div class="force-card">
       <div class="force-num">01</div>
       <h3 data-en="Settlement Compression" data-zh="结算周期压缩">Settlement Compression</h3>
-      <p data-en="EU, UK and Swiss moves to T+1 (Oct 2027), Hong Kong's settlement-cycle review, tokenized collateral and atomic-settlement pilots."
-         data-zh="欧盟、英国与瑞士迈向T+1（2027年10月）、香港结算周期检讨、代币化抵押品与原子结算试点。">
-        EU, UK and Swiss moves to T+1 (Oct 2027), Hong Kong's settlement-cycle review, tokenized collateral and atomic-settlement pilots.
+      <p data-en="EU, UK and Switzerland move to T+1 on 11 Oct 2027; Hong Kong targets Q4 2027 (HKEX consulted in 2026); tokenized collateral and atomic-settlement pilots."
+         data-zh="欧盟、英国与瑞士将于2027年10月11日转为T+1；香港目标为2027年第四季度（港交所已于2026年就此咨询）；代币化抵押品与原子结算试点。">
+        EU, UK and Switzerland move to T+1 on 11 Oct 2027; Hong Kong targets Q4 2027 (HKEX consulted in 2026); tokenized collateral and atomic-settlement pilots.
       </p>
-      <div class="stat" data-en="⚠️ verify current status" data-zh="⚠️ 请核实最新状态">⚠️ verify current status</div>
+      <div class="stat" data-en="EU · UK · CH: 11 Oct 2027" data-zh="欧盟 · 英国 · 瑞士：2027年10月11日">EU · UK · CH: 11 Oct 2027</div>
     </div>
 
     <div class="force-card">
       <div class="force-num">02</div>
       <h3 data-en="Capital Rules Diverge" data-zh="资本规则分化">Capital Rules Diverge</h3>
-      <p data-en="Basel III final reforms: EU CRR3 live, UK Basel 3.1 due 2027, US endgame pending; FRTB timing differs by region."
-         data-zh="巴塞尔III最终改革：欧盟CRR3已生效，英国巴塞尔3.1定于2027年，美国“终局”规则仍待落地；各地FRTB实施时间不一。">
-        Basel III final reforms: EU CRR3 live, UK Basel 3.1 due 2027, US endgame pending; FRTB timing differs by region.
+      <p data-en="Basel III final reforms: EU CRR3 live since Jan 2025; UK Basel 3.1 from 1 Jan 2027; US re-proposed in Mar 2026 with net capital relief; FRTB timing still differs by region."
+         data-zh="巴塞尔III最终改革：欧盟CRR3自2025年1月起实施；英国巴塞尔3.1自2027年1月1日起实施；美国于2026年3月重新提案，整体降低资本要求；各地FRTB实施时间仍不一致。">
+        Basel III final reforms: EU CRR3 live since Jan 2025; UK Basel 3.1 from 1 Jan 2027; US re-proposed in Mar 2026 with net capital relief; FRTB timing still differs by region.
       </p>
-      <div class="stat" data-en="⚠️ verify current status" data-zh="⚠️ 请核实最新状态">⚠️ verify current status</div>
+      <div class="stat" data-en="UK 1 Jan 2027 · US re-proposal Mar 2026" data-zh="英国2027年1月1日 · 美国2026年3月重新提案">UK 1 Jan 2027 · US re-proposal Mar 2026</div>
     </div>
 
     <div class="force-card">
       <div class="force-num">03</div>
       <h3 data-en="Stablecoin Licensing" data-zh="稳定币牌照">Stablecoin Licensing</h3>
-      <p data-en="GENIUS Act rules (US), MiCA (EU), Hong Kong's Stablecoins Ordinance and CBUAE payment-token rules set who may issue and where tokens may be used to pay."
-         data-zh="美国GENIUS法案细则、欧盟MiCA、香港《稳定币条例》与阿联酋央行支付代币规则，界定谁可发行、在何处可用于支付。">
-        GENIUS Act rules (US), MiCA (EU), Hong Kong's Stablecoins Ordinance and CBUAE payment-token rules set who may issue and where tokens may be used to pay.
+      <p data-en="GENIUS Act (US, effective by 18 Jan 2027), MiCA (EU), Hong Kong's Stablecoins Ordinance (first licences Apr 2026) and CBUAE payment-token rules set who may issue and where tokens may be used to pay."
+         data-zh="美国GENIUS法案（最迟于2027年1月18日生效）、欧盟MiCA、香港《稳定币条例》（2026年4月发出首批牌照）与阿联酋央行支付代币规则，界定谁可发行、在何处可用于支付。">
+        GENIUS Act (US, effective by 18 Jan 2027), MiCA (EU), Hong Kong's Stablecoins Ordinance (first licences Apr 2026) and CBUAE payment-token rules set who may issue and where tokens may be used to pay.
       </p>
-      <div class="stat" data-en="⚠️ verify current status" data-zh="⚠️ 请核实最新状态">⚠️ verify current status</div>
+      <div class="stat" data-en="Live: EU · HK · UAE — US by Jan 2027" data-zh="已实施：欧盟 · 香港 · 阿联酋——美国2027年1月前">Live: EU · HK · UAE — US by Jan 2027</div>
     </div>
 
     <div class="force-card">
       <div class="force-num">04</div>
       <h3 data-en="CBDCs &amp; Tokenization" data-zh="央行数字货币与代币化">CBDCs &amp; Tokenization</h3>
-      <p data-en="e-CNY pilots, mBridge, the Digital Dirham, e-HKD and digital-euro preparation; tokenized money-market funds and Treasuries used as collateral."
-         data-zh="数字人民币试点、mBridge、数字迪拉姆、数码港元与数字欧元筹备；代币化货币基金与美国国债被用作抵押品。">
-        e-CNY pilots, mBridge, the Digital Dirham, e-HKD and digital-euro preparation; tokenized money-market funds and Treasuries used as collateral.
+      <p data-en="e-CNY became an interest-bearing deposit in Jan 2026; mBridge, the Digital Dirham rollout, wholesale e-HKD and the digital euro (pilot planned for 2027); tokenized money-market funds and Treasuries used as collateral."
+         data-zh="数字人民币自2026年1月起转为计息存款；mBridge、数字迪拉姆分阶段推出、批发型数码港元，以及数字欧元（计划2027年试点）；代币化货币基金与美国国债被用作抵押品。">
+        e-CNY became an interest-bearing deposit in Jan 2026; mBridge, the Digital Dirham rollout, wholesale e-HKD and the digital euro (pilot planned for 2027); tokenized money-market funds and Treasuries used as collateral.
       </p>
-      <div class="stat" data-en="⚠️ verify current status" data-zh="⚠️ 请核实最新状态">⚠️ verify current status</div>
+      <div class="stat" data-en="e-CNY interest-bearing since 1 Jan 2026" data-zh="数字人民币自2026年1月1日起计息">e-CNY interest-bearing since 1 Jan 2026</div>
     </div>
 
     <div class="force-card">
@@ -1073,17 +1076,17 @@
          data-zh="化解房地产开发商与地方政府融资平台债务、货币宽松，以及境内市场对外资的进一步开放。">
         Resolving property-developer and LGFV debt, monetary easing, and further opening of onshore markets to foreign investors.
       </p>
-      <div class="stat" data-en="⚠️ verify current status" data-zh="⚠️ 请核实最新状态">⚠️ verify current status</div>
+      <div class="stat" data-en="PBoC: “moderately loose” policy, 2026" data-zh="人民银行：2026年实施“适度宽松”货币政策">PBoC: “moderately loose” policy, 2026</div>
     </div>
 
     <div class="force-card">
       <div class="force-num">06</div>
       <h3 data-en="AI in Finance" data-zh="金融业中的AI">AI in Finance</h3>
-      <p data-en="Model-risk expectations (SR 11-7, SS1/23), EU AI Act high-risk credit scoring, China's generative-AI measures, and explainability for credit decisions."
-         data-zh="模型风险监管要求（SR 11-7、SS1/23）、欧盟《人工智能法》将信用评分列为高风险、中国生成式AI管理办法，以及信贷决策的可解释性。">
-        Model-risk expectations (SR 11-7, SS1/23), EU AI Act high-risk credit scoring, China's generative-AI measures, and explainability for credit decisions.
+      <p data-en="Model-risk guidance (SR 26-2, which replaced SR 11-7 in Apr 2026; PRA SS1/23), EU AI Act high-risk credit scoring (deferred to Dec 2027), China's generative-AI measures, and explainability for credit decisions."
+         data-zh="模型风险监管指引（SR 26-2于2026年4月取代SR 11-7；英国PRA SS1/23）、欧盟《人工智能法》信用评分高风险义务（推迟至2027年12月）、中国生成式AI管理办法，以及信贷决策的可解释性。">
+        Model-risk guidance (SR 26-2, which replaced SR 11-7 in Apr 2026; PRA SS1/23), EU AI Act high-risk credit scoring (deferred to Dec 2027), China's generative-AI measures, and explainability for credit decisions.
       </p>
-      <div class="stat" data-en="⚠️ verify current status" data-zh="⚠️ 请核实最新状态">⚠️ verify current status</div>
+      <div class="stat" data-en="EU high-risk AI rules: Dec 2027" data-zh="欧盟高风险AI规则：2027年12月">EU high-risk AI rules: Dec 2027</div>
     </div>
 
   </div>
@@ -1097,16 +1100,15 @@
   <div class="legend-item"><div class="legend-dot" style="background:#7a50c8;"></div><span data-en="Foundation Pillars (Lower)" data-zh="基础支柱（下层）">Foundation Pillars (Lower)</span></div>
   <div class="legend-item"><div class="legend-dot" style="background:#3a78d0;"></div><span data-en="Jurisdiction Lens" data-zh="法域视角">Jurisdiction Lens</span></div>
   <div class="legend-item"><div class="legend-dot" style="background:#485090;"></div><span data-en="Cross-Border Links &amp; Trends" data-zh="跨境连接与趋势">Cross-Border Links &amp; Trends</span></div>
-  <div class="legend-item"><span data-en="⚠️ = verify current status" data-zh="⚠️ = 请核实最新状态">⚠️ = verify current status</span></div>
 </div>
 
 <p class="footnote"
-   data-en="Educational overview — not investment, legal or tax advice. Structural facts as of June 2026; items marked ⚠️ may have changed."
-   data-zh="教育性概览——不构成投资、法律或税务建议。结构性信息截至2026年6月；标注 ⚠️ 的内容可能已有变化。">Educational overview — not investment, legal or tax advice. Structural facts as of June 2026; items marked ⚠️ may have changed.</p>
+   data-en="Educational overview — not investment, legal or tax advice. Facts checked as of October 2026; regulatory timelines can shift."
+   data-zh="教育性概览——不构成投资、法律或税务建议。信息核实截至2026年10月；监管时间表可能调整。">Educational overview — not investment, legal or tax advice. Facts checked as of October 2026; regulatory timelines can shift.</p>
 
 <script>
   let currentLang = 'en';
-  const TITLES = { en: 'Finance Industry Overview — June 2026', zh: '金融行业全览 — 2026年6月' };
+  const TITLES = { en: 'Finance Industry Overview — October 2026', zh: '金融行业全览 — 2026年10月' };
 
   function setLang(lang) {
     currentLang = lang;
