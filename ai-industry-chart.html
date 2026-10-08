@@ -7,7 +7,8 @@
 <!-- Anti-FOUC: set theme before first paint -->
 <script>
   (function(){
-    var s = localStorage.getItem('voltai-theme');
+    var s = null;
+    try { s = localStorage.getItem('voltai-theme'); } catch (e) {}
     var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     document.documentElement.setAttribute('data-theme', s || (dark ? 'dark' : 'light'));
   })();
@@ -54,7 +55,7 @@
     --mod-border:     #1e3060;
     --mod-hover:      #3b6fd4;
     --mod-h3:         #8ab4f8;
-    --mod-p:          #5a6d96;
+    --mod-p:          #7f91ba;
     --stag-color:     #3a6fd4;
     --stag-bg:        rgba(59,111,212,.12);
     /* pillar cards */
@@ -62,7 +63,7 @@
     --pil-border:     #184030;
     --pil-hover:      #2da884;
     --pil-h3:         #5ecfa8;
-    --pil-p:          #3a6050;
+    --pil-p:          #6fa08a;
     --nbadge-bg:      #2da884;
     --nbadge-color:   #001a10;
     /* legend */
@@ -344,6 +345,7 @@
   .legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--legend-color); }
   .legend-dot  { width: 10px; height: 10px; border-radius: 50%; }
 
+  @media (max-width: 1024px) { body { padding-top: 72px; } }   /* clear the fixed controls */
   @media (max-width: 640px) { .cards { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 380px) { .cards { grid-template-columns: 1fr; } }
 </style>
@@ -481,9 +483,9 @@
       <div class="pillar-card">
         <div class="icon">🧠</div>
         <h3 data-en="Algorithms" data-zh="算法">Algorithms</h3>
-        <p data-en="Logical brain of AI. Foundational architectures, training paradigms, fine-tuning, and alignment strategies."
+        <p data-en="Logical brain of AI. Foundational architectures, training paradigms, fine-tuning, and alignment strategies define how models learn, understand, and generate."
            data-zh="AI 的逻辑大脑。基础架构、训练范式、微调与对齐策略，定义模型的学习、理解与生成能力。">
-          Logical brain of AI. Foundational architectures, training paradigms, fine-tuning, and alignment strategies.
+          Logical brain of AI. Foundational architectures, training paradigms, fine-tuning, and alignment strategies define how models learn, understand, and generate.
         </p>
       </div>
 
@@ -547,7 +549,7 @@
     const cur  = document.documentElement.getAttribute('data-theme') || 'dark';
     const next = cur === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('voltai-theme', next);
+    try { localStorage.setItem('voltai-theme', next); } catch (e) {}
     updateThemeIcon(next);
   }
 
@@ -559,7 +561,9 @@
   document.addEventListener('DOMContentLoaded', function () {
     updateThemeIcon(document.documentElement.getAttribute('data-theme') || 'dark');
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
-      if (!localStorage.getItem('voltai-theme')) {
+      let stored = null;
+      try { stored = localStorage.getItem('voltai-theme'); } catch (err) {}
+      if (!stored) {
         const t = e.matches ? 'dark' : 'light';
         document.documentElement.setAttribute('data-theme', t);
         updateThemeIcon(t);
