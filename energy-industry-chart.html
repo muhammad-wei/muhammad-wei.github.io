@@ -535,11 +535,23 @@
   @media (max-width: 420px) {
     .cards-5, .cards-4, .cn-grid { grid-template-columns: 1fr; }
   }
+  /* ── HOME LINK (top-left, mirrors the controls) ── */
+  .home-link {
+    position: fixed; top: 20px; left: 24px; z-index: 100;
+    display: flex; align-items: center; height: 34px; padding: 0 12px;
+    border: 1px solid var(--ctrl-border); border-radius: 8px;
+    background: var(--ctrl-bg); color: var(--text-body);
+    font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-decoration: none;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    transition: border-color 0.2s;
+  }
+  .home-link:hover, .home-link:focus-visible { border-color: var(--text-body); }
 </style>
 </head>
 <body>
 
 <!-- Controls -->
+<a class="home-link" href="index.html" title="Back to homepage" data-en="← Home" data-zh="← 首页">← Home</a>
 <div class="controls">
   <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Switch theme">🌙</button>
   <div class="lang-toggle">
