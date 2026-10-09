@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Web3 Industry Overview — May 2026</title>
+<title>Web3 Industry Overview — October 2026</title>
 <!-- Anti-FOUC: set theme before first paint -->
 <script>
   (function(){
@@ -426,6 +426,19 @@
   .alloc-card h3         { font-size: 13px; font-weight: 700; color: var(--alloc-h3); margin-bottom: 5px; }
   .alloc-card p          { font-size: 11px; color: var(--alloc-p); line-height: 1.55; }
 
+  /* ── NEWS TIMELINE ── */
+  .news-list { display: flex; flex-direction: column; gap: 10px; }
+  .news-item {
+    display: grid; grid-template-columns: 92px 1fr; gap: 14px;
+    background: var(--force-bg); border: 1.5px solid var(--force-border);
+    border-radius: 12px; padding: 14px 16px;
+  }
+  .news-item.headline { border-color: var(--layer-hover); }
+  .news-date     { font-size: 11px; font-weight: 700; letter-spacing: 0.04em; color: var(--alloc-pct); line-height: 1.5; }
+  .news-item h3  { font-size: 13px; font-weight: 700; color: var(--force-h3); margin-bottom: 5px; }
+  .news-item p   { font-size: 11.5px; color: var(--force-p); line-height: 1.6; }
+  .news-item .why { margin-top: 6px; color: var(--force-stat); }
+
   /* ── BULL / BEAR ── */
   .decision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .decision-card { border-radius: 12px; padding: 18px 18px; }
@@ -465,6 +478,7 @@
   }
   @media (max-width: 460px) {
     .cards-5, .sec-grid, .cards-4 { grid-template-columns: 1fr; }
+    .news-item { grid-template-columns: 1fr; gap: 4px; }
   }
   /* ── HOME LINK (top-left, mirrors the controls) ── */
   .home-link {
@@ -491,11 +505,11 @@
   </div>
 </div>
 
-<h1 data-en="Web3 Industry — Full Overview (May 2026)"
-    data-zh="Web3 行业全览（2026年5月）">Web3 Industry — Full Overview (May 2026)</h1>
+<h1 data-en="Web3 Industry — Full Overview (Oct 2026)"
+    data-zh="Web3 行业全览（2026年10月）">Web3 Industry — Full Overview (Oct 2026)</h1>
 <p class="subtitle"
-   data-en="Regulatory Architecture · Five Sectors · Market Pillars · Institutional Rails"
-   data-zh="监管架构 · 五大赛道 · 市场支柱 · 机构通道">Regulatory Architecture · Five Sectors · Market Pillars · Institutional Rails</p>
+   data-en="Regulatory Architecture · Five Sectors · Market Pillars · Exchanges · Market-Moving News"
+   data-zh="监管架构 · 五大赛道 · 市场支柱 · 交易所 · 市场要闻">Regulatory Architecture · Five Sectors · Market Pillars · Exchanges · Market-Moving News</p>
 
 <div class="chart">
 
@@ -504,14 +518,15 @@
     <div class="badge" data-en="Higher-Order Force" data-zh="高阶驱动力">Higher-Order Force</div>
     <h2 data-en="Regulatory Architecture &amp; Institutional Rails"
         data-zh="监管架构与机构通道">Regulatory Architecture &amp; Institutional Rails</h2>
-    <p data-en="Not a sector — a <strong>cross-cutting strategic field</strong> that determines how every Web3 layer is built, funded, and connected. GENIUS Act (U.S., signed July 2025; effective by Jan 2027), MiCA (EU, fully applicable since July 2026), and HK/SG/UAE frameworks have created the first coherent global regulatory skeleton for crypto as an investable asset class."
-       data-zh="并非某一赛道，而是<strong>横跨所有 Web3 层级的战略场域</strong>，决定着每一层级的构建、融资与衔接方式。GENIUS 法案（美国，2025年7月签署，最迟2027年1月生效）、MiCA（欧盟，2026年7月起全面适用）以及香港/新加坡/UAE 框架，共同为加密货币作为可投资资产类别构建起首个全球监管骨架。">
-      Not a sector — a <strong>cross-cutting strategic field</strong> that determines how every Web3 layer is built, funded, and connected. GENIUS Act (U.S., signed July 2025; effective by Jan 2027), MiCA (EU, fully applicable since July 2026), and HK/SG/UAE frameworks have created the first coherent global regulatory skeleton for crypto as an investable asset class.
+    <p data-en="Not a sector — a <strong>cross-cutting strategic field</strong> that determines how every Web3 layer is built, funded, and connected. GENIUS Act (U.S., signed July 2025; agencies still finalizing rules; effective Jan 18, 2027), MiCA (EU, fully applicable since July 1, 2026), and HK/SG/UAE frameworks form the first coherent global regulatory skeleton for crypto. Gaps remain: the U.S. CLARITY market-structure bill failed a 49–50 Senate cloture vote (Sept 15, 2026), and sanctions now reach exchanges directly (UK/EU vs. HTX)."
+       data-zh="并非某一赛道，而是<strong>横跨所有 Web3 层级的战略场域</strong>，决定着每一层级的构建、融资与衔接方式。GENIUS 法案（美国，2025年7月签署；各机构仍在制定细则；2027年1月18日生效）、MiCA（欧盟，2026年7月1日起全面适用）以及香港/新加坡/UAE 框架，共同构成首个全球加密监管骨架。缺口仍在：美国 CLARITY 市场结构法案在参议院程序性投票中以49比50未获通过（2026年9月15日）；制裁已直接波及交易所（英国/欧盟制裁 HTX）。">
+      Not a sector — a <strong>cross-cutting strategic field</strong> that determines how every Web3 layer is built, funded, and connected. GENIUS Act (U.S., signed July 2025; agencies still finalizing rules; effective Jan 18, 2027), MiCA (EU, fully applicable since July 1, 2026), and HK/SG/UAE frameworks form the first coherent global regulatory skeleton for crypto. Gaps remain: the U.S. CLARITY market-structure bill failed a 49–50 Senate cloture vote (Sept 15, 2026), and sanctions now reach exchanges directly (UK/EU vs. HTX).
     </p>
     <div class="tags">
-      <span class="tag" data-en="GENIUS Act (U.S.)"          data-zh="GENIUS 法案（美国）">GENIUS Act (U.S.)</span>
-      <span class="tag" data-en="MiCA — EU July 2026"        data-zh="MiCA — 欧盟2026年7月">MiCA — EU July 2026</span>
-      <span class="tag" data-en="Spot BTC ETFs $101B AUM"    data-zh="现货 BTC ETF 1010亿美元">Spot BTC ETFs $101B AUM</span>
+      <span class="tag" data-en="GENIUS Act — effective Jan 2027" data-zh="GENIUS 法案 — 2027年1月生效">GENIUS Act — effective Jan 2027</span>
+      <span class="tag" data-en="MiCA — live July 2026"      data-zh="MiCA — 2026年7月全面实施">MiCA — live July 2026</span>
+      <span class="tag" data-en="CLARITY Act stalled (49–50)" data-zh="CLARITY 法案搁浅（49比50）">CLARITY Act stalled (49–50)</span>
+      <span class="tag" data-en="Spot BTC ETFs ~$107B"       data-zh="现货 BTC ETF 约1070亿美元">Spot BTC ETFs ~$107B</span>
       <span class="tag" data-en="U.S. Strategic BTC Reserve" data-zh="美国战略比特币储备">U.S. Strategic BTC Reserve</span>
       <span class="tag" data-en="JPM Kinexys &gt;$5B/day"   data-zh="摩根大通 Kinexys &gt;50亿美元/天">JPM Kinexys &gt;$5B/day</span>
       <span class="tag" data-en="OCC Letter 1183 (Banks + Public Chains)" data-zh="OCC 解释函1183（银行可使用公链）">OCC Letter 1183 (Banks + Public Chains)</span>
@@ -537,9 +552,9 @@
         <div class="num" data-en="Sector 1" data-zh="赛道 1">Sector 1</div>
         <div class="icon">🏗️</div>
         <h3 data-en="Infrastructure &amp; Scalability" data-zh="基础设施与可扩展性">Infrastructure &amp; Scalability</h3>
-        <p data-en="Two-engine architecture: ETH + L2s ($55.6B DeFi TVL, 68% global) as institutional settlement; Solana (600–700 TPS, $11.5B weekly DEX vol) as the trading floor. Base + Arbitrum hold &gt;77% of L2 liquidity."
-           data-zh="双引擎架构：ETH + L2（DeFi TVL 556亿美元，占全球68%）作为机构结算层；Solana（600–700 TPS，周DEX交易量115亿美元）作为交易平台。Base + Arbitrum占L2流动性超77%。">
-          Two-engine architecture: ETH + L2s ($55.6B DeFi TVL, 68% global) as institutional settlement; Solana (600–700 TPS, $11.5B weekly DEX vol) as the trading floor. Base + Arbitrum hold &gt;77% of L2 liquidity.
+        <p data-en="Two-engine architecture: Ethereum ($51.7B DeFi TVL, 56% of all chains; ~64% with Base + Arbitrum) as institutional settlement; Solana as the trading floor ($14.8B weekly DEX volume vs Ethereum's $9.9B). Base ($6.2B TVL) is the largest L2, ~4.5× Arbitrum."
+           data-zh="双引擎架构：以太坊（DeFi TVL 517亿美元，占全部公链56%；计入Base与Arbitrum约64%）作为机构结算层；Solana作为交易平台（周DEX交易量148亿美元，以太坊为99亿美元）。Base（TVL 62亿美元）为最大L2，约为Arbitrum的4.5倍。">
+          Two-engine architecture: Ethereum ($51.7B DeFi TVL, 56% of all chains; ~64% with Base + Arbitrum) as institutional settlement; Solana as the trading floor ($14.8B weekly DEX volume vs Ethereum's $9.9B). Base ($6.2B TVL) is the largest L2, ~4.5× Arbitrum.
         </p>
         <div class="sub-tags">
           <span class="sub-tag" data-en="ETH + L2s"       data-zh="ETH + L2">ETH + L2s</span>
@@ -552,14 +567,14 @@
         <div class="num" data-en="Sector 2 · Fastest" data-zh="赛道 2 · 最快增长">Sector 2 · Fastest</div>
         <div class="icon">💡</div>
         <h3 data-en="Sector Depth &amp; Value Capture" data-zh="垂直赛道与价值捕获">Sector Depth &amp; Value Capture</h3>
-        <p data-en="Five live verticals: DeAI (Bittensor $43M Q1 rev), DePIN ($150M Jan on-chain rev), RWA ($31B+ — first time above DEX TVL), DeFi 3.0 restaking (EigenLayer ~$17B), Web3 Consumer (gaming collapse)."
-           data-zh="五大垂直赛道：DeAI（Bittensor Q1收入4300万美元）、DePIN（1月链上收入1.5亿美元）、RWA（310亿美元以上，首次超越DEX TVL）、DeFi 3.0再质押（EigenLayer约170亿美元）、Web3消费（游戏崩溃）。">
-          Five live verticals: DeAI (Bittensor $43M Q1 rev), DePIN ($150M Jan on-chain rev), RWA ($31B+ — first time above DEX TVL), DeFi 3.0 restaking (EigenLayer ~$17B), Web3 Consumer (gaming collapse).
+        <p data-en="Live verticals: DeAI (Bittensor $43M Q1 rev), DePIN ($150M Jan on-chain rev), RWA ($38.9B distributed on-chain), restaking (EigenLayer ~$6.6B), Web3 Consumer (gaming collapse). Newest: tokenized stocks — Binance bStocks, Coinbase on Base, OKX × ICE."
+           data-zh="活跃垂直赛道：DeAI（Bittensor Q1收入4300万美元）、DePIN（1月链上收入1.5亿美元）、RWA（链上分发资产389亿美元）、再质押（EigenLayer约66亿美元）、Web3消费（游戏崩溃）。最新赛道：代币化股票——币安bStocks、Coinbase（Base链）、OKX × ICE。">
+          Live verticals: DeAI (Bittensor $43M Q1 rev), DePIN ($150M Jan on-chain rev), RWA ($38.9B distributed on-chain), restaking (EigenLayer ~$6.6B), Web3 Consumer (gaming collapse). Newest: tokenized stocks — Binance bStocks, Coinbase on Base, OKX × ICE.
         </p>
         <div class="sub-tags">
           <span class="sub-tag" data-en="DeAI / DePIN"    data-zh="DeAI / DePIN">DeAI / DePIN</span>
-          <span class="sub-tag" data-en="RWA $31B+"       data-zh="RWA 310亿美元+">RWA $31B+</span>
-          <span class="sub-tag" data-en="Restaking"       data-zh="再质押">Restaking</span>
+          <span class="sub-tag" data-en="RWA ~$39B"       data-zh="RWA 约390亿美元">RWA ~$39B</span>
+          <span class="sub-tag" data-en="Tokenized Stocks" data-zh="代币化股票">Tokenized Stocks</span>
         </div>
       </div>
 
@@ -582,14 +597,14 @@
         <div class="num" data-en="Sector 4" data-zh="赛道 4">Sector 4</div>
         <div class="icon">💰</div>
         <h3 data-en="Capital &amp; Tokenomics" data-zh="资本流动与代币经济">Capital &amp; Tokenomics</h3>
-        <p data-en="Spot BTC ETF AUM $101B (IBIT ~$66.9B, 65% share). Stablecoins $323B (USDT 58.8% / USDC 24.5%). Mid-2026 token unlock cliff (ARB, OP, STRK, EIGEN, SUI, APT) creates 8–15% supply overhang."
-           data-zh="现货BTC ETF资产管理规模1010亿美元（IBIT约669亿美元，占比65%）。稳定币3230亿美元（USDT 58.8% / USDC 24.5%）。2026年中期代币解锁悬崖（ARB、OP、STRK、EIGEN、SUI、APT）造成8–15%供应过剩。">
-          Spot BTC ETF AUM $101B (IBIT ~$66.9B, 65% share). Stablecoins $323B (USDT 58.8% / USDC 24.5%). Mid-2026 token unlock cliff (ARB, OP, STRK, EIGEN, SUI, APT) creates 8–15% supply overhang.
+        <p data-en="Spot BTC ETF net assets ~$107B (IBIT ~$67B); +$2.65B net inflows in September. Stablecoins $315B (USDT 58.4% / USDC 23.4%). Exchange equity is the new capital flow: OKX raised at a $25B valuation (ICE, Circle, Ripple, Standard Chartered); Binance bought $100M of Circle."
+           data-zh="现货BTC ETF净资产约1070亿美元（IBIT约670亿美元）；9月净流入26.5亿美元。稳定币3150亿美元（USDT 58.4% / USDC 23.4%）。交易所股权成为新的资本流向：OKX以250亿美元估值融资（ICE、Circle、Ripple、渣打）；币安入股Circle 1亿美元。">
+          Spot BTC ETF net assets ~$107B (IBIT ~$67B); +$2.65B net inflows in September. Stablecoins $315B (USDT 58.4% / USDC 23.4%). Exchange equity is the new capital flow: OKX raised at a $25B valuation (ICE, Circle, Ripple, Standard Chartered); Binance bought $100M of Circle.
         </p>
         <div class="sub-tags">
           <span class="sub-tag" data-en="Spot BTC ETFs"    data-zh="现货BTC ETF">Spot BTC ETFs</span>
-          <span class="sub-tag" data-en="Stables $323B"    data-zh="稳定币3230亿">Stables $323B</span>
-          <span class="sub-tag" data-en="Unlock Risk"      data-zh="解锁风险">Unlock Risk</span>
+          <span class="sub-tag" data-en="Stables $315B"    data-zh="稳定币3150亿">Stables $315B</span>
+          <span class="sub-tag" data-en="Exchange Equity"  data-zh="交易所股权">Exchange Equity</span>
         </div>
       </div>
 
@@ -597,14 +612,14 @@
         <div class="num" data-en="Sector 5" data-zh="赛道 5">Sector 5</div>
         <div class="icon">⚠️</div>
         <h3 data-en="Risk Vectors" data-zh="风险向量">Risk Vectors</h3>
-        <p data-en="KelpDAO exploit $290–292M (April 2026) → $13B DeFi deleveraging in 48h; attributed to Lazarus Group. Every major L2, Arbitrum included, still runs a centralized sequencer. USDT (58.8%) is outside MiCA and was delisted for EU users when the transition ended on July 1, 2026."
-           data-zh="KelpDAO漏洞约2.9–2.92亿美元（2026年4月）→ 48小时内DeFi去杠杆130亿美元；归因于Lazarus组织。包括Arbitrum在内，所有主要L2仍使用中心化排序器。USDT（58.8%）不符合MiCA要求，已于2026年7月1日过渡期结束时对欧盟用户下架。">
-          KelpDAO exploit $290–292M (April 2026) → $13B DeFi deleveraging in 48h; attributed to Lazarus Group. Every major L2, Arbitrum included, still runs a centralized sequencer. USDT (58.8%) is outside MiCA and was delisted for EU users when the transition ended on July 1, 2026.
+        <p data-en="Hacks: Bitget hot wallets ~$387.5M (Sept 24, 2026); KelpDAO bridge ~$292M (April) → $13B DeFi deleveraging in 48h. Enforcement: UK/EU sanctions on HTX; reported DOJ probe of Binance over Iran-linked flows. Every major L2 still runs a centralized sequencer."
+           data-zh="黑客：Bitget热钱包被盗约3.875亿美元（2026年9月24日）；KelpDAO跨链桥约2.92亿美元（4月）→ 48小时内DeFi去杠杆130亿美元。执法：英国/欧盟制裁HTX；据报美国司法部就涉伊朗资金调查币安。所有主要L2仍使用中心化排序器。">
+          Hacks: Bitget hot wallets ~$387.5M (Sept 24, 2026); KelpDAO bridge ~$292M (April) → $13B DeFi deleveraging in 48h. Enforcement: UK/EU sanctions on HTX; reported DOJ probe of Binance over Iran-linked flows. Every major L2 still runs a centralized sequencer.
         </p>
         <div class="sub-tags">
-          <span class="sub-tag" data-en="Bridge Risk"      data-zh="跨链风险">Bridge Risk</span>
+          <span class="sub-tag" data-en="CEX &amp; Bridge Hacks" data-zh="交易所与跨链桥被盗">CEX &amp; Bridge Hacks</span>
+          <span class="sub-tag" data-en="Sanctions"        data-zh="制裁">Sanctions</span>
           <span class="sub-tag" data-en="L2 Centralization" data-zh="L2中心化">L2 Centralization</span>
-          <span class="sub-tag" data-en="MiCA Delisting"   data-zh="MiCA下架">MiCA Delisting</span>
         </div>
       </div>
 
@@ -629,27 +644,27 @@
       <div class="pillar-card">
         <div class="icon">💎</div>
         <h3 data-en="Capital" data-zh="资本">Capital</h3>
-        <p data-en="Spot ETF inflows &gt;$60B cumulative; Strategy holds 843,738 BTC; U.S. Strategic Reserve ~328K BTC. VC reallocated from consumer to AI ($1.8B), RWA ($2B), infra ($2.6B) in 2025–Q1 2026."
-           data-zh="现货ETF累计净流入超600亿美元；Strategy持有843,738枚BTC；美国战略储备约32.8万枚BTC。风险投资从消费领域转向AI（18亿美元）、RWA（20亿美元）、基础设施（26亿美元）。">
-          Spot ETF inflows &gt;$60B cumulative; Strategy holds 843,738 BTC; U.S. Strategic Reserve ~328K BTC. VC reallocated from consumer to AI ($1.8B), RWA ($2B), infra ($2.6B) in 2025–Q1 2026.
+        <p data-en="Spot BTC ETFs ~$107B; Strategy holds 848,000 BTC (Oct 4) after its first sales since 2022 in Jun–Aug; U.S. government ~328K BTC (est.). Strategic money now buys exchanges: OKX's $25B round (ICE, Circle, Ripple, Standard Chartered)."
+           data-zh="现货BTC ETF约1070亿美元；Strategy持有848,000枚BTC（10月4日），此前于6–8月进行了2022年以来首次出售；美国政府约32.8万枚BTC（估算）。战略资本开始直接入股交易所：OKX 250亿美元估值融资（ICE、Circle、Ripple、渣打）。">
+          Spot BTC ETFs ~$107B; Strategy holds 848,000 BTC (Oct 4) after its first sales since 2022 in Jun–Aug; U.S. government ~328K BTC (est.). Strategic money now buys exchanges: OKX's $25B round (ICE, Circle, Ripple, Standard Chartered).
         </p>
       </div>
 
       <div class="pillar-card">
         <div class="icon">⚙️</div>
         <h3 data-en="Technology" data-zh="技术">Technology</h3>
-        <p data-en="EVM ecosystem (ETH + 73 L2s), Solana/Move VMs, ZK proof systems, ERC-4337, Chainlink CCIP. Near-term frontier: Firedancer, Ethereum Glamsterdam (Q4 2026), Solana Alpenglow (12.8s → &lt;150ms finality; on testnet since Sept 2026)."
-           data-zh="EVM生态（ETH + 73条L2）、Solana/Move虚拟机、ZK证明系统、ERC-4337、Chainlink CCIP。近期前沿：Firedancer、以太坊Glamsterdam升级（2026年Q4）、Solana Alpenglow（终局时间12.8秒→150毫秒以内；2026年9月起在测试网运行）。">
-          EVM ecosystem (ETH + 73 L2s), Solana/Move VMs, ZK proof systems, ERC-4337, Chainlink CCIP. Near-term frontier: Firedancer, Ethereum Glamsterdam (Q4 2026), Solana Alpenglow (12.8s → &lt;150ms finality; on testnet since Sept 2026).
+        <p data-en="EVM ecosystem (ETH + L2s), Solana/Move VMs, ZK proof systems, ERC-4337, Chainlink CCIP. Near-term frontier: Ethereum Glamsterdam (live on Sepolia testnet since Oct 6; mainnet date not set), Solana Alpenglow (12.8s → &lt;150ms finality; testnet/devnet only, not yet on mainnet), Firedancer."
+           data-zh="EVM生态（ETH + L2）、Solana/Move虚拟机、ZK证明系统、ERC-4337、Chainlink CCIP。近期前沿：以太坊Glamsterdam升级（10月6日起在Sepolia测试网运行，主网日期未定）、Solana Alpenglow（终局时间12.8秒→150毫秒以内；仅在测试网/开发网运行，尚未上主网）、Firedancer。">
+          EVM ecosystem (ETH + L2s), Solana/Move VMs, ZK proof systems, ERC-4337, Chainlink CCIP. Near-term frontier: Ethereum Glamsterdam (live on Sepolia testnet since Oct 6; mainnet date not set), Solana Alpenglow (12.8s → &lt;150ms finality; testnet/devnet only, not yet on mainnet), Firedancer.
         </p>
       </div>
 
       <div class="pillar-card">
         <div class="icon">🌊</div>
         <h3 data-en="Liquidity" data-zh="流动性">Liquidity</h3>
-        <p data-en="~$85B global DeFi TVL; $20.57T Q1 2026 trading volume (90.6% derivatives); $323B stablecoins (75% of crypto trading volume); Chainlink CCIP $28T+ cumulative value secured."
-           data-zh="全球DeFi TVL约850亿美元；2026年Q1交易量20.57万亿美元（90.6%为衍生品）；稳定币3230亿美元（占加密货币交易量75%）；Chainlink CCIP累计保障价值超28万亿美元。">
-          ~$85B global DeFi TVL; $20.57T Q1 2026 trading volume (90.6% derivatives); $323B stablecoins (75% of crypto trading volume); Chainlink CCIP $28T+ cumulative value secured.
+        <p data-en="~$92B DeFi TVL (up from a $68B low on July 1); $315B stablecoins; ~$310B in tracked exchange reserves (Binance 55%); ~$16.5T centralized-exchange volume in Q2 2026 (73% derivatives)."
+           data-zh="DeFi TVL约920亿美元（7月1日低点为680亿美元）；稳定币3150亿美元；可追踪的交易所储备约3100亿美元（币安占55%）；2026年Q2中心化交易所交易量约16.5万亿美元（73%为衍生品）。">
+          ~$92B DeFi TVL (up from a $68B low on July 1); $315B stablecoins; ~$310B in tracked exchange reserves (Binance 55%); ~$16.5T centralized-exchange volume in Q2 2026 (73% derivatives).
         </p>
       </div>
 
@@ -659,9 +674,9 @@
           <span data-en="Narrative" data-zh="叙事">Narrative</span>
           <span class="new-badge" data-en="Emerging" data-zh="新兴">Emerging</span>
         </h3>
-        <p data-en="Adoption cycles, institutional legitimacy, regulatory recognition, speculative premium. Transitioning from pure speculation to hybrid asset class — increasingly checked by real revenue (Bittensor $43M, Helium $13M ARR, DePIN $150M/month)."
-           data-zh="采用周期、机构合法性、监管认可与投机溢价。正从纯投机转向混合资产类别叙事——越来越多地受到真实收入数据的检验（Bittensor 4300万美元、Helium年收入1300万美元、DePIN每月1.5亿美元）。">
-          Adoption cycles, institutional legitimacy, regulatory recognition, speculative premium. Transitioning from pure speculation to hybrid asset class — increasingly checked by real revenue (Bittensor $43M, Helium $13M ARR, DePIN $150M/month).
+        <p data-en="Adoption cycles, institutional legitimacy, speculative premium. The 2026 story: exchanges become &quot;everything apps&quot; — tokenized stocks, stablecoin savings (OKX Money, Open USD), prediction markets — while real revenue (Bittensor $43M, DePIN $150M/month) checks the hype."
+           data-zh="采用周期、机构合法性与投机溢价。2026年的主线：交易所演变为“超级应用”——代币化股票、稳定币储蓄（OKX Money、Open USD）、预测市场——同时真实收入（Bittensor 4300万美元、DePIN每月1.5亿美元）检验着炒作。">
+          Adoption cycles, institutional legitimacy, speculative premium. The 2026 story: exchanges become "everything apps" — tokenized stocks, stablecoin savings (OKX Money, Open USD), prediction markets — while real revenue (Bittensor $43M, DePIN $150M/month) checks the hype.
         </p>
       </div>
 
@@ -674,44 +689,220 @@
 <!-- ══ MARKET MACRO SNAPSHOT ══ -->
 <div class="page-section">
   <div class="page-section-title"
-       data-en="Market Macro Snapshot — May 2026"
-       data-zh="市场宏观快照 — 2026年5月">Market Macro Snapshot — May 2026</div>
+       data-en="Market Macro Snapshot — Oct 2026"
+       data-zh="市场宏观快照 — 2026年10月">Market Macro Snapshot — Oct 2026</div>
   <div class="cards-3">
 
     <div class="force-card">
       <div class="force-num">01</div>
       <h3 data-en="BTC &amp; the ETF Era" data-zh="BTC 与 ETF 时代">BTC &amp; the ETF Era</h3>
-      <p data-en="~$2.64T total market cap (late May 2026), down ~45% from Oct 2025 ATH ~$4.7T. BTC $1.53T (58.1% dominance). $101B spot BTC ETF AUM — IBIT alone ~$66.9B; 38% institutional ownership (up from 24% a year earlier). BTC ATH ~$126,200 on Oct 5–6, 2025."
-         data-zh="总市值约2.64万亿美元（2026年5月下旬），较2025年10月历史高点约4.7万亿美元下跌约45%。BTC市值1.53万亿美元（占比58.1%）。现货BTC ETF资管规模1010亿美元——仅IBIT约669亿美元；机构持有比例38%（较一年前的24%上升）。BTC历史高点约126,200美元（2025年10月5–6日）。">
-        ~$2.64T total market cap (late May 2026), down ~45% from Oct 2025 ATH ~$4.7T. BTC $1.53T (58.1% dominance). $101B spot BTC ETF AUM — IBIT alone ~$66.9B; 38% institutional ownership (up from 24% a year earlier). BTC ATH ~$126,200 on Oct 5–6, 2025.
+      <p data-en="~$2.81T total market cap (Oct 8, 2026), ~36% below the Oct 2025 peak (~$4.4T). BTC ~$82.4K (58.9% dominance), ~35% below its $126.1K ATH (Oct 6, 2025); its lowest 2026 close was $58.6K (Jul 1). Spot BTC ETF net assets ~$107B; September net inflows +$2.65B."
+         data-zh="总市值约2.81万亿美元（2026年10月8日），较2025年10月高点（约4.4万亿美元）低约36%。BTC约8.24万美元（市占率58.9%），较历史高点12.61万美元（2025年10月6日）低约35%；2026年最低收盘价为5.86万美元（7月1日）。现货BTC ETF净资产约1070亿美元；9月净流入26.5亿美元。">
+        ~$2.81T total market cap (Oct 8, 2026), ~36% below the Oct 2025 peak (~$4.4T). BTC ~$82.4K (58.9% dominance), ~35% below its $126.1K ATH (Oct 6, 2025); its lowest 2026 close was $58.6K (Jul 1). Spot BTC ETF net assets ~$107B; September net inflows +$2.65B.
       </p>
       <span class="stat"
-            data-en="&gt;$60B cumulative ETF inflows · Strategy 843,738 BTC · U.S. Reserve ~328K BTC"
-            data-zh="ETF累计净流入超600亿美元 · Strategy持有843,738 BTC · 美国储备约32.8万枚BTC">&gt;$60B cumulative ETF inflows · Strategy 843,738 BTC · U.S. Reserve ~328K BTC</span>
+            data-en="Strategy 848,000 BTC · U.S. gov ~328K BTC (est.) · ETF net assets ~$107B"
+            data-zh="Strategy持有848,000 BTC · 美国政府约32.8万枚BTC（估算） · ETF净资产约1070亿美元">Strategy 848,000 BTC · U.S. gov ~328K BTC (est.) · ETF net assets ~$107B</span>
     </div>
 
     <div class="force-card">
       <div class="force-num">02</div>
       <h3 data-en="Stablecoin Settlement Infrastructure" data-zh="稳定币结算基础设施">Stablecoin Settlement Infrastructure</h3>
-      <p data-en="$323B total stablecoin supply (12.1% of market cap); accounted for 75% of Q1 2026 crypto trading volume. GENIUS Act (signed July 18, 2025) creates the first U.S. federal framework for payment stablecoins. MiCA July 1, 2026 cliff threatens USDT access on EU venues."
-         data-zh="稳定币总供应量3230亿美元（占市值12.1%）；2026年Q1加密交易量中75%以稳定币计价。GENIUS法案（2025年7月18日签署）建立首个美国联邦支付稳定币框架。MiCA 2026年7月1日执行截止日威胁USDT在欧盟交易所的访问权限。">
-        $323B total stablecoin supply (12.1% of market cap); accounted for 75% of Q1 2026 crypto trading volume. GENIUS Act (signed July 18, 2025) creates the first U.S. federal framework for payment stablecoins. MiCA July 1, 2026 cliff threatens USDT access on EU venues.
+      <p data-en="$315B total supply (~11% of crypto market cap). New distribution models: Open USD (Sept 30; reserve income shared with Coinbase, Stripe, Visa, Mastercard, Shopify) and OKX Money (up to 10% APY on USDG). GENIUS Act rules are still being finalized (OCC targets November); the law takes effect Jan 18, 2027."
+         data-zh="稳定币总供应量3150亿美元（约占加密市值11%）。新的分发模式：Open USD（9月30日上线；储备收益与Coinbase、Stripe、Visa、万事达、Shopify分成）与OKX Money（USDG年化收益最高10%）。GENIUS法案细则仍在制定中（OCC目标11月完成）；法案于2027年1月18日生效。">
+        $315B total supply (~11% of crypto market cap). New distribution models: Open USD (Sept 30; reserve income shared with Coinbase, Stripe, Visa, Mastercard, Shopify) and OKX Money (up to 10% APY on USDG). GENIUS Act rules are still being finalized (OCC targets November); the law takes effect Jan 18, 2027.
       </p>
       <span class="stat"
-            data-en="USDT $189.6B · USDC $77.6B · Bernstein YE 2026 target ~$420B"
-            data-zh="USDT 1896亿美元 · USDC 776亿美元 · Bernstein 2026年底目标约4200亿美元">USDT $189.6B · USDC $77.6B · Bernstein YE 2026 target ~$420B</span>
+            data-en="USDT $184.3B · USDC $73.7B · USDG $3.1B"
+            data-zh="USDT 1843亿美元 · USDC 737亿美元 · USDG 31亿美元">USDT $184.3B · USDC $73.7B · USDG $3.1B</span>
     </div>
 
     <div class="force-card">
       <div class="force-num">03</div>
       <h3 data-en="Two-Engine Architecture" data-zh="双引擎架构">Two-Engine Architecture</h3>
-      <p data-en="ETH + top L2s: $55.6B DeFi TVL (68% global share); Base + Arbitrum hold &gt;77% of L2 liquidity; ~60% of all on-chain RWA value settles on Ethereum. Solana: $11.5B weekly DEX vol (vs ETH's $7.6B Apr 2026); 600–700 real TPS; 16+ months without a full outage. Q1 2026: RWA TVL first crossed total DEX TVL."
-         data-zh="ETH + 主要L2：DeFi TVL 556亿美元（全球占比68%）；Base + Arbitrum持有超77%的L2流动性；约60%的链上RWA价值在以太坊结算。Solana：周DEX成交量115亿美元（2026年4月，ETH为76亿美元）；实际TPS 600–700；连续16个月以上无完整宕机。2026年Q1：RWA TVL首次超越DEX TVL总量。">
-        ETH + top L2s: $55.6B DeFi TVL (68% global share); Base + Arbitrum hold &gt;77% of L2 liquidity; ~60% of all on-chain RWA value settles on Ethereum. Solana: $11.5B weekly DEX vol (vs ETH's $7.6B Apr 2026); 600–700 real TPS; 16+ months without a full outage. Q1 2026: RWA TVL first crossed total DEX TVL.
+      <p data-en="Ethereum: $51.7B DeFi TVL (56% of all chains); Base ($6.2B) is the largest L2. Solana: $14.8B weekly DEX volume vs Ethereum's $9.9B; 100% uptime since Feb 2024 — an Aug 12 hosting failure took 28.8% of stake offline without halting blocks. Q1 2026: RWA TVL first crossed total DEX TVL."
+         data-zh="以太坊：DeFi TVL 517亿美元（占全部公链56%）；Base（62亿美元）为最大L2。Solana：周DEX交易量148亿美元，以太坊为99亿美元；自2024年2月以来保持100%在线——8月12日托管服务商故障使28.8%的质押离线，但出块未中断。2026年Q1：RWA TVL首次超越DEX TVL总量。">
+        Ethereum: $51.7B DeFi TVL (56% of all chains); Base ($6.2B) is the largest L2. Solana: $14.8B weekly DEX volume vs Ethereum's $9.9B; 100% uptime since Feb 2024 — an Aug 12 hosting failure took 28.8% of stake offline without halting blocks. Q1 2026: RWA TVL first crossed total DEX TVL.
       </p>
       <span class="stat"
-            data-en="ETH = settlement · SOL = trading floor · RWA &gt; DEX TVL milestone"
-            data-zh="ETH = 结算层 · SOL = 交易平台 · RWA &gt; DEX TVL 里程碑">ETH = settlement · SOL = trading floor · RWA &gt; DEX TVL milestone</span>
+            data-en="ETH = settlement · SOL = trading floor · Base = largest L2"
+            data-zh="ETH = 结算层 · SOL = 交易平台 · Base = 最大L2">ETH = settlement · SOL = trading floor · Base = largest L2</span>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══ MARKET-MOVING NEWS ══ -->
+<div class="page-section">
+  <div class="page-section-title"
+       data-en="Market-Moving News — Jun → Oct 2026"
+       data-zh="市场要闻 — 2026年6月至10月">Market-Moving News — Jun → Oct 2026</div>
+  <div class="news-list">
+
+    <div class="news-item headline">
+      <div class="news-date" data-en="Oct 6" data-zh="10月6日">Oct 6</div>
+      <div>
+        <h3><span data-en="OKX NOW (Singapore): OKX Money, U.S. tokenized stocks, $25B round" data-zh="OKX NOW（新加坡）：OKX Money、面向美国的代币化股票、250亿美元估值融资">OKX NOW (Singapore): OKX Money, U.S. tokenized stocks, $25B round</span> <span class="new-badge" data-en="Headline" data-zh="头条">Headline</span></h3>
+        <p data-en="OKX Money, a standalone stablecoin app: fund in 50+ local currencies into USDG, USDC or USDT, earn up to 10% APY on eligible USDG balances, spend with zero-FX cards; first in Latin America, Africa, South Asia and the Middle East. OKXICE, its 50/50 venture with NYSE-owner ICE, plans tokenized U.S. stocks for U.S. users (60+ companies with dividends and voting rights; pending SEC approval). Also: one-click on-chain wallet for perps on crypto, stocks and commodities, plus AI trading tools. The same day Circle, Ripple, Standard Chartered (SC Ventures) and QRT joined OKX's $25B-valuation round; OKB rose ~6%."
+           data-zh="OKX Money——独立的稳定币应用：可用50多种本地货币入金并兑换为USDG、USDC或USDT，符合条件的USDG余额年化收益最高10%，零汇率加价卡片消费；率先上线拉美、非洲、南亚与中东。OKXICE（与纽交所母公司ICE各持50%的合资公司）计划向美国用户提供代币化美股（首批60余家公司，保留分红与投票权；待SEC批准）。此外：一键开通链上钱包交易加密、股票与大宗商品永续合约，以及AI交易工具。同日，Circle、Ripple、渣打（SC Ventures）与QRT加入OKX 250亿美元估值融资；OKB上涨约6%。">OKX Money, a standalone stablecoin app: fund in 50+ local currencies into USDG, USDC or USDT, earn up to 10% APY on eligible USDG balances, spend with zero-FX cards; first in Latin America, Africa, South Asia and the Middle East. OKXICE, its 50/50 venture with NYSE-owner ICE, plans tokenized U.S. stocks for U.S. users (60+ companies with dividends and voting rights; pending SEC approval). Also: one-click on-chain wallet for perps on crypto, stocks and commodities, plus AI trading tools. The same day Circle, Ripple, Standard Chartered (SC Ventures) and QRT joined OKX's $25B-valuation round; OKB rose ~6%.</p>
+        <p class="why" data-en="Why it matters: a leading derivatives venue (16% share in Q2) moves into U.S. equities and emerging-market stablecoin banking — head-on with Binance (bStocks) and Coinbase (USDC, stocks on Base). 10% APY is far above ~3.7% tokenized T-bill yields, so expect it to be tiered and subsidized."
+           data-zh="影响：一家头部衍生品平台（Q2份额16%）进军美股与新兴市场稳定币银行业务——与币安（bStocks）和Coinbase（USDC、Base链股票）正面竞争。10%年化远高于代币化美债约3.7%的收益率，预计为分级且带补贴的收益。">Why it matters: a leading derivatives venue (16% share in Q2) moves into U.S. equities and emerging-market stablecoin banking — head-on with Binance (bStocks) and Coinbase (USDC, stocks on Base). 10% APY is far above ~3.7% tokenized T-bill yields, so expect it to be tiered and subsidized.</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date" data-en="Sep 30" data-zh="9月30日">Sep 30</div>
+      <div>
+        <h3 data-en="Open USD launches, backed by Coinbase, Stripe, Visa, Mastercard and Shopify" data-zh="Open USD上线，由Coinbase、Stripe、Visa、万事达与Shopify支持">Open USD launches, backed by Coinbase, Stripe, Visa, Mastercard and Shopify</h3>
+        <p data-en="OUSD went live on Ethereum, Solana, Base and Tempo with $1B+ in liquidity commitments; Bridge (Stripe) issues it, and most reserve income goes to partners."
+           data-zh="OUSD在以太坊、Solana、Base与Tempo上线，流动性承诺超10亿美元；由Bridge（Stripe旗下）发行，大部分储备收益归合作方。">OUSD went live on Ethereum, Solana, Base and Tempo with $1B+ in liquidity commitments; Bridge (Stripe) issues it, and most reserve income goes to partners.</p>
+        <p class="why" data-en="Why it matters: distributors keep the yield instead of the issuer — Mizuho cut its 2027 Circle EBITDA estimate from $1.09B to $699M."
+           data-zh="影响：收益归分发方而非发行方——瑞穗将Circle 2027年EBITDA预测从10.9亿美元下调至6.99亿美元。">Why it matters: distributors keep the yield instead of the issuer — Mizuho cut its 2027 Circle EBITDA estimate from $1.09B to $699M.</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date" data-en="Sep 24" data-zh="9月24日">Sep 24</div>
+      <div>
+        <h3 data-en="Bitget loses ~$387.5M from hot and warm wallets" data-zh="Bitget热钱包与温钱包被盗约3.875亿美元">Bitget loses ~$387.5M from hot and warm wallets</h3>
+        <p data-en="Withdrawals were paused, then restarted in phases from Sept 28; Bitget says user balances are covered by its ~5,500 BTC protection fund. Its CEO attributes the attack to North Korea."
+           data-zh="提现一度暂停，9月28日起分阶段恢复；Bitget称用户余额由约5,500枚BTC的保护基金覆盖。其CEO将攻击归因于朝鲜。">Withdrawals were paused, then restarted in phases from Sept 28; Bitget says user balances are covered by its ~5,500 BTC protection fund. Its CEO attributes the attack to North Korea.</p>
+        <p class="why" data-en="Why it matters: a top-10 exchange halting withdrawals tests trust in mid-tier venues; reserves and protection funds become a competitive feature."
+           data-zh="影响：头部十大交易所暂停提现，考验市场对中型平台的信任；储备与保护基金成为竞争要素。">Why it matters: a top-10 exchange halting withdrawals tests trust in mid-tier venues; reserves and protection funds become a competitive feature.</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date" data-en="Sep 22" data-zh="9月22日">Sep 22</div>
+      <div>
+        <h3 data-en="Binance buys $100M of Circle; a DOJ probe is reported" data-zh="币安入股Circle 1亿美元；同日传出美国司法部调查">Binance buys $100M of Circle; a DOJ probe is reported</h3>
+        <p data-en="Binance bought 1.24M Circle shares at $80.84 (two-year lock-up) and signed a five-year deal to promote USDC, especially in emerging markets. The same day Bloomberg reported a U.S. DOJ probe into Iran-linked flows on Binance; no charges have been filed."
+           data-zh="币安以每股80.84美元买入124万股Circle股票（锁定两年），并签署为期五年的USDC推广协议，重点面向新兴市场。同日彭博社报道美国司法部调查币安上涉伊朗资金流动；目前尚无指控。">Binance bought 1.24M Circle shares at $80.84 (two-year lock-up) and signed a five-year deal to promote USDC, especially in emerging markets. The same day Bloomberg reported a U.S. DOJ probe into Iran-linked flows on Binance; no charges have been filed.</p>
+        <p class="why" data-en="Why it matters: the largest exchange now owns equity in the No. 2 stablecoin issuer — while legal risk from its 2023 plea deal resurfaces."
+           data-zh="影响：最大交易所持有第二大稳定币发行方股权——同时其2023年认罪协议带来的法律风险再度浮现。">Why it matters: the largest exchange now owns equity in the No. 2 stablecoin issuer — while legal risk from its 2023 plea deal resurfaces.</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date" data-en="Sep 15" data-zh="9月15日">Sep 15</div>
+      <div>
+        <h3 data-en="CLARITY Act fails Senate cloture, 49–50" data-zh="CLARITY法案参议院程序性投票以49比50失败">CLARITY Act fails Senate cloture, 49–50</h3>
+        <p data-en="The U.S. market-structure bill needed 60 votes to open debate; all 49 yes votes were Republican. A motion to reconsider keeps it alive, but nothing is scheduled before the Nov 3 midterms."
+           data-zh="这项美国市场结构法案需要60票才能开启辩论；49张赞成票全部来自共和党。复议动议使其仍有机会，但11月3日中期选举前未安排新的投票。">The U.S. market-structure bill needed 60 votes to open debate; all 49 yes votes were Republican. A motion to reconsider keeps it alive, but nothing is scheduled before the Nov 3 midterms.</p>
+        <p class="why" data-en="Why it matters: SEC/CFTC jurisdiction over tokens stays unsettled; agencies act by rule instead (comments on the SEC's Regulation Crypto Assets proposal are due Oct 20)."
+           data-zh="影响：SEC与CFTC对代币的管辖权仍未厘清；监管机构转而通过规则推进（SEC“加密资产监管规则”提案意见征询截止10月20日）。">Why it matters: SEC/CFTC jurisdiction over tokens stays unsettled; agencies act by rule instead (comments on the SEC's Regulation Crypto Assets proposal are due Oct 20).</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date" data-en="May 26 → Aug 23" data-zh="5月26日 → 8月23日">May 26 → Aug 23</div>
+      <div>
+        <h3 data-en="HTX sanctioned by the UK and the EU" data-zh="HTX遭英国与欧盟制裁">HTX sanctioned by the UK and the EU</h3>
+        <p data-en="The UK designated HTX operator Huobi Global S.A. on May 26 over alleged services to Russia's A7/Garantex network (~$1.5B). The EU's 21st Russia package (Jul 23) bans EU dealings with HTX from Aug 23; Binance moved to block transactions with HTX and 10 other sanctioned exchanges. HTX says the platform is unaffected."
+           data-zh="英国于5月26日将HTX运营方Huobi Global S.A.列入制裁名单，指其为俄罗斯A7/Garantex网络提供服务（约15亿美元）。欧盟第21轮对俄制裁（7月23日）自8月23日起禁止欧盟主体与HTX交易；币安着手屏蔽与HTX及另外10家受制裁交易所的交易。HTX称平台运营未受影响。">The UK designated HTX operator Huobi Global S.A. on May 26 over alleged services to Russia's A7/Garantex network (~$1.5B). The EU's 21st Russia package (Jul 23) bans EU dealings with HTX from Aug 23; Binance moved to block transactions with HTX and 10 other sanctioned exchanges. HTX says the platform is unaffected.</p>
+        <p class="why" data-en="Why it matters: TRM Labs calls it the biggest crypto sanctions action yet — exchanges must now screen each other, not just their users."
+           data-zh="影响：TRM Labs称其为迄今规模最大的加密制裁行动——交易所之间也必须相互筛查，而不仅是筛查用户。">Why it matters: TRM Labs calls it the biggest crypto sanctions action yet — exchanges must now screen each other, not just their users.</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date" data-en="Jul 1" data-zh="7月1日">Jul 1</div>
+      <div>
+        <h3 data-en="MiCA transition ends; Binance has no EU licence" data-zh="MiCA过渡期结束；币安未获欧盟牌照">MiCA transition ends; Binance has no EU licence</h3>
+        <p data-en="Binance withdrew its Greek MiCA application on June 24 after reports the regulator would reject it, and is not on ESMA's register of authorized firms. OKX, Coinbase and Bybit operate under MiCA licences."
+           data-zh="在有报道称希腊监管机构将拒绝其申请后，币安于6月24日撤回MiCA申请，目前不在ESMA授权机构名单中。OKX、Coinbase与Bybit均持MiCA牌照运营。">Binance withdrew its Greek MiCA application on June 24 after reports the regulator would reject it, and is not on ESMA's register of authorized firms. OKX, Coinbase and Bybit operate under MiCA licences.</p>
+        <p class="why" data-en="Why it matters: the world's largest exchange faces limits on new EU business, handing share to licensed rivals."
+           data-zh="影响：全球最大交易所在欧盟拓展新业务受限，份额流向持牌竞争对手。">Why it matters: the world's largest exchange faces limits on new EU business, handing share to licensed rivals.</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date" data-en="Jun 11 → Oct 6" data-zh="6月11日 → 10月6日">Jun 11 → Oct 6</div>
+      <div>
+        <h3 data-en="The tokenized-stock race" data-zh="代币化股票竞赛">The tokenized-stock race</h3>
+        <p data-en="Binance launched bStocks (Jun 11–12; ADGM-approved, 1:1-backed, 24/7); Coinbase put U.S. stocks on Base for non-U.S. users (Aug 24); OKX × ICE targets U.S. users next."
+           data-zh="币安推出bStocks（6月11–12日；经ADGM批准，1:1锚定，全天候交易）；Coinbase在Base链上向非美国用户提供美股代币（8月24日）；OKX × ICE下一步瞄准美国用户。">Binance launched bStocks (Jun 11–12; ADGM-approved, 1:1-backed, 24/7); Coinbase put U.S. stocks on Base for non-U.S. users (Aug 24); OKX × ICE targets U.S. users next.</p>
+        <p class="why" data-en="Why it matters: exchanges now compete with brokers for equity flow — the next leg of RWA growth."
+           data-zh="影响：交易所开始与券商争夺股票交易流量——RWA增长的下一阶段。">Why it matters: exchanges now compete with brokers for equity flow — the next leg of RWA growth.</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date" data-en="Jun 2–6" data-zh="6月2–6日">Jun 2–6</div>
+      <div>
+        <h3 data-en="June crash: BTC drops ~20% in a week" data-zh="6月暴跌：BTC一周内下跌约20%">June crash: BTC drops ~20% in a week</h3>
+        <p data-en="BTC fell from $73.6K (Jun 1) to ~$59K intraday as &gt;$3B of leveraged positions were liquidated; U.S. spot ETFs logged 13 straight outflow days ($4.33B), and Strategy disclosed its first BTC sale since 2022."
+           data-zh="BTC从7.36万美元（6月1日）跌至盘中约5.9万美元，超30亿美元杠杆仓位被清算；美国现货ETF连续13天净流出（43.3亿美元），Strategy披露2022年以来首次出售BTC。">BTC fell from $73.6K (Jun 1) to ~$59K intraday as &gt;$3B of leveraged positions were liquidated; U.S. spot ETFs logged 13 straight outflow days ($4.33B), and Strategy disclosed its first BTC sale since 2022.</p>
+        <p class="why" data-en="Why it matters: institutions, not retail, drove the sell-off — ETF flows and treasury companies are now the swing factor."
+           data-zh="影响：此轮抛售由机构而非散户主导——ETF资金流与财库公司已成为关键变量。">Why it matters: institutions, not retail, drove the sell-off — ETF flows and treasury companies are now the swing factor.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══ EXCHANGE LANDSCAPE ══ -->
+<div class="page-section">
+  <div class="page-section-title"
+       data-en="Exchange Landscape — Oct 2026"
+       data-zh="交易所格局 — 2026年10月">Exchange Landscape — Oct 2026</div>
+  <div class="sec-grid">
+
+    <div class="sec-card">
+      <div class="icon">🔶</div>
+      <h3 data-en="Binance" data-zh="币安 Binance">Binance</h3>
+      <p data-en="323M registered users (Jul 2026). #1 in spot (32%) and derivatives (36%) volume in Q2. 2026 moves: bStocks, 7,000+ U.S. stocks for non-U.S. users, $100M Circle stake. Risks: no MiCA licence; reported DOJ Iran probe."
+         data-zh="注册用户3.23亿（2026年7月）。Q2现货（32%）与衍生品（36%）交易量均居第一。2026年动作：bStocks、向非美国用户开放7,000余只美股、入股Circle 1亿美元。风险：无MiCA牌照；据报遭美国司法部涉伊朗调查。">
+        323M registered users (Jul 2026). #1 in spot (32%) and derivatives (36%) volume in Q2. 2026 moves: bStocks, 7,000+ U.S. stocks for non-U.S. users, $100M Circle stake. Risks: no MiCA licence; reported DOJ Iran probe.
+      </p>
+      <div class="kpi">$172B</div>
+      <div class="kpi-label" data-en="on-chain reserves — 55% of tracked CEX total" data-zh="链上储备——占可追踪交易所总量55%">on-chain reserves — 55% of tracked CEX total</div>
+    </div>
+
+    <div class="sec-card">
+      <div class="icon">◼️</div>
+      <h3 data-en="OKX" data-zh="欧易 OKX">OKX</h3>
+      <p data-en="Valued at $25B (ICE in March; Circle, Ripple, Standard Chartered, QRT in October). 16% of derivatives and 7% of spot volume in Q2; $31B reserves. OKX NOW: OKX Money, U.S. tokenized stocks via OKXICE, on-chain perps, AI tools."
+         data-zh="估值250亿美元（3月ICE入股；10月Circle、Ripple、渣打、QRT加入）。Q2衍生品份额16%、现货7%；储备310亿美元。OKX NOW：OKX Money、经OKXICE推出面向美国的代币化股票、链上永续合约、AI工具。">
+        Valued at $25B (ICE in March; Circle, Ripple, Standard Chartered, QRT in October). 16% of derivatives and 7% of spot volume in Q2; $31B reserves. OKX NOW: OKX Money, U.S. tokenized stocks via OKXICE, on-chain perps, AI tools.
+      </p>
+      <div class="kpi">$25B</div>
+      <div class="kpi-label" data-en="valuation, Oct 2026 round" data-zh="估值，2026年10月融资">valuation, Oct 2026 round</div>
+    </div>
+
+    <div class="sec-card">
+      <div class="icon">🔵</div>
+      <h3 data-en="Coinbase" data-zh="Coinbase">Coinbase</h3>
+      <p data-en="Q2 revenue fell 19% to $1.22B, with a $359.5M net loss. Building the U.S. stack: CFTC clearinghouse approved Sept 28, Deribit, prediction markets ($100M+ run-rate), stocks on Base, Open USD backer; &gt;30% of USDC sits on Coinbase."
+         data-zh="Q2营收下降19%至12.2亿美元，净亏损3.595亿美元。打造美国全栈：9月28日获CFTC清算所批准、Deribit、预测市场（年化收入超1亿美元）、Base链股票、Open USD支持方；超30%的USDC存放于Coinbase。">
+        Q2 revenue fell 19% to $1.22B, with a $359.5M net loss. Building the U.S. stack: CFTC clearinghouse approved Sept 28, Deribit, prediction markets ($100M+ run-rate), stocks on Base, Open USD backer; &gt;30% of USDC sits on Coinbase.
+      </p>
+      <div class="kpi">10.3%</div>
+      <div class="kpi-label" data-en="trading-volume share, Q2 2026 (record)" data-zh="交易量份额，2026年Q2（历史新高）">trading-volume share, Q2 2026 (record)</div>
+    </div>
+
+    <div class="sec-card">
+      <div class="icon">🔥</div>
+      <h3 data-en="HTX" data-zh="火币 HTX">HTX</h3>
+      <p data-en="Justin Sun-backed; 59M registered users (Q1, self-reported). UK designated its operator Huobi Global S.A. (May 26); EU transaction ban since Aug 23; Binance blocks transactions with it. HTX says trading is unaffected; EU users may only wind down."
+         data-zh="孙宇晨支持；注册用户5900万（Q1，自报）。英国制裁其运营方Huobi Global S.A.（5月26日）；欧盟自8月23日起禁止交易；币安屏蔽与其交易。HTX称交易未受影响；欧盟用户仅可清退账户。">
+        Justin Sun-backed; 59M registered users (Q1, self-reported). UK designated its operator Huobi Global S.A. (May 26); EU transaction ban since Aug 23; Binance blocks transactions with it. HTX says trading is unaffected; EU users may only wind down.
+      </p>
+      <div class="kpi">$4.2B</div>
+      <div class="kpi-label" data-en="on-chain reserves (DefiLlama)" data-zh="链上储备（DefiLlama）">on-chain reserves (DefiLlama)</div>
+    </div>
+
+    <div class="sec-card">
+      <div class="icon">⚔️</div>
+      <h3 data-en="Challengers" data-zh="挑战者">Challengers</h3>
+      <p data-en="Bybit: $16.2B reserves, 10% of derivatives volume. Bitget: ~$387.5M hack (Sept 24). Hyperliquid leads the perp DEXs. Kraken: IPO on hold since March. BitMEX set its closure for Sept 23."
+         data-zh="Bybit：储备162亿美元，衍生品份额10%。Bitget：被盗约3.875亿美元（9月24日）。Hyperliquid领跑永续合约DEX。Kraken：IPO自3月起暂缓。BitMEX宣布于9月23日关闭。">
+        Bybit: $16.2B reserves, 10% of derivatives volume. Bitget: ~$387.5M hack (Sept 24). Hyperliquid leads the perp DEXs. Kraken: IPO on hold since March. BitMEX set its closure for Sept 23.
+      </p>
+      <div class="kpi">~12%</div>
+      <div class="kpi-label" data-en="perp-DEX share of global perp volume, Sept" data-zh="永续合约DEX占全球永续交易量份额，9月">perp-DEX share of global perp volume, Sept</div>
     </div>
 
   </div>
@@ -721,8 +912,8 @@
 <!-- ══ SECTOR SCOREBOARD ══ -->
 <div class="page-section">
   <div class="page-section-title"
-       data-en="Sector Scoreboard — Trailing 12 Months"
-       data-zh="赛道计分板 — 过去12个月">Sector Scoreboard — Trailing 12 Months</div>
+       data-en="Sector Scoreboard — Latest Reported"
+       data-zh="赛道计分板 — 最新公布数据">Sector Scoreboard — Latest Reported</div>
   <div class="sec-grid">
 
     <div class="sec-card">
@@ -750,23 +941,23 @@
     <div class="sec-card">
       <div class="icon">🏦</div>
       <h3 data-en="RWA &amp; Tokenization" data-zh="现实资产代币化">RWA &amp; Tokenization</h3>
-      <p data-en="Total RWA market grew $23B → $31B in Q1 2026 alone (+35%). BUIDL $2.99B, USYC $2.98B, Ondo TVL $3.53B, Franklin BENJI $1.98B. JPM Kinexys &gt;$3T cumulative. RWA TVL first exceeded total DEX TVL."
-         data-zh="2026年Q1 RWA市场从230亿增至310亿美元（+35%）。BUIDL 29.9亿美元，USYC 29.8亿美元，Ondo TVL 35.3亿美元，Franklin BENJI 19.8亿美元。摩根大通Kinexys累计超3万亿美元。RWA TVL首次超越DEX TVL总量。">
-        Total RWA market grew $23B → $31B in Q1 2026 alone (+35%). BUIDL $2.99B, USYC $2.98B, Ondo TVL $3.53B, Franklin BENJI $1.98B. JPM Kinexys &gt;$3T cumulative. RWA TVL first exceeded total DEX TVL.
+      <p data-en="Distributed on-chain RWA stands at $38.9B (Oct 8) across 5.2M holders. Tokenized stocks are the new front: Binance bStocks, Coinbase on Base, OKX × ICE. JPM Kinexys &gt;$3T cumulative."
+         data-zh="链上分发RWA为389亿美元（10月8日），持有人520万。代币化股票成为新战场：币安bStocks、Coinbase（Base链）、OKX × ICE。摩根大通Kinexys累计超3万亿美元。">
+        Distributed on-chain RWA stands at $38.9B (Oct 8) across 5.2M holders. Tokenized stocks are the new front: Binance bStocks, Coinbase on Base, OKX × ICE. JPM Kinexys &gt;$3T cumulative.
       </p>
-      <div class="kpi">$31B+</div>
-      <div class="kpi-label" data-en="on-chain RWA as of Mar 31, 2026" data-zh="截至2026年3月31日链上RWA">on-chain RWA as of Mar 31, 2026</div>
+      <div class="kpi">$38.9B</div>
+      <div class="kpi-label" data-en="distributed on-chain RWA, Oct 8, 2026 (RWA.xyz)" data-zh="链上分发RWA，2026年10月8日（RWA.xyz）">distributed on-chain RWA, Oct 8, 2026 (RWA.xyz)</div>
     </div>
 
     <div class="sec-card">
       <div class="icon">🔄</div>
       <h3 data-en="DeFi 3.0 — Restaking" data-zh="DeFi 3.0 — 再质押">DeFi 3.0 — Restaking</h3>
-      <p data-en="EigenLayer ~$17B restaked ETH (from ~$18B peak). Lido $25.7B TVL (22.82% of ETH staked). KelpDAO exploit Apr 18, 2026: ~$292M drained, $13B DeFi deleveraging in 48h. Industry migrating to Chainlink CCIP."
-         data-zh="EigenLayer再质押ETH约170亿美元（较高峰180亿美元下降）。Lido TVL 257亿美元（ETH质押量22.82%）。KelpDAO漏洞（2026年4月18日）：约2.92亿美元被盗，48小时内DeFi去杠杆130亿美元。行业迁移至Chainlink CCIP。">
-        EigenLayer ~$17B restaked ETH (from ~$18B peak). Lido $25.7B TVL (22.82% of ETH staked). KelpDAO exploit Apr 18, 2026: ~$292M drained, $13B DeFi deleveraging in 48h. Industry migrating to Chainlink CCIP.
+      <p data-en="EigenLayer TVL ~$6.6B, down from ~$9.7B in mid-April. Lido ~$24.6B, ether.fi ~$4.9B. KelpDAO exploit Apr 18, 2026: ~$292M drained, $13B DeFi deleveraging in 48h; Kelp TVL now ~$1.05B. Industry migrating to Chainlink CCIP."
+         data-zh="EigenLayer TVL约66亿美元，4月中旬约为97亿美元。Lido约246亿美元，ether.fi约49亿美元。KelpDAO漏洞（2026年4月18日）：约2.92亿美元被盗，48小时内DeFi去杠杆130亿美元；Kelp TVL现约10.5亿美元。行业迁移至Chainlink CCIP。">
+        EigenLayer TVL ~$6.6B, down from ~$9.7B in mid-April. Lido ~$24.6B, ether.fi ~$4.9B. KelpDAO exploit Apr 18, 2026: ~$292M drained, $13B DeFi deleveraging in 48h; Kelp TVL now ~$1.05B. Industry migrating to Chainlink CCIP.
       </p>
-      <div class="kpi">~$17B</div>
-      <div class="kpi-label" data-en="EigenLayer restaked ETH (post-exploit)" data-zh="EigenLayer再质押ETH（漏洞后）">EigenLayer restaked ETH (post-exploit)</div>
+      <div class="kpi">~$6.6B</div>
+      <div class="kpi-label" data-en="EigenLayer TVL, Oct 2026 (DefiLlama)" data-zh="EigenLayer TVL，2026年10月（DefiLlama）">EigenLayer TVL, Oct 2026 (DefiLlama)</div>
     </div>
 
     <div class="sec-card">
@@ -796,9 +987,9 @@
       <div class="pct">70–80%</div>
       <div class="pct-label" data-en="of crypto allocation" data-zh="加密配置占比">of crypto allocation</div>
       <h3 data-en="Bitcoin — Monetary Core" data-zh="比特币 — 货币核心">Bitcoin — Monetary Core</h3>
-      <p data-en="Monetary-premium store-of-value. Access via spot ETF (IBIT, FBTC) for liquidity; Coinbase Custody / BitGo / Fidelity for strategic positions &gt;$5M. Avoid MSTR as BTC proxy — carries preferred-equity + convertible-debt risk overlay."
-         data-zh="货币溢价价值储存。通过现货ETF（IBIT、FBTC）获取流动性敞口；5M美元以上战略持仓可选Coinbase Custody / BitGo / Fidelity。避免以MSTR替代BTC——附带优先股+可转债风险层。">
-        Monetary-premium store-of-value. Access via spot ETF (IBIT, FBTC) for liquidity; Coinbase Custody / BitGo / Fidelity for strategic positions &gt;$5M. Avoid MSTR as BTC proxy — carries preferred-equity + convertible-debt risk overlay.
+      <p data-en="Monetary-premium store-of-value. Access via spot ETF (IBIT, FBTC) for liquidity; Coinbase Custody / BitGo / Fidelity for strategic positions &gt;$5M. Avoid MSTR as BTC proxy — it carries a preferred-equity + convertible-debt overlay and sold BTC in Jun–Aug 2026."
+         data-zh="货币溢价价值储存。通过现货ETF（IBIT、FBTC）获取流动性敞口；5M美元以上战略持仓可选Coinbase Custody / BitGo / Fidelity。避免以MSTR替代BTC——附带优先股+可转债风险层，且曾于2026年6–8月出售BTC。">
+        Monetary-premium store-of-value. Access via spot ETF (IBIT, FBTC) for liquidity; Coinbase Custody / BitGo / Fidelity for strategic positions &gt;$5M. Avoid MSTR as BTC proxy — it carries a preferred-equity + convertible-debt overlay and sold BTC in Jun–Aug 2026.
       </p>
     </div>
 
@@ -807,9 +998,9 @@
       <div class="pct">15–25%</div>
       <div class="pct-label" data-en="of crypto allocation" data-zh="加密配置占比">of crypto allocation</div>
       <h3 data-en="Ethereum — Settlement Layer" data-zh="以太坊 — 结算层">Ethereum — Settlement Layer</h3>
-      <p data-en="Institutional settlement layer; ~3–4% base staking yield. Thesis: RWA and stablecoin throughput. Monitor ETH/BTC ratio — 0.0276 mid-May 2026 (10-month low, 35% below Aug 2025 peak). Spot ETH ETFs ~$19.6B AUM."
-         data-zh="机构结算层；基础质押收益约3–4%。逻辑：RWA与稳定币吞吐量。关注ETH/BTC比率——2026年5月中旬为0.0276（10个月低点，较2025年8月峰值低35%）。现货ETH ETF资管规模约196亿美元。">
-        Institutional settlement layer; ~3–4% base staking yield. Thesis: RWA and stablecoin throughput. Monitor ETH/BTC ratio — 0.0276 mid-May 2026 (10-month low, 35% below Aug 2025 peak). Spot ETH ETFs ~$19.6B AUM.
+      <p data-en="Institutional settlement layer; ~3–4% base staking yield. Thesis: RWA and stablecoin throughput. Monitor ETH/BTC ratio — 0.0306 on Oct 8, 2026, up from a 0.0276 low in mid-May. Spot ETH ETFs ~$17.8B net assets (late Sept)."
+         data-zh="机构结算层；基础质押收益约3–4%。逻辑：RWA与稳定币吞吐量。关注ETH/BTC比率——2026年10月8日为0.0306，高于5月中旬0.0276的低点。现货ETH ETF净资产约178亿美元（9月下旬）。">
+        Institutional settlement layer; ~3–4% base staking yield. Thesis: RWA and stablecoin throughput. Monitor ETH/BTC ratio — 0.0306 on Oct 8, 2026, up from a 0.0276 low in mid-May. Spot ETH ETFs ~$17.8B net assets (late Sept).
       </p>
     </div>
 
@@ -818,9 +1009,9 @@
       <div class="pct">0–10%</div>
       <div class="pct-label" data-en="of crypto allocation" data-zh="加密配置占比">of crypto allocation</div>
       <h3 data-en="SOL + Selective Alts" data-zh="SOL + 精选山寨">SOL + Selective Alts</h3>
-      <p data-en="High-throughput utility exposure. Mid-to-high risk tolerance only. Avoid undifferentiated altcoin index — CMC Altcoin Season Index 39–47 (well below 75 threshold). SOL ETFs launched Oct 28, 2025; $213M Q1 inflows. Alpenglow on testnet since Sept 2026; mainnet targeted late 2026."
-         data-zh="高吞吐量效用敞口。仅适合中高风险承受能力。避免无差异化山寨币指数——CMC山寨季指数39–47（远低于75的阈值）。SOL ETF于2025年10月28日上市；Q1净流入2.13亿美元。Alpenglow已于2026年9月上线测试网，主网目标2026年底。">
-        High-throughput utility exposure. Mid-to-high risk tolerance only. Avoid undifferentiated altcoin index — CMC Altcoin Season Index 39–47 (well below 75 threshold). SOL ETFs launched Oct 28, 2025; $213M Q1 inflows. Alpenglow on testnet since Sept 2026; mainnet targeted late 2026.
+      <p data-en="High-throughput utility exposure. Mid-to-high risk tolerance only. Avoid an undifferentiated altcoin basket — BTC dominance near 59% means no altcoin season. SOL ETFs launched Oct 28, 2025; $213M Q1 inflows. Alpenglow runs on testnet/devnet; no mainnet date yet."
+         data-zh="高吞吐量效用敞口。仅适合中高风险承受能力。避免无差异化的山寨币组合——BTC市占率接近59%，山寨季尚未到来。SOL ETF于2025年10月28日上市；Q1净流入2.13亿美元。Alpenglow在测试网/开发网运行，主网日期未定。">
+        High-throughput utility exposure. Mid-to-high risk tolerance only. Avoid an undifferentiated altcoin basket — BTC dominance near 59% means no altcoin season. SOL ETFs launched Oct 28, 2025; $213M Q1 inflows. Alpenglow runs on testnet/devnet; no mainnet date yet.
       </p>
     </div>
 
@@ -842,39 +1033,39 @@
 <!-- ══ BULL / BEAR SCENARIOS ══ -->
 <div class="page-section">
   <div class="page-section-title"
-       data-en="12–18 Month Scenarios (from May 2026)"
-       data-zh="12–18个月情景预判（自2026年5月起）">12–18 Month Scenarios (from May 2026)</div>
+       data-en="12–18 Month Scenarios (from Oct 2026)"
+       data-zh="12–18个月情景预判（自2026年10月起）">12–18 Month Scenarios (from Oct 2026)</div>
   <div class="decision-grid">
 
     <div class="decision-card bear">
       <h3 data-en="✕  Bear Case" data-zh="✕  悲观情景">✕  Bear Case</h3>
       <ul>
-        <li data-en="MiCA July 1 cliff forces USDT off EU venues without a regulated bridge product → correlated EU DEX/perp liquidity drains"
-            data-zh="MiCA 7月1日截止日迫使USDT退出欧盟交易所，且无合规替代品 → 欧盟DEX/永续合约流动性联动下降">MiCA July 1 cliff forces USDT off EU venues without a regulated bridge product → correlated EU DEX/perp liquidity drains</li>
-        <li data-en="Second major bridge exploit cuts DeFi TVL ~40% from ~$85B; restaking TVL falls from ~$17B to &lt;$8B"
-            data-zh="第二次大型跨链桥漏洞使DeFi TVL从约850亿美元下降约40%；再质押TVL从约170亿降至80亿以下">Second major bridge exploit cuts DeFi TVL ~40% from ~$85B; restaking TVL falls from ~$17B to &lt;$8B</li>
-        <li data-en="L2 token unlocks (ARB Jun 16, OP monthly, STRK May 15, EIGEN Jun 1, SUI Jun 1) total 8–15% of float with no offsetting ETF demand"
-            data-zh="L2代币解锁（ARB 6月16日、OP每月、STRK 5月15日、EIGEN 6月1日、SUI 6月1日）总计占流通量8–15%，无ETF需求对冲">L2 token unlocks (ARB Jun 16, OP monthly, STRK May 15, EIGEN Jun 1, SUI Jun 1) total 8–15% of float with no offsetting ETF demand</li>
-        <li data-en="Web3 consumer continues collapse: gaming retention fails, Farcaster wallet pivot doesn't flywheel, NFT volumes stay $100–200M/mo"
-            data-zh="Web3消费持续崩溃：游戏用户留存失败，Farcaster钱包转型无法形成飞轮，NFT月成交量维持1–2亿美元">Web3 consumer continues collapse: gaming retention fails, Farcaster wallet pivot doesn't flywheel, NFT volumes stay $100–200M/mo</li>
-        <li data-en="BTC–SPX 30-day correlation stays &gt;0.7; ETF flows normalize lower; Strategy's $75,700 avg cost basis stress-tested near $62K"
-            data-zh="BTC-标普500 30日相关性持续超0.7；ETF净流入正常化降低；Strategy 75,700美元均成本在62K附近受压测">BTC–SPX 30-day correlation stays &gt;0.7; ETF flows normalize lower; Strategy's $75,700 avg cost basis stress-tested near $62K</li>
+        <li data-en="CLARITY stays stalled after the Nov 3 midterms; agency rules alone can't anchor U.S. exchange licensing → U.S. listings and tokenized-stock launches slip"
+            data-zh="CLARITY法案在11月3日中期选举后仍然搁浅；仅靠监管规则无法为美国交易所牌照提供依据 → 美国上市与代币化股票发行推迟">CLARITY stays stalled after the Nov 3 midterms; agency rules alone can't anchor U.S. exchange licensing → U.S. listings and tokenized-stock launches slip</li>
+        <li data-en="Another major exchange or bridge hack after Bitget ($387.5M) and KelpDAO ($292M) → withdrawal runs on mid-tier venues; DeFi TVL falls back toward the $68B July low"
+            data-zh="继Bitget（3.875亿美元）与KelpDAO（2.92亿美元）之后再现大型交易所或跨链桥被盗 → 中型平台遭挤兑；DeFi TVL回落至7月680亿美元低点附近">Another major exchange or bridge hack after Bitget ($387.5M) and KelpDAO ($292M) → withdrawal runs on mid-tier venues; DeFi TVL falls back toward the $68B July low</li>
+        <li data-en="Enforcement widens: the DOJ Iran probe extends Binance's compliance monitorship; UK/EU sanctions reach beyond HTX → liquidity fragments by jurisdiction"
+            data-zh="执法扩大：美国司法部涉伊朗调查延长币安合规监察期；英国/欧盟制裁范围超出HTX → 流动性按司法辖区割裂">Enforcement widens: the DOJ Iran probe extends Binance's compliance monitorship; UK/EU sanctions reach beyond HTX → liquidity fragments by jurisdiction</li>
+        <li data-en="Stablecoin yield war (OKX Money's up to 10% APY, Open USD revenue sharing) squeezes issuer margins; a subsidized-yield product fails to pay out"
+            data-zh="稳定币收益战（OKX Money最高10%年化、Open USD收益分成）压缩发行方利润；某补贴型收益产品无法兑付">Stablecoin yield war (OKX Money's up to 10% APY, Open USD revenue sharing) squeezes issuer margins; a subsidized-yield product fails to pay out</li>
+        <li data-en="ETF outflows like June's 13-day, $4.33B run return; BTC–equity correlation stays high and BTC retests the ~$59K summer lows"
+            data-zh="类似6月连续13天、43.3亿美元的ETF净流出重现；BTC与股市相关性维持高位，BTC回测夏季约5.9万美元低点">ETF outflows like June's 13-day, $4.33B run return; BTC–equity correlation stays high and BTC retests the ~$59K summer lows</li>
       </ul>
     </div>
 
     <div class="decision-card bull">
       <h3 data-en="✓  Bull Case" data-zh="✓  乐观情景">✓  Bull Case</h3>
       <ul>
-        <li data-en="Stablecoins approach $500B as GENIUS Act final rules (July 2026) open regulated U.S. bank-issued stablecoins; Stripe+Bridge+Privy / Mastercard+BVNK payment rails compound"
-            data-zh="稳定币接近5000亿美元：GENIUS法案最终规则（2026年7月）开放受监管的美国银行发行稳定币；Stripe+Bridge+Privy / 万事达+BVNK支付通道复利增长">Stablecoins approach $500B as GENIUS Act final rules (July 2026) open regulated U.S. bank-issued stablecoins; Stripe+Bridge+Privy / Mastercard+BVNK payment rails compound</li>
-        <li data-en="Tokenized RWAs cross $100B as BlackRock / Securitize / Ondo / Franklin stack absorbs corporate treasury cash management"
-            data-zh="代币化RWA突破1000亿美元，贝莱德/Securitize/Ondo/Franklin体系承接企业金库现金管理">Tokenized RWAs cross $100B as BlackRock / Securitize / Ondo / Franklin stack absorbs corporate treasury cash management</li>
-        <li data-en="DeAI delivers credible revenue cohort: Bittensor + Render + io.net + Akash reach ~$500M annualized run-rate by mid-2027; spot TAO ETP approved (SEC decision Aug 2026)"
-            data-zh="DeAI实现可信收入群体：Bittensor + Render + io.net + Akash到2027年中年化运营收入达约5亿美元；现货TAO ETP获批（SEC决定于2026年8月）">DeAI delivers credible revenue cohort: Bittensor + Render + io.net + Akash reach ~$500M annualized run-rate by mid-2027; spot TAO ETP approved (SEC decision Aug 2026)</li>
-        <li data-en="Solana Alpenglow activated on mainnet Q3 2026: finality 12.8s → &lt;150ms; opens institutional tokenized-asset settlement on monolithic infra"
-            data-zh="Solana Alpenglow于2026年Q3在主网激活：终局时间12.8秒→150毫秒以内；开放单体基础设施上的机构级代币化资产结算">Solana Alpenglow activated on mainnet Q3 2026: finality 12.8s → &lt;150ms; opens institutional tokenized-asset settlement on monolithic infra</li>
-        <li data-en="ZK rollup prover costs cross optimistic baseline in late 2026; ≥1 ZK rollup reaches Stage 1 (trustless); ETH/BTC reclaims 0.035+ on improving fundamentals"
-            data-zh="ZK Rollup证明成本在2026年底跨越乐观基线；至少1条ZK Rollup达到Stage 1（无信任）；ETH/BTC在基本面改善下收复0.035以上">ZK rollup prover costs cross optimistic baseline in late 2026; ≥1 ZK rollup reaches Stage 1 (trustless); ETH/BTC reclaims 0.035+ on improving fundamentals</li>
+        <li data-en="GENIUS takes effect Jan 18, 2027 with final OCC/FDIC/Fed rules → U.S. bank-issued stablecoins; supply passes $400B as Open USD, USDG and USDC compete on distribution"
+            data-zh="GENIUS法案于2027年1月18日生效，OCC/FDIC/美联储最终规则落地 → 美国银行发行稳定币；Open USD、USDG与USDC竞争分发渠道，稳定币供应突破4000亿美元">GENIUS takes effect Jan 18, 2027 with final OCC/FDIC/Fed rules → U.S. bank-issued stablecoins; supply passes $400B as Open USD, USDG and USDC compete on distribution</li>
+        <li data-en="Tokenized stocks go mainstream: OKXICE (60+ U.S. stocks with dividends and voting rights), Coinbase and Binance pull equity flow on-chain; tokenized RWAs cross $100B"
+            data-zh="代币化股票走向主流：OKXICE（60余只美股，含分红与投票权）、Coinbase与币安将股票交易流量引至链上；代币化RWA突破1000亿美元">Tokenized stocks go mainstream: OKXICE (60+ U.S. stocks with dividends and voting rights), Coinbase and Binance pull equity flow on-chain; tokenized RWAs cross $100B</li>
+        <li data-en="Exchanges become regulated super-apps: Coinbase's in-house clearing + Deribit, OKX Money and Binance's USDC push widen fee pools beyond trading"
+            data-zh="交易所成为受监管的超级应用：Coinbase自有清算 + Deribit、OKX Money与币安的USDC推广，将收入来源扩展至交易之外">Exchanges become regulated super-apps: Coinbase's in-house clearing + Deribit, OKX Money and Binance's USDC push widen fee pools beyond trading</li>
+        <li data-en="Ethereum Glamsterdam and Solana Alpenglow (12.8s → &lt;150ms finality) reach mainnet → faster settlement for tokenized assets"
+            data-zh="以太坊Glamsterdam与Solana Alpenglow（终局时间12.8秒→150毫秒以内）登陆主网 → 代币化资产结算更快">Ethereum Glamsterdam and Solana Alpenglow (12.8s → &lt;150ms finality) reach mainnet → faster settlement for tokenized assets</li>
+        <li data-en="ETF demand resumes (September: +$2.65B); ETH/BTC reclaims 0.035+ and altcoin breadth improves as BTC dominance eases from ~59%"
+            data-zh="ETF需求恢复（9月净流入26.5亿美元）；ETH/BTC收复0.035以上，BTC市占率自约59%回落，山寨币普涨面扩大">ETF demand resumes (September: +$2.65B); ETH/BTC reclaims 0.035+ and altcoin breadth improves as BTC dominance eases from ~59%</li>
       </ul>
     </div>
 
@@ -888,12 +1079,12 @@
   <div class="legend-item"><div class="legend-dot" style="background:#b88a10;"></div><span data-en="Industry Sectors (Upper Layer)" data-zh="行业赛道（上层）">Industry Sectors (Upper Layer)</span></div>
   <div class="legend-item"><div class="legend-dot" style="background:#7a50c8;"></div><span data-en="Market Pillars (Lower Layer)" data-zh="市场支柱（下层）">Market Pillars (Lower Layer)</span></div>
   <div class="legend-item"><div class="legend-dot" style="background:#7a50c8; opacity:0.5;"></div><span data-en="Emerging Pillar" data-zh="新兴支柱">Emerging Pillar</span></div>
-  <div class="legend-item"><div class="legend-dot" style="background:#d0a020;"></div><span data-en="Sector Scoreboard / Allocation" data-zh="赛道计分板 / 配置">Sector Scoreboard / Allocation</span></div>
+  <div class="legend-item"><div class="legend-dot" style="background:#d0a020;"></div><span data-en="Scoreboard / Exchanges / Allocation" data-zh="计分板 / 交易所 / 配置">Scoreboard / Exchanges / Allocation</span></div>
 </div>
 
 <p class="footnote"
-   data-en="Educational overview — not investment, legal or tax advice. Market data as of May 2026 unless dated otherwise."
-   data-zh="教育性概览——不构成投资、法律或税务建议。除另有注明外，市场数据截至2026年5月。">Educational overview — not investment, legal or tax advice. Market data as of May 2026 unless dated otherwise.</p>
+   data-en="Educational overview — not investment, legal or tax advice. Market data as of Oct 8, 2026 (CoinGecko, DefiLlama, RWA.xyz, SoSoValue, company filings) unless dated otherwise."
+   data-zh="教育性概览——不构成投资、法律或税务建议。除另有注明外，市场数据截至2026年10月8日（CoinGecko、DefiLlama、RWA.xyz、SoSoValue及公司公告）。">Educational overview — not investment, legal or tax advice. Market data as of Oct 8, 2026 (CoinGecko, DefiLlama, RWA.xyz, SoSoValue, company filings) unless dated otherwise.</p>
 
 <script>
   let currentLang = 'en';
