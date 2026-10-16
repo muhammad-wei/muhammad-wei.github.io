@@ -8,7 +8,8 @@ Bruce Wei's personal site, https://muhammad-wei.github.io. It is static files on
 | Path | What it is |
 | --- | --- |
 | `index.html` | Home page, built on the "Global" template. Loads `assets/css/main.css`, jQuery 2.2.4 (CDN with a local fallback) and `assets/js/functions-min.js`. English only. |
-| `ai-`, `energy-`, `finance-`, `web3-industry-chart.html`, `business_growth_circular_flow.html` | Landscape pages. Each is one self-contained file: inline CSS and JS, no external requests, EN/中文, dark and light themes. |
+| `ai-`, `energy-`, `finance-`, `space-`, `web3-industry-chart.html`, `business_growth_circular_flow.html` | Landscape pages. Each is one self-contained file: inline CSS and JS, no external requests, EN/中文, dark and light themes. |
+| `sources/space-industry.md` | The Space page's sources ledger: each figure with its date, source, placements and status. Update it together with the page. |
 | `assets/img/landscape/*.webp` | Home slider thumbnails, 600×600, one per landscape page. |
 | `assets/css/**/*.sass` | Sass sources of `main.css`, used by the home page only. |
 
@@ -28,7 +29,7 @@ Bruce Wei's personal site, https://muhammad-wei.github.io. It is static files on
   - Dark tokens sit on `:root` and light overrides on `html[data-theme="light"]`.
   - A new token needs both. Text contrast must be at least 4.5:1 in both themes.
   - The theme is saved under `localStorage['voltai-theme']` on every page. Don't rename the key.
-- **Fixed controls on every landscape page:** `.home-link` ("← Home" / "← 首页") and `.controls` (theme button, EN/中文). A change to them must be repeated on all five pages.
+- **Fixed controls on every landscape page:** `.home-link` ("← Home" / "← 首页") and `.controls` (theme button, EN/中文). A change to them must be repeated on all six pages.
 - **No horizontal scroll** at any width from 360 to 1440 px, in either theme or language.
 - **Hidden on purpose** in `index.html`: Traffic globe, LinkedIn, Connect and the Hire form are commented out. Keep them hidden unless asked.
 - **Dated content** (SPEC §8):
@@ -72,4 +73,8 @@ Bruce Wei's personal site, https://muhammad-wei.github.io. It is static files on
   - edit EN and ZH together
   - pass the quality gates
   - wait for "push"
+- The Space page is reviewed quarterly (SPEC §9.1):
+  - start from `sources/space-industry.md` and re-check every row
+  - launch counts come from McDowell's launch log
+  - edit the page and the ledger together
 - Open gaps and backlog are listed in SPEC §12.

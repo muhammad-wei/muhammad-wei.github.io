@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Space Industry Overview — October 2026</title>
+<meta name="description" content="Layered map of the space industry as of October 2026: the physics of reaching orbit, five value-chain layers, foundation pillars, rocket science, frontier technology, living in space, the space economy, seven space powers and the year's milestones.">
+<!-- Anti-FOUC: set theme before first paint -->
+<script>
+  (function(){
+    var s = null;
+    try { s = localStorage.getItem('voltai-theme'); } catch (e) {}
+    var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', s || (dark ? 'dark' : 'light'));
+  })();
+</script>
+<style>
+  /* ═══════════════════════════════
+     DARK TOKENS  (default)
+  ═══════════════════════════════ */
+  :root {
+    color-scheme: dark;
+    --bg-page:          #070a12;
+    --text-body:        #e0e4f0;
+    --h1-color:         #f2cfa6;
+    --subtitle-color:   #8a92b4;
+    /* controls */
+    --ctrl-bg:          #0f1220;
+    --ctrl-border:      #1e2438;
+    --ctrl-btn:         #8a92b8;
+    --ctrl-active-bg:   #a8481a;
+    --ctrl-active:      #fff;
+    /* physics of access (plume orange) */
+    --phys-bg:          linear-gradient(135deg, #1a0d06 0%, #241309 100%);
+    --phys-border:      #c0601e;
+    --phys-shadow:      rgba(224,112,40,.26);
+    --phys-badge-bg:    #9c4612;
+    --phys-badge-color: #fff3ea;
+    --phys-h2:          #f08a48;
+    --phys-p:           #d4aa8c;
+    --phys-tag-bg:      rgba(224,112,40,.14);
+    --phys-tag-border:  rgba(224,112,40,.42);
+    --phys-tag-color:   #f0a070;
+    /* rocket science cards */
+    --rs-bg:            linear-gradient(160deg, #170d07 0%, #100905 100%);
+    --rs-border:        #3a2010;
+    --rs-hover:         #c0601e;
+    --rs-num:           #c88050;
+    --rs-h3:            #f09858;
+    --rs-p:             #c8a48c;
+    --rs-stat:          #f0b088;
+    --rs-stat-bg:       rgba(224,112,40,.12);
+    --rs-stat-bd:       rgba(224,112,40,.34);
+    /* connectors */
+    --conn-line-1:      linear-gradient(to bottom, #c0601e, #b88a10);
+    --conn-line-2:      linear-gradient(to bottom, #b88a10, #7a50c8);
+    --conn-arrow-gold:  #b88a10;
+    --conn-arrow-pur:   #7a50c8;
+    --conn-label:       #8a92b8;
+    --conn-label-bd:    #252c4a;
+    /* section headers */
+    --sector-hdr:       #d0a030;
+    --pillar-hdr:       #a890f4;
+    /* value-chain layer cards (gold) */
+    --layer-bg:         linear-gradient(160deg, #181208 0%, #100c05 100%);
+    --layer-border:     #2e240a;
+    --layer-hover:      #b88a10;
+    --layer-num:        #b8924a;
+    --layer-h3:         #d8a850;
+    --layer-p:          #b09868;
+    --layer-stag:       #d0a030;
+    --layer-stag-bg:    rgba(184,138,16,.12);
+    --layer-hot-border: #7a5c14;
+    --layer-hot-h3:     #f0c060;
+    /* pillar cards (violet) */
+    --pil-bg:           linear-gradient(160deg, #100c1c 0%, #090714 100%);
+    --pil-border:       #241a40;
+    --pil-hover:        #7a50c8;
+    --pil-h3:           #a890f4;
+    --pil-p:            #9c90cc;
+    --nbadge-bg:        #6a40b8;
+    --nbadge-color:     #f4efff;
+    /* technology frontier (cyan) */
+    --sec-bg:           linear-gradient(160deg, #061419 0%, #040e12 100%);
+    --sec-border:       #12333d;
+    --sec-hover:        #1fa3bf;
+    --sec-h3:           #52cce4;
+    --sec-p:            #94b8c2;
+    --sec-kpi:          #86e2f2;
+    --sec-kpi-label:    #82a8b2;
+    /* living in space (green) */
+    --life-bg:          linear-gradient(160deg, #07150d 0%, #050f09 100%);
+    --life-border:      #163a24;
+    --life-hover:       #2fae66;
+    --life-h3:          #62d495;
+    --life-p:           #98bca6;
+    --life-stat:        #90e2b2;
+    --life-stat-bg:     rgba(47,174,102,.12);
+    --life-stat-bd:     rgba(47,174,102,.36);
+    /* economy & milestones (indigo) */
+    --force-bg:         #0c0f1a;
+    --force-border:     #1a2036;
+    --force-num:        #7480c0;
+    --force-h3:         #8c9ae6;
+    --force-p:          #8f97bc;
+    --force-stat:       #a8b0e6;
+    --force-stat-bg:    rgba(72,80,144,.16);
+    --force-stat-bd:    rgba(96,108,180,.32);
+    --news-date:        #f0c060;
+    --news-headline:    #c0601e;
+    /* space powers (blue) */
+    --jur-bg:           linear-gradient(160deg, #0a1322 0%, #070d18 100%);
+    --jur-border:       #18284a;
+    --jur-hover:        #3a78d0;
+    --jur-h3:           #78aef2;
+    --jur-p:            #8ea4c4;
+    --jur-kpi:          #e8c860;
+    --jur-kpi-label:    #8494b4;
+    --jur-tag:          #90b8f2;
+    --jur-tag-bg:       rgba(58,120,208,.14);
+    /* Δv diagram */
+    --dv-edge:          #c89a28;
+    --dv-aero:          #3cbf78;
+    --dv-node-fill:     #0e1120;
+    --dv-node-ring:     #c0601e;
+    --dv-junction:      #c89a28;
+    --dv-earth:         #2a74c8;
+    --dv-earth-ring:    #5aa0f0;
+    --dv-moon:          #9aa0b0;
+    --dv-moon-ring:     #c8ccd6;
+    --dv-mars:          #b8501e;
+    --dv-mars-ring:     #e07a40;
+    --dv-title:         #dfe4f4;
+    --dv-sub:           #9098bc;
+    --dv-val:           #f0a070;
+    --dv-total:         #f0c060;
+    --dv-band-bg:       rgba(224,112,40,.10);
+    --dv-band-border:   rgba(224,112,40,.45);
+    --dv-band-text:     #f0a878;
+    /* page sections, legend, footnote */
+    --pst-color:        #8a92b8;
+    --pst-line:         #1a2038;
+    --legend-color:     #9098bc;
+    --foot-color:       #8a92b4;
+    --foot-border:      #161c30;
+  }
+
+  /* ═══════════════════════════════
+     LIGHT TOKENS
+  ═══════════════════════════════ */
+  html[data-theme="light"] {
+    color-scheme: light;
+    --bg-page:          #f4f6fc;
+    --text-body:        #181a28;
+    --h1-color:         #6a2c08;
+    --subtitle-color:   #566080;
+    --ctrl-bg:          #ffffff;
+    --ctrl-border:      #dde4f0;
+    --ctrl-btn:         #566484;
+    --ctrl-active-bg:   #a8481a;
+    --ctrl-active:      #fff;
+    --phys-bg:          linear-gradient(135deg, #fff4ec 0%, #ffe9da 100%);
+    --phys-border:      #e08a4a;
+    --phys-shadow:      rgba(224,112,40,.12);
+    --phys-badge-bg:    #a8481a;
+    --phys-badge-color: #ffffff;
+    --phys-h2:          #8a360a;
+    --phys-p:           #6a4028;
+    --phys-tag-bg:      rgba(224,112,40,.08);
+    --phys-tag-border:  rgba(224,112,40,.32);
+    --phys-tag-color:   #8a360a;
+    --rs-bg:            linear-gradient(160deg, #fff8f2 0%, #fff0e4 100%);
+    --rs-border:        #f0c8a6;
+    --rs-hover:         #c0601e;
+    --rs-num:           #9a4410;
+    --rs-h3:            #8a360a;
+    --rs-p:             #5c3e2a;
+    --rs-stat:          #8a360a;
+    --rs-stat-bg:       rgba(224,112,40,.08);
+    --rs-stat-bd:       rgba(224,112,40,.28);
+    --conn-line-1:      linear-gradient(to bottom, #d06a2a, #a07808);
+    --conn-line-2:      linear-gradient(to bottom, #a07808, #6030b0);
+    --conn-arrow-gold:  #a07808;
+    --conn-arrow-pur:   #6030b0;
+    --conn-label:       #566080;
+    --conn-label-bd:    #c8d0e8;
+    --sector-hdr:       #80560a;
+    --pillar-hdr:       #5030a8;
+    --layer-bg:         linear-gradient(160deg, #fffbec 0%, #fff6d8 100%);
+    --layer-border:     #e0cc70;
+    --layer-hover:      #a07808;
+    --layer-num:        #7a5810;
+    --layer-h3:         #7c4808;
+    --layer-p:          #5c4a28;
+    --layer-stag:       #7c4a06;
+    --layer-stag-bg:    rgba(152,88,8,.09);
+    --layer-hot-border: #c8a030;
+    --layer-hot-h3:     #884010;
+    --pil-bg:           linear-gradient(160deg, #f2eeff 0%, #eae0ff 100%);
+    --pil-border:       #c0a8f0;
+    --pil-hover:        #5030a8;
+    --pil-h3:           #3820a0;
+    --pil-p:            #463870;
+    --nbadge-bg:        #5030a8;
+    --nbadge-color:     #f4eeff;
+    --sec-bg:           linear-gradient(160deg, #eefafd 0%, #e2f4f9 100%);
+    --sec-border:       #a8dce8;
+    --sec-hover:        #0e7f99;
+    --sec-h3:           #0a5a6e;
+    --sec-p:            #2c5560;
+    --sec-kpi:          #086478;
+    --sec-kpi-label:    #3e626c;
+    --life-bg:          linear-gradient(160deg, #effaf3 0%, #e2f5e9 100%);
+    --life-border:      #a8dcbc;
+    --life-hover:       #1e8a50;
+    --life-h3:          #13643a;
+    --life-p:           #2e5640;
+    --life-stat:        #13643a;
+    --life-stat-bg:     rgba(30,138,80,.08);
+    --life-stat-bd:     rgba(30,138,80,.26);
+    --force-bg:         #f0f2fc;
+    --force-border:     #d0d8f0;
+    --force-num:        #4a5aa8;
+    --force-h3:         #2840a0;
+    --force-p:          #404870;
+    --force-stat:       #2c44a0;
+    --force-stat-bg:    rgba(56,80,160,.07);
+    --force-stat-bd:    rgba(56,80,160,.22);
+    --news-date:        #8a4210;
+    --news-headline:    #c0601e;
+    --jur-bg:           linear-gradient(160deg, #eef4ff 0%, #e4eefc 100%);
+    --jur-border:       #b8cce8;
+    --jur-hover:        #2860b0;
+    --jur-h3:           #1c4c94;
+    --jur-p:            #3a4c68;
+    --jur-kpi:          #7c5006;
+    --jur-kpi-label:    #4e5e7c;
+    --jur-tag:          #1c4c94;
+    --jur-tag-bg:       rgba(40,96,176,.08);
+    --dv-edge:          #a07808;
+    --dv-aero:          #1e8a50;
+    --dv-node-fill:     #ffffff;
+    --dv-node-ring:     #c0601e;
+    --dv-junction:      #a07808;
+    --dv-earth:         #2a6fc0;
+    --dv-earth-ring:    #1c4c94;
+    --dv-moon:          #a4a9b6;
+    --dv-moon-ring:     #6a707e;
+    --dv-mars:          #c25a26;
+    --dv-mars-ring:     #8a3a10;
+    --dv-title:         #1c2034;
+    --dv-sub:           #4c5674;
+    --dv-val:           #8a360a;
+    --dv-total:         #7a4a06;
+    --dv-band-bg:       rgba(224,112,40,.07);
+    --dv-band-border:   rgba(224,112,40,.35);
+    --dv-band-text:     #8a360a;
+    --pst-color:        #566080;
+    --pst-line:         #dde4f0;
+    --legend-color:     #4f5c7c;
+    --foot-color:       #566080;
+    --foot-border:      #dde4f0;
+  }
+
+  /* ═══════════════════════════════
+     BASE
+  ═══════════════════════════════ */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg-page);
+    color: var(--text-body);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 24px 64px;
+  }
+
+  /* ── CONTROLS ── */
+  .controls {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 100;
+  }
+  .theme-btn {
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    border: 1px solid var(--ctrl-border);
+    background: var(--ctrl-bg);
+    cursor: pointer;
+    font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .lang-toggle {
+    display: flex;
+    background: var(--ctrl-bg);
+    border: 1px solid var(--ctrl-border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  }
+  .lang-toggle button {
+    padding: 7px 16px;
+    font-size: 13px; font-weight: 600;
+    border: none; cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    background: transparent;
+    color: var(--ctrl-btn);
+    letter-spacing: 0.04em;
+  }
+  .lang-toggle button.active { background: var(--ctrl-active-bg); color: var(--ctrl-active); }
+
+  /* ── PAGE HEADER ── */
+  h1 {
+    font-size: 22px; font-weight: 600;
+    color: var(--h1-color);
+    margin-bottom: 6px;
+    text-align: center;
+    letter-spacing: 0.03em;
+  }
+  .subtitle {
+    font-size: 13px;
+    color: var(--subtitle-color);
+    margin-bottom: 52px;
+    text-align: center;
+  }
+
+  /* ── CHART WRAPPER ── */
+  .chart {
+    width: 100%;
+    max-width: 960px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ── PHYSICS OF ACCESS (higher-order card) ── */
+  .physics {
+    width: 100%;
+    background: var(--phys-bg);
+    border: 1.5px solid var(--phys-border);
+    border-radius: 14px;
+    padding: 22px 28px;
+    box-shadow: 0 0 32px var(--phys-shadow);
+  }
+  .physics .badge {
+    display: inline-block;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--phys-badge-bg); color: var(--phys-badge-color);
+    border-radius: 4px; padding: 2px 8px; margin-bottom: 10px;
+  }
+  .physics h2 { font-size: 19px; font-weight: 700; color: var(--phys-h2); margin-bottom: 6px; }
+  .physics p  { font-size: 13px; color: var(--phys-p); line-height: 1.6; }
+  .physics .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .physics .tag {
+    font-size: 11px;
+    background: var(--phys-tag-bg);
+    border: 1px solid var(--phys-tag-border);
+    color: var(--phys-tag-color);
+    border-radius: 20px; padding: 3px 12px;
+  }
+
+  /* ── CONNECTORS ── */
+  .connector {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 4px 0; gap: 2px;
+  }
+  .connector .line   { width: 2px; height: 18px; }
+  .connector .line-1 { background: var(--conn-line-1); }
+  .connector .line-2 { background: var(--conn-line-2); }
+  .connector .arrow  { width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; }
+  .connector .arrow-gold { border-top: 8px solid var(--conn-arrow-gold); }
+  .connector .arrow-pur  { border-top: 8px solid var(--conn-arrow-pur); }
+  .connector-label {
+    font-size: 10px; color: var(--conn-label);
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 2px 10px;
+    border: 1px dashed var(--conn-label-bd);
+    border-radius: 20px; margin: 3px 0;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section { width: 100%; }
+  .section-header {
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-header::before,
+  .section-header::after { content: ""; flex: 1; height: 1px; background: currentColor; opacity: 0.18; }
+  .sectors-header { color: var(--sector-hdr); }
+  .pillars-header { color: var(--pillar-hdr); }
+
+  /* ── GRIDS ── */
+  .cards-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  .cards-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+
+  /* ── VALUE-CHAIN LAYER CARDS ── */
+  .layer-card {
+    background: var(--layer-bg);
+    border: 1.5px solid var(--layer-border);
+    border-radius: 12px; padding: 16px 14px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .layer-card:hover { border-color: var(--layer-hover); transform: translateY(-2px); }
+  .layer-card .num  { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: var(--layer-num); text-transform: uppercase; margin-bottom: 6px; }
+  .layer-card .icon { font-size: 22px; margin-bottom: 8px; }
+  .layer-card h3    { font-size: 13px; font-weight: 700; color: var(--layer-h3); margin-bottom: 5px; }
+  .layer-card p     { font-size: 11px; color: var(--layer-p); line-height: 1.55; }
+  .layer-card .sub-tags { display: flex; flex-direction: column; gap: 3px; margin-top: 8px; }
+  .layer-card .sub-tag  { font-size: 9.5px; color: var(--layer-stag); background: var(--layer-stag-bg); border-radius: 4px; padding: 2px 6px; width: fit-content; }
+  .layer-card.hot   { border-color: var(--layer-hot-border); }
+  .layer-card.hot h3 { color: var(--layer-hot-h3); }
+
+  /* ── PILLAR CARDS ── */
+  .pillar-card {
+    background: var(--pil-bg);
+    border: 1.5px solid var(--pil-border);
+    border-radius: 12px; padding: 16px 14px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .pillar-card:hover { border-color: var(--pil-hover); transform: translateY(-2px); }
+  .pillar-card .icon { font-size: 22px; margin-bottom: 8px; }
+  .pillar-card h3    { font-size: 13px; font-weight: 700; color: var(--pil-h3); margin-bottom: 5px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .pillar-card p     { font-size: 11px; color: var(--pil-p); line-height: 1.55; }
+  .new-badge {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    background: var(--nbadge-bg); color: var(--nbadge-color);
+    border-radius: 3px; padding: 1px 5px;
+  }
+
+  /* ── PAGE SECTIONS ── */
+  .page-section { width: 100%; max-width: 960px; margin-top: 52px; }
+  .page-section-title {
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--pst-color);
+    text-align: center; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .page-section-title::before,
+  .page-section-title::after { content: ""; flex: 1; height: 1px; background: var(--pst-line); }
+
+  /* ── Δv DIAGRAM ── */
+  .dv-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .dv-wrap svg { display: block; width: 100%; min-width: 640px; height: auto; margin: 0 auto; }
+  .dv-wrap svg text { font-family: inherit; }
+  .dv-edge     { fill: none; stroke: var(--dv-edge); stroke-width: 2.2; }
+  .dv-aero     { fill: none; stroke: var(--dv-aero); stroke-width: 2; stroke-dasharray: 6 5; }
+  .dv-node     { fill: var(--dv-node-fill); stroke: var(--dv-node-ring); stroke-width: 2.2; }
+  .dv-junction { fill: var(--dv-junction); }
+  .dv-earth    { fill: var(--dv-earth); stroke: var(--dv-earth-ring); stroke-width: 2; }
+  .dv-moon     { fill: var(--dv-moon); stroke: var(--dv-moon-ring); stroke-width: 2; }
+  .dv-mars     { fill: var(--dv-mars); stroke: var(--dv-mars-ring); stroke-width: 2; }
+  .dv-t        { fill: var(--dv-title); font-size: 14px; font-weight: 700; }
+  .dv-s        { fill: var(--dv-sub); font-size: 11px; }
+  .dv-v        { fill: var(--dv-val); font-size: 13px; font-weight: 700; }
+  .dv-total    { fill: var(--dv-total); font-size: 11px; font-weight: 700; }
+  .dv-band     { fill: var(--dv-band-bg); stroke: var(--dv-band-border); stroke-width: 1.2; stroke-dasharray: 4 3; }
+  .dv-band-t   { fill: var(--dv-band-text); font-size: 12px; font-weight: 700; letter-spacing: .02em; }
+
+  .swipe-hint { display: none; margin-top: 6px; font-size: 10px; letter-spacing: .06em; color: var(--pst-color); text-align: center; }
+
+  .dv-chips { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin: 14px 0 22px; }
+  .chip {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 600; letter-spacing: .04em;
+    color: var(--legend-color);
+    padding: 4px 12px; border-radius: 20px; border: 1px solid var(--pst-line);
+  }
+  .sw      { display: inline-block; width: 18px; border-top: 2.2px solid var(--dv-edge); }
+  .sw-aero { border-top: 2px dashed var(--dv-aero); }
+  .sw-node { width: 10px; height: 10px; border: 2px solid var(--dv-node-ring); border-radius: 50%; }
+
+  /* ── ROCKET SCIENCE CARDS ── */
+  .rs-card {
+    background: var(--rs-bg);
+    border: 1.5px solid var(--rs-border);
+    border-radius: 12px; padding: 16px;
+    display: flex; flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .rs-card:hover { border-color: var(--rs-hover); transform: translateY(-2px); }
+  .rs-card .rs-num { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--rs-num); margin-bottom: 6px; }
+  .rs-card h3      { font-size: 13px; font-weight: 700; color: var(--rs-h3); margin-bottom: 6px; }
+  .rs-card p       { font-size: 11.5px; color: var(--rs-p); line-height: 1.6; }
+  .rs-card .stat {
+    margin-top: auto; align-self: flex-start;
+    font-size: 10px; color: var(--rs-stat);
+    background: var(--rs-stat-bg); border: 1px solid var(--rs-stat-bd);
+    border-radius: 4px; padding: 2px 8px;
+  }
+  .rs-card p + .stat { margin-top: 10px; }
+
+  /* ── TECHNOLOGY FRONTIER CARDS ── */
+  .sec-card {
+    background: var(--sec-bg);
+    border: 1.5px solid var(--sec-border);
+    border-radius: 12px; padding: 16px 14px;
+    display: flex; flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .sec-card:hover { border-color: var(--sec-hover); transform: translateY(-2px); }
+  .sec-card .icon      { font-size: 22px; margin-bottom: 8px; }
+  .sec-card h3         { font-size: 13px; font-weight: 700; color: var(--sec-h3); margin-bottom: 5px; }
+  .sec-card p          { font-size: 11px; color: var(--sec-p); line-height: 1.6; }
+  .sec-card .kpi       { margin-top: auto; padding-top: 10px; font-size: 18px; font-weight: 700; color: var(--sec-kpi); line-height: 1.2; }
+  .sec-card .kpi-label { font-size: 9.5px; color: var(--sec-kpi-label); margin-top: 2px; }
+
+  /* ── LIVING IN SPACE CARDS ── */
+  .life-card {
+    background: var(--life-bg);
+    border: 1.5px solid var(--life-border);
+    border-radius: 12px; padding: 16px 14px;
+    display: flex; flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .life-card:hover { border-color: var(--life-hover); transform: translateY(-2px); }
+  .life-card .icon { font-size: 22px; margin-bottom: 8px; }
+  .life-card h3    { font-size: 13px; font-weight: 700; color: var(--life-h3); margin-bottom: 5px; }
+  .life-card p     { font-size: 11px; color: var(--life-p); line-height: 1.6; }
+  .life-card .stat {
+    margin-top: auto; align-self: flex-start;
+    font-size: 10px; color: var(--life-stat);
+    background: var(--life-stat-bg); border: 1px solid var(--life-stat-bd);
+    border-radius: 4px; padding: 2px 8px;
+  }
+  .life-card p + .stat { margin-top: 10px; }
+
+  /* ── ECONOMY CARDS ── */
+  .force-card {
+    background: var(--force-bg);
+    border: 1.5px solid var(--force-border);
+    border-radius: 12px; padding: 18px 16px;
+  }
+  .force-card .force-num { font-size: 28px; font-weight: 800; color: var(--force-num); line-height: 1; margin-bottom: 8px; }
+  .force-card h3  { font-size: 13px; font-weight: 700; color: var(--force-h3); margin-bottom: 6px; }
+  .force-card p   { font-size: 11px; color: var(--force-p); line-height: 1.6; }
+  .force-card .stat {
+    display: inline-block; margin-top: 10px; font-size: 10px;
+    color: var(--force-stat); background: var(--force-stat-bg);
+    border: 1px solid var(--force-stat-bd); border-radius: 4px; padding: 2px 8px;
+  }
+
+  /* ── SPACE POWERS CARDS ── */
+  .jur-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .jur-card {
+    background: var(--jur-bg);
+    border: 1.5px solid var(--jur-border);
+    border-radius: 12px; padding: 16px 14px;
+    display: flex; flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .jur-card:hover { border-color: var(--jur-hover); transform: translateY(-2px); }
+  .jur-head  { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .jur-head .flag { font-size: 20px; line-height: 1; }
+  .jur-head h3    { font-size: 13px; font-weight: 700; color: var(--jur-h3); }
+  .jur-head .code {
+    margin-left: auto;
+    font-size: 9.5px; font-weight: 700; letter-spacing: .1em;
+    color: var(--jur-tag); background: var(--jur-tag-bg);
+    border-radius: 4px; padding: 2px 6px;
+  }
+  .jur-card dl { font-size: 11px; line-height: 1.5; margin-bottom: 12px; }
+  .jur-card dt { color: var(--jur-tag); font-weight: 700; font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase; margin-top: 6px; }
+  .jur-card dt:first-child { margin-top: 0; }
+  .jur-card dd { color: var(--jur-p); }
+  .jur-card .kpi       { margin-top: auto; font-size: 20px; font-weight: 800; color: var(--jur-kpi); line-height: 1.2; }
+  .jur-card .kpi-label { font-size: 10px; color: var(--jur-kpi-label); margin-top: 2px; }
+
+  /* ── MILESTONES ── */
+  .news-list { display: flex; flex-direction: column; gap: 10px; }
+  .news-item {
+    display: grid; grid-template-columns: 92px 1fr; gap: 14px;
+    background: var(--force-bg); border: 1.5px solid var(--force-border);
+    border-radius: 12px; padding: 14px 16px;
+  }
+  .news-item.headline { border-color: var(--news-headline); }
+  .news-date     { font-size: 11px; font-weight: 700; letter-spacing: 0.04em; color: var(--news-date); line-height: 1.5; }
+  .news-item h3  { font-size: 13px; font-weight: 700; color: var(--force-h3); margin-bottom: 5px; }
+  .news-item p   { font-size: 11.5px; color: var(--force-p); line-height: 1.6; }
+  .news-item .why { margin-top: 6px; color: var(--force-stat); }
+
+  /* ── WHERE STARTUPS ARE WINNING ── */
+  .opp-card {
+    background: var(--layer-bg);
+    border: 1.5px solid var(--layer-border);
+    border-radius: 12px; padding: 16px 14px;
+    display: flex; flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .opp-card:hover { border-color: var(--layer-hover); transform: translateY(-2px); }
+  .opp-card .opp-num  { font-size: 9px; font-weight: 700; color: var(--layer-num); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+  .opp-card .icon     { font-size: 20px; margin-bottom: 8px; }
+  .opp-card h3        { font-size: 12px; font-weight: 700; color: var(--layer-h3); margin-bottom: 5px; }
+  .opp-card p         { font-size: 10.5px; color: var(--layer-p); line-height: 1.55; }
+  .opp-card .examples { margin-top: auto; padding-top: 8px; font-size: 9.5px; color: var(--layer-stag); font-style: italic; }
+
+  /* ── LEGEND & FOOTNOTE ── */
+  .legend { margin-top: 48px; display: flex; gap: 14px 24px; flex-wrap: wrap; justify-content: center; max-width: 960px; }
+  .legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--legend-color); }
+  .legend-dot  { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .dot-phys  { background: var(--phys-border); }
+  .dot-layer { background: var(--layer-hover); }
+  .dot-pil   { background: var(--pil-hover); }
+  .dot-sec   { background: var(--sec-hover); }
+  .dot-life  { background: var(--life-hover); }
+  .dot-force { background: var(--force-num); }
+  .dot-jur   { background: var(--jur-hover); }
+  .footnote {
+    width: 100%; max-width: 960px;
+    margin-top: 28px; padding-top: 16px;
+    border-top: 1px solid var(--foot-border);
+    font-size: 11px; line-height: 1.6;
+    color: var(--foot-color); text-align: center;
+  }
+
+  @media (max-width: 1024px) {
+    body { padding-top: 72px; }   /* clear the fixed controls */
+    .jur-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 800px) {
+    .cards-5 { grid-template-columns: repeat(2, 1fr); }
+    .cards-4 { grid-template-columns: repeat(2, 1fr); }
+    .cards-3 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 668px) {
+    .swipe-hint { display: block; }
+    .cards-3 { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 460px) {
+    body { padding: 72px 16px 48px; }
+    .physics { padding: 18px; }
+    .cards-5, .cards-4, .jur-grid { grid-template-columns: 1fr; }
+    .news-item { grid-template-columns: 1fr; gap: 4px; }
+  }
+  /* ── HOME LINK (top-left, mirrors the controls) ── */
+  .home-link {
+    position: fixed; top: 20px; left: 24px; z-index: 100;
+    display: flex; align-items: center; height: 34px; padding: 0 12px;
+    border: 1px solid var(--ctrl-border); border-radius: 8px;
+    background: var(--ctrl-bg); color: var(--text-body);
+    font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-decoration: none;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    transition: border-color 0.2s;
+  }
+  .home-link:hover, .home-link:focus-visible { border-color: var(--text-body); }
+</style>
+</head>
+<body>
+
+<!-- Controls -->
+<a class="home-link" href="index.html" title="Back to homepage" data-en="← Home" data-zh="← 首页">← Home</a>
+<div class="controls">
+  <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Switch theme" aria-label="Switch theme">🌙</button>
+  <div class="lang-toggle" role="group" aria-label="Language">
+    <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+    <button id="btn-zh" onclick="setLang('zh')">中文</button>
+  </div>
+</div>
+
+<h1 data-en="Space Industry — Full Overview (as of October 2026)"
+    data-zh="航天产业全览（截至2026年10月）">Space Industry — Full Overview (as of October 2026)</h1>
+<p class="subtitle"
+   data-en="Rocket Science · Value Chain · Technology · Living in Space · Economy &amp; Powers · Milestones"
+   data-zh="火箭科学 · 价值链 · 前沿技术 · 太空生活 · 经济与航天强国 · 里程碑">Rocket Science · Value Chain · Technology · Living in Space · Economy &amp; Powers · Milestones</p>
+
+<div class="chart">
+
+  <!-- ══ PHYSICS OF ACCESS (higher-order force) ══ -->
+  <div class="physics">
+    <div class="badge" data-en="Higher-Order Force" data-zh="高阶驱动力">Higher-Order Force</div>
+    <h2 data-en="The Physics of Access — Rocket Equation, Δv &amp; Cost to Orbit"
+        data-zh="进入太空的物理学——火箭方程、速度增量与入轨成本">The Physics of Access — Rocket Equation, Δv &amp; Cost to Orbit</h2>
+    <p data-en="Not a sector — the constraint every layer below pays for. Reaching low Earth orbit takes ~9.4 km/s of Δv, so the rocket equation makes most of a launcher's mass propellant; engine efficiency (Isp), staging and reuse set the price per kilogram — ~$65,400/kg on the Space Shuttle, ~$2,600/kg on Falcon 9 (CSIS, FY2021 dollars). Every drop in $/kg opens the layers above."
+       data-zh="并非某一赛道，而是下方每一层都要承担的约束。进入近地轨道需要约9.4 km/s的速度增量（Δv），火箭方程决定了运载火箭的大部分质量都是推进剂；发动机效率（比冲）、分级与复用决定每千克的价格——航天飞机约6.54万美元/千克，猎鹰9号约2600美元/千克（CSIS，2021财年美元）。每千克入轨成本每降一步，上方各层就打开新的市场。">Not a sector — the constraint every layer below pays for. Reaching low Earth orbit takes ~9.4 km/s of Δv, so the rocket equation makes most of a launcher's mass propellant; engine efficiency (Isp), staging and reuse set the price per kilogram — ~$65,400/kg on the Space Shuttle, ~$2,600/kg on Falcon 9 (CSIS, FY2021 dollars). Every drop in $/kg opens the layers above.</p>
+    <div class="tags">
+      <span class="tag" data-en="Δv ≈ 9.4 km/s to LEO"  data-zh="入轨Δv约9.4 km/s">Δv ≈ 9.4 km/s to LEO</span>
+      <span class="tag" data-en="Isp · Mass Ratio"       data-zh="比冲 · 质量比">Isp · Mass Ratio</span>
+      <span class="tag" data-en="Staging · Reuse"        data-zh="分级 · 复用">Staging · Reuse</span>
+      <span class="tag" data-en="$/kg to Orbit"          data-zh="每千克入轨成本">$/kg to Orbit</span>
+      <span class="tag" data-en="Orbital Refueling"      data-zh="在轨加注">Orbital Refueling</span>
+      <span class="tag" data-en="Gravity Wells"          data-zh="引力井">Gravity Wells</span>
+    </div>
+  </div>
+
+  <!-- Connector 1 -->
+  <div class="connector">
+    <div class="line line-1"></div>
+    <div class="connector-label" data-en="sets the cost of every layer" data-zh="决定每一层的成本">sets the cost of every layer</div>
+    <div class="line line-1"></div>
+    <div class="arrow arrow-gold"></div>
+  </div>
+
+  <!-- ══ FIVE VALUE-CHAIN LAYERS ══ -->
+  <div class="section">
+    <div class="section-header sectors-header"
+         data-en="Five Value-Chain Layers — Upper Layer"
+         data-zh="五大价值链层级 — 上层">Five Value-Chain Layers — Upper Layer</div>
+    <div class="cards-5">
+
+      <div class="layer-card">
+        <div class="num" data-en="Layer 1" data-zh="第一层">Layer 1</div>
+        <div class="icon">🚀</div>
+        <h3 data-en="Launch &amp; Access to Orbit" data-zh="发射与入轨">Launch &amp; Access to Orbit</h3>
+        <p data-en="Rockets, spaceports and rideshare. A record 329 orbital launch attempts in 2025 — 170 by SpaceX, 92 from China (McDowell). Reusable boosters now set the cost baseline."
+           data-zh="火箭、发射场与拼车发射。2025年轨道发射尝试达创纪录的329次——SpaceX 170次，中国92次（McDowell数据）。可复用助推器已成为成本基准。">Rockets, spaceports and rideshare. A record 329 orbital launch attempts in 2025 — 170 by SpaceX, 92 from China (McDowell). Reusable boosters now set the cost baseline.</p>
+        <div class="sub-tags">
+          <span class="sub-tag" data-en="Falcon 9 · Starship · New Glenn" data-zh="猎鹰9号 · 星舰 · 新格伦">Falcon 9 · Starship · New Glenn</span>
+          <span class="sub-tag" data-en="Long March · Zhuque-3"           data-zh="长征 · 朱雀三号">Long March · Zhuque-3</span>
+          <span class="sub-tag" data-en="Ariane 6 · H3 · LVM3"            data-zh="阿里安6 · H3 · LVM3">Ariane 6 · H3 · LVM3</span>
+        </div>
+      </div>
+
+      <div class="layer-card">
+        <div class="num" data-en="Layer 2" data-zh="第二层">Layer 2</div>
+        <div class="icon">🛰️</div>
+        <h3 data-en="Spacecraft &amp; Satellites" data-zh="航天器与卫星">Spacecraft &amp; Satellites</h3>
+        <p data-en="Buses, payloads, optics and propulsion, now built on production lines. 4,434 satellites launched in 2025; satellite manufacturing earned $20.4B (SIA)."
+           data-zh="卫星平台、载荷、光学与推进系统，如今已走上流水线生产。2025年发射卫星4,434颗；卫星制造收入204亿美元（SIA）。">Buses, payloads, optics and propulsion, now built on production lines. 4,434 satellites launched in 2025; satellite manufacturing earned $20.4B (SIA).</p>
+        <div class="sub-tags">
+          <span class="sub-tag" data-en="Buses · Payloads"     data-zh="平台 · 载荷">Buses · Payloads</span>
+          <span class="sub-tag" data-en="Solar Arrays · Electric Propulsion" data-zh="太阳翼 · 电推进">Solar Arrays · Electric Propulsion</span>
+          <span class="sub-tag" data-en="Rad-Tolerant Chips"   data-zh="抗辐射芯片">Rad-Tolerant Chips</span>
+        </div>
+      </div>
+
+      <div class="layer-card hot">
+        <div class="num" data-en="Layer 3 · Largest revenue pool" data-zh="第三层 · 最大收入池">Layer 3 · Largest revenue pool</div>
+        <div class="icon">📡</div>
+        <h3 data-en="Ground Equipment &amp; Operations" data-zh="地面设备与运营">Ground Equipment &amp; Operations</h3>
+        <p data-en="Ground stations, mission control, space-domain awareness — and the devices that use satellites: GNSS chips and broadband terminals. Ground equipment earned $165.2B in 2025, 54% of satellite-industry revenue (SIA)."
+           data-zh="地面站、任务控制、空间态势感知——以及使用卫星的终端设备：导航芯片与宽带终端。2025年地面设备收入1652亿美元，占卫星产业收入的54%（SIA）。">Ground stations, mission control, space-domain awareness — and the devices that use satellites: GNSS chips and broadband terminals. Ground equipment earned $165.2B in 2025, 54% of satellite-industry revenue (SIA).</p>
+        <div class="sub-tags">
+          <span class="sub-tag" data-en="GNSS Chips · Terminals"   data-zh="导航芯片 · 终端">GNSS Chips · Terminals</span>
+          <span class="sub-tag" data-en="Ground Stations · Ops"    data-zh="地面站 · 运控">Ground Stations · Ops</span>
+          <span class="sub-tag" data-en="Space-Domain Awareness"   data-zh="空间态势感知">Space-Domain Awareness</span>
+        </div>
+      </div>
+
+      <div class="layer-card">
+        <div class="num" data-en="Layer 4" data-zh="第四层">Layer 4</div>
+        <div class="icon">🌐</div>
+        <h3 data-en="Space Services" data-zh="空间服务">Space Services</h3>
+        <p data-en="Connectivity, Earth observation, navigation and weather, sold to people, firms and governments. Satellite services earned $105B in 2025 (SIA); Starlink alone had 12.0M subscribers (Jun 30, 2026)."
+           data-zh="向个人、企业与政府出售的通信、对地观测、导航与气象服务。2025年卫星服务收入1050亿美元（SIA）；仅星链就有1200万用户（2026年6月30日）。">Connectivity, Earth observation, navigation and weather, sold to people, firms and governments. Satellite services earned $105B in 2025 (SIA); Starlink alone had 12.0M subscribers (Jun 30, 2026).</p>
+        <div class="sub-tags">
+          <span class="sub-tag" data-en="Starlink · Amazon Leo · Qianfan" data-zh="星链 · Amazon Leo · 千帆">Starlink · Amazon Leo · Qianfan</span>
+          <span class="sub-tag" data-en="EO · SAR · Weather"             data-zh="遥感 · SAR · 气象">EO · SAR · Weather</span>
+          <span class="sub-tag" data-en="GPS · BeiDou · Galileo"         data-zh="GPS · 北斗 · 伽利略">GPS · BeiDou · Galileo</span>
+        </div>
+      </div>
+
+      <div class="layer-card">
+        <div class="num" data-en="Layer 5" data-zh="第五层">Layer 5</div>
+        <div class="icon">👩‍🚀</div>
+        <h3 data-en="Human Spaceflight &amp; Exploration" data-zh="载人航天与深空探索">Human Spaceflight &amp; Exploration</h3>
+        <p data-en="Crew transport, stations, the Moon, Mars and sample return. Artemis II flew four people around the Moon in April 2026; the ISS and Tiangong stay crewed year-round, and Soyuz still flies crews."
+           data-zh="载人运输、空间站、月球、火星与采样返回。2026年4月，阿尔忒弥斯二号载4人绕月飞行；国际空间站与天宫全年有人驻留，联盟号仍在执行载人任务。">Crew transport, stations, the Moon, Mars and sample return. Artemis II flew four people around the Moon in April 2026; the ISS and Tiangong stay crewed year-round, and Soyuz still flies crews.</p>
+        <div class="sub-tags">
+          <span class="sub-tag" data-en="ISS · Tiangong"           data-zh="国际空间站 · 天宫">ISS · Tiangong</span>
+          <span class="sub-tag" data-en="Artemis · ILRS"           data-zh="阿尔忒弥斯 · 国际月球科研站">Artemis · ILRS</span>
+          <span class="sub-tag" data-en="Mars · Asteroid Samples"  data-zh="火星 · 小行星采样">Mars · Asteroid Samples</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Connector 2 -->
+  <div class="connector">
+    <div class="line line-2"></div>
+    <div class="connector-label" data-en="sustained by" data-zh="由以下支柱支撑">sustained by</div>
+    <div class="line line-2"></div>
+    <div class="arrow arrow-pur"></div>
+  </div>
+
+  <!-- ══ FOUNDATION PILLARS ══ -->
+  <div class="section">
+    <div class="section-header pillars-header"
+         data-en="Foundation Pillars — Lower Layer"
+         data-zh="基础支柱 — 下层">Foundation Pillars — Lower Layer</div>
+    <div class="cards-4">
+
+      <div class="pillar-card">
+        <div class="icon">💰</div>
+        <h3 data-en="Capital &amp; Anchor Customers" data-zh="资本与锚定客户">Capital &amp; Anchor Customers</h3>
+        <p data-en="Governments buy first and fund development: 53 government space budgets totaled ~$141B in 2025 (Space Foundation). Private capital follows — SpaceX's June 2026 IPO raised ~$75B."
+           data-zh="政府率先采购并为研发买单：2025年53个政府航天预算合计约1410亿美元（Space Foundation）。私人资本随后跟进——SpaceX于2026年6月IPO募资约750亿美元。">Governments buy first and fund development: 53 government space budgets totaled ~$141B in 2025 (Space Foundation). Private capital follows — SpaceX's June 2026 IPO raised ~$75B.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="icon">⚖️</div>
+        <h3 data-en="Policy, Spectrum &amp; Law" data-zh="政策、频谱与法律">Policy, Spectrum &amp; Law</h3>
+        <p data-en="The Outer Space Treaty (1967; 118 parties) bars national claims; the U.S.-led Artemis Accords (76 signatories) and the China–Russia ILRS (17 partner countries and organizations) anchor rival lunar coalitions. ITU rules make constellations deploy 10%, 50% and 100% within 2, 5 and 7 years."
+           data-zh="《外层空间条约》（1967年；118个缔约国）禁止国家据为己有；美国主导的《阿尔忒弥斯协定》（76个签署国）与中俄国际月球科研站（17个伙伴国家和组织）形成两大月球合作阵营。国际电联规定星座须在2、5、7年内分别部署10%、50%与100%。">The Outer Space Treaty (1967; 118 parties) bars national claims; the U.S.-led Artemis Accords (76 signatories) and the China–Russia ILRS (17 partner countries and organizations) anchor rival lunar coalitions. ITU rules make constellations deploy 10%, 50% and 100% within 2, 5 and 7 years.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="icon">🧑‍🔬</div>
+        <h3 data-en="Talent &amp; Supply Chain" data-zh="人才与供应链">Talent &amp; Supply Chain</h3>
+        <p data-en="Propulsion engineers, test stands, radiation-tolerant electronics, carbon composites and launch-site access. Export controls (ITAR, EAR) and sanctions decide who can buy from whom."
+           data-zh="推进工程师、试车台、抗辐射电子器件、碳纤维复合材料与发射场资源。出口管制（ITAR、EAR）与制裁决定谁能向谁采购。">Propulsion engineers, test stands, radiation-tolerant electronics, carbon composites and launch-site access. Export controls (ITAR, EAR) and sanctions decide who can buy from whom.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="icon">🌌</div>
+        <h3>
+          <span data-en="In-Space Economy" data-zh="在轨经济">In-Space Economy</span>
+          <span class="new-badge" data-en="Emerging" data-zh="新兴">Emerging</span>
+        </h3>
+        <p data-en="Making, fixing and computing in orbit: Varda's drug-crystal capsules, debris inspection (Astroscale), orbital refueling and data centers in space (Starcloud, China's Three-Body constellation). Lunar water ice could one day become propellant."
+           data-zh="在轨制造、维修与计算：Varda的药物晶体返回舱、碎片抵近检查（Astroscale）、在轨加注，以及太空数据中心（Starcloud、中国“三体计算星座”）。月球水冰未来有望成为推进剂。">Making, fixing and computing in orbit: Varda's drug-crystal capsules, debris inspection (Astroscale), orbital refueling and data centers in space (Starcloud, China's Three-Body constellation). Lunar water ice could one day become propellant.</p>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ══ ROCKET SCIENCE 101 ══ -->
+<div class="page-section">
+  <div class="page-section-title"
+       data-en="Rocket Science 101"
+       data-zh="火箭科学入门">Rocket Science 101</div>
+
+  <div class="dv-wrap">
+  <svg viewBox="0 0 880 510" role="img" aria-labelledby="dv-title">
+    <title id="dv-title" data-en="Delta-v map: about 9.4 km/s from Earth's surface to low Earth orbit; from there about 2.4 to a geostationary transfer orbit and 1.5 to 1.8 more to geostationary orbit; about 3.1 to head for the Moon, 0.8 to enter lunar orbit and 1.7 to land, about 15 km/s in all; about 3.6 to depart for Mars, where the atmosphere helps slow the landing." data-zh="速度增量（Δv）图：从地表到近地轨道约9.4 km/s；由此到地球同步转移轨道约2.4，再到静止轨道约1.5–1.8；奔月约3.1，进入环月轨道约0.8，登月约1.7，全程约15 km/s；飞往火星约3.6，着陆时借助大气减速。">Delta-v map: about 9.4 km/s from Earth's surface to low Earth orbit; from there about 2.4 to a geostationary transfer orbit and 1.5 to 1.8 more to geostationary orbit; about 3.1 to head for the Moon, 0.8 to enter lunar orbit and 1.7 to land, about 15 km/s in all; about 3.6 to depart for Mars, where the atmosphere helps slow the landing.</title>
+
+    <!-- ── edges ── -->
+    <line x1="120" y1="250" x2="232" y2="250" class="dv-edge"/>
+    <line x1="268" y1="250" x2="414" y2="250" class="dv-edge"/>
+    <line x1="446" y1="250" x2="584" y2="250" class="dv-edge"/>
+    <line x1="616" y1="250" x2="760" y2="250" class="dv-edge"/>
+    <line x1="330" y1="250" x2="420" y2="123" class="dv-edge"/>
+    <line x1="446" y1="110" x2="584" y2="110" class="dv-edge"/>
+    <line x1="330" y1="250" x2="420" y2="367" class="dv-edge"/>
+    <line x1="446" y1="380" x2="762" y2="380" class="dv-aero"/>
+    <circle cx="330" cy="250" r="4" class="dv-junction"/>
+
+    <!-- ── Δv values ── -->
+    <text x="176" y="238" class="dv-v" text-anchor="middle">~9.4</text>
+    <text x="176" y="272" class="dv-s" text-anchor="middle"
+          data-en="incl. ascent losses" data-zh="含上升损失">incl. ascent losses</text>
+    <text x="385" y="238" class="dv-v" text-anchor="middle">~3.1</text>
+    <text x="515" y="238" class="dv-v" text-anchor="middle">~0.8</text>
+    <text x="688" y="238" class="dv-v" text-anchor="middle">~1.7</text>
+    <text x="362" y="176" class="dv-v" text-anchor="end">~2.4</text>
+    <text x="515" y="98"  class="dv-v" text-anchor="middle">~1.5–1.8</text>
+    <text x="362" y="336" class="dv-v" text-anchor="end">~3.6</text>
+    <text x="604" y="368" class="dv-s" text-anchor="middle"
+          data-en="aerobraking + landing" data-zh="大气减速 + 着陆">aerobraking + landing</text>
+
+    <!-- ── Earth ── -->
+    <circle cx="80" cy="250" r="40" class="dv-earth"/>
+    <text x="80" y="312" class="dv-t" text-anchor="middle" data-en="Earth" data-zh="地球">Earth</text>
+    <text x="80" y="330" class="dv-s" text-anchor="middle" data-en="surface" data-zh="地表">surface</text>
+
+    <!-- ── LEO ── -->
+    <circle cx="250" cy="250" r="18" class="dv-node"/>
+    <text x="250" y="288" class="dv-t" text-anchor="middle" data-en="LEO" data-zh="近地轨道">LEO</text>
+    <text x="250" y="306" class="dv-s" text-anchor="middle" data-en="~300 km · 7.7 km/s" data-zh="约300千米 · 7.7 km/s">~300 km · 7.7 km/s</text>
+
+    <!-- ── GTO / GEO ── -->
+    <circle cx="430" cy="110" r="16" class="dv-node"/>
+    <text x="430" y="82" class="dv-t" text-anchor="middle" data-en="GTO" data-zh="同步转移轨道">GTO</text>
+    <circle cx="600" cy="110" r="16" class="dv-node"/>
+    <text x="626" y="106" class="dv-t" text-anchor="start" data-en="GEO" data-zh="静止轨道">GEO</text>
+    <text x="626" y="124" class="dv-s" text-anchor="start" data-en="35,786 km" data-zh="35,786千米">35,786 km</text>
+
+    <!-- ── Moon branch ── -->
+    <circle cx="430" cy="250" r="16" class="dv-node"/>
+    <text x="430" y="286" class="dv-t" text-anchor="middle" data-en="TLI" data-zh="地月转移">TLI</text>
+    <text x="430" y="304" class="dv-s" text-anchor="middle" data-en="toward the Moon" data-zh="奔向月球">toward the Moon</text>
+    <circle cx="600" cy="250" r="16" class="dv-node"/>
+    <text x="600" y="286" class="dv-t" text-anchor="middle" data-en="Lunar orbit" data-zh="环月轨道">Lunar orbit</text>
+    <text x="600" y="304" class="dv-s" text-anchor="middle" data-en="~100 km" data-zh="约100千米">~100 km</text>
+    <circle cx="790" cy="250" r="30" class="dv-moon"/>
+    <text x="790" y="302" class="dv-t" text-anchor="middle" data-en="Moon" data-zh="月球">Moon</text>
+    <text x="790" y="320" class="dv-s" text-anchor="middle" data-en="surface" data-zh="月面">surface</text>
+    <text x="790" y="338" class="dv-total" text-anchor="middle" data-en="≈ 15 km/s from Earth" data-zh="自地表合计约15 km/s">≈ 15 km/s from Earth</text>
+
+    <!-- ── Mars branch ── -->
+    <circle cx="430" cy="380" r="16" class="dv-node"/>
+    <text x="430" y="416" class="dv-t" text-anchor="middle" data-en="Mars transfer" data-zh="火星转移轨道">Mars transfer</text>
+    <circle cx="790" cy="380" r="28" class="dv-mars"/>
+    <text x="790" y="426" class="dv-t" text-anchor="middle" data-en="Mars" data-zh="火星">Mars</text>
+    <text x="790" y="444" class="dv-s" text-anchor="middle" data-en="surface" data-zh="地表">surface</text>
+
+    <!-- ── rocket equation band ── -->
+    <rect x="110" y="462" width="660" height="34" rx="17" class="dv-band"/>
+    <text x="440" y="484" class="dv-band-t" text-anchor="middle"
+          data-en="Δv = Isp · g₀ · ln(m₀ / m_f) — the rocket equation · typical values, mission-dependent"
+          data-zh="Δv = Isp · g₀ · ln(m₀ / m_f) —— 火箭方程 · 数值为典型值，因任务而异">Δv = Isp · g₀ · ln(m₀ / m_f) — the rocket equation · typical values, mission-dependent</text>
+  </svg>
+  </div>
+  <p class="swipe-hint" data-en="← swipe to see the full diagram →" data-zh="← 左右滑动查看完整图示 →">← swipe to see the full diagram →</p>
+
+  <div class="dv-chips">
+    <span class="chip"><span class="sw"></span><span data-en="Engine Δv, km/s (typical)" data-zh="发动机提供的Δv，km/s（典型值）">Engine Δv, km/s (typical)</span></span>
+    <span class="chip"><span class="sw sw-aero"></span><span data-en="Aerobraking: the atmosphere does the work" data-zh="气动减速：由大气完成减速">Aerobraking: the atmosphere does the work</span></span>
+    <span class="chip"><span class="sw sw-node"></span><span data-en="Orbit or surface" data-zh="轨道或地表">Orbit or surface</span></span>
+  </div>
+
+  <div class="cards-3">
+
+    <div class="rs-card">
+      <div class="rs-num" data-en="01 · The rule" data-zh="01 · 基本法则">01 · The rule</div>
+      <h3 data-en="The Rocket Equation" data-zh="火箭方程">The Rocket Equation</h3>
+      <p data-en="Δv = Isp · g₀ · ln(m₀/m_f): speed gained grows only with the log of the mass ratio. At an Isp of 300 s, reaching orbit's ~9.4 km/s in one stage would need a mass ratio of ~24 — about 96% propellant. That is why rockets stage."
+         data-zh="Δv = Isp · g₀ · ln(m₀/m_f)：速度增量只随质量比的对数增长。若比冲为300秒，单级达到入轨所需的约9.4 km/s，质量比需约24——即约96%是推进剂。这就是火箭要分级的原因。">Δv = Isp · g₀ · ln(m₀/m_f): speed gained grows only with the log of the mass ratio. At an Isp of 300 s, reaching orbit's ~9.4 km/s in one stage would need a mass ratio of ~24 — about 96% propellant. That is why rockets stage.</p>
+      <div class="stat" data-en="Mass ratio ~24 → ~96% propellant (illustrative)" data-zh="质量比约24 → 约96%为推进剂（示意）">Mass ratio ~24 → ~96% propellant (illustrative)</div>
+    </div>
+
+    <div class="rs-card">
+      <div class="rs-num" data-en="02 · Efficiency" data-zh="02 · 效率">02 · Efficiency</div>
+      <h3 data-en="Isp &amp; Propellants" data-zh="比冲与推进剂">Isp &amp; Propellants</h3>
+      <p data-en="Specific impulse (Isp) measures how efficiently an engine turns propellant into thrust; higher Isp means more Δv per kilogram. In vacuum: kerosene/oxygen (F-1) 304 s · hydrogen/oxygen (RS-25) 452 s · Hall-effect electric (NASA AEPS) ~2,800 s, at tiny thrust."
+         data-zh="比冲（Isp）衡量发动机把推进剂转化为推力的效率——比冲越高，每千克推进剂带来的Δv越多。真空比冲：液氧煤油（F-1）304秒 · 液氢液氧（RS-25）452秒 · 霍尔电推进（NASA AEPS）约2800秒，但推力极小。">Specific impulse (Isp) measures how efficiently an engine turns propellant into thrust; higher Isp means more Δv per kilogram. In vacuum: kerosene/oxygen (F-1) 304 s · hydrogen/oxygen (RS-25) 452 s · Hall-effect electric (NASA AEPS) ~2,800 s, at tiny thrust.</p>
+      <div class="stat" data-en="Vacuum Isp: 304 s · 452 s · ~2,800 s" data-zh="真空比冲：304秒 · 452秒 · 约2800秒">Vacuum Isp: 304 s · 452 s · ~2,800 s</div>
+    </div>
+
+    <div class="rs-card">
+      <div class="rs-num" data-en="03 · Engines" data-zh="03 · 发动机">03 · Engines</div>
+      <h3 data-en="Engine Cycles" data-zh="发动机循环方式">Engine Cycles</h3>
+      <p data-en="Gas-generator engines (Merlin) are simple but dump the gas that drives their pumps; staged-combustion engines (BE-4, oxygen-rich) burn it in the main chamber; full-flow staged combustion (Raptor) pre-burns both propellants for higher chamber pressure."
+         data-zh="燃气发生器循环（Merlin）结构简单，但驱动涡轮泵的燃气被直接排掉；分级燃烧循环（BE-4，富氧）把这部分燃气送入主燃烧室燃烧；全流量分级燃烧（Raptor）让两种推进剂都先经预燃室，室压更高。">Gas-generator engines (Merlin) are simple but dump the gas that drives their pumps; staged-combustion engines (BE-4, oxygen-rich) burn it in the main chamber; full-flow staged combustion (Raptor) pre-burns both propellants for higher chamber pressure.</p>
+      <div class="stat" data-en="Gas generator · Staged · Full-flow" data-zh="燃气发生器 · 分级燃烧 · 全流量">Gas generator · Staged · Full-flow</div>
+    </div>
+
+    <div class="rs-card">
+      <div class="rs-num" data-en="04 · Cost" data-zh="04 · 成本">04 · Cost</div>
+      <h3 data-en="Staging &amp; Reuse" data-zh="分级与复用">Staging &amp; Reuse</h3>
+      <p data-en="Dropping empty stages mid-flight keeps each stage's mass ratio achievable; landing them cuts the cost. One Falcon booster (B1067) has flown 37 times; Super Heavy was first caught by its tower on Oct 13, 2024; New Glenn landed in Nov 2025, and Zhuque-3 landed China's first orbital booster on land in Aug 2026."
+         data-zh="在飞行中抛掉空的子级，让每一级的质量比都可以实现；把它们回收则降低成本。一枚猎鹰助推器（B1067）已飞行37次；超重型助推器于2024年10月13日首次被发射塔捕获；新格伦于2025年11月首次着陆，朱雀三号于2026年8月实现中国首次轨道级助推器陆上着陆。">Dropping empty stages mid-flight keeps each stage's mass ratio achievable; landing them cuts the cost. One Falcon booster (B1067) has flown 37 times; Super Heavy was first caught by its tower on Oct 13, 2024; New Glenn landed in Nov 2025, and Zhuque-3 landed China's first orbital booster on land in Aug 2026.</p>
+      <div class="stat" data-en="Most-flown booster: 37 flights" data-zh="单枚助推器最多飞行37次">Most-flown booster: 37 flights</div>
+    </div>
+
+    <div class="rs-card">
+      <div class="rs-num" data-en="05 · Where" data-zh="05 · 位置">05 · Where</div>
+      <h3 data-en="Orbits 101" data-zh="轨道入门">Orbits 101</h3>
+      <p data-en="Low Earth orbit hosts the ISS (~415 km up, one lap every ~90 minutes) and the broadband constellations; GPS flies in medium orbit at ~20,200 km; geostationary satellites at 35,786 km circle once per sidereal day (23 h 56 min), so they hover over one spot."
+         data-zh="近地轨道上有国际空间站（高约415千米，约90分钟绕地一圈）和宽带星座；GPS位于约20,200千米的中轨道；静止轨道卫星高35,786千米，每个恒星日（23小时56分）绕地一周，因此相对地面静止。">Low Earth orbit hosts the ISS (~415 km up, one lap every ~90 minutes) and the broadband constellations; GPS flies in medium orbit at ~20,200 km; geostationary satellites at 35,786 km circle once per sidereal day (23 h 56 min), so they hover over one spot.</p>
+      <div class="stat" data-en="ISS ~415 km · GPS ~20,200 km · GEO 35,786 km" data-zh="空间站约415千米 · GPS约20,200千米 · 静止轨道35,786千米">ISS ~415 km · GPS ~20,200 km · GEO 35,786 km</div>
+    </div>
+
+    <div class="rs-card">
+      <div class="rs-num" data-en="06 · Coming home" data-zh="06 · 返回">06 · Coming home</div>
+      <h3 data-en="Re-entry &amp; Landing" data-zh="再入与着陆">Re-entry &amp; Landing</h3>
+      <p data-en="Coming home means shedding orbital speed as heat: ~7.7 km/s from LEO and ~11 km/s (25,000 mph) from the Moon, as Orion did on Artemis II. Ablative heat shields, parachutes and splashdowns — or engines, for propulsive landings and tower catches."
+         data-zh="返回地球意味着把轨道速度化为热量耗散：从近地轨道返回约7.7 km/s，从月球返回约11 km/s（时速约4万千米），阿尔忒弥斯二号的猎户座飞船即是如此。烧蚀防热罩、降落伞与海上溅落——或用发动机反推着陆乃至塔架捕获。">Coming home means shedding orbital speed as heat: ~7.7 km/s from LEO and ~11 km/s (25,000 mph) from the Moon, as Orion did on Artemis II. Ablative heat shields, parachutes and splashdowns — or engines, for propulsive landings and tower catches.</p>
+      <div class="stat" data-en="~7.7 km/s (LEO) · ~11 km/s (Moon)" data-zh="约7.7 km/s（近地轨道）· 约11 km/s（月球）">~7.7 km/s (LEO) · ~11 km/s (Moon)</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══ TECHNOLOGY FRONTIER ══ -->
+<div class="page-section">
+  <div class="page-section-title"
+       data-en="Technology Frontier — Oct 2026"
+       data-zh="前沿技术 — 2026年10月">Technology Frontier — Oct 2026</div>
+  <div class="cards-3">
+
+    <div class="sec-card">
+      <div class="icon">♻️</div>
+      <h3 data-en="Reusable Heavy Lift" data-zh="可复用重型运载">Reusable Heavy Lift</h3>
+      <p data-en="Starship reached orbit for the first time on Sep 28, 2026, deploying 26 Starlink V3 satellites before cutting the flight short after an engine shut down. Rivals: New Glenn reflew a booster in April but exploded in a May pad test; China's Long March 10 flew a low-altitude test in February."
+         data-zh="星舰于2026年9月28日首次入轨，部署26颗V3星链卫星，因一台发动机提前关机而提前返回。竞争者：新格伦4月首次复用助推器，但在5月的地面测试中爆炸；中国长征十号于2月完成低空飞行试验。">Starship reached orbit for the first time on Sep 28, 2026, deploying 26 Starlink V3 satellites before cutting the flight short after an engine shut down. Rivals: New Glenn reflew a booster in April but exploded in a May pad test; China's Long March 10 flew a low-altitude test in February.</p>
+      <div class="kpi" data-en="Sep 28, 2026" data-zh="2026年9月28日">Sep 28, 2026</div>
+      <div class="kpi-label" data-en="Starship's first orbit (Flight 14)" data-zh="星舰首次入轨（第14次试飞）">Starship's first orbit (Flight 14)</div>
+    </div>
+
+    <div class="sec-card">
+      <div class="icon">🌐</div>
+      <h3 data-en="Megaconstellations &amp; Direct-to-Cell" data-zh="巨型星座与手机直连">Megaconstellations &amp; Direct-to-Cell</h3>
+      <p data-en="Starlink has 11,156 satellites in orbit and 12.0M subscribers (Jun 30); Amazon Leo (392 in orbit) targets limited service by end-2026; China's Qianfan and Guowang have 258 and 256. SpaceX is buying spectrum to reach phones directly — ~$17B from EchoStar (2025), then 800 MHz from Grain (Oct 8, 2026)."
+         data-zh="星链在轨卫星11,156颗，用户1200万（6月30日）；Amazon Leo在轨392颗，目标2026年底前开通有限服务；中国千帆与国网星座在轨分别为258颗和256颗。SpaceX正收购频谱以直连手机——2025年以约170亿美元购入EchoStar频谱，2026年10月8日又购入Grain的800 MHz频谱。">Starlink has 11,156 satellites in orbit and 12.0M subscribers (Jun 30); Amazon Leo (392 in orbit) targets limited service by end-2026; China's Qianfan and Guowang have 258 and 256. SpaceX is buying spectrum to reach phones directly — ~$17B from EchoStar (2025), then 800 MHz from Grain (Oct 8, 2026).</p>
+      <div class="kpi">11,156</div>
+      <div class="kpi-label" data-en="Starlink satellites in orbit, Oct 13, 2026 (McDowell)" data-zh="星链在轨卫星数，2026年10月13日（McDowell）">Starlink satellites in orbit, Oct 13, 2026 (McDowell)</div>
+    </div>
+
+    <div class="sec-card">
+      <div class="icon">⛽</div>
+      <h3 data-en="Orbital Refueling &amp; Servicing" data-zh="在轨加注与维护">Orbital Refueling &amp; Servicing</h3>
+      <p data-en="NASA's Starship lunar lander must be filled in orbit by 10+ tanker flights, and ship-to-ship transfer has not flown yet. Servicing is already real: Astroscale's ADRAS-J inspected a spent rocket stage up close (2024) before starting to de-orbit in 2026."
+         data-zh="NASA的星舰登月着陆器需在轨接受10次以上加注飞行，而舰对舰推进剂转移尚未实施。在轨服务已成现实：Astroscale的ADRAS-J于2024年抵近检查一枚废弃火箭末级，并于2026年开始离轨。">NASA's Starship lunar lander must be filled in orbit by 10+ tanker flights, and ship-to-ship transfer has not flown yet. Servicing is already real: Astroscale's ADRAS-J inspected a spent rocket stage up close (2024) before starting to de-orbit in 2026.</p>
+      <div class="kpi" data-en="~$500M" data-zh="约5亿美元">~$500M</div>
+      <div class="kpi-label" data-en="space-sustainability revenue, 2025 (SIA)" data-zh="空间可持续性业务收入，2025年（SIA）">space-sustainability revenue, 2025 (SIA)</div>
+    </div>
+
+    <div class="sec-card">
+      <div class="icon">🏭</div>
+      <h3 data-en="In-Space Manufacturing" data-zh="在轨制造">In-Space Manufacturing</h3>
+      <p data-en="Varda's capsules make drug crystals in microgravity and bring them home through re-entry. W-5 landed in South Australia on Jan 29, 2026, and a sixth capsule launched on Mar 30."
+         data-zh="Varda的返回舱在微重力下制备药物晶体，再经再入带回地面。W-5于2026年1月29日在南澳大利亚着陆，第6个返回舱已于3月30日发射。">Varda's capsules make drug crystals in microgravity and bring them home through re-entry. W-5 landed in South Australia on Jan 29, 2026, and a sixth capsule launched on Mar 30.</p>
+      <div class="kpi">6</div>
+      <div class="kpi-label" data-en="Varda capsules launched, to Mar 2026" data-zh="Varda已发射返回舱数量（截至2026年3月）">Varda capsules launched, to Mar 2026</div>
+    </div>
+
+    <div class="sec-card">
+      <div class="icon">🧠</div>
+      <h3 data-en="Orbital Compute — AI × Space × Energy" data-zh="太空算力——AI × 航天 × 能源">Orbital Compute — AI × Space × Energy</h3>
+      <p data-en="In the right orbit a solar panel yields up to 8× more and works nearly nonstop (Google), so firms are testing data centers in space: Starcloud-1 flew an NVIDIA H100 (Nov 2025), China's Three-Body constellation runs AI models on its first 12 satellites, and SpaceX merged with xAI (Feb 2026). Google projects launch could fall below ~$200/kg by ~2035."
+         data-zh="在合适的轨道上，太阳能板的发电量最高可达地面的8倍，且几乎不间断（谷歌），因此企业开始试验太空数据中心：Starcloud-1搭载英伟达H100入轨（2025年11月），中国“三体计算星座”在首批12颗卫星上运行AI模型，SpaceX于2026年2月并购xAI。谷歌预测，到2035年前后发射价格可能降至每千克200美元以下。">In the right orbit a solar panel yields up to 8× more and works nearly nonstop (Google), so firms are testing data centers in space: Starcloud-1 flew an NVIDIA H100 (Nov 2025), China's Three-Body constellation runs AI models on its first 12 satellites, and SpaceX merged with xAI (Feb 2026). Google projects launch could fall below ~$200/kg by ~2035.</p>
+      <div class="kpi" data-en="&amp;lt;$200/kg" data-zh="&amp;lt;200美元/千克">&lt;$200/kg</div>
+      <div class="kpi-label" data-en="projected launch price, ~2035 — near parity with ground data-center energy cost (Google, projection)" data-zh="预测的2035年前后发射价格——届时在轨供电成本接近地面数据中心能源成本（谷歌预测）">projected launch price, ~2035 — near parity with ground data-center energy cost (Google, projection)</div>
+    </div>
+
+    <div class="sec-card">
+      <div class="icon">☀️</div>
+      <h3 data-en="Space Power — Solar &amp; Nuclear" data-zh="空间能源——太阳能与核能">Space Power — Solar &amp; Nuclear</h3>
+      <p data-en="Solar is the main power source in orbit: over 90% of small satellites carry solar panels and batteries, and space-grade multi-junction cells convert 30–34% of sunlight (NASA). The ISS's eight new roll-out arrays — the last two going up on upcoming spacewalks — lift its capacity from 160 kW to ~215 kW. Farther out sunlight fades (Mars gets 43% of Earth's) and lunar nights last ~15 days, so NASA plans Lunar Reactor-1 (at least 100 kW) for 2030."
+         data-zh="太阳能是轨道上的主要能源：超过90%的小卫星配备太阳能板与蓄电池，航天级多结电池可将30%–34%的阳光转化为电能（NASA）。国际空间站新增的8块卷展式太阳翼（最后两块将在近期出舱活动中安装）使其发电能力从160千瓦提升至约215千瓦。离太阳越远光照越弱（火星仅为地球的43%），月夜长达约15天，因此NASA计划于2030年部署“月球反应堆-1”（至少100千瓦）。">Solar is the main power source in orbit: over 90% of small satellites carry solar panels and batteries, and space-grade multi-junction cells convert 30–34% of sunlight (NASA). The ISS's eight new roll-out arrays — the last two going up on upcoming spacewalks — lift its capacity from 160 kW to ~215 kW. Farther out sunlight fades (Mars gets 43% of Earth's) and lunar nights last ~15 days, so NASA plans Lunar Reactor-1 (at least 100 kW) for 2030.</p>
+      <div class="kpi" data-en="~215 kW" data-zh="约215千瓦">~215 kW</div>
+      <div class="kpi-label" data-en="ISS power capacity with eight roll-out solar arrays (NASA)" data-zh="加装8块卷展式太阳翼后的国际空间站发电能力（NASA）">ISS power capacity with eight roll-out solar arrays (NASA)</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══ LIVING IN SPACE ══ -->
+<div class="page-section">
+  <div class="page-section-title"
+       data-en="Living in Space"
+       data-zh="太空生活">Living in Space</div>
+  <div class="cards-3">
+
+    <div class="life-card">
+      <div class="icon">🫁</div>
+      <h3 data-en="Life Support" data-zh="生命保障">Life Support</h3>
+      <p data-en="Machines make the air and water: life-support systems (ECLSS) generate oxygen, scrub out CO₂ and recycle water. With its brine processor, the ISS now recovers ~98% of the water crews bring — urine included; food is still shipped up."
+         data-zh="空气和水都靠机器：环境控制与生命保障系统（ECLSS）制氧、清除二氧化碳并循环用水。借助盐水处理器，国际空间站现可回收航天员所带用水的约98%——包括尿液中的水；食物仍需从地面运送。">Machines make the air and water: life-support systems (ECLSS) generate oxygen, scrub out CO₂ and recycle water. With its brine processor, the ISS now recovers ~98% of the water crews bring — urine included; food is still shipped up.</p>
+      <div class="stat" data-en="98% water recovery (NASA, 2023)" data-zh="水回收率98%（NASA，2023年）">98% water recovery (NASA, 2023)</div>
+    </div>
+
+    <div class="life-card">
+      <div class="icon">🦴</div>
+      <h3 data-en="Your Body in Microgravity" data-zh="微重力下的身体">Your Body in Microgravity</h3>
+      <p data-en="Without weight, bones and muscles waste: astronauts lose 1–1.5% of bone density per month at the hips, spine and legs, and body fluids shift toward the head. Crews exercise about two hours a day, which slows the loss but does not stop it."
+         data-zh="失去重量，骨骼与肌肉就会流失：航天员髋部、脊柱和腿部的骨密度每月下降1%–1.5%，体液也向头部转移。航天员每天锻炼约两小时，可减缓但无法阻止流失。">Without weight, bones and muscles waste: astronauts lose 1–1.5% of bone density per month at the hips, spine and legs, and body fluids shift toward the head. Crews exercise about two hours a day, which slows the loss but does not stop it.</p>
+      <div class="stat" data-en="−1–1.5% bone density a month" data-zh="骨密度每月下降1%–1.5%">−1–1.5% bone density a month</div>
+    </div>
+
+    <div class="life-card">
+      <div class="icon">☢️</div>
+      <h3 data-en="Radiation" data-zh="辐射">Radiation</h3>
+      <p data-en="Above the atmosphere, cosmic rays and solar storms raise cancer risk. NASA caps an astronaut's career dose at 600 mSv; Curiosity's measurements put a Mars mission — 180 days out, 500 on the surface, 180 back — at ~1 Sv."
+         data-zh="离开大气层，宇宙射线与太阳风暴会提高致癌风险。NASA将航天员职业生涯剂量上限定为600毫希沃特；“好奇号”的测量显示，一次火星任务（去程180天、地表500天、返程180天）剂量约1希沃特。">Above the atmosphere, cosmic rays and solar storms raise cancer risk. NASA caps an astronaut's career dose at 600 mSv; Curiosity's measurements put a Mars mission — 180 days out, 500 on the surface, 180 back — at ~1 Sv.</p>
+      <div class="stat" data-en="Career limit 600 mSv · Mars mission ~1 Sv" data-zh="职业上限600 mSv · 火星任务约1 Sv">Career limit 600 mSv · Mars mission ~1 Sv</div>
+    </div>
+
+    <div class="life-card">
+      <div class="icon">🌅</div>
+      <h3 data-en="A Day in Orbit" data-zh="轨道上的一天">A Day in Orbit</h3>
+      <p data-en="The ISS laps Earth every ~90 minutes — 16 sunrises and sunsets a day. Talking to home is near-instant from orbit, but a signal takes ~1.3 s each way from the Moon and ~3 to 22 minutes from Mars."
+         data-zh="国际空间站约90分钟绕地球一圈——每天经历16次日出日落。在近地轨道与地面通话几乎没有延迟，但信号从月球单程约1.3秒，从火星单程约3至22分钟。">The ISS laps Earth every ~90 minutes — 16 sunrises and sunsets a day. Talking to home is near-instant from orbit, but a signal takes ~1.3 s each way from the Moon and ~3 to 22 minutes from Mars.</p>
+      <div class="stat" data-en="16 sunrises a day" data-zh="每天16次日出">16 sunrises a day</div>
+    </div>
+
+    <div class="life-card">
+      <div class="icon">🏠</div>
+      <h3 data-en="Where People Live" data-zh="人们在哪里生活">Where People Live</h3>
+      <p data-en="The ISS has been crewed without a break since Nov 2, 2000 and retires in 2030. China's Tiangong, complete since 2022, received its first astronaut from Hong Kong with Shenzhou-23 (May 2026), which also began a planned year-long stay. Next come commercial stations: Vast's Haven-1 targets 2027, and NASA plans its station contract award for spring 2027."
+         data-zh="国际空间站自2000年11月2日起持续有人驻留，将于2030年退役。中国天宫空间站2022年全面建成，神舟二十三号（2026年5月）带来首位香港航天员，并开启计划为期一年的驻留。商业空间站接踵而至：Vast的Haven-1目标2027年发射，NASA计划于2027年春授予空间站合同。">The ISS has been crewed without a break since Nov 2, 2000 and retires in 2030. China's Tiangong, complete since 2022, received its first astronaut from Hong Kong with Shenzhou-23 (May 2026), which also began a planned year-long stay. Next come commercial stations: Vast's Haven-1 targets 2027, and NASA plans its station contract award for spring 2027.</p>
+      <div class="stat" data-en="ISS crewed since Nov 2, 2000" data-zh="国际空间站自2000年11月2日起持续驻人">ISS crewed since Nov 2, 2000</div>
+    </div>
+
+    <div class="life-card">
+      <div class="icon">🌙</div>
+      <h3 data-en="Living Off-World" data-zh="地外生活">Living Off-World</h3>
+      <p data-en="The Moon has 1/6 of Earth's gravity and water ice in shadowed polar craters; Mars has 38% gravity and air at ~0.6% of Earth's pressure, yet MOXIE made 122 g of oxygen from it. Crewed landings are targeted for 2028 (NASA's Artemis) and before 2030 (China)."
+         data-zh="月球重力为地球的1/6，极区永久阴影坑中存在水冰；火星重力为地球的38%，大气压仅约地球的0.6%，但MOXIE仍从中制取了122克氧气。载人登月目标：NASA阿尔忒弥斯计划2028年，中国2030年前。">The Moon has 1/6 of Earth's gravity and water ice in shadowed polar craters; Mars has 38% gravity and air at ~0.6% of Earth's pressure, yet MOXIE made 122 g of oxygen from it. Crewed landings are targeted for 2028 (NASA's Artemis) and before 2030 (China).</p>
+      <div class="stat" data-en="Crewed landings: 2028 (U.S.) · before 2030 (China)" data-zh="载人登月：美国2028年 · 中国2030年前">Crewed landings: 2028 (U.S.) · before 2030 (China)</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══ SPACE ECONOMY SNAPSHOT ══ -->
+<div class="page-section">
+  <div class="page-section-title"
+       data-en="Space Economy Snapshot — Oct 2026"
+       data-zh="航天经济快照 — 2026年10月">Space Economy Snapshot — Oct 2026</div>
+  <div class="cards-3">
+
+    <div class="force-card">
+      <div class="force-num">01</div>
+      <h3 data-en="A $686B Economy" data-zh="6860亿美元的经济体">A $686B Economy</h3>
+      <p data-en="The global space economy grew 12% to $686B in 2025; 79% of it ($544.3B) is commercial, and 53 government budgets add ~$141B (Space Foundation). By SIA's narrower count, satellites earned $303B — over half from ground equipment such as GNSS chips."
+         data-zh="2025年全球航天经济增长12%，达6860亿美元；其中79%（5443亿美元）为商业收入，53个政府预算合计约1410亿美元（Space Foundation）。按SIA较窄的口径，卫星产业收入3030亿美元——过半来自导航芯片等地面设备。">The global space economy grew 12% to $686B in 2025; 79% of it ($544.3B) is commercial, and 53 government budgets add ~$141B (Space Foundation). By SIA's narrower count, satellites earned $303B — over half from ground equipment such as GNSS chips.</p>
+      <span class="stat" data-en="Commercial 79% · Governments ~$141B" data-zh="商业79% · 政府约1410亿美元">Commercial 79% · Governments ~$141B</span>
+    </div>
+
+    <div class="force-card">
+      <div class="force-num">02</div>
+      <h3 data-en="Record Launch Cadence" data-zh="创纪录的发射节奏">Record Launch Cadence</h3>
+      <p data-en="Orbital launch attempts hit a record 329 in 2025, up 25% on 2024's 264; SpaceX flew 170 and China 92. 2026 is on a similar pace: 245 through Oct 14, against 240 at the same point of 2025."
+         data-zh="2025年轨道发射尝试达创纪录的329次，较2024年的264次增长25%；SpaceX发射170次，中国92次。2026年节奏相近：截至10月14日共245次，2025年同期为240次。">Orbital launch attempts hit a record 329 in 2025, up 25% on 2024's 264; SpaceX flew 170 and China 92. 2026 is on a similar pace: 245 through Oct 14, against 240 at the same point of 2025.</p>
+      <span class="stat" data-en="2025: 329 · 2026 to Oct 14: 245 (McDowell)" data-zh="2025年：329次 · 2026年截至10月14日：245次（McDowell）">2025: 329 · 2026 to Oct 14: 245 (McDowell)</span>
+    </div>
+
+    <div class="force-card">
+      <div class="force-num">03</div>
+      <h3 data-en="Capital Goes Public" data-zh="资本走向公开市场">Capital Goes Public</h3>
+      <p data-en="SpaceX merged with xAI in an all-stock deal (Feb 2026, ~$1.25T combined) and listed on Nasdaq on Jun 12, raising ~$75B in the largest IPO on record. Q2 revenue rose 92% to $7.8B; capex reached $18.37B, mostly for AI, and the net loss was $541M."
+         data-zh="SpaceX于2026年2月以全股票方式并购xAI（合并估值约1.25万亿美元），并于6月12日在纳斯达克上市，募资约750亿美元，为史上最大规模IPO。第二季度营收增长92%至78亿美元；资本开支达183.7亿美元（主要用于AI），净亏损5.41亿美元。">SpaceX merged with xAI in an all-stock deal (Feb 2026, ~$1.25T combined) and listed on Nasdaq on Jun 12, raising ~$75B in the largest IPO on record. Q2 revenue rose 92% to $7.8B; capex reached $18.37B, mostly for AI, and the net loss was $541M.</p>
+      <span class="stat" data-en="SPCX: ~$75B IPO, Jun 12, 2026" data-zh="SPCX：约750亿美元IPO，2026年6月12日">SPCX: ~$75B IPO, Jun 12, 2026</span>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══ SPACE POWERS LENS ══ -->
+<div class="page-section">
+  <div class="page-section-title"
+       data-en="Space Powers Lens"
+       data-zh="航天强国视角">Space Powers Lens</div>
+  <div class="jur-grid">
+
+    <div class="jur-card">
+      <div class="jur-head">
+        <span class="flag">🇺🇸</span>
+        <h3 data-en="United States" data-zh="美国">United States</h3>
+        <span class="code">US</span>
+      </div>
+      <dl>
+        <dt data-en="Agencies" data-zh="机构">Agencies</dt>
+        <dd data-en="NASA · Space Force · FAA · FCC" data-zh="NASA · 太空军 · FAA · FCC">NASA · Space Force · FAA · FCC</dd>
+        <dt data-en="Rockets" data-zh="火箭">Rockets</dt>
+        <dd data-en="Falcon 9 · Starship · New Glenn · Vulcan · Electron" data-zh="猎鹰9号 · 星舰 · 新格伦 · 火神 · 电子号">Falcon 9 · Starship · New Glenn · Vulcan · Electron</dd>
+        <dt data-en="Flagship" data-zh="旗舰项目">Flagship</dt>
+        <dd data-en="Artemis II flew around the Moon (Apr 2026); a south-pole landing is scheduled for 2028." data-zh="阿尔忒弥斯二号完成绕月飞行（2026年4月）；南极登月计划于2028年。">Artemis II flew around the Moon (Apr 2026); a south-pole landing is scheduled for 2028.</dd>
+      </dl>
+      <div class="kpi" data-en="$24.4B" data-zh="244亿美元">$24.4B</div>
+      <div class="kpi-label" data-en="NASA budget, FY2026" data-zh="NASA预算，2026财年">NASA budget, FY2026</div>
+    </div>
+
+    <div class="jur-card">
+      <div class="jur-head">
+        <span class="flag">🇨🇳</span>
+        <h3 data-en="China" data-zh="中国">China</h3>
+        <span class="code">CN</span>
+      </div>
+      <dl>
+        <dt data-en="Agencies" data-zh="机构">Agencies</dt>
+        <dd data-en="CNSA · CMSA · CASC" data-zh="国家航天局 · 载人航天工程办公室 · 航天科技集团">CNSA · CMSA · CASC</dd>
+        <dt data-en="Rockets" data-zh="火箭">Rockets</dt>
+        <dd data-en="Long March · Zhuque · Lijian-1" data-zh="长征 · 朱雀 · 力箭一号">Long March · Zhuque · Lijian-1</dd>
+        <dt data-en="Flagship" data-zh="旗舰项目">Flagship</dt>
+        <dd data-en="Tiangong; Tianwen-2 reached its asteroid (Jul 2026); Chang'e-7 missed its 2026 window." data-zh="天宫空间站；天问二号抵达目标小行星（2026年7月）；嫦娥七号错过2026年窗口。">Tiangong; Tianwen-2 reached its asteroid (Jul 2026); Chang'e-7 missed its 2026 window.</dd>
+      </dl>
+      <div class="kpi">92</div>
+      <div class="kpi-label" data-en="orbital launches, 2025 (McDowell)" data-zh="2025年轨道发射次数（McDowell）">orbital launches, 2025 (McDowell)</div>
+    </div>
+
+    <div class="jur-card">
+      <div class="jur-head">
+        <span class="flag">🇷🇺</span>
+        <h3 data-en="Russia" data-zh="俄罗斯">Russia</h3>
+        <span class="code">RU</span>
+      </div>
+      <dl>
+        <dt data-en="Agencies" data-zh="机构">Agencies</dt>
+        <dd data-en="Roscosmos" data-zh="俄罗斯国家航天集团">Roscosmos</dd>
+        <dt data-en="Rockets" data-zh="火箭">Rockets</dt>
+        <dd data-en="Soyuz-2 · Angara · Proton-M" data-zh="联盟-2 · 安加拉 · 质子-M">Soyuz-2 · Angara · Proton-M</dd>
+        <dt data-en="Flagship" data-zh="旗舰项目">Flagship</dt>
+        <dd data-en="Soyuz crews to the ISS; Russian Orbital Station from 2028; co-leads the ILRS with China." data-zh="联盟号向国际空间站运送航天员；俄罗斯轨道站2028年起部署；与中国共同牵头国际月球科研站。">Soyuz crews to the ISS; Russian Orbital Station from 2028; co-leads the ILRS with China.</dd>
+      </dl>
+      <div class="kpi">17</div>
+      <div class="kpi-label" data-en="orbital launches, 2025 (McDowell)" data-zh="2025年轨道发射次数（McDowell）">orbital launches, 2025 (McDowell)</div>
+    </div>
+
+    <div class="jur-card">
+      <div class="jur-head">
+        <span class="flag">🇪🇺</span>
+        <h3 data-en="Europe" data-zh="欧洲">Europe</h3>
+        <span class="code">EU</span>
+      </div>
+      <dl>
+        <dt data-en="Agencies" data-zh="机构">Agencies</dt>
+        <dd data-en="ESA · EU (EUSPA) · CNES · DLR" data-zh="欧空局 · 欧盟（EUSPA）· CNES · DLR">ESA · EU (EUSPA) · CNES · DLR</dd>
+        <dt data-en="Rockets" data-zh="火箭">Rockets</dt>
+        <dd data-en="Ariane 6 · Vega-C · Spectrum" data-zh="阿里安6 · 织女星-C · Spectrum">Ariane 6 · Vega-C · Spectrum</dd>
+        <dt data-en="Flagship" data-zh="旗舰项目">Flagship</dt>
+        <dd data-en="Galileo and Copernicus; Ariane 64 debuted (Feb 2026); Isar reached orbit from Norway (Sep 2026)." data-zh="伽利略与哥白尼计划；阿里安64首飞（2026年2月）；Isar从挪威入轨（2026年9月）。">Galileo and Copernicus; Ariane 64 debuted (Feb 2026); Isar reached orbit from Norway (Sep 2026).</dd>
+      </dl>
+      <div class="kpi" data-en="~€22B" data-zh="约220亿欧元">~€22B</div>
+      <div class="kpi-label" data-en="committed at ESA's Nov 2025 ministerial, a record" data-zh="欧空局2025年11月部长级会议承诺资金，创纪录">committed at ESA's Nov 2025 ministerial, a record</div>
+    </div>
+
+    <div class="jur-card">
+      <div class="jur-head">
+        <span class="flag">🇯🇵</span>
+        <h3 data-en="Japan" data-zh="日本">Japan</h3>
+        <span class="code">JP</span>
+      </div>
+      <dl>
+        <dt data-en="Agencies" data-zh="机构">Agencies</dt>
+        <dd data-en="JAXA · Cabinet Office" data-zh="JAXA · 内阁府">JAXA · Cabinet Office</dd>
+        <dt data-en="Rockets" data-zh="火箭">Rockets</dt>
+        <dd data-en="H3 · Kairos (Space One)" data-zh="H3 · Kairos（Space One）">H3 · Kairos (Space One)</dd>
+        <dt data-en="Flagship" data-zh="旗舰项目">Flagship</dt>
+        <dd data-en="HTV-X1 cargo ship (Oct 2025); H3 back in flight after a Dec 2025 failure." data-zh="HTV-X1货运飞船（2025年10月）；H3在2025年12月失利后恢复飞行。">HTV-X1 cargo ship (Oct 2025); H3 back in flight after a Dec 2025 failure.</dd>
+      </dl>
+      <div class="kpi" data-en="~¥1T" data-zh="约1万亿日元">~¥1T</div>
+      <div class="kpi-label" data-en="Space Strategy Fund, over up to 10 years" data-zh="宇宙战略基金，最长10年">Space Strategy Fund, over up to 10 years</div>
+    </div>
+
+    <div class="jur-card">
+      <div class="jur-head">
+        <span class="flag">🇮🇳</span>
+        <h3 data-en="India" data-zh="印度">India</h3>
+        <span class="code">IN</span>
+      </div>
+      <dl>
+        <dt data-en="Agencies" data-zh="机构">Agencies</dt>
+        <dd data-en="ISRO · IN-SPACe · NSIL" data-zh="ISRO · IN-SPACe · NSIL">ISRO · IN-SPACe · NSIL</dd>
+        <dt data-en="Rockets" data-zh="火箭">Rockets</dt>
+        <dd data-en="LVM3 · PSLV · GSLV · SSLV" data-zh="LVM3 · PSLV · GSLV · SSLV">LVM3 · PSLV · GSLV · SSLV</dd>
+        <dt data-en="Flagship" data-zh="旗舰项目">Flagship</dt>
+        <dd data-en="Gaganyaan: the uncrewed G1 test is still pending; the first crew is targeted for 2027." data-zh="加加扬：无人试验G1仍待发射；首次载人飞行目标2027年。">Gaganyaan: the uncrewed G1 test is still pending; the first crew is targeted for 2027.</dd>
+      </dl>
+      <div class="kpi">2035</div>
+      <div class="kpi-label" data-en="Bharatiya Antariksh Station target; an Indian on the Moon by 2040" data-zh="印度空间站目标年份；2040年前实现印度人登月">Bharatiya Antariksh Station target; an Indian on the Moon by 2040</div>
+    </div>
+
+    <div class="jur-card">
+      <div class="jur-head">
+        <span class="flag">🇦🇪</span>
+        <h3 data-en="UAE" data-zh="阿联酋">UAE</h3>
+        <span class="code">AE</span>
+      </div>
+      <dl>
+        <dt data-en="Agencies" data-zh="机构">Agencies</dt>
+        <dd data-en="UAE Space Agency · MBRSC" data-zh="阿联酋航天局 · 穆罕默德·本·拉希德航天中心">UAE Space Agency · MBRSC</dd>
+        <dt data-en="Rockets" data-zh="火箭">Rockets</dt>
+        <dd data-en="Flies on partners' rockets" data-zh="依托合作伙伴的火箭发射">Flies on partners' rockets</dd>
+        <dt data-en="Flagship" data-zh="旗舰项目">Flagship</dt>
+        <dd data-en="Hope at Mars since Feb 9, 2021; Gateway airlock; MBR Explorer to the asteroid belt (Mar 2028); Rashid Rover 2 (2027 at the earliest)." data-zh="希望号2021年2月9日抵达火星；月球门户站气闸舱；MBR探测器2028年3月飞往小行星带；拉希德2号月球车（最早2027年）。">Hope at Mars since Feb 9, 2021; Gateway airlock; MBR Explorer to the asteroid belt (Mar 2028); Rashid Rover 2 (2027 at the earliest).</dd>
+      </dl>
+      <div class="kpi" data-en="5th" data-zh="第5个">5th</div>
+      <div class="kpi-label" data-en="country to reach Mars — first Arab nation (2021)" data-zh="抵达火星的国家——首个阿拉伯国家（2021年）">country to reach Mars — first Arab nation (2021)</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══ MILESTONES ══ -->
+<div class="page-section">
+  <div class="page-section-title"
+       data-en="Milestones — Nov 2025 → Oct 2026"
+       data-zh="里程碑 — 2025年11月至2026年10月">Milestones — Nov 2025 → Oct 2026</div>
+  <div class="news-list">
+
+    <div class="news-item">
+      <div class="news-date" data-en="Oct 8–9" data-zh="10月8–9日">Oct 8–9</div>
+      <div>
+        <h3 data-en="SpaceX buys 800 MHz spectrum; U.S. carrier stocks slide" data-zh="SpaceX收购800 MHz频谱；美国运营商股价重挫">SpaceX buys 800 MHz spectrum; U.S. carrier stocks slide</h3>
+        <p data-en="SpaceX agreed to buy up to 14 MHz of paired 800 MHz spectrum from Grain Management, pending FCC approval. The next day Verizon fell 8.75%, AT&amp;T 9.81% and T-Mobile 13.27%."
+           data-zh="SpaceX同意从Grain Management收购至多14 MHz成对的800 MHz频谱，尚待FCC批准。次日Verizon下跌8.75%，AT&amp;T下跌9.81%，T-Mobile下跌13.27%。">SpaceX agreed to buy up to 14 MHz of paired 800 MHz spectrum from Grain Management, pending FCC approval. The next day Verizon fell 8.75%, AT&amp;T 9.81% and T-Mobile 13.27%.</p>
+        <p class="why" data-en="Why it matters: markets now treat direct-to-phone satellites as competition for mobile carriers, not just a rural add-on."
+           data-zh="影响：市场开始把手机直连卫星视为移动运营商的竞争者，而不只是偏远地区的补充手段。">Why it matters: markets now treat direct-to-phone satellites as competition for mobile carriers, not just a rural add-on.</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date" data-en="Sep 28" data-zh="9月28日">Sep 28</div>
+      <div>
+        <h3 data-en="Starship reaches orbit for the first time" data-zh="星舰首次进入轨道">Starship reaches orbit for the first time</h3>
+        <p data-en="Flight 14 deployed 26 Starlink V3 satellites. After a vacuum Raptor shut down early on ascent, the ship came home after less than two orbits, about three hours after liftoff, instead of the planned ~10 hours."
+           data-zh="第14次试飞部署了26颗V3星链卫星。上升段一台真空版猛禽发动机提前关机，飞船在不到两圈后返回，距起飞约3小时，而非原计划的约10小时。">Flight 14 deployed 26 Starlink V3 satellites. After a vacuum Raptor shut down early on ascent, the ship came home after less than two orbits, about three hours after liftoff, instead of the planned ~10 hours.</p>
+        <p class="why" data-en="Why it matters: orbit unlocks the next tests — ship-to-ship propellant transfer for NASA's lunar lander, and full Starlink V3 deployment."
+           data-zh="影响：入轨解锁后续测试——为NASA登月着陆器验证舰对舰推进剂转移，以及全面部署V3星链。">Why it matters: orbit unlocks the next tests — ship-to-ship propellant transfer for NASA's lunar lander, and full Starlink V3 deployment.</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date" data-en="Sep 5" data-zh="9月5日">Sep 5</div>
+      <div>
+        <h3 data-en="Isar's Spectrum reaches orbit from Norway" data-zh="Isar的Spectrum火箭从挪威入轨">Isar's Spectrum reaches orbit from Norway</h3>
+        <p data-en="On its second flight, the German startup's rocket reached orbit from Andøya and deployed its payloads — the first orbital launch from Western Europe."
+           data-zh="这家德国初创公司的火箭在第二次飞行中从安岛（Andøya）入轨并释放有效载荷——这是西欧首次轨道发射。">On its second flight, the German startup's rocket reached orbit from Andøya and deployed its payloads — the first orbital launch from Western Europe.</p>
+        <p class="why" data-en="Why it matters: Europe gains a commercial route to orbit beyond Kourou; it is the first milestone met in ESA's European Launcher Challenge."
+           data-zh="影响：欧洲在库鲁之外获得一条商业入轨通道；这也是欧空局“欧洲运载器挑战”中达成的首个里程碑。">Why it matters: Europe gains a commercial route to orbit beyond Kourou; it is the first milestone met in ESA's European Launcher Challenge.</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date" data-en="Aug 23" data-zh="8月23日">Aug 23</div>
+      <div>
+        <h3 data-en="Chang'e-7 misses its 2026 launch window" data-zh="嫦娥七号错过2026年发射窗口">Chang'e-7 misses its 2026 launch window</h3>
+        <p data-en="Four days after the probe and its Long March 5 were moved to the launch area, China's space officials said the mission does not meet launch conditions and cannot fly in this year's window. No reason or new date was given."
+           data-zh="探测器与长征五号火箭垂直转运至发射区4天后，官方宣布任务“不满足发射条件”，不能在今年预定窗口实施，未说明原因及新的发射时间。">Four days after the probe and its Long March 5 were moved to the launch area, China's space officials said the mission does not meet launch conditions and cannot fly in this year's window. No reason or new date was given.</p>
+        <p class="why" data-en="Why it matters: China's lunar south-pole survey — a step toward its crewed landing and the ILRS — slips by at least one window."
+           data-zh="影响：中国月球南极探测——迈向载人登月与国际月球科研站的一步——至少推迟一个窗口。">Why it matters: China's lunar south-pole survey — a step toward its crewed landing and the ILRS — slips by at least one window.</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date" data-en="Aug 19" data-zh="8月19日">Aug 19</div>
+      <div>
+        <h3 data-en="Zhuque-3 lands its booster on land — a first for China" data-zh="朱雀三号助推器陆上着陆——中国首次">Zhuque-3 lands its booster on land — a first for China</h3>
+        <p data-en="On its second flight, LandSpace's rocket put a satellite in orbit and landed its first stage on legs in Gansu, about eight minutes after liftoff; a fire broke out after touchdown."
+           data-zh="蓝箭航天火箭在第二次飞行中将卫星送入轨道，并于起飞约8分钟后在甘肃用着陆腿回收一子级；着陆后尾部起火。">On its second flight, LandSpace's rocket put a satellite in orbit and landed its first stage on legs in Gansu, about eight minutes after liftoff; a fire broke out after touchdown.</p>
+        <p class="why" data-en="Why it matters: booster recovery is no longer a U.S.-only capability — a Chinese commercial company has landed an orbital-class booster; reflight is next."
+           data-zh="影响：助推器回收不再是美国独有的能力——中国商业航天企业已成功回收轨道级助推器，下一步是复飞。">Why it matters: booster recovery is no longer a U.S.-only capability — a Chinese commercial company has landed an orbital-class booster; reflight is next.</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date" data-en="Jun 12" data-zh="6月12日">Jun 12</div>
+      <div>
+        <h3 data-en="SpaceX lists on Nasdaq in the largest IPO on record" data-zh="SpaceX在纳斯达克上市，规模创IPO纪录">SpaceX lists on Nasdaq in the largest IPO on record</h3>
+        <p data-en="Priced at $135, the shares opened at $150 and closed at $160.95, valuing the company at ~$2.1T; the offering raised ~$75B (~$85.7B with the over-allotment)."
+           data-zh="发行价135美元，开盘150美元，收于160.95美元，市值约2.1万亿美元；募资约750亿美元（含超额配售约857亿美元）。">Priced at $135, the shares opened at $150 and closed at $160.95, valuing the company at ~$2.1T; the offering raised ~$75B (~$85.7B with the over-allotment).</p>
+        <p class="why" data-en="Why it matters: the space economy's largest company is now priced daily in public markets, a reference point for private space valuations."
+           data-zh="影响：航天经济中最大的公司如今每天在公开市场定价，成为私营航天企业估值的参照。">Why it matters: the space economy's largest company is now priced daily in public markets, a reference point for private space valuations.</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date" data-en="May 28" data-zh="5月28日">May 28</div>
+      <div>
+        <h3 data-en="New Glenn explodes during a pad test" data-zh="新格伦火箭在地面测试中爆炸">New Glenn explodes during a pad test</h3>
+        <p data-en="Blue Origin's rocket was destroyed in a pre-launch static fire that also damaged Launch Complex 36, weeks after its first booster reflight (Apr 19) ended with an upper-stage failure. The company traced the blast to a main oxygen valve on a BE-4 engine."
+           data-zh="蓝色起源的火箭在发射前静态点火测试中损毁，36号发射工位也受损；此前数周（4月19日）其首次复用助推器的飞行以上面级故障告终。公司将爆炸追溯到一台BE-4发动机的主氧阀。">Blue Origin's rocket was destroyed in a pre-launch static fire that also damaged Launch Complex 36, weeks after its first booster reflight (Apr 19) ended with an upper-stage failure. The company traced the blast to a main oxygen valve on a BE-4 engine.</p>
+        <p class="why" data-en="Why it matters: New Glenn launches Blue Origin's Blue Moon landers, so the setback reaches NASA's lunar plans; the first Blue Moon cargo flight slipped to early 2027."
+           data-zh="影响：新格伦负责发射蓝色起源的“蓝月”着陆器，因此挫折波及NASA的登月计划；首次“蓝月”货运任务推迟至2027年初。">Why it matters: New Glenn launches Blue Origin's Blue Moon landers, so the setback reaches NASA's lunar plans; the first Blue Moon cargo flight slipped to early 2027.</p>
+      </div>
+    </div>
+
+    <div class="news-item headline">
+      <div class="news-date" data-en="Apr 1–10" data-zh="4月1–10日">Apr 1–10</div>
+      <div>
+        <h3><span data-en="Artemis II flies four astronauts around the Moon" data-zh="阿尔忒弥斯二号载4名航天员绕月飞行">Artemis II flies four astronauts around the Moon</span> <span class="new-badge" data-en="Headline" data-zh="头条">Headline</span></h3>
+        <p data-en="Wiseman, Glover, Koch and Canada's Hansen traveled 252,756 miles (~407,000 km) from Earth — farther than any humans before — passed 4,067 miles above the lunar surface, and splashed down off San Diego on Apr 10 after 695,081 miles."
+           data-zh="怀斯曼、格洛弗、科赫与加拿大的汉森飞至距地球252,756英里（约40.7万千米）处——人类到达过的最远距离——掠过月面上空4,067英里，于4月10日在圣迭戈外海溅落，总航程695,081英里。">Wiseman, Glover, Koch and Canada's Hansen traveled 252,756 miles (~407,000 km) from Earth — farther than any humans before — passed 4,067 miles above the lunar surface, and splashed down off San Diego on Apr 10 after 695,081 miles.</p>
+        <p class="why" data-en="Why it matters: the first crewed lunar mission in 53 years cleared Orion for Artemis III (2027) and a south-pole landing scheduled for 2028."
+           data-zh="影响：53年来首次载人月球任务，为猎户座飞船执行阿尔忒弥斯三号（2027年）及计划于2028年的南极登月扫清障碍。">Why it matters: the first crewed lunar mission in 53 years cleared Orion for Artemis III (2027) and a south-pole landing scheduled for 2028.</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date" data-en="Feb 2" data-zh="2月2日">Feb 2</div>
+      <div>
+        <h3 data-en="SpaceX acquires xAI" data-zh="SpaceX并购xAI">SpaceX acquires xAI</h3>
+        <p data-en="The all-stock deal valued the combined company at ~$1.25T and set out plans for AI data centers in space."
+           data-zh="该全股票交易使合并后公司估值约1.25万亿美元，并提出建设太空AI数据中心的计划。">The all-stock deal valued the combined company at ~$1.25T and set out plans for AI data centers in space.</p>
+        <p class="why" data-en="Why it matters: launch, connectivity and AI compute now sit in one company."
+           data-zh="影响：发射、通信与AI算力如今归于同一家公司。">Why it matters: launch, connectivity and AI compute now sit in one company.</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date" data-en="Nov 5–25, 2025" data-zh="2025年11月5–25日">Nov 5–25, 2025</div>
+      <div>
+        <h3 data-en="Debris strike prompts China's first space emergency response" data-zh="空间碎片撞击促成中国首次太空应急行动">Debris strike prompts China's first space emergency response</h3>
+        <p data-en="Shenzhou-20's return was halted after a suspected hit by tiny debris; its crew came home on Shenzhou-21, and Shenzhou-22 launched uncrewed on Nov 25 as the station's new lifeboat. Shenzhou-20 returned empty on Jan 19, 2026."
+           data-zh="神舟二十号疑似遭空间微小碎片撞击，返回任务推迟；乘组改乘神舟二十一号返回，神舟二十二号于11月25日以无人状态发射，作为空间站新的“救生艇”。神舟二十号于2026年1月19日无人返回。">Shenzhou-20's return was halted after a suspected hit by tiny debris; its crew came home on Shenzhou-21, and Shenzhou-22 launched uncrewed on Nov 25 as the station's new lifeboat. Shenzhou-20 returned empty on Jan 19, 2026.</p>
+        <p class="why" data-en="Why it matters: debris is now an operational risk to crews, not just satellites — and China showed it can launch a rescue ship within three weeks."
+           data-zh="影响：空间碎片已成为威胁航天员的现实风险，而不仅是卫星——中国也展示了三周内发射救援飞船的能力。">Why it matters: debris is now an operational risk to crews, not just satellites — and China showed it can launch a rescue ship within three weeks.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══ WHERE STARTUPS ARE WINNING ══ -->
+<div class="page-section">
+  <div class="page-section-title"
+       data-en="Where Startups Are Winning"
+       data-zh="初创企业的机会所在">Where Startups Are Winning</div>
+  <div class="cards-5">
+
+    <div class="opp-card">
+      <div class="opp-num" data-en="Opportunity 01" data-zh="机会 01">Opportunity 01</div>
+      <div class="icon">🗺️</div>
+      <h3 data-en="Geospatial AI" data-zh="地理空间AI">Geospatial AI</h3>
+      <p data-en="Turning daily optical and radar imagery into answers — crop yields, ship tracking, disaster damage — sold by subscription."
+         data-zh="把每日光学与雷达影像转化为答案——作物产量、船舶追踪、灾害损失——以订阅方式出售。">Turning daily optical and radar imagery into answers — crop yields, ship tracking, disaster damage — sold by subscription.</p>
+      <div class="examples" data-en="e.g. Planet, ICEYE" data-zh="例：Planet、ICEYE">e.g. Planet, ICEYE</div>
+    </div>
+
+    <div class="opp-card">
+      <div class="opp-num" data-en="Opportunity 02" data-zh="机会 02">Opportunity 02</div>
+      <div class="icon">🛡️</div>
+      <h3 data-en="Space-Domain Awareness &amp; Debris" data-zh="空间态势感知与碎片治理">Space-Domain Awareness &amp; Debris</h3>
+      <p data-en="Tracking, inspecting and removing objects as orbits crowd — a ~$500M segment in 2025 (SIA)."
+         data-zh="轨道日益拥挤，追踪、检查与清除在轨物体成为刚需——2025年该细分市场约5亿美元（SIA）。">Tracking, inspecting and removing objects as orbits crowd — a ~$500M segment in 2025 (SIA).</p>
+      <div class="examples" data-en="e.g. LeoLabs, Astroscale" data-zh="例：LeoLabs、Astroscale">e.g. LeoLabs, Astroscale</div>
+    </div>
+
+    <div class="opp-card">
+      <div class="opp-num" data-en="Opportunity 03" data-zh="机会 03">Opportunity 03</div>
+      <div class="icon">📡</div>
+      <h3 data-en="Ground Segment as a Service" data-zh="地面段即服务">Ground Segment as a Service</h3>
+      <p data-en="Antennas, scheduling and data delivery rented by the pass, so operators skip building their own stations."
+         data-zh="按过境次数租用天线、调度与数据传输，运营商无需自建地面站。">Antennas, scheduling and data delivery rented by the pass, so operators skip building their own stations.</p>
+      <div class="examples" data-en="e.g. KSAT, AWS Ground Station" data-zh="例：KSAT、AWS Ground Station">e.g. KSAT, AWS Ground Station</div>
+    </div>
+
+    <div class="opp-card">
+      <div class="opp-num" data-en="Opportunity 04" data-zh="机会 04">Opportunity 04</div>
+      <div class="icon">🔩</div>
+      <h3 data-en="Satellite Buses at Scale" data-zh="规模化卫星平台">Satellite Buses at Scale</h3>
+      <p data-en="Standardized, mass-produced spacecraft platforms that payload and defense customers buy off the shelf."
+         data-zh="标准化、批量生产的卫星平台，载荷与国防客户可直接采购。">Standardized, mass-produced spacecraft platforms that payload and defense customers buy off the shelf.</p>
+      <div class="examples" data-en="e.g. Apex, K2 Space" data-zh="例：Apex、K2 Space">e.g. Apex, K2 Space</div>
+    </div>
+
+    <div class="opp-card">
+      <div class="opp-num" data-en="Opportunity 05" data-zh="机会 05">Opportunity 05</div>
+      <div class="icon">⚡</div>
+      <h3 data-en="Space × AI × Energy" data-zh="航天 × AI × 能源">Space × AI × Energy</h3>
+      <p data-en="Compute and power where sunlight is nearly constant: orbital data centers, and space-based solar power beamed to Earth."
+         data-zh="在阳光几乎不间断的地方提供算力与电力：轨道数据中心，以及向地面传输能量的太空太阳能。">Compute and power where sunlight is nearly constant: orbital data centers, and space-based solar power beamed to Earth.</p>
+      <div class="examples" data-en="e.g. Starcloud, Aetherflux" data-zh="例：Starcloud、Aetherflux">e.g. Starcloud, Aetherflux</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══ LEGEND ══ -->
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot dot-phys"></div><span data-en="Physics of Access &amp; Rocket Science" data-zh="入轨物理与火箭科学">Physics of Access &amp; Rocket Science</span></div>
+  <div class="legend-item"><div class="legend-dot dot-layer"></div><span data-en="Value-Chain Layers &amp; Startups" data-zh="价值链层级与初创机会">Value-Chain Layers &amp; Startups</span></div>
+  <div class="legend-item"><div class="legend-dot dot-pil"></div><span data-en="Foundation Pillars" data-zh="基础支柱">Foundation Pillars</span></div>
+  <div class="legend-item"><div class="legend-dot dot-sec"></div><span data-en="Technology Frontier" data-zh="前沿技术">Technology Frontier</span></div>
+  <div class="legend-item"><div class="legend-dot dot-life"></div><span data-en="Living in Space" data-zh="太空生活">Living in Space</span></div>
+  <div class="legend-item"><div class="legend-dot dot-force"></div><span data-en="Economy &amp; Milestones" data-zh="经济与里程碑">Economy &amp; Milestones</span></div>
+  <div class="legend-item"><div class="legend-dot dot-jur"></div><span data-en="Space Powers" data-zh="航天强国">Space Powers</span></div>
+</div>
+
+<p class="footnote"
+   data-en="Educational overview — not investment, legal or tax advice. Figures as of Oct 15, 2026 (NASA, CNSA/CMSA, ESA, Space Foundation, SIA, SEC filings, Jonathan McDowell's launch log) unless dated otherwise; Δv values are typical and mission-dependent (Curtis, Orbital Mechanics for Engineering Students, 4th ed.). Full source list: sources/space-industry.md in this site's GitHub repository."
+   data-zh="教育性概览——不构成投资、法律或税务建议。除另有注明外，数据截至2026年10月15日（NASA、国家航天局/中国载人航天工程办公室、欧空局、Space Foundation、SIA、SEC文件、Jonathan McDowell发射记录）；Δv为典型值，因任务而异（Curtis《Orbital Mechanics for Engineering Students》第4版）。完整来源清单：本站GitHub仓库中的sources/space-industry.md。">Educational overview — not investment, legal or tax advice. Figures as of Oct 15, 2026 (NASA, CNSA/CMSA, ESA, Space Foundation, SIA, SEC filings, Jonathan McDowell's launch log) unless dated otherwise; Δv values are typical and mission-dependent (Curtis, Orbital Mechanics for Engineering Students, 4th ed.). Full source list: sources/space-industry.md in this site's GitHub repository.</p>
+
+<script>
+  let currentLang = 'en';
+  const TITLES = { en: 'Space Industry Overview — October 2026', zh: '航天产业全览 — 2026年10月' };
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.title = TITLES[lang];
+    document.querySelectorAll('[data-en]').forEach(el => { el.innerHTML = el.dataset[lang]; });
+  }
+
+  function toggleTheme() {
+    const cur  = document.documentElement.getAttribute('data-theme') || 'dark';
+    const next = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('voltai-theme', next); } catch (e) {}
+    updateThemeIcon(next);
+  }
+
+  function updateThemeIcon(theme) {
+    const btn = document.getElementById('theme-btn');
+    if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    updateThemeIcon(document.documentElement.getAttribute('data-theme') || 'dark');
+    if (location.hash === '#zh') setLang('zh');
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+      let stored = null;
+      try { stored = localStorage.getItem('voltai-theme'); } catch (err) {}
+      if (!stored) {
+        const t = e.matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+        updateThemeIcon(t);
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

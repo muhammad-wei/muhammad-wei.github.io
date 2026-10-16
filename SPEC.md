@@ -5,7 +5,7 @@
 | Site          | https://muhammad-wei.github.io                                      |
 | Owner         | Bruce Wei                                                           |
 | Hosting       | GitHub Pages, static files from `main` (no build step)              |
-| Last reviewed | October 10, 2026 — live site checked against commit `88ea649`      |
+| Last reviewed | October 16, 2026 — Space page added (live site last checked October 10 against commit `88ea649`) |
 
 This document says what the site is, how every page is built, and what "done" means for a change.
 `CLAUDE.md` is the short working guide; this is the reference behind it.
@@ -37,9 +37,10 @@ The landscapes are educational overviews, not investment, legal or tax advice.
 | Home | `index.html` | Vision, landscape index, contact | — | — |
 | AI Industry | `ai-industry-chart.html` | World models → four modalities → four pillars | Undated (reviewed Oct 2026) | Intro card, slider |
 | Energy × China | `energy-industry-chart.html` | Global energy with a China focus; the 2026 Hormuz shock | 2026 (checked Oct 2026) | Intro card, slider |
+| Space Industry | `space-industry-chart.html` | Physics of access → value chain → rocket science, technology, living in space, economy, seven space powers, milestones | October 2026 (figures to Oct 15) | Intro card, slider |
 | Web3 Industry | `web3-industry-chart.html` | Regulation, sectors, exchanges, market-moving news | Oct 8, 2026 | Intro card, slider |
 | Finance Industry | `finance-industry-chart.html` | Regulation, value chain, money flows, six jurisdictions | October 2026 | Slider |
-| Business Growth | `business_growth_circular_flow.html` | Eight-step growth cycle (a framework, no market data) | Evergreen | Intro card, slider |
+| Business Growth | `business_growth_circular_flow.html` | Eight-step growth cycle (a framework, no market data) | Evergreen | Slider |
 
 Every landscape page links back to the home page with "← Home" ("← 首页" in Chinese).
 
@@ -52,9 +53,9 @@ Every landscape page links back to the home page with "← Home" ("← 首页" i
 - **Sections** (numbered 01–03 in the side nav):
   1. **Home**
      - Headline "Building AI × Energy × Space × Web3", a "Contact Me" button and the astronaut visual.
-     - Four cards: AI Industry, Energy × China, Web3 Industry and Business Growth.
+     - Four cards: AI Industry, Energy × China, Space Industry and Web3 Industry, matching the headline's four fields in its order.
   2. **Entrepreneurship ("Industry Landscapes")**
-     - A slider of five landscapes: Energy, AI (centre), Web3, Business Growth and Finance.
+     - A slider of six landscapes: Energy, AI (centre), Space, Web3, Business Growth and Finance. The first view shows Energy, AI and Space.
      - Each slide has a thumbnail, a title and a one-line description.
      - Thumbnails are 600×600 WebP files in `assets/img/landscape/`.
   3. **Contact**: "Dubai" and a GitHub link.
@@ -81,7 +82,7 @@ Every landscape page follows the same top-to-bottom order. The Business Growth p
    - `.home-link` at top left
    - `.controls` at top right: the theme button (☀️ in dark, 🌙 in light) and EN | 中文
 3. **Header:** an `h1` (page name, plus the as-of date when dated) and a `.subtitle` that lists the page's parts, separated by "·".
-4. **Higher-order card:** the field that spans every layer, such as regulation or geopolitics. It has a badge, an `h2`, one paragraph and tag chips.
+4. **Higher-order card:** the field that spans every layer, such as regulation, geopolitics or physics (Space). It has a badge, an `h2`, one paragraph and tag chips.
 5. **Connector** with a label (for example "Integrates & spans across").
 6. **Five layer cards**, either value-chain layers or sectors, each with sub-tags. The AI page has four modality cards here instead.
 7. **Connector** ("Sustained by").
@@ -135,6 +136,28 @@ Every landscape page follows the same top-to-bottom order. The Business Growth p
   - 12–18 Month Scenarios: bear and bull
 - **Sources:** CoinGecko, DefiLlama, RWA.xyz, SoSoValue and company filings.
 
+**Space Industry**
+- **Higher-order card:** The Physics of Access: rocket equation, Δv and cost to orbit.
+- **Layers:**
+  - Launch & Access to Orbit
+  - Spacecraft & Satellites
+  - Ground Equipment & Operations: the largest revenue pool (SIA), following SIA's taxonomy, so GNSS chips and terminals sit here
+  - Space Services
+  - Human Spaceflight & Exploration
+- **Pillars:** Capital & Anchor Customers · Policy, Spectrum & Law · Talent & Supply Chain · In-Space Economy (Emerging).
+- **Sections:**
+  - Rocket Science 101: a Δv map (SVG) and six cards
+  - Technology Frontier: six cards, each with a KPI
+  - Living in Space: six cards
+  - Space Economy Snapshot: three cards
+  - Space Powers Lens: US, China, Russia, Europe, Japan, India, UAE
+  - Milestones: ten items, newest first, with Artemis II as the headline
+  - Where Startups Are Winning: five spaces
+- **Sources:**
+  - NASA, CNSA/CMSA, ESA, the Space Foundation, SIA, SEC filings and Jonathan McDowell's launch log
+  - Δv values from Curtis, *Orbital Mechanics for Engineering Students* (4th ed.)
+  - every figure is listed in `sources/space-industry.md`
+
 **Business Growth**
 - A circular SVG diagram of eight steps in four phases: Discovery (1–2), Build (3–4), Launch (5–6) and Scale (7–8).
 - **Sections:**
@@ -151,7 +174,7 @@ Every landscape page follows the same top-to-bottom order. The Business Growth p
   - Light overrides live on `html[data-theme="light"]`.
   - Every colour is a CSS custom property; components never hard-code colours.
 - **Token sets:**
-  - Each page owns its token set, from 42 to 86 tokens, named `--<component>-<role>` (for example `--layer-h3`, `--force-stat`, `--sec-kpi`).
+  - Each page owns its token set, from 42 to 110 tokens, named `--<component>-<role>` (for example `--layer-h3`, `--force-stat`, `--sec-kpi`).
   - Shared on every page: `--bg-page`, `--text-body`, `--h1-color`, `--subtitle-color`, the `--ctrl-*` set and `--legend-color`.
 - **Theme on load:**
   - The first visit uses the system preference.
@@ -173,23 +196,25 @@ Every landscape page follows the same top-to-bottom order. The Business Growth p
 | --- | --- | --- |
 | Home link | `a.home-link` | All landscape pages |
 | Controls | `.controls` > `#theme-btn.theme-btn` + `.lang-toggle` (`#btn-en`, `#btn-zh`) | All landscape pages |
-| Badges | `.badge` (higher-order card); `.new-badge` ("Emerging", "Headline") | AI, Energy, Finance, Web3 |
-| Tag chips | `.tag` (higher-order card), `.sub-tag` (layer and pillar cards) | AI, Energy, Finance, Web3 |
-| Layer cards | `.layer-card` × 5 | Energy, Finance, Web3 |
+| Badges | `.badge` (higher-order card); `.new-badge` ("Emerging", "Headline") | AI, Energy, Finance, Web3, Space |
+| Tag chips | `.tag` (higher-order card), `.sub-tag` (layer and pillar cards) | AI, Energy, Finance, Web3, Space |
+| Layer cards | `.layer-card` × 5 | Energy, Finance, Web3, Space |
 | Modality cards | `.modality-card` × 4 | AI |
-| Pillar cards | `.pillar-card` × 4 | AI, Energy, Finance, Web3 |
-| Page section | `.page-section` + `.page-section-title` (Business Growth: `.section-title`) | Energy, Finance, Web3, Business Growth |
-| Force cards | `.force-card` | Energy (3), Finance (9), Web3 (3) |
-| Stat cards | `.sec-card`: icon, `h3`, paragraph, KPI and KPI label | Web3 (exchanges, scoreboard) |
-| News list | `.news-list` > `.news-item` (`.headline` for the top story): `.news-date`, `h3`, paragraph, `.why` | Web3 |
+| Pillar cards | `.pillar-card` × 4 | AI, Energy, Finance, Web3, Space |
+| Page section | `.page-section` + `.page-section-title` (Business Growth: `.section-title`) | Energy, Finance, Web3, Space, Business Growth |
+| Force cards | `.force-card` | Energy (3), Finance (9), Web3 (3), Space (3) |
+| Stat cards | `.sec-card`: icon, `h3`, paragraph, KPI and KPI label | Web3 (exchanges, scoreboard), Space (technology frontier) |
+| Explainer cards | `.rs-card` (rocket science), `.life-card` (living in space): `h3`, paragraph and a `.stat` chip | Space |
+| News list | `.news-list` > `.news-item` (`.headline` for the top story): `.news-date`, `h3`, paragraph, `.why` | Web3, Space |
 | Allocation cards | `.alloc-card` | Web3 |
 | Decision pair | `.decision-card` × 2 (bad/good or bear/bull) | Energy, Web3 |
-| Jurisdiction cards | `.jur-card` | Finance |
+| Jurisdiction cards | `.jur-card` | Finance, Space (space powers, with `dt` stacked above `dd`) |
 | Flow diagram | `.flow-wrap`, `.flow-card` | Finance |
-| Lens cards | `.cn-card`, `.region-card`, `.opp-card` | Energy |
+| Δv diagram | `.dv-wrap` SVG (bilingual `<text>` and `<title>`), `.dv-chips`, `.swipe-hint` | Space |
+| Lens cards | `.cn-card`, `.region-card`, `.opp-card` | Energy; Space (`.opp-card`) |
 | Framework cards | `.step-card`, `.prin-card`, `.use-card`; SVG in `.diagram-wrap` | Business Growth |
-| Legend | `.legend` | All landscape pages |
-| Footnote | `.footnote` | Finance, Web3 |
+| Legend | `.legend` (Space: dots take token colours via `.dot-*` classes) | All landscape pages |
+| Footnote | `.footnote` | Finance, Web3, Space |
 
 Icons are emoji, for example 🏗️ 💡 🔑 💰 ⚠️, so no icon fonts or images are needed.
 
@@ -208,6 +233,7 @@ Icons are emoji, for example 🏗️ 💡 🔑 💰 ⚠️, so no icon fonts or 
   | Energy | 1024 / 760 / 420 |
   | Finance | 1024 / 800 / 668 / 460 |
   | Web3 | 1024 / 800 / 460 |
+  | Space | 1024 / 800 / 668 / 460 (the Δv diagram scrolls inside its frame below 668) |
   | Business Growth | 1024 / 700 / 500 |
 
 - **Requirements:**
@@ -274,6 +300,14 @@ Icons are emoji, for example 🏗️ 💡 🔑 💰 ⚠️, so no icon fonts or 
   - major funding and M&A
   - protocol upgrades reaching mainnet
 - **Headline:** the single biggest story gets the `.headline` class and the "Headline / 头条" badge.
+- **Space milestones** use the same format. Events qualify if they are:
+  - first-of-a-kind flights
+  - crewed missions
+  - major financings, IPOs and M&A
+  - treaty and policy shifts
+  - major failures
+
+  The headline item keeps its date order, so it need not be the newest.
 
 ### 8.4 Tone
 
@@ -288,6 +322,7 @@ Icons are emoji, for example 🏗️ 💡 🔑 💰 ⚠️, so no icon fonts or 
 | --- | --- | --- |
 | Web3 | Prices, flows, news | Weekly report (§9.2); refresh when it says "UPDATE RECOMMENDED" |
 | Finance, Energy | Policy, macro, geopolitics | Quarterly, or after a major event |
+| Space | Launches, missions, markets | Quarterly, or after a major event. Each review starts from `sources/space-industry.md`: re-check every row, then update the page and the ledger together. |
 | AI | Technology cycle | Every six months |
 | Business Growth | — | As needed |
 
@@ -388,24 +423,26 @@ After a push:
 - **Public by default:**
   - The repository is public, and Pages serves every committed file. Markdown is served raw, for example `/README.md`.
   - Never commit secrets, private notes or personal email addresses.
+  - `sources/` is public too. It holds source ledgers only: figures, dates and public source URLs.
   - To keep the docs off the website, list them under `exclude:` in a `_config.yml`.
 
-## 12. Known gaps and backlog (October 10, 2026)
+## 12. Known gaps and backlog (October 16, 2026)
 
 | # | Gap | Where | Suggested fix |
 | --- | --- | --- | --- |
-| 1 | No favicon: every first visit logs a 404 for `/favicon.ico` | All pages | Add `<link rel="icon">` (for example `assets/img/logo.png`) to all six pages |
+| 1 | No favicon: every first visit logs a 404 for `/favicon.ico` | All pages | Add `<link rel="icon">` (for example `assets/img/logo.png`) to all seven pages |
 | 2 | No `meta description` | AI, Web3, Business Growth | Add one sentence each |
 | 3 | No footnote with as-of date and disclaimer | AI, Energy | Add one in the Finance/Web3 style |
-| 4 | Theme button `aria-label` and `role="group"` on the language toggle | Finance only | Copy to the other four pages |
+| 4 | Theme button `aria-label` and `role="group"` on the language toggle | Finance and Space only | Copy to the other four pages |
 | 5 | Language choice is not remembered (the theme is) | Landscape pages | Save it like `voltai-theme` |
-| 6 | The vision names Space, but there is no Space landscape | Home | New page (§9.4) |
-| 7 | Finance is reachable from the slider only | Home intro | Add a fifth card, or keep it deliberately |
-| 8 | Web3 thumbnail is 1075×600 and 83 KB; the others are 600×600 and 13–30 KB | `assets/img/landscape/` | Re-export at 600×600 |
-| 9 | README says "Hongbo Wei — ML Engineer & AI/Web3 Engineer"; the site says "Bruce Wei — Entrepreneur" | `README.md` | Align if intended |
-| 10 | Shared controls and scripts are copied into five files (the cost of having no build step) | Landscape pages | Apply any change to all five |
+| 6 | Finance and Business Growth are reachable from the slider only | Home intro | Add a fifth card, or keep it deliberately |
+| 7 | Web3 thumbnail is 1075×600 and 83 KB; the others are 600×600 and 9–30 KB | `assets/img/landscape/` | Re-export at 600×600 |
+| 8 | README says "Hongbo Wei — ML Engineer & AI/Web3 Engineer"; the site says "Bruce Wei — Entrepreneur" | `README.md` | Align if intended |
+| 9 | Shared controls and scripts are copied into six files (the cost of having no build step) | Landscape pages | Apply any change to all six |
 
-Fixed on October 10, 2026: the `<` escaping bug in the bilingual attributes (§7, rule 3).
+Fixed:
+- **October 10, 2026:** the `<` escaping bug in the bilingual attributes (§7, rule 3).
+- **October 16, 2026:** the missing Space landscape (formerly #6).
 
 ## 13. History
 
@@ -419,3 +456,4 @@ Fixed on October 10, 2026: the `<` escaping bug in the bilingual attributes (§7
 | Oct 8 | Every page validated (facts, readable palettes, EN/ZH parity); home cards fixed for mobile; "← Home" links added; unused images and the PSD removed |
 | Oct 9 | Web3 page brought to October 2026 (exchanges, market-moving news); weekly freshness report started |
 | Oct 10 | Live-site review; bilingual `<` fix; `CLAUDE.md` and this spec added |
+| Oct 16 | Space page added: rocket science, technology, living in space, economy, seven powers, milestones. It replaces Business Growth among the home cards, and its sources ledger is started in `sources/space-industry.md`. |
