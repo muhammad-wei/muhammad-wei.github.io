@@ -5,7 +5,7 @@
 | Site          | https://muhammad-wei.github.io                                      |
 | Owner         | Bruce Wei                                                           |
 | Hosting       | GitHub Pages, static files from `main` (no build step)              |
-| Last reviewed | October 16, 2026 — Space page added (live site last checked October 10 against commit `88ea649`) |
+| Last reviewed | October 17, 2026 — Space page and its quarterly report added (live site last checked October 10 against commit `88ea649`) |
 
 This document says what the site is, how every page is built, and what "done" means for a change.
 `CLAUDE.md` is the short working guide; this is the reference behind it.
@@ -322,7 +322,7 @@ Icons are emoji, for example 🏗️ 💡 🔑 💰 ⚠️, so no icon fonts or 
 | --- | --- | --- |
 | Web3 | Prices, flows, news | Weekly report (§9.2); refresh when it says "UPDATE RECOMMENDED" |
 | Finance, Energy | Policy, macro, geopolitics | Quarterly, or after a major event |
-| Space | Launches, missions, markets | Quarterly, or after a major event. Each review starts from `sources/space-industry.md`: re-check every row, then update the page and the ledger together. |
+| Space | Launches, missions, markets | Quarterly report (§9.5), or after a major event. Each review starts from `sources/space-industry.md`: re-check every row, then update the page and the ledger together. |
 | AI | Technology cycle | Every six months |
 | Business Growth | — | As needed |
 
@@ -336,6 +336,7 @@ Icons are emoji, for example 🏗️ 💡 🔑 💰 ⚠️, so no icon fonts or 
 - **What it flags:** only figures that moved more than ~10%, and claims that are no longer true.
 - **Delivery:** it emails the owner a report with the subject "Web3 page check — ‹date›: UPDATE RECOMMENDED | No update needed".
 - **Report only:** it never edits the repository.
+- **Network:** the routine's cloud environment needs **Full** network access. On the default **Trusted** level, only GitHub (including `raw.githubusercontent.com`), package registries and web search work, so the run can't read the page or its data sources. The first run, on Oct 12, 2026, failed this way. Both routines' environments have been on **Full** since Oct 17, 2026.
 - **Applying a report:** say "update the Web3 page" in Claude Code (§9.3).
 - **Management:** pause, edit or run the routine at claude.ai/code/routines.
 
@@ -378,6 +379,21 @@ Icons are emoji, for example 🏗️ 💡 🔑 💰 ⚠️, so no icon fonts or 
    - add an intro card if it is a core landscape
    - keep both descriptions accurate
 7. **Checks:** pass §10.
+
+### 9.5 Quarterly Space report
+
+- **What and when:** a Claude Code cloud routine, "Quarterly Space page freshness report", runs on **January, April, July and October 15 at 09:00 Hong Kong time** (01:00 UTC).
+- **What it does:**
+  - reads `sources/space-industry.md` from `raw.githubusercontent.com`
+  - re-checks every dated row against its source, recounting launches from McDowell's log
+  - retries the ledger's failed items (§I)
+  - proposes milestones dated after the ledger's "Checked" date
+- **What it flags:** rows whose source now shows a different value or status, or that a newer period supersedes. Evergreen and textbook rows are skipped.
+- **Delivery:** it emails the owner a report with the subject "Space page check — ‹date›: UPDATE RECOMMENDED | No update needed". Every Gmail tool except sending is on the routine's disallowed list.
+- **Report only:** it never edits the repository.
+- **Network:** as in §9.2. On **Trusted**, it falls back to web search and lists what it couldn't re-check.
+- **Applying a report:** say "update the Space page" in Claude Code. Follow the ledger's "How to refresh" steps and verify each item against its source, then pass §10 and wait for "push".
+- **Management:** pause, edit or run the routine at claude.ai/code/routines.
 
 ## 10. Quality gates
 
@@ -456,4 +472,4 @@ Fixed:
 | Oct 8 | Every page validated (facts, readable palettes, EN/ZH parity); home cards fixed for mobile; "← Home" links added; unused images and the PSD removed |
 | Oct 9 | Web3 page brought to October 2026 (exchanges, market-moving news); weekly freshness report started |
 | Oct 10 | Live-site review; bilingual `<` fix; `CLAUDE.md` and this spec added |
-| Oct 16 | Space page added: rocket science, technology, living in space, economy, seven powers, milestones. It replaces Business Growth among the home cards, and its sources ledger is started in `sources/space-industry.md`. |
+| Oct 16 | Space page added: rocket science, technology, living in space, economy, seven powers, milestones. It replaces Business Growth among the home cards, and its sources ledger is started in `sources/space-industry.md`. A quarterly freshness report was started. |

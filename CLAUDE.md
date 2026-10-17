@@ -73,8 +73,14 @@ Bruce Wei's personal site, https://muhammad-wei.github.io. It is static files on
   - edit EN and ZH together
   - pass the quality gates
   - wait for "push"
-- The Space page is reviewed quarterly (SPEC §9.1):
+- A quarterly cloud routine, "Quarterly Space page freshness report", runs on Jan, Apr, Jul and Oct 15 at 09:00 Hong Kong time (SPEC §9.5).
+  - It re-checks the ledger's dated rows and the quarter's news, and emails the owner.
+  - It never touches the repo.
+- When the user says **"update the Space page"**, apply the latest report following the ledger's "How to refresh" (SPEC §9.5):
   - start from `sources/space-industry.md` and re-check every row
   - launch counts come from McDowell's launch log
-  - edit the page and the ledger together
+  - edit the page and the ledger together, EN and ZH
+  - pass the quality gates
+  - wait for "push"
+- Both routines need their cloud environment's network access set to **Full** (SPEC §9.2).
 - Open gaps and backlog are listed in SPEC §12.
