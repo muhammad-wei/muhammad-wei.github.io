@@ -5,7 +5,7 @@
 | Site          | https://muhammad-wei.github.io                                      |
 | Owner         | Bruce Wei                                                           |
 | Hosting       | GitHub Pages, static files from `main` (no build step)              |
-| Last reviewed | October 17, 2026 — Space page and its quarterly report added (live site last checked October 10 against commit `88ea649`) |
+| Last reviewed | October 18, 2026 — all quality gates re-run; text contrast raised to AA on five landscape pages (live site last checked October 10 against commit `88ea649`) |
 
 This document says what the site is, how every page is built, and what "done" means for a change.
 `CLAUDE.md` is the short working guide; this is the reference behind it.
@@ -183,7 +183,7 @@ Every landscape page follows the same top-to-bottom order. The Business Growth p
 - **New components:**
   - Build them from existing tokens where possible. The Web3 news list, for example, uses `--force-*`, `--alloc-pct` and `--layer-hover`, so both themes are covered automatically.
   - A new token must be defined for both themes.
-- **Contrast:** at least 4.5:1 for all text against its background, in both themes.
+- **Contrast:** at least 4.5:1 for all text against its background, in both themes. The large ordinal watermarks ("01"–"08" in `.force-num` and `.pnum`) are decorative and exempt.
 
 ### 6.2 Typography
 
@@ -473,3 +473,4 @@ Fixed:
 | Oct 9 | Web3 page brought to October 2026 (exchanges, market-moving news); weekly freshness report started |
 | Oct 10 | Live-site review; bilingual `<` fix; `CLAUDE.md` and this spec added |
 | Oct 16 | Space page added: rocket science, technology, living in space, economy, seven powers, milestones. It replaces Business Growth among the home cards, and its sources ledger is started in `sources/space-industry.md`. A quarterly freshness report was started. |
+| Oct 18 | Text contrast raised to AA on AI, Energy, Finance, Web3 and Business Growth by changing token values only; Energy's dark-theme body text had been near 2:1 |
