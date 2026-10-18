@@ -334,7 +334,7 @@ Icons are emoji, for example 🏗️ 💡 🔑 💰 ⚠️, so no icon fonts or 
   - re-checks its key figures against CoinGecko, DefiLlama, RWA.xyz, ETF data and Strategy's filings
   - scans the past seven days for market-moving news
 - **What it flags:** only figures that moved more than ~10%, and claims that are no longer true.
-- **Delivery:** it emails the owner a report with the subject "Web3 page check — ‹date›: UPDATE RECOMMENDED | No update needed".
+- **Delivery:** it emails the owner a report with the subject "Web3 page check — ‹date›: UPDATE RECOMMENDED | No update needed". Every Gmail tool except sending is on the routine's disallowed list.
 - **Report only:** it never edits the repository.
 - **Network:** the routine's cloud environment needs **Full** network access. On the default **Trusted** level, only GitHub (including `raw.githubusercontent.com`), package registries and web search work, so the run can't read the page or its data sources. The first run, on Oct 12, 2026, failed this way. Both routines' environments have been on **Full** since Oct 17, 2026.
 - **Applying a report:** say "update the Web3 page" in Claude Code (§9.3).
