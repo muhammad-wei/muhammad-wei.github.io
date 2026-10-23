@@ -66,7 +66,7 @@ Every landscape page links back to the home page with "← Home" ("← 首页" i
      - A monospace ADT caption below the root reads "TREE · root → leaf = one combination in the search space · 4 × 3 = 12 paths · search → ∞". The 4 × 3 must match the branch and leaf counts.
      - A matrix-rain strip on the right edge (desktop only) adds texture; it is decorative, `aria-hidden`, paused unless the Vision section is active, and hidden under `prefers-reduced-motion`.
      - A "Now" block states the sequence: the intersection is both the destination and the starting point. Profitable finance and business-growth ventures build the starting fund and operating judgment; the next company may be one of those businesses.
-  4. **Contact**: "Dubai" (迪拜) and a GitHub link.
+  4. **Contact**: "Dubai" (迪拜), Instagram (`muhammad.x.wei`, linked), WeChat ID (`mohammed-wei`, selectable) and a GitHub link.
 - **Hidden on purpose** (commented out, kept for a possible return): the Traffic globe (ClustrMaps), Connect/LinkedIn and the Hire form.
 - **Navigation:**
   - side nav, the ☰ menu, the mouse wheel, the ↑/↓ keys and swipe (Hammer.js)
@@ -235,6 +235,7 @@ Every landscape page follows the same top-to-bottom order. The Business Growth p
 | Tree note | `.vision-tree--note`: monospace ADT caption, 4 × 3 = 12 paths, search → ∞ | Home |
 | Matrix rain | `.vision-rain` > `#matrix-rain` canvas; desktop-only, `aria-hidden`, reduced-motion-safe | Home |
 | Capital path note | `.work--note` under the slider | Home |
+| Contact channels | `.contact--channel` inside `.modal--information` | Home |
 | Legend | `.legend` (Space: dots take token colours via `.dot-*` classes) | All landscape pages |
 | Footnote | `.footnote` | AI, Energy, Finance, Web3, Space |
 
@@ -512,4 +513,4 @@ Fixed:
 | Oct 16 | Space page added: rocket science, technology, living in space, economy, seven powers, milestones. It replaces Business Growth among the home cards, and its sources ledger is started in `sources/space-industry.md`. A quarterly freshness report was started. |
 | Oct 17 | README reduced to the template credit and live link |
 | Oct 18 | Text contrast raised to AA on AI, Energy, Finance, Web3 and Business Growth by changing token values only; Energy's dark-theme body text had been near 2:1 |
-| Oct 23 | Whole site bilingual: home page EN/中文 toggle and full translations, language remembered across pages under `voltai-lang`, page titles and meta descriptions switch with the language, and language-specific tooltips/ARIA labels added to every page. The home page gains a Vision section ("The Convergence": a node tree of AI demand, Energy constraint, Space frontier and Web3 coordination, rooted at "One system" and branching to leaves below, with a 4 × 3 ADT caption) with a matrix-rain strip and a capital-first "Now" block; the slider frames Finance and Business Growth as the capital path; the AI page is stamped "Reviewed October 2026"; all pages gain a favicon, AI and Energy gain footnotes, and the home's duplicate SVG IDs are removed. |
+| Oct 23 | Whole site bilingual: home page EN/中文 toggle and full translations, language remembered across pages under `voltai-lang`, page titles and meta descriptions switch with the language, and language-specific tooltips/ARIA labels added to every page. The home page gains a Vision section ("The Convergence": a node tree of AI demand, Energy constraint, Space frontier and Web3 coordination, rooted at "One system" and branching to leaves below, with a 4 × 3 ADT caption) with a matrix-rain strip and a capital-first "Now" block; the slider frames Finance and Business Growth as the capital path; the AI page is stamped "Reviewed October 2026"; all pages gain a favicon, AI and Energy gain footnotes, and the home's duplicate SVG IDs are removed. The Contact modal adds Instagram and WeChat alongside GitHub. |
