@@ -5,7 +5,7 @@
 | Site          | https://muhammad-wei.github.io                                      |
 | Owner         | Bruce Wei                                                           |
 | Hosting       | GitHub Pages, static files from `main` (no build step)              |
-| Last reviewed | October 18, 2026 — all quality gates re-run; text contrast raised to AA on five landscape pages (live site last checked October 10 against commit `88ea649`) |
+| Last reviewed | October 23, 2026 — every page is now bilingual, including the home page; the language choice carries across pages and page metadata follows it (live site last checked October 10 against commit `88ea649`) |
 
 This document says what the site is, how every page is built, and what "done" means for a change.
 `CLAUDE.md` is the short working guide; this is the reference behind it.
@@ -34,7 +34,7 @@ The landscapes are educational overviews, not investment, legal or tax advice.
 
 | Page | File | Scope | Figures as of | Linked from home |
 | --- | --- | --- | --- | --- |
-| Home | `index.html` | Vision, landscape index, contact | — | — |
+| Home | `index.html` | Vision, landscape index, contact (EN/中文) | — | — |
 | AI Industry | `ai-industry-chart.html` | World models → four modalities → four pillars | Undated (reviewed Oct 2026) | Intro card, slider |
 | Energy × China | `energy-industry-chart.html` | Global energy with a China focus; the 2026 Hormuz shock | 2026 (checked Oct 2026) | Intro card, slider |
 | Space Industry | `space-industry-chart.html` | Physics of access → value chain → rocket science, technology, living in space, economy, seven space powers, milestones | October 2026 (figures to Oct 15) | Intro card, slider |
@@ -52,20 +52,21 @@ Every landscape page links back to the home page with "← Home" ("← 首页" i
   - Fonts: Montserrat, self-hosted in `assets/css/fonts/`.
 - **Sections** (numbered 01–03 in the side nav):
   1. **Home**
-     - Headline "Building AI × Energy × Space × Web3", a "Contact Me" button and the astronaut visual.
+     - Headline "Building AI × Energy × Space × Web3" (构建 AI × 能源 × 太空 × Web3), a "Contact Me" (联系我) button and the astronaut visual.
      - Four cards: AI Industry, Energy × China, Space Industry and Web3 Industry, matching the headline's four fields in its order.
-  2. **Entrepreneurship ("Industry Landscapes")**
+  2. **Entrepreneurship ("Industry Landscapes" / 行业版图)**
      - A slider of six landscapes: Energy, AI (centre), Space, Web3, Business Growth and Finance. The first view shows Energy, AI and Space.
-     - Each slide has a thumbnail, a title and a one-line description.
+     - Each slide has a thumbnail, a title and a one-line description, in both languages.
      - Thumbnails are 600×600 WebP files in `assets/img/landscape/`.
-  3. **Contact**: "Dubai" and a GitHub link.
+  3. **Contact**: "Dubai" (迪拜) and a GitHub link.
 - **Hidden on purpose** (commented out, kept for a possible return): the Traffic globe (ClustrMaps), Connect/LinkedIn and the Hire form.
 - **Navigation:**
   - side nav, the ☰ menu, the mouse wheel, the ↑/↓ keys and swipe (Hammer.js)
   - both "Contact Me" buttons jump to Contact
   - a notice asks visitors to rotate small phones held in landscape
-- **Scope:** English only and a single dark design.
-- **Card copy:** card and slide descriptions must match each page's actual scope. Update them whenever a page's scope changes.
+- **Language:** an EN | 中文 toggle sits in the header, left of the ☰ menu. It switches every visible string, the document title, the meta description and keywords, and the slide aria-labels. The choice is shared with the landscape pages (§7).
+- **Scope:** bilingual (EN/中文) and a single dark design.
+- **Card copy:** card and slide descriptions must match each page's actual scope. Update them whenever a page's scope changes, in both languages.
 
 ## 5. Landscape pages
 
@@ -81,6 +82,7 @@ Every landscape page follows the same top-to-bottom order. The Business Growth p
 2. **Fixed controls**
    - `.home-link` at top left
    - `.controls` at top right: the theme button (☀️ in dark, 🌙 in light) and EN | 中文
+   - their tooltips and ARIA labels follow the language too
 3. **Header:** an `h1` (page name, plus the as-of date when dated) and a `.subtitle` that lists the page's parts, separated by "·".
 4. **Higher-order card:** the field that spans every layer, such as regulation, geopolitics or physics (Space). It has a badge, an `h2`, one paragraph and tag chips.
 5. **Connector** with a label (for example "Integrates & spans across").
@@ -91,6 +93,8 @@ Every landscape page follows the same top-to-bottom order. The Business Growth p
 10. **Legend and footnote.** The footnote states the as-of date, the sources and the disclaimer.
 11. **Inline script:**
     - `setLang()`, `toggleTheme()` and `updateThemeIcon()`
+    - `setLang()` also sets the document title and meta description from the page's `TITLES` and `DESCRIPTIONS` maps
+    - applies a saved language as the page loads, then saves each new choice
     - follows system theme changes until the visitor picks a theme
 
 ### 5.2 Page inventory
@@ -242,11 +246,18 @@ Icons are emoji, for example 🏗️ 💡 🔑 💰 ⚠️, so no icon fonts or 
 
 ## 7. Bilingual text
 
-- **Language on load:** every landscape page opens in English. The choice is not remembered between pages (§12).
-- **`setLang(lang)`:**
-  - marks the active button
+- **Language on load:**
+  - A first visit opens in English.
+  - The visitor's choice is saved in `localStorage['voltai-lang']` (`en` or `zh`) and applied as every page loads, home included.
+  - The key is shared by all seven pages. Clearing site data returns the site to English.
+  - `#zh` and `#en` on a page still force that language for that load without saving it.
+- **`setLang(lang)`** (the home page carries the same function inline):
+  - marks the active button and sets `aria-pressed`
   - sets `<html lang>` to `en` or `zh-CN`
   - replaces the `innerHTML` of every `[data-en]` element with its `data-en` or `data-zh` value
+  - sets the document title and `meta description` from the page's `TITLES` and `DESCRIPTIONS` maps
+  - sets language-specific `title` and `aria-label` attributes from `data-title-*` and `data-aria-*`
+  - saves the choice under `voltai-lang`
 - **Authoring rules:**
   1. Every visible string sits in an element carrying both `data-en` and `data-zh`. The element's initial content equals `data-en`, so the page is correct before any toggle, and for search engines.
   2. Inline tags (`<strong>`, `<br>`) may be written literally inside the attributes. Escape `"` as `&quot;`.
@@ -256,12 +267,13 @@ Icons are emoji, for example 🏗️ 💡 🔑 💰 ⚠️, so no icon fonts or 
      - In visible text, `&lt;` is correct.
   4. Never nest one `[data-en]` element inside another. The outer swap would erase the inner one.
   5. EN and ZH carry the same figures, dates and claims.
+  6. A page's `TITLES` and `DESCRIPTIONS` maps and its head `<title>` and `meta description` agree with each other.
 - **Chinese style:**
   - Simplified Chinese.
   - Amounts in 亿/万亿, for example $315B → 3150亿美元.
   - Dates such as 2026年10月6日 or 10月6日.
   - Keep standard Latin names for companies, tickers and laws, for example GENIUS 法案, MiCA, OKX.
-- The home page is English only.
+- The home page follows the same rules. Its toggle lives in the header; it has no theme toggle because the design is single-dark.
 
 ## 8. Content standards
 
@@ -400,32 +412,37 @@ Icons are emoji, for example 🏗️ 💡 🔑 💰 ⚠️, so no icon fonts or 
 A change is done when all of these pass locally (`python3 -m http.server 8765 --bind 127.0.0.1` plus headless Chromium):
 
 1. **Markup:** the HTML parses with balanced tags.
-2. **Bilingual integrity:**
+2. **Bilingual integrity** (all seven pages):
    - every `[data-en]` element has a non-empty `data-zh`
    - initial content equals `data-en`
    - no nested `[data-en]` elements
-3. **Language round trip:** after EN → 中文 → EN, every bilingual element shows the full text of its attribute, with no truncation and no stray elements.
-4. **Layout:**
+   - every `data-title-en` and `data-aria-en` has a matching `-zh`
+   - `<title>` and `meta description` exist in both languages
+3. **Language round trip:** after EN → 中文 → EN, every bilingual element shows the full text of its attribute, with no truncation and no stray elements. The document title, meta description and language-specific ARIA/title attributes follow the same round trip.
+4. **Persistence:** a choice made on one page is applied on the next page, and clearing `voltai-lang` returns the site to English.
+5. **Layout:**
    - no horizontal overflow at 1440, 1100, 1024, 800, 600, 460, 414, 390 and 360 px
-   - in dark and light, in EN and 中文
+   - in dark and light on the landscape pages, in EN and 中文
+   - in EN and 中文 on the single-dark home page
    - no clipped card text
-5. **Fixed controls:**
+6. **Fixed controls (landscape pages):**
    - `.home-link` doesn't overlap the `h1`, subtitle or controls at 1440, 1100, 1025, 1024, 800, 600, 414, 390 and 360 px
    - a touch tap on it goes home
    - the theme button flips the theme and its icon, and saves the choice
-6. **Console:** no JavaScript exceptions, console errors or failed requests. Until a favicon exists, `/favicon.ico` returns 404 (§12).
-7. **Contrast:** every new or changed text colour is at least 4.5:1 in both themes.
-8. **Links:** every `href` and `src` resolves.
-9. **Facts:**
-   - every changed figure matches its source
-   - EN and ZH agree
-   - the as-of stamps agree with each other
+   - the home header's EN | 中文 toggle doesn't overlap the logo or the ☰ menu
+7. **Console:** no JavaScript exceptions, console errors or failed requests. Until a favicon exists, `/favicon.ico` returns 404 (§12).
+8. **Contrast:** every new or changed text colour is at least 4.5:1 in both themes, including the home page's language toggle.
+9. **Links:** every `href` and `src` resolves.
+10. **Facts:**
+    - every changed figure matches its source
+    - EN and ZH agree
+    - the as-of stamps agree with each other
 
 After a push:
 
-10. The Pages build reports `built` for the pushed commit.
-11. The live files are byte-identical to `HEAD`.
-12. The live page passes a spot check, loaded with a cache-busting query string.
+11. The Pages build reports `built` for the pushed commit.
+12. The live files are byte-identical to `HEAD`.
+13. The live page passes a spot check, loaded with a cache-busting query string.
 
 ## 11. Hosting and deployment
 
@@ -442,15 +459,14 @@ After a push:
   - `sources/` is public too. It holds source ledgers only: figures, dates and public source URLs.
   - To keep the docs off the website, list them under `exclude:` in a `_config.yml`.
 
-## 12. Known gaps and backlog (October 16, 2026)
+## 12. Known gaps and backlog (October 23, 2026)
+
+Numbers are kept from the October 16 list; fixed items are listed below the table.
 
 | # | Gap | Where | Suggested fix |
 | --- | --- | --- | --- |
 | 1 | No favicon: every first visit logs a 404 for `/favicon.ico` | All pages | Add `<link rel="icon">` (for example `assets/img/logo.png`) to all seven pages |
-| 2 | No `meta description` | AI, Web3, Business Growth | Add one sentence each |
 | 3 | No footnote with as-of date and disclaimer | AI, Energy | Add one in the Finance/Web3 style |
-| 4 | Theme button `aria-label` and `role="group"` on the language toggle | Finance and Space only | Copy to the other four pages |
-| 5 | Language choice is not remembered (the theme is) | Landscape pages | Save it like `voltai-theme` |
 | 6 | Finance and Business Growth are reachable from the slider only | Home intro | Add a fifth card, or keep it deliberately |
 | 7 | Web3 thumbnail is 1075×600 and 83 KB; the others are 600×600 and 9–30 KB | `assets/img/landscape/` | Re-export at 600×600 |
 | 8 | README says "Hongbo Wei — ML Engineer & AI/Web3 Engineer"; the site says "Bruce Wei — Entrepreneur" | `README.md` | Align if intended |
@@ -459,6 +475,7 @@ After a push:
 Fixed:
 - **October 10, 2026:** the `<` escaping bug in the bilingual attributes (§7, rule 3).
 - **October 16, 2026:** the missing Space landscape (formerly #6).
+- **October 23, 2026:** the home page became bilingual (formerly English only); page titles and meta descriptions now follow the language (formerly #2); language-specific ARIA labels and tooltips reached all pages (formerly #4); the language choice is remembered across pages (formerly #5).
 
 ## 13. History
 
@@ -474,3 +491,4 @@ Fixed:
 | Oct 10 | Live-site review; bilingual `<` fix; `CLAUDE.md` and this spec added |
 | Oct 16 | Space page added: rocket science, technology, living in space, economy, seven powers, milestones. It replaces Business Growth among the home cards, and its sources ledger is started in `sources/space-industry.md`. A quarterly freshness report was started. |
 | Oct 18 | Text contrast raised to AA on AI, Energy, Finance, Web3 and Business Growth by changing token values only; Energy's dark-theme body text had been near 2:1 |
+| Oct 23 | Whole site bilingual: home page EN/中文 toggle and full translations, language remembered across pages under `voltai-lang`, page titles and meta descriptions switch with the language, and language-specific tooltips/ARIA labels added to every page |

@@ -272,7 +272,7 @@ body {
   background-color: #0c0c0c;
   font-size: 14px;
   line-height: 1.6;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   color: #fff;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
@@ -455,6 +455,45 @@ body {
   top: 5px;
   width: 23px;
 }
+.header--lang {
+  position: absolute;
+  top: 50%;
+  right: 60px;
+  transform: translateY(-50%);
+  z-index: 11;
+}
+.header--lang .lang-toggle {
+  display: flex;
+  overflow: hidden;
+  background-color: #0c0c0c;
+  border: 1px solid #282828;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+.header--lang .lang-toggle button {
+  padding: 6px 10px;
+  border: 0;
+  background-color: transparent;
+  color: #858585;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+.header--lang .lang-toggle button:hover {
+  color: #fff;
+}
+.header--lang .lang-toggle button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -2px;
+}
+.header--lang .lang-toggle button.active {
+  background-color: #0f33ff;
+  color: #fff;
+}
 .header--cta {
   position: absolute;
   top: 50%;
@@ -483,6 +522,15 @@ body {
 @media (max-width: 767px) {
   .header--cta {
     display: none;
+  }
+}
+@media (max-width: 600px) {
+  .header--lang {
+    right: 52px;
+  }
+  .header--lang .lang-toggle button {
+    padding: 5px 8px;
+    font-size: 11px;
   }
 }
 
@@ -637,12 +685,13 @@ body {
 }
 .intro--options {
   display: flex;
-  justify-content: space-between;
+  gap: 24px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 .intro--options > a {
+  flex: 1 1 0;
   max-width: 250px;
   text-decoration: none;
   color: #858585;
@@ -668,12 +717,6 @@ body {
   }
   .intro--banner img {
     width: 430px;
-  }
-  .intro--options > a {
-    margin-right: 30px;
-  }
-  .intro--options > a:last-child {
-    margin-right: 0;
   }
 }
 @media (max-width: 767px) {

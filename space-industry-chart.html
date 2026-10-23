@@ -661,12 +661,12 @@
 <body>
 
 <!-- Controls -->
-<a class="home-link" href="index.html" title="Back to homepage" data-en="← Home" data-zh="← 首页">← Home</a>
+<a class="home-link" href="index.html" title="Back to homepage" data-title-en="Back to homepage" data-title-zh="返回首页" data-en="← Home" data-zh="← 首页">← Home</a>
 <div class="controls">
-  <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Switch theme" aria-label="Switch theme">🌙</button>
-  <div class="lang-toggle" role="group" aria-label="Language">
-    <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
-    <button id="btn-zh" onclick="setLang('zh')">中文</button>
+  <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Switch theme" aria-label="Switch theme" data-title-en="Switch theme" data-title-zh="切换主题" data-aria-en="Switch theme" data-aria-zh="切换主题">🌙</button>
+  <div class="lang-toggle" role="group" aria-label="Language" data-aria-en="Language" data-aria-zh="语言">
+    <button id="btn-en" class="active" onclick="setLang('en')" aria-pressed="true">EN</button>
+    <button id="btn-zh" onclick="setLang('zh')" aria-pressed="false">中文</button>
   </div>
 </div>
 
@@ -1459,16 +1459,51 @@
 
 <script>
   let currentLang = 'en';
-  const TITLES = { en: 'Space Industry Overview — October 2026', zh: '航天产业全览 — 2026年10月' };
+  const TITLES = {
+    en: 'Space Industry Overview — October 2026',
+    zh: '航天产业全览 — 2026年10月'
+  };
+  const DESCRIPTIONS = {
+    en: 'Layered map of the space industry as of October 2026: the physics of reaching orbit, five value-chain layers, foundation pillars, rocket science, frontier technology, living in space, the space economy, seven space powers and the year\'s milestones.',
+    zh: '截至2026年10月的航天产业层状图谱：入轨物理、五大价值链层级、基础支柱、火箭科学、前沿技术、太空生活、太空经济、七大航天强国与年度里程碑。'
+  };
 
-  function setLang(lang) {
+  function setLang(lang, remember) {
+    if (lang !== 'zh') lang = 'en';
     currentLang = lang;
-    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-    document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+    const btnEn = document.getElementById('btn-en');
+    const btnZh = document.getElementById('btn-zh');
+    btnEn.classList.toggle('active', lang === 'en');
+    btnZh.classList.toggle('active', lang === 'zh');
+    btnEn.setAttribute('aria-pressed', String(lang === 'en'));
+    btnZh.setAttribute('aria-pressed', String(lang === 'zh'));
     document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
     document.title = TITLES[lang];
+
+    const description = document.querySelector('meta[name="description"]');
+    if (description) description.setAttribute('content', DESCRIPTIONS[lang]);
+
     document.querySelectorAll('[data-en]').forEach(el => { el.innerHTML = el.dataset[lang]; });
+    document.querySelectorAll('[data-title-en]').forEach(el => {
+      el.setAttribute('title', lang === 'zh' ? el.dataset.titleZh : el.dataset.titleEn);
+    });
+    document.querySelectorAll('[data-aria-en]').forEach(el => {
+      el.setAttribute('aria-label', lang === 'zh' ? el.dataset.ariaZh : el.dataset.ariaEn);
+    });
+
+    if (remember !== false) {
+      try { localStorage.setItem('voltai-lang', lang); } catch (e) {}
+    }
   }
+
+  (function () {
+    let saved = null;
+    try { saved = localStorage.getItem('voltai-lang'); } catch (e) {}
+    if (location.hash === '#zh') saved = 'zh';
+    if (location.hash === '#en') saved = 'en';
+    if (saved === 'zh') setLang('zh', false);
+    else if (location.hash === '#en') setLang('en', false);
+  })();
 
   function toggleTheme() {
     const cur  = document.documentElement.getAttribute('data-theme') || 'dark';
@@ -1485,7 +1520,6 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     updateThemeIcon(document.documentElement.getAttribute('data-theme') || 'dark');
-    if (location.hash === '#zh') setLang('zh');
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
       let stored = null;
       try { stored = localStorage.getItem('voltai-theme'); } catch (err) {}

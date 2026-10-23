@@ -16,9 +16,9 @@
 <div class="device-notification">
   <a class="device-notification--logo" href="#0">
     <img src="assets/img/logo.png" alt="Bruce Wei">
-    <p>Bruce Wei</p>
+    <p data-en="Bruce Wei" data-zh="Bruce Wei">Bruce Wei</p>
   </a>
-  <p class="device-notification--message">This portfolio has so much to offer that we must request you orient your device to portrait or find a larger screen. You won't be disappointed.</p>
+  <p class="device-notification--message" data-en="This portfolio has so much to offer that we must request you orient your device to portrait or find a larger screen. You won't be disappointed." data-zh="这个作品集内容非常丰富，请将设备转为竖屏，或换用更大的屏幕。你不会失望的。">This portfolio has so much to offer that we must request you orient your device to portrait or find a larger screen. You won't be disappointed.</p>
 </div>
 
 <div class="perspective effect-rotate-left">
@@ -28,28 +28,34 @@
         <header class="header">
           <a class="header--logo" href="#0">
             <img src="assets/img/logo.png" alt="Bruce Wei">
-            <p>Bruce Wei</p>
+            <p data-en="Bruce Wei" data-zh="Bruce Wei">Bruce Wei</p>
           </a>
-          <button class="header--cta cta">Contact Me</button>
+          <button class="header--cta cta" data-en="Contact Me" data-zh="联系我">Contact Me</button>
+          <div class="header--lang">
+            <div class="lang-toggle" role="group" aria-label="Language" data-aria-en="Language" data-aria-zh="语言">
+              <button id="btn-en" class="active" type="button" onclick="setLang('en')" aria-pressed="true">EN</button>
+              <button id="btn-zh" type="button" onclick="setLang('zh')" aria-pressed="false">中文</button>
+            </div>
+          </div>
           <div class="header--nav-toggle">
             <span></span>
           </div>
         </header>
         <nav class="l-side-nav">
           <ul class="side-nav">
-            <li class="is-active"><span>Home</span></li>
-            <li><span>Entrepreneurship</span></li>
+            <li class="is-active"><span data-en="Home" data-zh="首页">Home</span></li>
+            <li><span data-en="Entrepreneurship" data-zh="创业">Entrepreneurship</span></li>
             <!-- <li><span>Traffic</span></li> -->
             <!-- <li><span>Connect</span></li> -->
-            <li><span>Contact</span></li>
+            <li><span data-en="Contact" data-zh="联系">Contact</span></li>
           </ul>
         </nav>
         <ul class="l-main-content main-content">
           <li class="l-section section section--is-active">
             <div class="intro">
               <div class="intro--banner">
-                <h1>Building<br>AI × Energy ×<br>Space × Web3</h1>
-                <button class="cta">Contact Me
+                <h1 data-en="Building<br>AI × Energy ×<br>Space × Web3" data-zh="构建<br>AI × 能源 ×<br>太空 × Web3">Building<br>AI × Energy ×<br>Space × Web3</h1>
+                <button class="cta"><span data-en="Contact Me" data-zh="联系我">Contact Me</span>
                   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
                   <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
                     <path d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z"/>
@@ -61,69 +67,69 @@
               </div>
               <div class="intro--options">
                 <a href="ai-industry-chart.html">
-                  <h3>AI Industry</h3>
-                  <p>Layered map of AI: world models, core modalities, and the data, algorithm, compute and energy pillars.</p>
+                  <h3 data-en="AI Industry" data-zh="AI 行业">AI Industry</h3>
+                  <p data-en="Layered map of AI: world models, core modalities, and the data, algorithm, compute and energy pillars." data-zh="AI 的层状图谱：世界模型、核心模态，以及数据、算法、算力与能源四大支柱。">Layered map of AI: world models, core modalities, and the data, algorithm, compute and energy pillars.</p>
                 </a>
                 <a href="energy-industry-chart.html">
-                  <h3>Energy × China</h3>
-                  <p>Global energy landscape with a China focus: clean-tech supply chains, grid reform, and the 2026 Hormuz shock.</p>
+                  <h3 data-en="Energy × China" data-zh="能源 × 中国">Energy × China</h3>
+                  <p data-en="Global energy landscape with a China focus: clean-tech supply chains, grid reform, and the 2026 Hormuz shock." data-zh="以中国为焦点的全球能源版图：清洁技术供应链、电网改革，以及 2026 年霍尔木兹冲击。">Global energy landscape with a China focus: clean-tech supply chains, grid reform, and the 2026 Hormuz shock.</p>
                 </a>
                 <a href="space-industry-chart.html">
-                  <h3>Space Industry</h3>
-                  <p>Rocket science, launch and satellites, how people live in orbit, and the economy and powers behind it.</p>
+                  <h3 data-en="Space Industry" data-zh="航天产业">Space Industry</h3>
+                  <p data-en="Rocket science, launch and satellites, how people live in orbit, and the economy and powers behind it." data-zh="火箭科学、发射与卫星、人类如何在地球轨道生活，以及其背后的经济与航天强国。">Rocket science, launch and satellites, how people live in orbit, and the economy and powers behind it.</p>
                 </a>
                 <a href="web3-industry-chart.html">
-                  <h3>Web3 Industry</h3>
-                  <p>Full overview of the Web3 ecosystem — blockchains, DeFi, exchanges, regulation, and market-moving news.</p>
+                  <h3 data-en="Web3 Industry" data-zh="Web3 行业">Web3 Industry</h3>
+                  <p data-en="Full overview of the Web3 ecosystem — blockchains, DeFi, exchanges, regulation, and market-moving news." data-zh="Web3 生态全景——区块链、DeFi、交易所、监管，以及影响市场的新闻。">Full overview of the Web3 ecosystem — blockchains, DeFi, exchanges, regulation, and market-moving news.</p>
                 </a>
               </div>
             </div>
           </li>
           <li class="l-section section">
             <div class="work">
-              <h2>Industry Landscapes</h2>
+              <h2 data-en="Industry Landscapes" data-zh="行业版图">Industry Landscapes</h2>
               <div class="work--lockup">
                 <ul class="slider">
                   <li class="slider--item slider--item-left">
                     <a href="energy-industry-chart.html">
-                      <div class="slider--item-image" style="background-image:url('assets/img/landscape/energy-industry-overview.webp')" role="img" aria-label="Energy Industry — Global and China"></div>
-                      <p class="slider--item-title">Energy Industry — Global &amp; China 2026</p>
-                      <p class="slider--item-description">Oil, gas, renewables and the forces reshaping global energy, through a China lens.</p>
+                      <div class="slider--item-image" style="background-image:url('assets/img/landscape/energy-industry-overview.webp')" role="img" aria-label="Energy Industry — Global and China" data-aria-en="Energy Industry — Global and China" data-aria-zh="能源行业——全球与中国"></div>
+                      <p class="slider--item-title" data-en="Energy Industry — Global &amp; China 2026" data-zh="能源行业——全球与中国 2026">Energy Industry — Global &amp; China 2026</p>
+                      <p class="slider--item-description" data-en="Oil, gas, renewables and the forces reshaping global energy, through a China lens." data-zh="石油、天然气、可再生能源，以及透过中国视角重塑全球能源的力量。">Oil, gas, renewables and the forces reshaping global energy, through a China lens.</p>
                     </a>
                   </li>
                   <li class="slider--item slider--item-center">
                     <a href="ai-industry-chart.html">
-                      <div class="slider--item-image" style="background-image:url('assets/img/landscape/AI-industry-overview.webp')" role="img" aria-label="AI Industry Overview"></div>
-                      <p class="slider--item-title">AI Industry Overview</p>
-                      <p class="slider--item-description">World models, core modalities, and the pillars that sustain AI — data, algorithms, compute and energy.</p>
+                      <div class="slider--item-image" style="background-image:url('assets/img/landscape/AI-industry-overview.webp')" role="img" aria-label="AI Industry Overview" data-aria-en="AI Industry Overview" data-aria-zh="AI 行业全览"></div>
+                      <p class="slider--item-title" data-en="AI Industry Overview" data-zh="AI 行业全览">AI Industry Overview</p>
+                      <p class="slider--item-description" data-en="World models, core modalities, and the pillars that sustain AI — data, algorithms, compute and energy." data-zh="世界模型、核心模态，以及支撑 AI 的支柱——数据、算法、算力与能源。">World models, core modalities, and the pillars that sustain AI — data, algorithms, compute and energy.</p>
                     </a>
                   </li>
                   <li class="slider--item slider--item-right">
                     <a href="space-industry-chart.html">
-                      <div class="slider--item-image" style="background-image:url('assets/img/landscape/space-industry-overview.webp')" role="img" aria-label="Space Industry Overview"></div>
-                      <p class="slider--item-title">Space Industry — Full Overview</p>
-                      <p class="slider--item-description">Rocket science, frontier technology, living in orbit, and the 2026 space economy and powers.</p>
+                      <div class="slider--item-image" style="background-image:url('assets/img/landscape/space-industry-overview.webp')" role="img" aria-label="Space Industry Overview" data-aria-en="Space Industry Overview" data-aria-zh="航天产业全览"></div>
+                      <p class="slider--item-title" data-en="Space Industry — Full Overview" data-zh="航天产业——全览">Space Industry — Full Overview</p>
+                      <p class="slider--item-description" data-en="Rocket science, frontier technology, living in orbit, and the 2026 space economy and powers." data-zh="火箭科学、前沿技术、轨道生活，以及 2026 年的太空经济与航天强国。">Rocket science, frontier technology, living in orbit, and the 2026 space economy and powers.</p>
                     </a>
                   </li>
                   <li class="slider--item">
                     <a href="web3-industry-chart.html">
-                      <div class="slider--item-image" style="background-image:url('assets/img/landscape/web3-industry-overview.webp')" role="img" aria-label="Web3 Industry Overview"></div>
-                      <p class="slider--item-title">Web3 Industry — Full Overview</p>
-                      <p class="slider--item-description">Blockchains, DeFi, exchanges, and the regulatory rails shaping Web3 in 2026.</p>
+                      <div class="slider--item-image" style="background-image:url('assets/img/landscape/web3-industry-overview.webp')" role="img" aria-label="Web3 Industry Overview" data-aria-en="Web3 Industry Overview" data-aria-zh="Web3 行业全览"></div>
+                      <p class="slider--item-title" data-en="Web3 Industry — Full Overview" data-zh="Web3 行业——全览">Web3 Industry — Full Overview</p>
+                      <p class="slider--item-description" data-en="Blockchains, DeFi, exchanges, and the regulatory rails shaping Web3 in 2026." data-zh="区块链、DeFi、交易所，以及 2026 年塑造 Web3 的监管轨道。">Blockchains, DeFi, exchanges, and the regulatory rails shaping Web3 in 2026.</p>
                     </a>
                   </li>
                   <li class="slider--item">
                     <a href="business_growth_circular_flow.html">
-                      <div class="slider--item-image" style="background-image:url('assets/img/landscape/entrepreneurship-logic.webp')" role="img" aria-label="Business Growth Framework"></div>
-                      <p class="slider--item-title">Business Growth Framework</p>
-                      <p class="slider--item-description">An 8-step growth cycle: target audience, real demand, MVP, trust, monetization and data-driven iteration.</p>
+                      <div class="slider--item-image" style="background-image:url('assets/img/landscape/entrepreneurship-logic.webp')" role="img" aria-label="Business Growth Framework" data-aria-en="Business Growth Framework" data-aria-zh="商业增长循环框架"></div>
+                      <p class="slider--item-title" data-en="Business Growth Framework" data-zh="商业增长循环框架">Business Growth Framework</p>
+                      <p class="slider--item-description" data-en="An 8-step growth cycle: target audience, real demand, MVP, trust, monetization and data-driven iteration." data-zh="八步增长循环：目标受众、真实需求、MVP、信任、变现与数据驱动的迭代。">An 8-step growth cycle: target audience, real demand, MVP, trust, monetization and data-driven iteration.</p>
                     </a>
                   </li>
                   <li class="slider--item">
                     <a href="finance-industry-chart.html">
-                      <div class="slider--item-image" style="background-image:url('assets/img/landscape/finance-industry-overview.webp')" role="img" aria-label="Finance Industry Overview"></div>
-                      <p class="slider--item-title">Finance Industry — Full Overview</p>
-                      <p class="slider--item-description">Regulators, markets, payments and money flows across the US, EU, UK, China, Hong Kong and the UAE.</p>
+                      <div class="slider--item-image" style="background-image:url('assets/img/landscape/finance-industry-overview.webp')" role="img" aria-label="Finance Industry Overview" data-aria-en="Finance Industry Overview" data-aria-zh="金融行业全览"></div>
+                      <p class="slider--item-title" data-en="Finance Industry — Full Overview" data-zh="金融行业——全览">Finance Industry — Full Overview</p>
+                      <p class="slider--item-description" data-en="Regulators, markets, payments and money flows across the US, EU, UK, China, Hong Kong and the UAE." data-zh="美国、欧盟、英国、中国、香港与阿联酋的监管机构、市场、支付与资金流动。">Regulators, markets, payments and money flows across the US, EU, UK, China, Hong Kong and the UAE.</p>
                     </a>
                   </li>
                 </ul>
@@ -163,7 +169,7 @@
               <div class="contact--lockup">
                 <div class="modal">
                   <div class="modal--information">
-                    <p>Dubai</p>
+                    <p data-en="Dubai" data-zh="迪拜">Dubai</p>
                   </div>
                   <ul class="modal--options">
                     <!-- <li><a href="https://mohammed-wei.github.io/dancing-girl">Dancing Girl</a></li> -->
@@ -254,13 +260,85 @@
     </div>
   </div>
   <ul class="outer-nav">
-    <li class="is-active">Home</li>
-    <li>Entrepreneurship</li>
+    <li class="is-active" data-en="Home" data-zh="首页">Home</li>
+    <li data-en="Entrepreneurship" data-zh="创业">Entrepreneurship</li>
     <!-- <li>Traffic</li> -->
-    <li>Contact</li>
+    <li data-en="Contact" data-zh="联系">Contact</li>
     <!-- <li>Connect</li> -->
   </ul>
 </div>
+
+<script>
+  let currentLang = 'en';
+  const TITLES = {
+    en: 'Bruce Wei — Entrepreneur | AI × Energy × Space × Web3',
+    zh: 'Bruce Wei — 创业者 | AI × 能源 × 太空 × Web3'
+  };
+  const DESCRIPTIONS = {
+    en: 'Entrepreneur and builder at the intersection of AI, Energy, Space, and Web3 — mapping the next frontier of industry convergence, based in Dubai, UAE.',
+    zh: '常驻阿联酋迪拜的创业者与建设者，专注于 AI、能源、太空与 Web3 的交汇处，绘制下一代产业融合的版图。'
+  };
+  const KEYWORDS = {
+    en: 'entrepreneurship, AI, energy, space, Web3, industry landscapes for entrepreneurship, the Global Industry Classification Standard (GICS®), Dubai, Abu Dhabi, Bruce Wei, FinTech, blockchain',
+    zh: '创业, 人工智能, 能源, 太空, Web3, 行业版图, 全球行业分类标准（GICS®）, 迪拜, 阿布扎比, Bruce Wei, 金融科技, 区块链'
+  };
+
+  function setLang(lang, remember) {
+    if (lang !== 'zh') lang = 'en';
+    currentLang = lang;
+
+    const btnEn = document.getElementById('btn-en');
+    const btnZh = document.getElementById('btn-zh');
+    if (btnEn) {
+      btnEn.classList.toggle('active', lang === 'en');
+      btnEn.setAttribute('aria-pressed', String(lang === 'en'));
+    }
+    if (btnZh) {
+      btnZh.classList.toggle('active', lang === 'zh');
+      btnZh.setAttribute('aria-pressed', String(lang === 'zh'));
+    }
+
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.title = TITLES[lang];
+
+    const description = document.querySelector('meta[name="description"]');
+    if (description) description.setAttribute('content', DESCRIPTIONS[lang]);
+
+    const keywords = document.querySelector('meta[name="keywords"]');
+    if (keywords) keywords.setAttribute('content', KEYWORDS[lang]);
+
+    document.querySelectorAll('[data-en]').forEach(el => { el.innerHTML = el.dataset[lang]; });
+    document.querySelectorAll('[data-title-en]').forEach(el => {
+      el.setAttribute('title', lang === 'zh' ? el.dataset.titleZh : el.dataset.titleEn);
+    });
+    document.querySelectorAll('[data-aria-en]').forEach(el => {
+      el.setAttribute('aria-label', lang === 'zh' ? el.dataset.ariaZh : el.dataset.ariaEn);
+    });
+
+    if (remember !== false) {
+      try { localStorage.setItem('voltai-lang', lang); } catch (e) {}
+    }
+  }
+
+  document.querySelectorAll('.header--lang button').forEach(function (btn) {
+    btn.addEventListener('keyup', function (e) {
+      if (e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault();
+        e.stopPropagation();
+        btn.click();
+      }
+    });
+  });
+
+  (function () {
+    let saved = null;
+    try { saved = localStorage.getItem('voltai-lang'); } catch (e) {}
+    if (location.hash === '#zh') saved = 'zh';
+    if (location.hash === '#en') saved = 'en';
+    if (saved === 'zh') setLang('zh', false);
+    else if (location.hash === '#en') setLang('en', false);
+  })();
+</script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>

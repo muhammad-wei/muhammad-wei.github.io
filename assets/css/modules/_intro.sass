@@ -78,12 +78,13 @@
 
   &--options
     display: flex
-    justify-content: space-between
+    gap: 24px
     margin: 0
     padding: 0
     list-style: none
 
     & > a
+      flex: 1 1 0
       max-width: 250px
       text-decoration: none
       color: #858585
@@ -111,14 +112,6 @@
 
       img
         width: 430px
-
-    &--options
-
-      & > a
-        margin-right: 30px
-
-        &:last-child
-          margin-right: 0
 
 @media (max-width: 767px)
 

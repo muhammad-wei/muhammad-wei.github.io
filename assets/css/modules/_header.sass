@@ -47,6 +47,45 @@
       top: 5px
       width: 23px
 
+  &--lang
+    position: absolute
+    top: 50%
+    right: 60px
+    transform: translateY(-50%)
+    z-index: 11
+
+    .lang-toggle
+      display: flex
+      overflow: hidden
+      background-color: $black
+      border: 1px solid $muted-gray
+      border-radius: 8px
+      box-shadow: 0 2px 12px rgba(0, 0, 0, .35)
+
+      button
+        padding: 6px 10px
+        border: 0
+        background-color: transparent
+        color: #858585
+        font-family: inherit
+        font-size: 12px
+        font-weight: 700
+        line-height: 1.4
+        letter-spacing: .04em
+        cursor: pointer
+        transition: background-color .2s ease-in-out, color .2s ease-in-out
+
+        &:hover
+          color: $white
+
+        &:focus-visible
+          outline: 2px solid $white
+          outline-offset: -2px
+
+        &.active
+          background-color: $highlight
+          color: $white
+
   &--cta
     position: absolute
     top: 50%
@@ -74,3 +113,11 @@
 
     @media (max-width: 767px)
       display: none
+
+@media (max-width: 600px)
+  .header--lang
+    right: 52px
+
+    .lang-toggle button
+      padding: 5px 8px
+      font-size: 11px
