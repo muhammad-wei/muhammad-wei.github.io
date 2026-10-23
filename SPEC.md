@@ -5,7 +5,7 @@
 | Site          | https://muhammad-wei.github.io                                      |
 | Owner         | Muhammad Wei                                                           |
 | Hosting       | GitHub Pages, static files from `main` (no build step)              |
-| Last reviewed | October 23, 2026 — the home page gains a four-branch Vision node tree, a matrix-rain strip and a capital-path note; the AI page is review-dated; every page is bilingual and the language choice carries across pages (live site last checked October 10 against commit `88ea649`) |
+| Last reviewed | October 23, 2026 — Russian and Arabic (RTL) join English and Chinese across all seven pages; the header/controls use a four-language select; CSS and JS now live in external per-page/shared files with no inline presentation; the landscape pages carry GICS® lenses and sourced GICS attribution; GICS links point to the official S&P Dow Jones Indices and MSCI pages; the home page carries the Vision node tree, matrix-rain strip, capital path and a live OpenStreetMap contact map of Dubai, Guiyang and Hangzhou; the AI page is review-dated (live site last checked October 10 against commit `88ea649`) |
 
 This document says what the site is, how every page is built, and what "done" means for a change.
 `CLAUDE.md` is the short working guide; this is the reference behind it.
@@ -17,16 +17,16 @@ This document says what the site is, how every page is built, and what "done" me
 The site does two jobs:
 
 1. **Introduce the owner**: an entrepreneur based in Dubai, building at the intersection of AI, Energy, Space and Web3.
-2. **Publish industry landscapes**: one-page, bilingual maps of an industry. Each shows the industry's structure, the forces acting on it, current figures and what they mean for builders.
+2. **Publish industry landscapes**: one-page maps of an industry, in four languages. Each shows the industry's structure, the forces acting on it, current figures and what they mean for builders.
 
-Readers are founders, investors, partners and peers, reading in English or Chinese, on a desktop or a phone.
+Readers are founders, investors, partners and peers, reading in English, Chinese, Russian or Arabic, on a desktop or a phone.
 The landscapes are educational overviews, not investment, legal or tax advice.
 
 ## 2. Principles
 
-- **One file per landscape page.** Inline CSS and JS, no framework, no build step and no external requests. A page opens fast, has nothing to break and can be edited with a text editor.
+- **Separated assets, no build step.** Every landscape page links its own CSS file in `assets/css/pages/` and the shared `assets/js/site.js`; the home page keeps its compiled `assets/css/main.css` and its modules in `assets/js/`. There is no framework, no bundler and no third-party request from a landscape page. HTML carries no inline `<style>`, `<script>` or `style` attributes.
 - **Accurate and dated.** Every figure has a source and a date. A stale figure is worse than a missing one.
-- **Bilingual parity.** English and 中文 say the same thing, with the same numbers and dates.
+- **Multilingual parity.** English, 中文, Русский and العربية say the same thing, with the same numbers and dates.
 - **Readable everywhere.** Both themes meet WCAG AA contrast, at any width from 360 to 1440 px.
 - **A map, not an article.** Use short cards with one idea each. Depth belongs in the sections below the map.
 - **Vision first, capital second.** The four core landscapes converge. Finance and Business Growth are the capital path that funds the convergence, not part of the four.
@@ -35,7 +35,7 @@ The landscapes are educational overviews, not investment, legal or tax advice.
 
 | Page | File | Scope | Figures as of | Linked from home |
 | --- | --- | --- | --- | --- |
-| Home | `index.html` | Vision (convergence), landscape index, capital path, contact (EN/中文) | — | — |
+| Home | `index.html` | Vision (convergence), landscape index, capital path, contact (EN/中文/РУ/العربية) | — | — |
 | AI Industry | `ai-industry-chart.html` | World models → four modalities → four pillars | Undated figures; reviewed October 2026 | Intro card, slider |
 | Energy × China | `energy-industry-chart.html` | Global energy with a China focus; the 2026 Hormuz shock | 2026 (checked Oct 2026) | Intro card, slider |
 | Space Industry | `space-industry-chart.html` | Physics of access → value chain → rocket science, technology, living in space, economy, seven space powers, milestones | October 2026 (figures to Oct 15) | Intro card, slider |
@@ -49,7 +49,7 @@ Every landscape page links back to the home page with "← Home" ("← 首页" i
 
 - **Template:** "Global" by Bucky Maler.
   - Styles: Sass sources in `assets/css/`, compiled to `assets/css/main.css`.
-  - Scripts: jQuery 2.2.4 from the Google CDN, falling back to `assets/js/vendor/`, plus `assets/js/functions-min.js`. Hammer.js 2.0.8 is prepended into that file by CodeKit.
+  - Scripts: `boot.js` in the head; `page-meta.js` and `site.js` at the end; then Leaflet plus `contact-map.js` and `matrix-rain.js`; last, vendored jQuery 2.2.4 (`assets/js/vendor/jquery-2.2.4.min.js`) and `assets/js/functions-min.js`. Hammer.js 2.0.8 is prepended into that file by CodeKit. The contact map uses vendored Leaflet 1.9.4 (`assets/js/vendor/leaflet.js`, `assets/css/vendor/leaflet.css`).
   - Fonts: Montserrat, self-hosted in `assets/css/fonts/`.
 - **Sections** (numbered 01–04 in the side nav):
   1. **Home**
@@ -57,7 +57,7 @@ Every landscape page links back to the home page with "← Home" ("← 首页" i
      - Four cards: AI Industry, Energy × China, Space Industry and Web3 Industry, matching the headline's four fields in its order.
   2. **Landscapes ("Industry Landscapes" / 行业版图)**
      - A slider of six landscapes: Energy, AI (centre), Space, Web3, Business Growth and Finance. The first view shows Energy, AI and Space.
-     - Each slide has a thumbnail, a title and a one-line description, in both languages.
+     - Each slide has a thumbnail, a title and a one-line description, in all four languages.
      - Thumbnails are 600×600 WebP files in `assets/img/landscape/`.
      - A note under the slider frames Finance and Business Growth as the **capital path**: they build the starting fund for the intersection and are not part of the four core landscapes.
   3. **Vision ("The Convergence" / 交汇)**
@@ -66,15 +66,17 @@ Every landscape page links back to the home page with "← Home" ("← 首页" i
      - A monospace ADT caption below the root reads "TREE · root → leaf = one combination in the search space · 4 × 3 = 12 paths · search → ∞". The 4 × 3 must match the branch and leaf counts.
      - A matrix-rain strip on the right edge (desktop only) adds texture; it is decorative, `aria-hidden`, paused unless the Vision section is active, and hidden under `prefers-reduced-motion`.
      - A "Now" block states the sequence: the intersection is both the destination and the starting point. Profitable finance and business-growth ventures build the starting fund and operating judgment; the next company may be one of those businesses.
-  4. **Contact**: "Dubai" (迪拜), Instagram (`muhammad.x.wei`, linked), WeChat ID (`mohammed-wei`, selectable) and a GitHub link.
+  4. **Contact**: "Dubai · Guiyang · Hangzhou" (迪拜 · 贵阳 · 杭州), Instagram (`muhammad.x.wei`, linked), WeChat ID (`mohammed-wei`, selectable) and a GitHub link.
+  5. **Contact map**: a live Leaflet map on OpenStreetMap tiles, with 200 km circles and pulsing markers at Dubai, Guiyang and Hangzhou; pan/zoom enabled, zoom buttons swap sides in Arabic. The map credit links to OpenStreetMap. Labels follow the chosen language. At 767 px and below the contact panel docks to the bottom, leaving the three circles visible above it.
+  6. **GICS source**: the Industry Landscapes slide carries a small `.work--gics` line. It states that the landscapes are thematic cuts across GICS® sectors and credits S&P Dow Jones Indices and MSCI.
 - **Hidden on purpose** (commented out, kept for a possible return): the Traffic globe (ClustrMaps), Connect/LinkedIn and the Hire form.
 - **Navigation:**
   - side nav, the ☰ menu, the mouse wheel, the ↑/↓ keys and swipe (Hammer.js)
   - both "Contact Me" buttons jump to Contact
   - a notice asks visitors to rotate small phones held in landscape or open the site on a larger screen
-- **Language:** an EN | 中文 toggle sits in the header, left of the ☰ menu. It switches every visible string, the document title, the meta description and keywords, and the slide aria-labels. The choice is shared with the landscape pages (§7).
-- **Scope:** bilingual (EN/中文) and a single dark design.
-- **Card copy:** card and slide descriptions must match each page's actual scope. Update them whenever a page's scope changes, in both languages.
+- **Language:** a four-language select (EN / 中文 / РУ / عربي) sits in the header, left of the ☰ menu. It switches every visible string, the document title, the meta description and keywords, the slide aria-labels and the page direction. The choice is shared with the landscape pages (§7).
+- **Scope:** four languages (EN/中文/РУ/العربية; Arabic RTL) and a single dark design.
+- **Card copy:** card and slide descriptions must match each page's actual scope. Update them whenever a page's scope changes, in all four languages.
 - **Vision and capital-path copy:**
   - The Vision tree describes four roles in one system, not four separate business lines.
   - Its four branches are AI (demand), Energy (constraint), Space (frontier) and Web3 (coordination); each carries three concept leaves, and the open end is ∞ below the leaves. Keep the leaves conceptual, not company or product lists.
@@ -91,25 +93,24 @@ Every landscape page follows the same top-to-bottom order. The Business Growth p
 1. **`<head>`**
    - charset, viewport and `<title>` (with the as-of month where figures are dated)
    - a `meta description`
-   - an **anti-flash theme script**, which sets `data-theme` before first paint
-   - one inline `<style>` holding the page's tokens
+   - the shared `assets/js/boot.js`, which sets `data-theme`, language and direction before first paint
+   - a `<link>` to the page's CSS in `assets/css/pages/`
 2. **Fixed controls**
    - `.home-link` at top left
-   - `.controls` at top right: the theme button (☀️ in dark, 🌙 in light) and EN | 中文
+   - `.controls` at top right: the theme button (☀️ in dark, 🌙 in light) and the four-language select
    - their tooltips and ARIA labels follow the language too
-3. **Header:** an `h1` (page name, plus the as-of date when dated) and a `.subtitle` that lists the page's parts, separated by "·".
+3. **Header:** an `h1` (page name, plus the as-of date when dated) and a `.subtitle` that lists the page's parts, separated by "·". A `.gics-lens` block follows the subtitle: label + one sentence mapping the landscape to GICS sectors, or stating that it is not a GICS sector.
 4. **Higher-order card:** the field that spans every layer, such as regulation, geopolitics or physics (Space). It has a badge, an `h2`, one paragraph and tag chips.
 5. **Connector** with a label (for example "Integrates & spans across").
 6. **Five layer cards**, either value-chain layers or sectors, each with sub-tags. The AI page has four modality cards here instead.
 7. **Connector** ("Sustained by").
 8. **Four pillar cards.** The fourth carries the "Emerging" badge.
 9. **Page sections:** `.page-section` blocks with a `.page-section-title`, specific to each page.
-10. **Legend and footnote.** The footnote states the as-of date, the sources and the disclaimer.
-11. **Inline script:**
-    - `setLang()`, `toggleTheme()` and `updateThemeIcon()`
-    - `setLang()` also sets the document title and meta description from the page's `TITLES` and `DESCRIPTIONS` maps
-    - applies a saved language as the page loads, then saves each new choice
-    - follows system theme changes until the visitor picks a theme
+10. **Legend, footnote and GICS source.** The footnote states the as-of date, the sources and the disclaimer. A `.gics-source` line follows it with the GICS definition, the 11/25/74/163 structure, the trademark disclaimer and links to the official S&P Dow Jones Indices and MSCI GICS pages.
+11. **External scripts:** `assets/js/page-meta.js` and `assets/js/site.js` at the end.
+    - `site.js` provides `setLang()`, `toggleTheme()` and `updateThemeIcon()`, binds the select and theme button, and uses the page's `PAGE_META` record for title and description.
+    - `boot.js` in the head applies the saved language and theme before first paint.
+    - The page follows system theme changes until the visitor picks a theme.
 
 ### 5.2 Page inventory
 
@@ -183,6 +184,15 @@ Every landscape page follows the same top-to-bottom order. The Business Growth p
   - Five Key Principles
   - How to Use This Framework: New Venture, Existing Business, Scaling Operation
 
+### 5.3 Asset layout
+
+- **CSS:** each landscape page links its own file in `assets/css/pages/` (for example `ai-industry-chart.css`). The home page uses `assets/css/main.css`, compiled by hand from `assets/css/**/*.sass`.
+- **Head JS:** every page loads `assets/js/boot.js` before its stylesheet. It restores the saved theme (landscape only), language and direction.
+- **Shared JS:** `assets/js/page-meta.js` holds the four-language titles, descriptions and home keywords; `assets/js/site.js` binds the language select and theme button and applies the current language. Both load at the end of the body.
+- **Home modules:** `assets/js/matrix-rain.js` and `assets/js/contact-map.js` are loaded only by the home page; Leaflet is vendored under `assets/js/vendor/`.
+- **Shared GICS styles:** `assets/css/gics.css` styles `.gics-lens`, `.gics-source` and the home `.work--gics` line. GICS references link to the official S&P Dow Jones Indices and MSCI pages; no third-party infographic is hosted.
+- **No inline presentation:** HTML carries external `<link>`/`<script src>` references only. There are no inline `<style>` or `<script>` blocks, no `style` attributes and no `on*` handlers.
+
 ## 6. Design system (landscape pages)
 
 ### 6.1 Themes and tokens
@@ -213,7 +223,7 @@ Every landscape page follows the same top-to-bottom order. The Business Growth p
 | Component | Markup | Used on |
 | --- | --- | --- |
 | Home link | `a.home-link` | All landscape pages |
-| Controls | `.controls` > `#theme-btn.theme-btn` + `.lang-toggle` (`#btn-en`, `#btn-zh`) | All landscape pages |
+| Controls | `.controls` > `#theme-btn.theme-btn` + `.lang-toggle` (`#lang-select`) | All landscape pages |
 | Badges | `.badge` (higher-order card); `.new-badge` ("Emerging", "Headline") | AI, Energy, Finance, Web3, Space |
 | Tag chips | `.tag` (higher-order card), `.sub-tag` (layer and pillar cards) | AI, Energy, Finance, Web3, Space |
 | Layer cards | `.layer-card` × 5 | Energy, Finance, Web3, Space |
@@ -228,7 +238,7 @@ Every landscape page follows the same top-to-bottom order. The Business Growth p
 | Decision pair | `.decision-card` × 2 (bad/good or bear/bull) | Energy, Web3 |
 | Jurisdiction cards | `.jur-card` | Finance, Space (space powers, with `dt` stacked above `dd`) |
 | Flow diagram | `.flow-wrap`, `.flow-card` | Finance |
-| Δv diagram | `.dv-wrap` SVG (bilingual `<text>` and `<title>`), `.dv-chips`, `.swipe-hint` | Space |
+| Δv diagram | `.dv-wrap` SVG (four-language `<text>` and `<title>`), `.dv-chips`, `.swipe-hint` | Space |
 | Lens cards | `.cn-card`, `.region-card`, `.opp-card` | Energy; Space (`.opp-card`) |
 | Framework cards | `.step-card`, `.prin-card`, `.use-card`; SVG in `.diagram-wrap` | Business Growth |
 | Vision tree | `.vision-tree`: root at the top, four `.vision-branch` nodes (field, role, three leaf nodes), `∞` below; `.vision--now` for the capital-first note | Home |
@@ -236,6 +246,7 @@ Every landscape page follows the same top-to-bottom order. The Business Growth p
 | Matrix rain | `.vision-rain` > `#matrix-rain` canvas; desktop-only, `aria-hidden`, reduced-motion-safe | Home |
 | Capital path note | `.work--note` under the slider | Home |
 | Contact channels | `.contact--channel` inside `.modal--information` | Home |
+| Contact map | `.contact--map` (`#contact-map`, Leaflet) + `.contact--map-scrim` + `.contact--map-credit`; three circles and pulse markers | Home |
 | Legend | `.legend` (Space: dots take token colours via `.dot-*` classes) | All landscape pages |
 | Footnote | `.footnote` | AI, Energy, Finance, Web3, Space |
 
@@ -264,36 +275,45 @@ Icons are emoji, for example 🏗️ 💡 🔑 💰 ⚠️, so no icon fonts or 
   - the fixed controls never cover the `h1` or subtitle
   - the home's Vision section fits without clipping from 360 to 1440 px, including 375×667 and 360×640. The tree is a four-branch node diagram at 901 px and wider and a compact list at 900 px and below; below 760 px in height the section drops the eyebrow and tightens type and padding. The matrix rain appears only at 1280 px and wider and is hidden under reduced motion.
 
-## 7. Bilingual text
+## 7. Multilingual text
 
+- **Languages:** English, 中文, Русский and العربية. English, Chinese and Russian are LTR; Arabic is RTL.
 - **Language on load:**
   - A first visit opens in English.
-  - The visitor's choice is saved in `localStorage['voltai-lang']` (`en` or `zh`) and applied as every page loads, home included.
+  - The visitor's choice is saved in `localStorage['voltai-lang']` (`en`, `zh`, `ru` or `ar`) and applied as every page loads, home included.
   - The key is shared by all seven pages. Clearing site data returns the site to English.
-  - `#zh` and `#en` on a page still force that language for that load without saving it.
-- **`setLang(lang)`** (the home page carries the same function inline):
-  - marks the active button and sets `aria-pressed`
-  - sets `<html lang>` to `en` or `zh-CN`
-  - replaces the `innerHTML` of every `[data-en]` element with its `data-en` or `data-zh` value
-  - sets the document title and `meta description` from the page's `TITLES` and `DESCRIPTIONS` maps
+  - `#en`, `#zh`, `#ru` and `#ar` on a page force that language for that load without saving it. A small head script applies the saved or hash direction before first paint, so Arabic does not flash LTR.
+- **The select:** every page has a native `<select id="lang-select">` inside `.lang-toggle` (home: `.header--lang`; landscape: `.controls`). It offers EN / 中文 / РУ / عربي. The shared `assets/js/site.js` binds it; page titles and descriptions live in `assets/js/page-meta.js`. `setLang(lang)`:
+  - sets the select value
+  - sets `<html lang>` to `en`, `zh-CN`, `ru` or `ar`, and `<html dir>` to `ltr`, except `rtl` for Arabic
+  - replaces the `innerHTML` of every `[data-en]` element with its `data-en`, `data-zh`, `data-ru` or `data-ar` value
+  - sets the document title and `meta description` from the page's four-entry record in `assets/js/page-meta.js`; the home page also sets `meta keywords`
   - sets language-specific `title` and `aria-label` attributes from `data-title-*` and `data-aria-*`
   - saves the choice under `voltai-lang`
+  - the four language names in the select are self-identifying and are deliberately not translated
 - **Authoring rules:**
-  1. Every visible string sits in an element carrying both `data-en` and `data-zh`. The element's initial content equals `data-en`, so the page is correct before any toggle, and for search engines.
+  1. Every visible string sits in an element carrying `data-en`, `data-zh`, `data-ru` and `data-ar`. The element's initial content equals `data-en`, so the page is correct before any toggle, and for search engines.
   2. Inline tags (`<strong>`, `<br>`) may be written literally inside the attributes. Escape `"` as `&quot;`.
   3. A literal `<` in text must be written `&amp;lt;` inside the attributes.
      - A plain `&lt;` is decoded once by the attribute parser, then parsed as a tag by `innerHTML`.
      - Found October 10, 2026: `<US$500B` cut an Energy paragraph short after switching back to EN.
      - In visible text, `&lt;` is correct.
   4. Never nest one `[data-en]` element inside another. The outer swap would erase the inner one.
-  5. EN and ZH carry the same figures, dates and claims.
-  6. A page's `TITLES` and `DESCRIPTIONS` maps and its head `<title>` and `meta description` agree with each other.
+  5. All four languages carry the same figures, dates and claims.
+  6. A page's `PAGE_META` record in `assets/js/page-meta.js` and its head `<title>` and `meta description` agree with each other. The `en` values are canonical; the other three are translations.
+- **RTL:** Arabic mirrors the layout: header/logo and language select, side nav, intro image and headline, slider arrows/items, matrix-rain side, Vision tree/trunk, contact modal, and the fixed `.home-link`/`.controls`. Text aligns to the start. Set `direction: ltr` on code-like captions and diagrams whose geometry must not mirror (the ADT note, the Δv SVG and the circular growth diagram). Never mirror numbers or tickers.
+- **Translation status:** RU and AR are a machine-assisted first pass. Native review remains open (§12); treat them as drafts until reviewed.
 - **Chinese style:**
   - Simplified Chinese.
   - Amounts in 亿/万亿, for example $315B → 3150亿美元.
   - Dates such as 2026年10月6日 or 10月6日.
   - Keep standard Latin names for companies, tickers and laws, for example GENIUS 法案, MiCA, OKX.
-- The home page follows the same rules. Its toggle lives in the header; it has no theme toggle because the design is single-dark.
+- **Russian and Arabic style:**
+  - Keep Latin names for companies, tickers, products and standards (AI, Web3, DeFi, BTC, OKX, MiCA) unless a translated field name is clearer.
+  - Russian uses a comma decimal and a space for thousands; Arabic uses Western digits and Arabic punctuation.
+  - Arabic is RTL at the sentence level; keep code-like captions and diagram geometry LTR.
+  - These are machine-assisted drafts: native review (gap #10) is required before treating the wording as final.
+- The home page follows the same rules. Its language select lives in the header; it has no theme toggle because the design is single-dark.
 
 ## 8. Content standards
 
@@ -345,6 +365,14 @@ Icons are emoji, for example 🏗️ 💡 🔑 💰 ⚠️, so no icon fonts or 
 
 - Neutral and factual: no hype and no recommendations.
 - Label opinion-like sections as what they are, for example "Consensus Allocation Framework (Sell-Side Band…)" or "Scenarios".
+
+### 8.5 GICS alignment and attribution
+
+- **Source.** GICS® — The Global Industry Classification Standard — was developed by S&P Dow Jones Indices and MSCI. Its four-tier structure is 11 sectors, 25 industry groups, 74 industries and 163 sub-industries (counts per MSCI's published structure). Use the official pages for current methodology: [S&P Dow Jones Indices](https://www.spglobal.com/spdji/en/landing/topic/gics/) and [MSCI](https://www.msci.com/indexes/index-resources/gics).
+- **Thematic, not sectors.** AI, Space, Web3 and Business Growth are cross-sector themes/frameworks, not GICS sectors. Finance and Energy correspond to GICS sectors, but the pages remain thematic landscapes. Never relabel a theme as a GICS sector.
+- **Lens and source on every page.** Each landscape page carries a `.gics-lens` under the subtitle, mapping its scope to the relevant GICS sectors and stating the limits. Each page also carries a `.gics-source` line with the definition, counts, trademark disclaimer and links. The home page carries the shorter `.work--gics` source line.
+- **Attribution.** Keep the GICS trademark notice and the "independent site, not affiliated or endorsed" statement. Link to the official S&P Dow Jones Indices and MSCI GICS pages; do not host third-party GICS infographics without permission.
+- **Currency.** Re-check the sector structure and mappings when GICS is revised; update the counts and page lenses together.
 
 ## 9. Freshness and maintenance
 
@@ -404,7 +432,7 @@ Icons are emoji, for example 🏗️ 💡 🔑 💰 ⚠️, so no icon fonts or 
    - Name the file `<topic>-industry-chart.html`.
    - Give it a `<title>`, `h1` and subtitle, with the as-of month if figures are dated, plus a `meta description`.
 3. **Themes:** define tokens for both themes and check contrast.
-4. **Text:** make every string bilingual (§7).
+4. **Text:** make every string available in all four languages (§7).
 5. **Footnote:** sources, as-of date and the disclaimer.
 6. **Home page:**
    - add a slide with a 600×600 WebP thumbnail in `assets/img/landscape/`
@@ -431,40 +459,45 @@ Icons are emoji, for example 🏗️ 💡 🔑 💰 ⚠️, so no icon fonts or 
 
 A change is done when all of these pass locally (`python3 -m http.server 8765 --bind 127.0.0.1` plus headless Chromium):
 
-1. **Markup:** the HTML parses with balanced tags.
-2. **Bilingual integrity** (all seven pages):
-   - every `[data-en]` element has a non-empty `data-zh`
+1. **Markup and assets:** the HTML parses with balanced tags, and no page carries inline `<style>`, inline `<script>` content, `style=` attributes or `on*=` handlers. Every page loads its CSS and JS through `<link>`/`<script src>`.
+2. **Multilingual integrity** (all seven pages):
+   - every `[data-en]` element has a non-empty `data-zh`, `data-ru` and `data-ar`
    - initial content equals `data-en`
    - no nested `[data-en]` elements
-   - every `data-title-en` and `data-aria-en` has a matching `-zh`
-   - `<title>` and `meta description` exist in both languages
-3. **Language round trip:** after EN → 中文 → EN, every bilingual element shows the full text of its attribute, with no truncation and no stray elements. The document title, meta description and language-specific ARIA/title attributes follow the same round trip.
-4. **Persistence:** a choice made on one page is applied on the next page, and clearing `voltai-lang` returns the site to English.
-5. **Layout:**
+   - every `data-title-en` and `data-aria-en` has matching `-zh`, `-ru` and `-ar`
+   - `<title>` and `meta description` exist in all four languages
+3. **Language round trip:** after EN → 中文 → РУ → العربية → EN, every element shows the full text of its attribute, with no truncation and no stray elements. The document title, meta description and language-specific ARIA/title attributes follow the same round trip.
+4. **Persistence:** a choice made on one page is applied on the next page, and clearing `voltai-lang` returns the site to English. Test `#ru` and `#ar` forcing as well.
+5. **RTL:** with Arabic selected at 1440, 390 and 360 px, the header/logo and select, side nav, fixed `.home-link`/`.controls`, intro headline and image, slider, Vision tree and rain, and contact modal are mirrored; text is start-aligned; nothing overflows. Switching to EN/中文/РУ restores `dir="ltr"`.
+6. **Layout:**
    - no horizontal overflow at 1440, 1100, 1024, 800, 600, 460, 414, 390 and 360 px
-   - in dark and light on the landscape pages, in EN and 中文
-   - in EN and 中文 on the single-dark home page
+   - in dark and light on the landscape pages, in all four languages
+   - in all four languages on the single-dark home page
    - no clipped card text
+   - in Arabic, fixed controls and card order are mirrored and text is start-aligned
    - the home Vision section fits at 375×667 and 360×640 as well as the nine widths above
    - the matrix rain shows only at 1280 px and wider, is hidden under reduced motion, and produces no console errors while its section is inactive
-6. **Fixed controls (landscape pages):**
-   - `.home-link` doesn't overlap the `h1`, subtitle or controls at 1440, 1100, 1025, 1024, 800, 600, 414, 390 and 360 px
+   - the contact map initializes, tiles load, three city labels follow the language, and the zoom control sits clear of the modal in LTR and RTL
+7. **Fixed controls (landscape pages):**
+   - `.home-link` doesn't overlap the `h1`, subtitle or controls at 1440, 1100, 1025, 1024, 800, 600, 414, 390 and 360 px, in LTR and RTL
    - a touch tap on it goes home
    - the theme button flips the theme and its icon, and saves the choice
-   - the home header's EN | 中文 toggle doesn't overlap the logo or the ☰ menu
-7. **Console:** no JavaScript exceptions, console errors or failed requests.
-8. **Contrast:** every new or changed text colour is at least 4.5:1 in both themes, including the home page's language toggle.
-9. **Links:** every `href` and `src` resolves.
-10. **Facts:**
+   - the home header's four-language select doesn't overlap the logo or the ☰ menu at 360–1440 px
+8. **Console:** no JavaScript exceptions, console errors or failed requests.
+9. **Contrast:** every new or changed text colour is at least 4.5:1 in both themes, including the language selects.
+10. **Links:** every `href` and `src` resolves.
+11. **Facts:**
     - every changed figure matches its source
-    - EN and ZH agree
+    - all four languages agree on every figure and date
     - the as-of stamps agree with each other
+
+12. **GICS:** every landscape page has a translated `.gics-lens` and `.gics-source`; the home has `.work--gics`; the official MSCI/S&P links resolve; the GICS trademark/independent-site disclaimer is present; no theme is described as a GICS sector.
 
 After a push:
 
-11. The Pages build reports `built` for the pushed commit.
-12. The live files are byte-identical to `HEAD`.
-13. The live page passes a spot check, loaded with a cache-busting query string.
+13. The Pages build reports `built` for the pushed commit.
+14. The live files are byte-identical to `HEAD`.
+15. The live page passes a spot check, loaded with a cache-busting query string.
 
 ## 11. Hosting and deployment
 
@@ -483,12 +516,15 @@ After a push:
 
 ## 12. Known gaps and backlog (October 23, 2026)
 
-Numbers are kept from the October 16 list; fixed items are listed below the table.
+Numbers are kept from the October 16 list; new items continue from #10. Fixed items are listed below the table.
 
 | # | Gap | Where | Suggested fix |
 | --- | --- | --- | --- |
 | 7 | Web3 thumbnail is 1075×600 and 83 KB; the others are 600×600 and 9–30 KB | `assets/img/landscape/` | Re-export at 600×600 |
-| 9 | Shared controls and scripts are copied into six files (the cost of having no build step) | Landscape pages | Apply any change to all six |
+| 10 | Russian and Arabic are a machine-assisted first pass; proper nouns, financial terms and tone need a native review | all seven pages | Native review and targeted edits; keep figures and dates unchanged |
+| 11 | The contact map needs network access to OpenStreetMap tiles; without it the three markers show on a plain dark background | `index.html` | Keep the plain background as fallback; consider a self-hosted fallback tile |
+| 12 | Contact map tiles and Leaflet are a new third-party dependency | `assets/js/vendor/leaflet.js`, `assets/css/vendor/leaflet.css` | Keep the version pinned and the BSD-2 licence file with the vendored code |
+| 14 | GICS structure counts can change with annual methodology updates | `SPEC.md` §8.5, page `.gics-source` | Re-check the counts and mappings when GICS is revised |
 
 Fixed:
 - **October 10, 2026:** the `<` escaping bug in the bilingual attributes (§7, rule 3).
@@ -497,6 +533,10 @@ Fixed:
 - **October 23, 2026:** the home page became bilingual (formerly English only); page titles and meta descriptions now follow the language (formerly #2); language-specific ARIA labels and tooltips reached all pages (formerly #4); the language choice is remembered across pages (formerly #5).
 - **October 23, 2026:** all seven pages link the site logo as favicon (formerly #1); the home page's duplicate `Layer_1` SVG IDs are gone; AI and Energy gained source/disclaimer footnotes (formerly #3).
 - **October 23, 2026:** Finance and Business Growth are framed as the capital path, not core landscapes (formerly the slider-only row); the home page gained the Vision node tree and its matrix-rain strip; the AI page is review-dated.
+- **October 23, 2026:** Russian and Arabic (RTL) reached all seven pages with a four-language select, `dir="rtl"` mirroring and `en`/`zh`/`ru`/`ar` persistence. The translations are a machine-assisted first pass; native review is gap #10.
+- **October 23, 2026:** the contact background is now a live Leaflet map on OpenStreetMap tiles, with Dubai, Guiyang and Hangzhou circled and labelled in all four languages; the contact location reads "Dubai · Guiyang · Hangzhou".
+- **October 23, 2026:** the landscape pages now carry a GICS® lens and a sourced GICS attribution line; the home Industry Landscapes slide credits S&P Dow Jones Indices and MSCI. GICS® is a registered trademark; the site states it is independent. The source links point to the official S&P Dow Jones Indices and MSCI pages; no third-party infographic is hosted.
+- **October 23, 2026:** inline CSS and JS left the HTML. Each landscape page now links its own `assets/css/pages/` file; language/theme logic is shared in `site.js`, page metadata in `page-meta.js`, pre-paint boot in `boot.js`, and the home modules are `matrix-rain.js` and `contact-map.js`. Inline styles and event handlers are gone; formerly #9.
 
 ## 13. History
 
@@ -514,3 +554,7 @@ Fixed:
 | Oct 17 | README reduced to the template credit and live link |
 | Oct 18 | Text contrast raised to AA on AI, Energy, Finance, Web3 and Business Growth by changing token values only; Energy's dark-theme body text had been near 2:1 |
 | Oct 23 | Whole site bilingual: home page EN/中文 toggle and full translations, language remembered across pages under `voltai-lang`, page titles and meta descriptions switch with the language, and language-specific tooltips/ARIA labels added to every page. The home page gains a Vision section ("The Convergence": a node tree of AI demand, Energy constraint, Space frontier and Web3 coordination, rooted at "One system" and branching to leaves below, with a 4 × 3 ADT caption) with a matrix-rain strip and a capital-first "Now" block; the slider frames Finance and Business Growth as the capital path; the AI page is stamped "Reviewed October 2026"; all pages gain a favicon, AI and Energy gain footnotes, and the home's duplicate SVG IDs are removed. The Contact modal adds Instagram and WeChat alongside GitHub. |
+| Oct 23 | Russian and Arabic (RTL) added to all seven pages. A native four-language select replaces the EN/中文 toggle; `<html lang>` and `dir` switch with the language; RU/AR text, titles, meta descriptions, tooltips and ARIA labels cover every string; Arabic mirrors the header, side nav, slider, Vision tree, matrix rain, contact modal and fixed controls. RU/AR are machine-assisted drafts pending native review (#10). |
+| Oct 23 | Contact background replaced with a live Leaflet/OpenStreetMap map: Dubai, Guiyang and Hangzhou circled with pulsing markers and labels in all four languages; the unused static Dubai background was removed from the repository. |
+| Oct 23 | CSS and JS separated from HTML: per-page landscape stylesheets, shared boot/page-meta/site scripts, and home matrix/map modules. No inline `<style>`, `<script>` blocks, `style` attributes or `on*` handlers remain. |
+| Oct 23 | Landscape pages aligned to GICS®: a per-page GICS lens, a sourced attribution line with the 11/25/74/163 structure and trademark disclaimer, and a home source line crediting S&P Dow Jones Indices and MSCI. GICS sources link to the official S&P Dow Jones Indices and MSCI pages. |

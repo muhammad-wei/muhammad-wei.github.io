@@ -1,581 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page="finance">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="assets/img/logo.png">
 <title>Finance Industry Overview — October 2026</title>
 <meta name="description" content="Layered map of the finance industry: regulation and central banks, five value-chain layers, foundation pillars, a flow-of-funds diagram, and a six-jurisdiction lens (US, EU, UK, Mainland China, Hong Kong, UAE).">
-<!-- Anti-FOUC: set theme before first paint -->
-<script>
-  (function(){
-    var s = null;
-    try { s = localStorage.getItem('voltai-theme'); } catch (e) {}
-    var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    document.documentElement.setAttribute('data-theme', s || (dark ? 'dark' : 'light'));
-  })();
-</script>
-<style>
-  /* ═══════════════════════════════
-     DARK TOKENS  (default)
-  ═══════════════════════════════ */
-  :root {
-    color-scheme: dark;
-    --bg-page:          #080b12;
-    --text-body:        #e0e4f0;
-    --h1-color:         #d4c090;
-    --subtitle-color:   #7a82a0;
-    /* controls */
-    --ctrl-bg:          #0f1220;
-    --ctrl-border:      #1e2438;
-    --ctrl-btn:         #7880a8;
-    --ctrl-active-bg:   #946f0d;
-    --ctrl-active:      #fff;
-    /* regulation / central-bank paradigm (teal) */
-    --reg-bg:           linear-gradient(135deg, #061614 0%, #0c2422 100%);
-    --reg-border:       #1a8070;
-    --reg-shadow:       rgba(26,144,128,.28);
-    --reg-badge-bg:     #16786b;
-    --reg-badge-color:  #bffaf2;
-    --reg-h2:           #38c0a8;
-    --reg-p:            #6ab0a0;
-    --reg-tag-bg:       rgba(26,144,128,.16);
-    --reg-tag-border:   rgba(26,144,128,.40);
-    --reg-tag-color:    #3cc0a8;
-    /* connectors */
-    --conn-line-1:      linear-gradient(to bottom, #1a9080, #b88a10);
-    --conn-line-2:      linear-gradient(to bottom, #b88a10, #7a50c8);
-    --conn-arrow-gold:  #b88a10;
-    --conn-arrow-pur:   #7a50c8;
-    --conn-label:       #72799d;
-    --conn-label-bd:    #222a48;
-    /* section headers */
-    --sector-hdr:       #c89a20;
-    --pillar-hdr:       #9070e0;
-    /* value-chain layer cards (gold) */
-    --layer-bg:         linear-gradient(160deg, #181208 0%, #100c05 100%);
-    --layer-border:     #2e240a;
-    --layer-hover:      #b88a10;
-    --layer-num:        #9e7925;
-    --layer-h3:         #d0a048;
-    --layer-p:          #a08a5c;
-    --layer-stag:       #c89a28;
-    --layer-stag-bg:    rgba(184,138,16,.12);
-    --layer-hot-border: #5a4410;
-    --layer-hot-h3:     #e8b850;
-    /* pillar cards (purple) */
-    --pil-bg:           linear-gradient(160deg, #100c1c 0%, #090714 100%);
-    --pil-border:       #241a40;
-    --pil-hover:        #7a50c8;
-    --pil-h3:           #a084f0;
-    --pil-p:            #9488c4;
-    --nbadge-bg:        #7a50c8;
-    --nbadge-color:     #f0ebff;
-    /* force / info cards (indigo) */
-    --force-bg:         #0c0f1a;
-    --force-border:     #1a2036;
-    --force-num:        #2a3258;
-    --force-h3:         #8090e0;
-    --force-p:          #8088b0;
-    --force-stat:       #a0a8e0;
-    --force-stat-bg:    rgba(72,80,144,.14);
-    --force-stat-bd:    rgba(96,108,180,.30);
-    /* jurisdiction cards (blue) */
-    --jur-bg:           linear-gradient(160deg, #0a1322 0%, #070d18 100%);
-    --jur-border:       #18284a;
-    --jur-hover:        #3a78d0;
-    --jur-h3:           #70a8f0;
-    --jur-p:            #8098b8;
-    --jur-kpi:          #e8c860;
-    --jur-kpi-label:    #7888a8;
-    --jur-tag:          #8ab4f0;
-    --jur-tag-bg:       rgba(58,120,208,.12);
-    /* flow-of-funds diagram */
-    --orbit:            #1c2238;
-    --center-fill:      #0a1a1a;
-    --center-ring:      #1a9080;
-    --node-fill:        #0e1120;
-    --node-ring:        #b88a10;
-    --flow-cap:         #c89a20;
-    --flow-ret:         #3cc0a8;
-    --lbl-phase:        #7078a0;
-    --lbl-step:         #dfe4f4;
-    --lbl-sub:          #8890b4;
-    --lbl-num:          #f0e4c0;
-    --lbl-cap:          #c89a20;
-    --lbl-ret:          #48c8b0;
-    --center-title:     #48d0b8;
-    --center-sub:       #70b0a4;
-    --plumb-bg:         rgba(26,144,128,.10);
-    --plumb-border:     rgba(26,144,128,.45);
-    --plumb-text:       #48c0a8;
-    /* page sections, legend, footnote */
-    --pst-color:        #72799d;
-    --pst-line:         #1a2038;
-    --legend-color:     #7078a0;
-    --foot-color:       #7079a1;
-    --foot-border:      #161c30;
-  }
+<script src="assets/js/boot.js"></script>
+<link rel="stylesheet" href="assets/css/pages/finance-industry-chart.css">
+<link rel="stylesheet" href="assets/css/gics.css">
 
-  /* ═══════════════════════════════
-     LIGHT TOKENS
-  ═══════════════════════════════ */
-  html[data-theme="light"] {
-    color-scheme: light;
-    --bg-page:          #f4f6fc;
-    --text-body:        #181a28;
-    --h1-color:         #28200c;
-    --subtitle-color:   #5a6280;
-    --ctrl-bg:          #ffffff;
-    --ctrl-border:      #dde4f0;
-    --ctrl-btn:         #677596;
-    --ctrl-active-bg:   #946f07;
-    --ctrl-active:      #fff;
-    --reg-bg:           linear-gradient(135deg, #e0faf6 0%, #d4f4ee 100%);
-    --reg-border:       #40a090;
-    --reg-shadow:       rgba(26,144,128,.12);
-    --reg-badge-bg:     #0e7868;
-    --reg-badge-color:  #fff;
-    --reg-h2:           #0a5848;
-    --reg-p:            #286858;
-    --reg-tag-bg:       rgba(26,144,128,.07);
-    --reg-tag-border:   rgba(26,144,128,.22);
-    --reg-tag-color:    #0a6858;
-    --conn-line-1:      linear-gradient(to bottom, #2a9080, #a07808);
-    --conn-line-2:      linear-gradient(to bottom, #a07808, #6030b0);
-    --conn-arrow-gold:  #a07808;
-    --conn-arrow-pur:   #6030b0;
-    --conn-label:       #636e97;
-    --conn-label-bd:    #c8d0e8;
-    --sector-hdr:       #906008;
-    --pillar-hdr:       #5030a8;
-    --layer-bg:         linear-gradient(160deg, #fffbec 0%, #fff6d8 100%);
-    --layer-border:     #e0cc70;
-    --layer-hover:      #a07808;
-    --layer-num:        #8a6a20;
-    --layer-h3:         #7c4808;
-    --layer-p:          #5c4a28;
-    --layer-stag:       #885008;
-    --layer-stag-bg:    rgba(152,88,8,.09);
-    --layer-hot-border: #c8a030;
-    --layer-hot-h3:     #884010;
-    --pil-bg:           linear-gradient(160deg, #f2eeff 0%, #eae0ff 100%);
-    --pil-border:       #c0a8f0;
-    --pil-hover:        #5030a8;
-    --pil-h3:           #3820a0;
-    --pil-p:            #463870;
-    --nbadge-bg:        #5030a8;
-    --nbadge-color:     #f4eeff;
-    --force-bg:         #f0f2fc;
-    --force-border:     #d0d8f0;
-    --force-num:        #c8d2f0;
-    --force-h3:         #2840a0;
-    --force-p:          #404870;
-    --force-stat:       #3048a0;
-    --force-stat-bg:    rgba(56,80,160,.07);
-    --force-stat-bd:    rgba(56,80,160,.20);
-    --jur-bg:           linear-gradient(160deg, #eef4ff 0%, #e4eefc 100%);
-    --jur-border:       #b8cce8;
-    --jur-hover:        #2860b0;
-    --jur-h3:           #1c4c94;
-    --jur-p:            #3a4c68;
-    --jur-kpi:          #8c5a08;
-    --jur-kpi-label:    #5a6a88;
-    --jur-tag:          #1c4c94;
-    --jur-tag-bg:       rgba(40,96,176,.08);
-    --orbit:            #d4dcee;
-    --center-fill:      #e6f8f4;
-    --center-ring:      #247c6e;
-    --node-fill:        #ffffff;
-    --node-ring:        #a07808;
-    --flow-cap:         #8e6a07;
-    --flow-ret:         #0e7868;
-    --lbl-phase:        #6a7494;
-    --lbl-step:         #1c2034;
-    --lbl-sub:          #4c5674;
-    --lbl-num:          #6a4a08;
-    --lbl-cap:          #8a6008;
-    --lbl-ret:          #0a6858;
-    --center-title:     #0a5848;
-    --center-sub:       #2a6a5c;
-    --plumb-bg:         rgba(26,144,128,.07);
-    --plumb-border:     rgba(26,144,128,.35);
-    --plumb-text:       #0a6858;
-    --pst-color:        #656f8d;
-    --pst-line:         #dde4f0;
-    --legend-color:     #5a6888;
-    --foot-color:       #656f8d;
-    --foot-border:      #dde4f0;
-  }
-
-  /* ═══════════════════════════════
-     BASE
-  ═══════════════════════════════ */
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-    background: var(--bg-page);
-    color: var(--text-body);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 24px 64px;
-  }
-
-  /* ── CONTROLS ── */
-  .controls {
-    position: fixed;
-    top: 20px;
-    right: 24px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    z-index: 100;
-  }
-  .theme-btn {
-    width: 34px; height: 34px;
-    border-radius: 8px;
-    border: 1px solid var(--ctrl-border);
-    background: var(--ctrl-bg);
-    cursor: pointer;
-    font-size: 16px;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
-    transition: background 0.2s, border-color 0.2s;
-  }
-  .lang-toggle {
-    display: flex;
-    background: var(--ctrl-bg);
-    border: 1px solid var(--ctrl-border);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
-  }
-  .lang-toggle button {
-    padding: 7px 16px;
-    font-size: 13px; font-weight: 600;
-    border: none; cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-    background: transparent;
-    color: var(--ctrl-btn);
-    letter-spacing: 0.04em;
-  }
-  .lang-toggle button.active { background: var(--ctrl-active-bg); color: var(--ctrl-active); }
-
-  /* ── PAGE HEADER ── */
-  h1 {
-    font-size: 22px; font-weight: 600;
-    color: var(--h1-color);
-    margin-bottom: 6px;
-    text-align: center;
-    letter-spacing: 0.03em;
-  }
-  .subtitle {
-    font-size: 13px;
-    color: var(--subtitle-color);
-    margin-bottom: 52px;
-    text-align: center;
-  }
-
-  /* ── CHART WRAPPER ── */
-  .chart {
-    width: 100%;
-    max-width: 960px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* ── REGULATORY PARADIGM ── */
-  .regulatory {
-    width: 100%;
-    background: var(--reg-bg);
-    border: 1.5px solid var(--reg-border);
-    border-radius: 14px;
-    padding: 22px 28px;
-    box-shadow: 0 0 32px var(--reg-shadow);
-  }
-  .regulatory .badge {
-    display: inline-block;
-    font-size: 10px; font-weight: 700;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    background: var(--reg-badge-bg); color: var(--reg-badge-color);
-    border-radius: 4px; padding: 2px 8px; margin-bottom: 10px;
-  }
-  .regulatory h2 { font-size: 19px; font-weight: 700; color: var(--reg-h2); margin-bottom: 6px; }
-  .regulatory p  { font-size: 13px; color: var(--reg-p); line-height: 1.6; }
-  .regulatory .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-  .regulatory .tag {
-    font-size: 11px;
-    background: var(--reg-tag-bg);
-    border: 1px solid var(--reg-tag-border);
-    color: var(--reg-tag-color);
-    border-radius: 20px; padding: 3px 12px;
-  }
-
-  /* ── CONNECTORS ── */
-  .connector {
-    display: flex; flex-direction: column; align-items: center;
-    padding: 4px 0; gap: 2px;
-  }
-  .connector .line   { width: 2px; height: 18px; }
-  .connector .line-1 { background: var(--conn-line-1); }
-  .connector .line-2 { background: var(--conn-line-2); }
-  .connector .arrow  { width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; }
-  .connector .arrow-gold { border-top: 8px solid var(--conn-arrow-gold); }
-  .connector .arrow-pur  { border-top: 8px solid var(--conn-arrow-pur); }
-  .connector-label {
-    font-size: 10px; color: var(--conn-label);
-    letter-spacing: 0.06em; text-transform: uppercase;
-    padding: 2px 10px;
-    border: 1px dashed var(--conn-label-bd);
-    border-radius: 20px; margin: 3px 0;
-  }
-
-  /* ── SECTION HEADERS ── */
-  .section { width: 100%; }
-  .section-header {
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    margin-bottom: 12px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .section-header::before,
-  .section-header::after { content: ""; flex: 1; height: 1px; background: currentColor; opacity: 0.18; }
-  .sectors-header { color: var(--sector-hdr); }
-  .pillars-header { color: var(--pillar-hdr); }
-
-  /* ── GRIDS ── */
-  .cards-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
-  .cards-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-  .cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-
-  /* ── VALUE-CHAIN LAYER CARDS ── */
-  .layer-card {
-    background: var(--layer-bg);
-    border: 1.5px solid var(--layer-border);
-    border-radius: 12px; padding: 16px 14px;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .layer-card:hover { border-color: var(--layer-hover); transform: translateY(-2px); }
-  .layer-card .num  { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: var(--layer-num); text-transform: uppercase; margin-bottom: 6px; }
-  .layer-card .icon { font-size: 22px; margin-bottom: 8px; }
-  .layer-card h3    { font-size: 13px; font-weight: 700; color: var(--layer-h3); margin-bottom: 5px; }
-  .layer-card p     { font-size: 11px; color: var(--layer-p); line-height: 1.55; }
-  .layer-card .sub-tags { display: flex; flex-direction: column; gap: 3px; margin-top: 8px; }
-  .layer-card .sub-tag  { font-size: 9.5px; color: var(--layer-stag); background: var(--layer-stag-bg); border-radius: 4px; padding: 2px 6px; width: fit-content; }
-  .layer-card.hot   { border-color: var(--layer-hot-border); }
-  .layer-card.hot h3 { color: var(--layer-hot-h3); }
-
-  /* ── PILLAR CARDS ── */
-  .pillar-card {
-    background: var(--pil-bg);
-    border: 1.5px solid var(--pil-border);
-    border-radius: 12px; padding: 16px 14px;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .pillar-card:hover { border-color: var(--pil-hover); transform: translateY(-2px); }
-  .pillar-card .icon { font-size: 22px; margin-bottom: 8px; }
-  .pillar-card h3    { font-size: 13px; font-weight: 700; color: var(--pil-h3); margin-bottom: 5px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-  .pillar-card p     { font-size: 11px; color: var(--pil-p); line-height: 1.55; }
-  .new-badge {
-    font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-    background: var(--nbadge-bg); color: var(--nbadge-color);
-    border-radius: 3px; padding: 1px 5px;
-  }
-
-  /* ── PAGE SECTIONS ── */
-  .page-section { width: 100%; max-width: 960px; margin-top: 52px; }
-  .page-section-title {
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--pst-color);
-    text-align: center; margin-bottom: 20px;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .page-section-title::before,
-  .page-section-title::after { content: ""; flex: 1; height: 1px; background: var(--pst-line); }
-
-  /* ── FLOW-OF-FUNDS DIAGRAM ── */
-  .flow-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .flow-wrap svg { display: block; width: 100%; min-width: 620px; height: auto; margin: 0 auto; }
-  .flow-wrap svg text { font-family: inherit; }
-  .orbit-ring   { fill: none; stroke: var(--orbit); stroke-width: 1.5; stroke-dasharray: 2 5; }
-  .center-bg    { fill: var(--center-fill); stroke: var(--center-ring); stroke-width: 2; }
-  .node-bg      { fill: var(--node-fill); stroke: var(--node-ring); stroke-width: 2.5; }
-  .arc-cap      { fill: none; stroke: var(--flow-cap); stroke-width: 2.2; }
-  .arc-ret      { fill: none; stroke: var(--flow-ret); stroke-width: 1.8; stroke-dasharray: 6 4; }
-  .tip-cap      { fill: var(--flow-cap); }
-  .tip-ret      { fill: var(--flow-ret); }
-  .lbl-num      { fill: var(--lbl-num); font-size: 15px; font-weight: 700; }
-  .lbl-phase    { fill: var(--lbl-phase); font-size: 10px; font-weight: 700; letter-spacing: .08em; }
-  .lbl-step     { fill: var(--lbl-step); font-size: 14px; font-weight: 700; }
-  .lbl-sub      { fill: var(--lbl-sub); font-size: 11px; }
-  .lbl-cap      { fill: var(--lbl-cap); font-size: 11px; font-weight: 600; }
-  .lbl-ret-phase { fill: var(--lbl-ret); font-size: 10px; font-weight: 700; letter-spacing: .08em; }
-  .lbl-ret      { fill: var(--lbl-ret); font-size: 11px; font-weight: 600; }
-  .center-title { fill: var(--center-title); font-size: 12px; font-weight: 700; letter-spacing: .06em; }
-  .center-sub   { fill: var(--center-sub); font-size: 10.5px; }
-  .plumb-bg     { fill: var(--plumb-bg); stroke: var(--plumb-border); stroke-width: 1.2; stroke-dasharray: 4 3; }
-  .plumb-text   { fill: var(--plumb-text); font-size: 11px; font-weight: 700; letter-spacing: .08em; }
-
-  .swipe-hint { display: none; margin-top: 6px; font-size: 10px; letter-spacing: .06em; color: var(--pst-color); text-align: center; }
-
-  .flow-chips { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin: 14px 0 22px; }
-  .chip {
-    display: flex; align-items: center; gap: 8px;
-    font-size: 11px; font-weight: 600; letter-spacing: .04em;
-    padding: 4px 12px; border-radius: 20px; border: 1px solid;
-  }
-  .chip-cap { color: var(--flow-cap); border-color: var(--flow-cap); }
-  .chip-ret { color: var(--flow-ret); border-color: var(--flow-ret); }
-  .chip-cb  { color: var(--center-ring); border-color: var(--center-ring); }
-  .sw       { display: inline-block; width: 18px; border-top: 2px solid currentColor; }
-  .sw-ret   { border-top-style: dashed; }
-  .sw-cb    { width: 10px; height: 10px; border: 2px solid currentColor; border-radius: 50%; }
-
-  .flow-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .flow-card {
-    background: var(--force-bg);
-    border: 1.5px solid var(--force-border);
-    border-radius: 12px; padding: 16px;
-  }
-  .flow-card .step { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--layer-stag); margin-bottom: 6px; }
-  .flow-card h3    { font-size: 13px; font-weight: 700; color: var(--force-h3); margin-bottom: 5px; }
-  .flow-card p     { font-size: 11.5px; color: var(--force-p); line-height: 1.6; }
-  .flow-card.wide  { grid-column: 1 / -1; background: var(--reg-bg); border-color: var(--reg-border); }
-  .flow-card.wide .step { color: var(--reg-tag-color); }
-  .flow-card.wide h3    { color: var(--reg-h2); }
-  .flow-card.wide p     { color: var(--reg-p); }
-
-  /* ── JURISDICTION CARDS ── */
-  .jur-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-  .jur-card {
-    background: var(--jur-bg);
-    border: 1.5px solid var(--jur-border);
-    border-radius: 12px; padding: 18px 16px;
-    display: flex; flex-direction: column;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .jur-card:hover { border-color: var(--jur-hover); transform: translateY(-2px); }
-  .jur-head  { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-  .jur-head .flag { font-size: 20px; line-height: 1; }
-  .jur-head h3    { font-size: 13px; font-weight: 700; color: var(--jur-h3); }
-  .jur-head .code {
-    margin-left: auto;
-    font-size: 9.5px; font-weight: 700; letter-spacing: .1em;
-    color: var(--jur-tag); background: var(--jur-tag-bg);
-    border-radius: 4px; padding: 2px 6px;
-  }
-  .jur-card dl { display: grid; grid-template-columns: auto 1fr; gap: 5px 10px; font-size: 11px; line-height: 1.5; margin-bottom: 12px; }
-  .jur-card dt { color: var(--jur-tag); font-weight: 700; white-space: nowrap; }
-  .jur-card dd { color: var(--jur-p); }
-  .jur-card .kpi       { margin-top: auto; font-size: 20px; font-weight: 800; color: var(--jur-kpi); line-height: 1.2; }
-  .jur-card .kpi-label { font-size: 10px; color: var(--jur-kpi-label); margin-top: 2px; }
-
-  /* ── FORCE / TREND CARDS ── */
-  .force-card {
-    background: var(--force-bg);
-    border: 1.5px solid var(--force-border);
-    border-radius: 12px; padding: 18px 16px;
-  }
-  .force-card .force-num { font-size: 28px; font-weight: 800; color: var(--force-num); line-height: 1; margin-bottom: 8px; }
-  .force-card h3  { font-size: 13px; font-weight: 700; color: var(--force-h3); margin-bottom: 6px; }
-  .force-card p   { font-size: 11px; color: var(--force-p); line-height: 1.6; }
-  .force-card .stat {
-    display: inline-block; margin-top: 10px; font-size: 10px;
-    color: var(--force-stat); background: var(--force-stat-bg);
-    border: 1px solid var(--force-stat-bd); border-radius: 4px; padding: 2px 8px;
-  }
-
-  /* ── LEGEND & FOOTNOTE ── */
-  .legend { margin-top: 48px; display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
-  .legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--legend-color); }
-  .legend-dot  { width: 10px; height: 10px; border-radius: 50%; }
-  .footnote {
-    width: 100%; max-width: 960px;
-    margin-top: 28px; padding-top: 16px;
-    border-top: 1px solid var(--foot-border);
-    font-size: 11px; line-height: 1.6;
-    color: var(--foot-color); text-align: center;
-  }
-
-  @media (max-width: 1024px) {
-    body { padding-top: 72px; }   /* clear the fixed controls */
-  }
-  @media (max-width: 800px) {
-    .cards-5 { grid-template-columns: repeat(2, 1fr); }
-    .cards-4 { grid-template-columns: repeat(2, 1fr); }
-    .cards-3 { grid-template-columns: 1fr; }
-    .jur-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 668px) {
-    .swipe-hint { display: block; }
-  }
-  @media (max-width: 460px) {
-    body { padding: 72px 16px 48px; }
-    .regulatory { padding: 18px; }
-    .cards-5, .cards-4, .jur-grid, .flow-grid { grid-template-columns: 1fr; }
-    .flow-card.wide { grid-column: auto; }
-  }
-  /* ── HOME LINK (top-left, mirrors the controls) ── */
-  .home-link {
-    position: fixed; top: 20px; left: 24px; z-index: 100;
-    display: flex; align-items: center; height: 34px; padding: 0 12px;
-    border: 1px solid var(--ctrl-border); border-radius: 8px;
-    background: var(--ctrl-bg); color: var(--text-body);
-    font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-decoration: none;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
-    transition: border-color 0.2s;
-  }
-  .home-link:hover, .home-link:focus-visible { border-color: var(--text-body); }
-</style>
 </head>
 <body>
 
 <!-- Controls -->
-<a class="home-link" href="index.html" title="Back to homepage" data-title-en="Back to homepage" data-title-zh="返回首页" data-en="← Home" data-zh="← 首页">← Home</a>
+<a class="home-link" href="index.html" title="Back to homepage" data-title-en="Back to homepage" data-title-ru="Вернуться на главную страницу" data-title-ar="العودة إلى الصفحة الرئيسية" data-title-zh="返回首页" data-en="← Home" data-ru="← Главная" data-ar="→ الرئيسية" data-zh="← 首页">← Home</a>
 <div class="controls">
-  <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Switch theme" aria-label="Switch theme" data-title-en="Switch theme" data-title-zh="切换主题" data-aria-en="Switch theme" data-aria-zh="切换主题">🌙</button>
-  <div class="lang-toggle" role="group" aria-label="Language" data-aria-en="Language" data-aria-zh="语言">
-    <button id="btn-en" class="active" onclick="setLang('en')" aria-pressed="true">EN</button>
-    <button id="btn-zh" onclick="setLang('zh')" aria-pressed="false">中文</button>
-  </div>
+  <button class="theme-btn" id="theme-btn" title="Switch theme" aria-label="Switch theme" data-title-en="Switch theme" data-title-ru="Переключить тему" data-title-ar="تبديل المظهر" data-title-zh="切换主题" data-aria-en="Switch theme" data-aria-ru="Переключить тему" data-aria-ar="تبديل المظهر" data-aria-zh="切换主题">🌙</button>
+  <div class="lang-toggle" role="group" aria-label="Language" data-aria-en="Language" data-aria-ru="Язык" data-aria-ar="اللغة" data-aria-zh="语言">
+                    <select id="lang-select" aria-label="Language" data-aria-en="Language" data-aria-zh="语言" data-aria-ru="Язык" data-aria-ar="اللغة">
+                      <option value="en" lang="en">EN</option>
+                      <option value="zh" lang="zh-CN">中文</option>
+                      <option value="ru" lang="ru">РУ</option>
+                      <option value="ar" lang="ar">عربي</option>
+                    </select>
+                  </div>
 </div>
 
-<h1 data-en="Finance Industry — Full Overview (as of October 2026)"
+<h1 data-en="Finance Industry — Full Overview (as of October 2026)" data-ru="Финансовый сектор — полный обзор (по состоянию на октябрь 2026)" data-ar="قطاع المال — نظرة شاملة (حتى أكتوبر 2026)"
     data-zh="金融行业全览（截至2026年10月）">Finance Industry — Full Overview (as of October 2026)</h1>
 <p class="subtitle"
-   data-en="Regulation &amp; Central Banks · Five Value-Chain Layers · Foundation Pillars · Six-Jurisdiction Lens"
+   data-en="Regulation &amp; Central Banks · Five Value-Chain Layers · Foundation Pillars · Six-Jurisdiction Lens" data-ru="Регулирование и центральные банки · Пять уровней цепочки создания стоимости · Основополагающие опоры · Взгляд шести юрисдикций" data-ar="التنظيم والبنوك المركزية · خمس طبقات لسلسلة القيمة · الدعائم الأساسية · عدسة ست ولايات قضائية"
    data-zh="监管与中央银行 · 五大价值链层级 · 基础支柱 · 六大法域视角">Regulation &amp; Central Banks · Five Value-Chain Layers · Foundation Pillars · Six-Jurisdiction Lens</p>
+<aside class="gics-lens">
+  <span class="gics-lens-label" data-en="GICS® lens" data-zh="GICS® 视角" data-ru="Разрез GICS®" data-ar="منظور GICS®">GICS® lens</span>
+  <p class="gics-lens-text" data-en="Financials is a GICS sector. Payments and exchanges sit in Financials; financial software can sit in Information Technology." data-zh="金融是 GICS 行业板块。支付与交易所归入金融；金融软件可归入信息技术。" data-ru="Финансы — сектор GICS. Платежи и биржи относятся к финансам; финансовое ПО может относиться к информационным технологиям." data-ar="القطاع المالي قطاع في GICS. تندرج المدفوعات والبورصات ضمن القطاع المالي، وقد تندرج برمجيات التمويل ضمن تقنية المعلومات.">Financials is a GICS sector. Payments and exchanges sit in Financials; financial software can sit in Information Technology.</p>
+</aside>
 
 <div class="chart">
 
   <!-- ══ REGULATION & CENTRAL BANKS (paradigm) ══ -->
   <div class="regulatory">
-    <div class="badge" data-en="Higher-Order Force" data-zh="高阶驱动力">Higher-Order Force</div>
-    <h2 data-en="Regulation, Central Banks &amp; Financial Plumbing"
+    <div class="badge" data-en="Higher-Order Force" data-ru="Силы высшего порядка" data-ar="قوة النظام العالي" data-zh="高阶驱动力">Higher-Order Force</div>
+    <h2 data-en="Regulation, Central Banks &amp; Financial Plumbing" data-ru="Регулирование, центральные банки &amp; Финансовый водопровод" data-ar="التنظيم والبنوك المركزية &amp; السباكة المالية"
         data-zh="监管、中央银行与金融基础设施">Regulation, Central Banks &amp; Financial Plumbing</h2>
-    <p data-en="Not a sector — the cross-cutting field that sets the rules, the money and the rails for every layer below. Central banks set policy rates, act as lender of last resort and run the RTGS systems; global standard setters (BCBS, FSB, IOSCO, CPMI, FATF) write the playbook that national authorities adopt — from the Fed, ECB and Bank of England to the PBoC, HKMA and CBUAE."
+    <p data-en="Not a sector — the cross-cutting field that sets the rules, the money and the rails for every layer below. Central banks set policy rates, act as lender of last resort and run the RTGS systems; global standard setters (BCBS, FSB, IOSCO, CPMI, FATF) write the playbook that national authorities adopt — from the Fed, ECB and Bank of England to the PBoC, HKMA and CBUAE." data-ru="Не сектор, а сквозное поле, которое устанавливает правила, деньги и рельсы для каждого нижнего уровня. Центральные банки устанавливают процентные ставки, действуют как кредиторы последней инстанции и управляют RTGS системами; мировые разработчики стандартов (BCBS, FSB, IOSCO, CPMI, FATF) пишут сценарий, который принимают национальные власти — от ФРС, ECB и Банка Англии до НБК, HKMA и CBОАЭ." data-ar="ليس قطاعًا – المجال الشامل الذي يحدد القواعد والأموال والقضبان لكل طبقة أدناه. تحدد البنوك المركزية أسعار الفائدة، وتعمل كمقرض الملاذ الأخير وتدير الأنظمة RTGS؛ واضعو المعايير العالمية (BCBS، FSB، IOSCO، CPMI، FATF) يكتبون قواعد اللعبة التي تتبناها السلطات الوطنية - من بنك الاحتياطي الفيدرالي، ECB وبنك إنجلترا إلى بنك الشعب الصيني، HKMA و CBالإمارات."
        data-zh="并非某一赛道，而是为下方每一层级设定规则、货币与通道的横向场域。中央银行制定政策利率、充当最后贷款人并运营实时全额结算（RTGS）系统；全球标准制定机构（BCBS、FSB、IOSCO、CPMI、FATF）制定规则框架，由各地监管机构落地实施——从美联储、欧洲央行、英格兰银行，到中国人民银行、香港金管局与阿联酋央行。">
       Not a sector — the cross-cutting field that sets the rules, the money and the rails for every layer below. Central banks set policy rates, act as lender of last resort and run the RTGS systems; global standard setters (BCBS, FSB, IOSCO, CPMI, FATF) write the playbook that national authorities adopt — from the Fed, ECB and Bank of England to the PBoC, HKMA and CBUAE.
     </p>
     <div class="tags">
-      <span class="tag" data-en="Basel III Capital"    data-zh="巴塞尔III资本">Basel III Capital</span>
-      <span class="tag" data-en="FSB · IOSCO · FATF"   data-zh="FSB · IOSCO · FATF">FSB · IOSCO · FATF</span>
-      <span class="tag" data-en="T+1 Settlement"       data-zh="T+1 结算">T+1 Settlement</span>
-      <span class="tag" data-en="ISO 20022 Messaging"  data-zh="ISO 20022 报文">ISO 20022 Messaging</span>
-      <span class="tag" data-en="Stock Connect · CIPS" data-zh="互联互通 · CIPS">Stock Connect · CIPS</span>
-      <span class="tag" data-en="CBUAE · DIFC · ADGM"  data-zh="阿联酋央行 · DIFC · ADGM">CBUAE · DIFC · ADGM</span>
+      <span class="tag" data-en="Basel III Capital" data-ru="Basel III Капитал" data-ar="Basel III رأس المال"    data-zh="巴塞尔III资本">Basel III Capital</span>
+      <span class="tag" data-en="FSB · IOSCO · FATF" data-ru="FSB · IOSCO · FATF" data-ar="FSB · IOSCO · FATF"   data-zh="FSB · IOSCO · FATF">FSB · IOSCO · FATF</span>
+      <span class="tag" data-en="T+1 Settlement" data-ru="T+1 Поселение" data-ar="T+1 التسوية"       data-zh="T+1 结算">T+1 Settlement</span>
+      <span class="tag" data-en="ISO 20022 Messaging" data-ru="ISO 20022 Сообщения" data-ar="ISO 20022 الرسائل"  data-zh="ISO 20022 报文">ISO 20022 Messaging</span>
+      <span class="tag" data-en="Stock Connect · CIPS" data-ru="Stock Connect · CIPS" data-ar="اتصال الأسهم · CIPS" data-zh="互联互通 · CIPS">Stock Connect · CIPS</span>
+      <span class="tag" data-en="CBUAE · DIFC · ADGM" data-ru="CBОАЭ · DIFC · ADGM" data-ar="CBالإمارات · DIFC · ADGM"  data-zh="阿联酋央行 · DIFC · ADGM">CBUAE · DIFC · ADGM</span>
     </div>
   </div>
 
   <!-- Connector 1 -->
   <div class="connector">
     <div class="line line-1"></div>
-    <div class="connector-label" data-en="governs &amp; spans across" data-zh="统摄并贯穿所有层级">governs &amp; spans across</div>
+    <div class="connector-label" data-en="governs &amp; spans across" data-ru="управляет &amp; промежутками" data-ar="يحكم &amp; يمتد عبر" data-zh="统摄并贯穿所有层级">governs &amp; spans across</div>
     <div class="line line-1"></div>
     <div class="arrow arrow-gold"></div>
   </div>
@@ -583,82 +69,82 @@
   <!-- ══ FIVE VALUE-CHAIN LAYERS ══ -->
   <div class="section">
     <div class="section-header sectors-header"
-         data-en="Five Value-Chain Layers — Upper Layer"
+         data-en="Five Value-Chain Layers — Upper Layer" data-ru="Пять уровней цепочки создания стоимости — верхний уровень" data-ar="خمس طبقات من سلسلة القيمة — الطبقة العليا"
          data-zh="五大价值链层级 — 上层">Five Value-Chain Layers — Upper Layer</div>
     <div class="cards-5">
 
       <div class="layer-card">
-        <div class="num" data-en="Layer 1" data-zh="第一层">Layer 1</div>
+        <div class="num" data-en="Layer 1" data-ru="Слой 1" data-ar="الطبقة 1" data-zh="第一层">Layer 1</div>
         <div class="icon">🏦</div>
-        <h3 data-en="Capital Formation" data-zh="资本形成">Capital Formation</h3>
-        <p data-en="Banks lend and underwrite; equity and debt capital markets, syndicated loans, private credit and securitization turn savings into funding for firms and governments."
+        <h3 data-en="Capital Formation" data-ru="Формирование капитала" data-ar="تكوين رأس المال" data-zh="资本形成">Capital Formation</h3>
+        <p data-en="Banks lend and underwrite; equity and debt capital markets, syndicated loans, private credit and securitization turn savings into funding for firms and governments." data-ru="Банки кредитуют и гарантируют; Рынки акционерного и долгового капитала, синдицированные кредиты, частные кредиты и секьюритизация превращают сбережения в финансирование для фирм и правительств." data-ar="البنوك تقرض وتتعهد؛ تعمل أسواق رأس المال والديون، والقروض المشتركة، والائتمان الخاص، والتوريق على تحويل المدخرات إلى تمويل للشركات والحكومات."
            data-zh="银行放贷与承销；股权与债务资本市场、银团贷款、私募信贷与资产证券化，把储蓄转化为企业与政府的融资。">
           Banks lend and underwrite; equity and debt capital markets, syndicated loans, private credit and securitization turn savings into funding for firms and governments.
         </p>
         <div class="sub-tags">
-          <span class="sub-tag" data-en="ECM · DCM · Sukuk"      data-zh="股权 · 债权 · 伊斯兰债券">ECM · DCM · Sukuk</span>
-          <span class="sub-tag" data-en="Loans · Private Credit" data-zh="贷款 · 私募信贷">Loans · Private Credit</span>
-          <span class="sub-tag" data-en="ABS · CLOs"             data-zh="ABS · CLO">ABS · CLOs</span>
+          <span class="sub-tag" data-en="ECM · DCM · Sukuk" data-ru="ECM · DCM · Сукук" data-ar="ECM · DCM · الصكوك"      data-zh="股权 · 债权 · 伊斯兰债券">ECM · DCM · Sukuk</span>
+          <span class="sub-tag" data-en="Loans · Private Credit" data-ru="Кредиты · Частный кредит" data-ar="القروض · الائتمان الخاص" data-zh="贷款 · 私募信贷">Loans · Private Credit</span>
+          <span class="sub-tag" data-en="ABS · CLOs" data-ru="ABS · CLO" data-ar="ABS · CLOs"             data-zh="ABS · CLO">ABS · CLOs</span>
         </div>
       </div>
 
       <div class="layer-card">
-        <div class="num" data-en="Layer 2" data-zh="第二层">Layer 2</div>
+        <div class="num" data-en="Layer 2" data-ru="Слой 2" data-ar="الطبقة 2" data-zh="第二层">Layer 2</div>
         <div class="icon">📈</div>
-        <h3 data-en="Trading &amp; Market Structure" data-zh="交易与市场结构">Trading &amp; Market Structure</h3>
-        <p data-en="Exchanges, ATSs/MTFs, dealers and RFQ platforms match buyers and sellers. Best-execution rules, repo funding and benchmarks (SOFR, LPR, HIBOR, EIBOR) set the terms."
+        <h3 data-en="Trading &amp; Market Structure" data-ru="Торговля &amp; Структура рынка" data-ar="التداول &amp; هيكل السوق" data-zh="交易与市场结构">Trading &amp; Market Structure</h3>
+        <p data-en="Exchanges, ATSs/MTFs, dealers and RFQ platforms match buyers and sellers. Best-execution rules, repo funding and benchmarks (SOFR, LPR, HIBOR, EIBOR) set the terms." data-ru="Биржи, АТС/MTF, дилеры и RFQ платформы подбирают покупателей и продавцов. Правила наилучшего исполнения, финансирование репо и контрольные показатели (SOFR, LPR, HIBOR, EIBOR) определяют условия." data-ar="تعمل البورصات وATSs/MTFs والتجار وRFQ على التوفيق بين المشترين والبائعين. قواعد التنفيذ الأفضل، وتمويل اتفاقيات إعادة الشراء (الريبو) والمعايير (SOFR، LPR، HIBOR، EIBOR) تحدد الشروط."
            data-zh="交易所、另类交易系统/多边交易设施、交易商与询价平台撮合买卖双方；最佳执行规则、回购融资与基准利率（SOFR、LPR、HIBOR、EIBOR）决定交易条件。">
           Exchanges, ATSs/MTFs, dealers and RFQ platforms match buyers and sellers. Best-execution rules, repo funding and benchmarks (SOFR, LPR, HIBOR, EIBOR) set the terms.
         </p>
         <div class="sub-tags">
-          <span class="sub-tag" data-en="NYSE · HKEX · SSE · DFM" data-zh="纽交所 · 港交所 · 上交所 · DFM">NYSE · HKEX · SSE · DFM</span>
-          <span class="sub-tag" data-en="OTC · RFQ · Repo"        data-zh="场外 · 询价 · 回购">OTC · RFQ · Repo</span>
-          <span class="sub-tag" data-en="SOFR · LPR · HIBOR"      data-zh="SOFR · LPR · HIBOR">SOFR · LPR · HIBOR</span>
+          <span class="sub-tag" data-en="NYSE · HKEX · SSE · DFM" data-ru="NYSE · HKEX · SSE · DFM" data-ar="NYSE · HKEX · SSE · DFM" data-zh="纽交所 · 港交所 · 上交所 · DFM">NYSE · HKEX · SSE · DFM</span>
+          <span class="sub-tag" data-en="OTC · RFQ · Repo" data-ru="OTC · RFQ · Репо" data-ar="OTC · RFQ · الريبو"        data-zh="场外 · 询价 · 回购">OTC · RFQ · Repo</span>
+          <span class="sub-tag" data-en="SOFR · LPR · HIBOR" data-ru="SOFR · LPR · HIBOR" data-ar="SOFR · LPR · HIBOR"      data-zh="SOFR · LPR · HIBOR">SOFR · LPR · HIBOR</span>
         </div>
       </div>
 
       <div class="layer-card">
-        <div class="num" data-en="Layer 3" data-zh="第三层">Layer 3</div>
+        <div class="num" data-en="Layer 3" data-ru="Слой 3" data-ar="الطبقة 3" data-zh="第三层">Layer 3</div>
         <div class="icon">🔐</div>
-        <h3 data-en="Post-Trade &amp; Custody" data-zh="交易后与托管">Post-Trade &amp; Custody</h3>
-        <p data-en="CCPs novate and net trades, CSDs settle delivery-versus-payment, custodians safekeep and service assets. Cycles differ: T+1 in the US, T+0/T+1 for A-shares, T+2 in Hong Kong and the UAE."
+        <h3 data-en="Post-Trade &amp; Custody" data-ru="Пост-торговое &amp; Хранение" data-ar="ما بعد التجارة &amp; الحضانة" data-zh="交易后与托管">Post-Trade &amp; Custody</h3>
+        <p data-en="CCPs novate and net trades, CSDs settle delivery-versus-payment, custodians safekeep and service assets. Cycles differ: T+1 in the US, T+0/T+1 for A-shares, T+2 in Hong Kong and the UAE." data-ru="ЦКА осуществляют новацию и чистые сделки, центральные депозитарии осуществляют расчеты по схеме «поставка против платежа», кастодианы сохраняют и обслуживают активы. Циклы различаются: T+1 в US, T+0/T+1 для акций A-, T+2 в Гонконге и ОАЭ." data-ar="تقوم CCPs بالتجديد والصفقات الصافية، وتقوم مراكز CSD بتسوية التسليم مقابل الدفع، وحفظ أمناء الحفظ وأصول الخدمة. تختلف الدورات: T+1 في US، T+0/T+1 لـ A-الأسهم، T+2 في هونغ كونغ والإمارات."
            data-zh="中央对手方（CCP）进行合约更替与净额轧差，中央证券存管机构（CSD）完成券款对付（DvP），托管行负责资产保管与服务。结算周期各异：美国T+1，A股T+0/T+1，香港与阿联酋T+2。">
           CCPs novate and net trades, CSDs settle delivery-versus-payment, custodians safekeep and service assets. Cycles differ: T+1 in the US, T+0/T+1 for A-shares, T+2 in Hong Kong and the UAE.
         </p>
         <div class="sub-tags">
-          <span class="sub-tag" data-en="DTCC · LCH · CSDC"           data-zh="DTCC · LCH · 中国结算">DTCC · LCH · CSDC</span>
-          <span class="sub-tag" data-en="DvP · T+1"                   data-zh="券款对付 · T+1">DvP · T+1</span>
-          <span class="sub-tag" data-en="Custody · Corporate Actions" data-zh="托管 · 公司行动">Custody · Corporate Actions</span>
+          <span class="sub-tag" data-en="DTCC · LCH · CSDC" data-ru="DTCC · LCH · CSDC" data-ar="DTCC · LCH · CSDC"           data-zh="DTCC · LCH · 中国结算">DTCC · LCH · CSDC</span>
+          <span class="sub-tag" data-en="DvP · T+1" data-ru="ДВП · T+1" data-ar="الدفع مقابل الدفع · T+1"                   data-zh="券款对付 · T+1">DvP · T+1</span>
+          <span class="sub-tag" data-en="Custody · Corporate Actions" data-ru="Депозитарий · Корпоративные действия" data-ar="الحضانة · إجراءات الشركات" data-zh="托管 · 公司行动">Custody · Corporate Actions</span>
         </div>
       </div>
 
       <div class="layer-card hot">
-        <div class="num" data-en="Layer 4 · ISO 20022" data-zh="第四层 · ISO 20022">Layer 4 · ISO 20022</div>
+        <div class="num" data-en="Layer 4 · ISO 20022" data-ru="Слой 4 · ISO 20022" data-ar="الطبقة الرابعة · ISO 20022" data-zh="第四层 · ISO 20022">Layer 4 · ISO 20022</div>
         <div class="icon">💸</div>
-        <h3 data-en="Payments &amp; Money Movement" data-zh="支付与资金流动">Payments &amp; Money Movement</h3>
-        <p data-en="RTGS for large values, batch rails for bulk, 24/7 instant payments, card schemes and cross-border correspondent banking — now largely on ISO 20022 messaging."
+        <h3 data-en="Payments &amp; Money Movement" data-ru="Платежи &amp; Движение денег" data-ar="المدفوعات &amp; حركة الأموال" data-zh="支付与资金流动">Payments &amp; Money Movement</h3>
+        <p data-en="RTGS for large values, batch rails for bulk, 24/7 instant payments, card schemes and cross-border correspondent banking — now largely on ISO 20022 messaging." data-ru="RTGS для крупных сумм, групповые перевозки для больших объемов, мгновенные платежи 24/7, карточные схемы и трансграничные корреспондентские банковские операции — теперь в основном используются сообщения ISO 20022." data-ar="RTGS بالنسبة للقيم الكبيرة، وقضبان الدُفعات المجمعة، والمدفوعات الفورية على مدار الساعة طوال أيام الأسبوع، وأنظمة البطاقات والخدمات المصرفية المراسلة عبر الحدود - الآن إلى حد كبير عبر رسائل ISO 20022."
            data-zh="大额走RTGS，批量走批处理通道，另有7×24即时支付、银行卡组织与跨境代理行网络——如今大多已迁移至 ISO 20022 报文标准。">
           RTGS for large values, batch rails for bulk, 24/7 instant payments, card schemes and cross-border correspondent banking — now largely on ISO 20022 messaging.
         </p>
         <div class="sub-tags">
-          <span class="sub-tag" data-en="Fedwire · CNAPS · UAEFTS" data-zh="Fedwire · CNAPS · UAEFTS">Fedwire · CNAPS · UAEFTS</span>
-          <span class="sub-tag" data-en="FedNow · FPS · Aani"      data-zh="FedNow · 转数快 · Aani">FedNow · FPS · Aani</span>
-          <span class="sub-tag" data-en="SWIFT · CIPS · mBridge"   data-zh="SWIFT · CIPS · mBridge">SWIFT · CIPS · mBridge</span>
+          <span class="sub-tag" data-en="Fedwire · CNAPS · UAEFTS" data-ru="Федвайр · CNAPS · ОАЭFTS" data-ar="Fedwire · CNAPS · الإماراتFTS" data-zh="Fedwire · CNAPS · UAEFTS">Fedwire · CNAPS · UAEFTS</span>
+          <span class="sub-tag" data-en="FedNow · FPS · Aani" data-ru="FedNow · FPS · Аани" data-ar="FedNow · FPS · آني"      data-zh="FedNow · 转数快 · Aani">FedNow · FPS · Aani</span>
+          <span class="sub-tag" data-en="SWIFT · CIPS · mBridge" data-ru="SWIFT · CIPS · mBridge" data-ar="SWIFT · CIPS · مبريدج"   data-zh="SWIFT · CIPS · mBridge">SWIFT · CIPS · mBridge</span>
         </div>
       </div>
 
       <div class="layer-card">
-        <div class="num" data-en="Layer 5" data-zh="第五层">Layer 5</div>
+        <div class="num" data-en="Layer 5" data-ru="Слой 5" data-ar="الطبقة 5" data-zh="第五层">Layer 5</div>
         <div class="icon">🧭</div>
-        <h3 data-en="Asset &amp; Wealth Management" data-zh="资产与财富管理">Asset &amp; Wealth Management</h3>
-        <p data-en="Mutual funds, ETFs, UCITS, hedge and private-equity funds, pensions and sovereign wealth funds (ADIA, Mubadala, CIC) allocate long-term capital across every market above."
+        <h3 data-en="Asset &amp; Wealth Management" data-ru="Актив &amp; Управление капиталом" data-ar="الأصول &amp; إدارة الثروات" data-zh="资产与财富管理">Asset &amp; Wealth Management</h3>
+        <p data-en="Mutual funds, ETFs, UCITS, hedge and private-equity funds, pensions and sovereign wealth funds (ADIA, Mubadala, CIC) allocate long-term capital across every market above." data-ru="Взаимные фонды, ETF, UCITS, хедж-фонды и фонды прямых инвестиций, пенсионные и суверенные фонды благосостояния (ADIA, Mubadala, CIC) распределяют долгосрочный капитал по каждому из вышеуказанных рынков." data-ar="تقوم صناديق الاستثمار المشتركة، وصناديق الاستثمار المتداولة، UCITS، وصناديق التحوط والأسهم الخاصة، ومعاشات التقاعد وصناديق الثروة السيادية (ADIA، مبادلة، CIC) بتخصيص رأس مال طويل الأجل عبر كل سوق أعلاه."
            data-zh="共同基金、ETF、UCITS、对冲与私募股权基金、养老金及主权财富基金（ADIA、穆巴达拉、中投）在上述各市场中配置长期资本。">
           Mutual funds, ETFs, UCITS, hedge and private-equity funds, pensions and sovereign wealth funds (ADIA, Mubadala, CIC) allocate long-term capital across every market above.
         </p>
         <div class="sub-tags">
-          <span class="sub-tag" data-en="ETFs · UCITS · OFCs" data-zh="ETF · UCITS · OFC">ETFs · UCITS · OFCs</span>
-          <span class="sub-tag" data-en="PE · Private Credit" data-zh="私募股权 · 私募信贷">PE · Private Credit</span>
-          <span class="sub-tag" data-en="SWFs · Pensions"     data-zh="主权基金 · 养老金">SWFs · Pensions</span>
+          <span class="sub-tag" data-en="ETFs · UCITS · OFCs" data-ru="ETF · UCITS · OFC" data-ar="صناديق الاستثمار المتداولة · UCITS · الصناديق الخارجية" data-zh="ETF · UCITS · OFC">ETFs · UCITS · OFCs</span>
+          <span class="sub-tag" data-en="PE · Private Credit" data-ru="PE · Частный кредит" data-ar="PE · الائتمان الخاص" data-zh="私募股权 · 私募信贷">PE · Private Credit</span>
+          <span class="sub-tag" data-en="SWFs · Pensions" data-ru="ГИФы · Пенсии" data-ar="صناديق الثروة السيادية · معاشات التقاعد"     data-zh="主权基金 · 养老金">SWFs · Pensions</span>
         </div>
       </div>
 
@@ -668,7 +154,7 @@
   <!-- Connector 2 -->
   <div class="connector">
     <div class="line line-2"></div>
-    <div class="connector-label" data-en="built on" data-zh="建立在以下支柱之上">built on</div>
+    <div class="connector-label" data-en="built on" data-ru="построен на" data-ar="بنيت على" data-zh="建立在以下支柱之上">built on</div>
     <div class="line line-2"></div>
     <div class="arrow arrow-pur"></div>
   </div>
@@ -676,14 +162,14 @@
   <!-- ══ FOUNDATION PILLARS ══ -->
   <div class="section">
     <div class="section-header pillars-header"
-         data-en="Foundation Pillars — Lower Layer"
+         data-en="Foundation Pillars — Lower Layer" data-ru="Столбы фундамента — нижний уровень" data-ar="ركائز الأساس – الطبقة السفلى"
          data-zh="基础支柱 — 下层">Foundation Pillars — Lower Layer</div>
     <div class="cards-4">
 
       <div class="pillar-card">
         <div class="icon">🛡️</div>
-        <h3 data-en="Risk Management" data-zh="风险管理">Risk Management</h3>
-        <p data-en="Market, credit, liquidity, operational and model risk. VaR and Expected Shortfall, stress tests, Basel capital (CET1 ≥ 4.5% of RWA) and liquidity ratios (LCR, NSFR ≥ 100%)."
+        <h3 data-en="Risk Management" data-ru="Управление рисками" data-ar="إدارة المخاطر" data-zh="风险管理">Risk Management</h3>
+        <p data-en="Market, credit, liquidity, operational and model risk. VaR and Expected Shortfall, stress tests, Basel capital (CET1 ≥ 4.5% of RWA) and liquidity ratios (LCR, NSFR ≥ 100%)." data-ru="Рыночный, кредитный, ликвидный, операционный и модельный риск. VaR и ожидаемый дефицит, стресс-тесты, базельский капитал (CET1 ≥ 4,5% от RWA) и коэффициенты ликвидности (LCR, NSFR ≥ 100%)." data-ar="مخاطر السوق والائتمان والسيولة والمخاطر التشغيلية والنموذجية. القيمة المعرضة للمخاطر والعجز المتوقع، اختبارات التحمل، رأس مال بازل (CET1 ≥ 4.5% من RWA) ونسب السيولة (LCR، NSFR ≥ 100%)."
            data-zh="市场、信用、流动性、操作与模型风险。风险价值（VaR）与预期损失（ES）、压力测试、巴塞尔资本要求（CET1 ≥ 风险加权资产的4.5%）及流动性指标（LCR、NSFR ≥ 100%）。">
           Market, credit, liquidity, operational and model risk. VaR and Expected Shortfall, stress tests, Basel capital (CET1 ≥ 4.5% of RWA) and liquidity ratios (LCR, NSFR ≥ 100%).
         </p>
@@ -691,8 +177,8 @@
 
       <div class="pillar-card">
         <div class="icon">🧬</div>
-        <h3 data-en="Data &amp; Technology" data-zh="数据与技术">Data &amp; Technology</h3>
-        <p data-en="Identifiers (ISIN, LEI, FIGI, USCC), messages (FIX, FpML, ISO 20022) and systems (OMS/EMS, core banking, ledgers). Money is decimal, idempotent and reconciled."
+        <h3 data-en="Data &amp; Technology" data-ru="Данные &amp; Технология" data-ar="البيانات &amp; التكنولوجيا" data-zh="数据与技术">Data &amp; Technology</h3>
+        <p data-en="Identifiers (ISIN, LEI, FIGI, USCC), messages (FIX, FpML, ISO 20022) and systems (OMS/EMS, core banking, ledgers). Money is decimal, idempotent and reconciled." data-ru="Идентификаторы (ISIN, LEI, FIGI, USCC), сообщения (FIX, FpML, ISO 20022) и системы (OMS/EMS, основные банковские операции, реестры). Деньги десятичны, идемпотентны и согласованы." data-ar="المعرفات (ISIN، LEI، FIGI، USCC)، الرسائل (FIX، FpML، ISO 20022) والأنظمة (OMS/EMS، الخدمات المصرفية الأساسية، دفاتر الأستاذ). المال عشري، عاجز ومصالح."
            data-zh="标识符（ISIN、LEI、FIGI、统一社会信用代码）、报文（FIX、FpML、ISO 20022）与系统（OMS/EMS、核心银行、账簿）。金额用十进制、操作幂等、账务可对账。">
           Identifiers (ISIN, LEI, FIGI, USCC), messages (FIX, FpML, ISO 20022) and systems (OMS/EMS, core banking, ledgers). Money is decimal, idempotent and reconciled.
         </p>
@@ -700,8 +186,8 @@
 
       <div class="pillar-card">
         <div class="icon">📒</div>
-        <h3 data-en="Accounting &amp; Reporting" data-zh="会计与报告">Accounting &amp; Reporting</h3>
-        <p data-en="US GAAP vs IFRS, with CAS and HKFRS converged to IFRS. Fair-value Levels 1–3, CECL vs IFRS 9 expected losses, regulatory and trade reporting, AAOIFI for Islamic banks."
+        <h3 data-en="Accounting &amp; Reporting" data-ru="Бухгалтерский учет &amp; Отчетность" data-ar="المحاسبة &amp; التقارير" data-zh="会计与报告">Accounting &amp; Reporting</h3>
+        <p data-en="US GAAP vs IFRS, with CAS and HKFRS converged to IFRS. Fair-value Levels 1–3, CECL vs IFRS 9 expected losses, regulatory and trade reporting, AAOIFI for Islamic banks." data-ru="US GAAP против IFRS, при этом CAS и HKFRS сходились к IFRS. Уровни справедливой стоимости 1–3, CECL против IFRS 9, ожидаемые убытки, нормативная и торговая отчетность, AAOIFI для исламских банков." data-ar="US GAAP مقابل IFRS، مع تقارب CAS و HKFRS مع IFRS. مستويات القيمة العادلة 1-3، CECL مقابل IFRS 9 الخسائر المتوقعة، التقارير التنظيمية والتجارية، AAOIFI للبنوك الإسلامية."
            data-zh="美国通用会计准则与国际财务报告准则（IFRS）；中国企业会计准则与香港财务报告准则均已与IFRS趋同。公允价值第一至第三层级、CECL 与 IFRS 9 预期信用损失、监管与交易报告，伊斯兰银行另遵循 AAOIFI 标准。">
           US GAAP vs IFRS, with CAS and HKFRS converged to IFRS. Fair-value Levels 1–3, CECL vs IFRS 9 expected losses, regulatory and trade reporting, AAOIFI for Islamic banks.
         </p>
@@ -710,10 +196,10 @@
       <div class="pillar-card">
         <div class="icon">🪙</div>
         <h3>
-          <span data-en="Fintech &amp; Digital Assets" data-zh="金融科技与数字资产">Fintech &amp; Digital Assets</span>
-          <span class="new-badge" data-en="Emerging" data-zh="新兴">Emerging</span>
+          <span data-en="Fintech &amp; Digital Assets" data-ru="Финтех &amp; Цифровые активы" data-ar="التكنولوجيا المالية &amp; الأصول الرقمية" data-zh="金融科技与数字资产">Fintech &amp; Digital Assets</span>
+          <span class="new-badge" data-en="Emerging" data-ru="Новые" data-ar="الناشئة" data-zh="新兴">Emerging</span>
         </h3>
-        <p data-en="Neobanks, super-app payments, open finance, stablecoin regimes (GENIUS Act, MiCA, Hong Kong, CBUAE), CBDCs (e-CNY, Digital Dirham, mBridge) and tokenized funds."
+        <p data-en="Neobanks, super-app payments, open finance, stablecoin regimes (GENIUS Act, MiCA, Hong Kong, CBUAE), CBDCs (e-CNY, Digital Dirham, mBridge) and tokenized funds." data-ru="Необанки, платежи через суперприложения, открытое финансирование, режимы стейблкоинов (GENIUS Act, MiCA, Гонконг, CBОАЭ), CBDC (e-CNY, Digital Dirham, mBridge) и токенизированные фонды." data-ar="البنوك الجديدة، ومدفوعات التطبيقات الفائقة، والتمويل المفتوح، وأنظمة العملات المستقرة (GENIUS Act، MiCA، وهونج كونج، CBالإمارات)، والعملات الرقمية للبنوك المركزية (e-CNY، والدرهم الرقمي، وmBridge) والصناديق الرمزية."
            data-zh="数字银行、超级应用支付、开放金融、稳定币监管框架（GENIUS法案、MiCA、香港、阿联酋央行）、央行数字货币（数字人民币、数字迪拉姆、mBridge）以及代币化基金。">
           Neobanks, super-app payments, open finance, stablecoin regimes (GENIUS Act, MiCA, Hong Kong, CBUAE), CBDCs (e-CNY, Digital Dirham, mBridge) and tokenized funds.
         </p>
@@ -728,12 +214,12 @@
 <!-- ══ FLOW OF FUNDS ══ -->
 <div class="page-section">
   <div class="page-section-title"
-       data-en="How Money &amp; Risk Flow"
+       data-en="How Money &amp; Risk Flow" data-ru="Как денежный &amp; поток риска" data-ar="كيف المال &amp; تدفق المخاطر"
        data-zh="资金与风险如何流动">How Money &amp; Risk Flow</div>
 
   <div class="flow-wrap">
   <svg viewBox="0 0 860 640" role="img" aria-labelledby="flow-title">
-    <title id="flow-title" data-en="Flow of funds around a ring: savers to intermediaries to markets to borrowers and issuers, with returns and risk flowing back to savers; central bank and regulators at the centre; payment, clearing, settlement and custody plumbing underneath." data-zh="环形资金流动：储蓄者 → 中介 → 市场 → 借款人与发行人，回报与风险回流至储蓄者；中央银行与监管机构位于中心；底层是支付、清算、结算与托管管道。">Flow of funds around a ring: savers to intermediaries to markets to borrowers and issuers, with returns and risk flowing back to savers; central bank and regulators at the centre; payment, clearing, settlement and custody plumbing underneath.</title>
+    <title id="flow-title" data-en="Flow of funds around a ring: savers to intermediaries to markets to borrowers and issuers, with returns and risk flowing back to savers; central bank and regulators at the centre; payment, clearing, settlement and custody plumbing underneath." data-ru="Поток средств по кольцу: от вкладчиков к посредникам, к рынкам, к заемщикам и эмитентам, при этом доходы и риски возвращаются к вкладчикам; центральный банк и регулирующие органы в центре; оплата, клиринг, расчет и хранение сантехники внизу." data-ar="تدفق الأموال حول حلقة: المدخرون إلى الوسطاء، إلى الأسواق، إلى المقترضين والجهات المصدرة، مع تدفق العائدات والمخاطر مرة أخرى إلى المدخرين؛ البنك المركزي والجهات التنظيمية في المركز؛ الدفع والمقاصة والتسوية والحضانة والسباكة تحتها." data-zh="环形资金流动：储蓄者 → 中介 → 市场 → 借款人与发行人，回报与风险回流至储蓄者；中央银行与监管机构位于中心；底层是支付、清算、结算与托管管道。">Flow of funds around a ring: savers to intermediaries to markets to borrowers and issuers, with returns and risk flowing back to savers; central bank and regulators at the centre; payment, clearing, settlement and custody plumbing underneath.</title>
     <defs>
       <marker id="m-cap" markerWidth="9" markerHeight="6.5" refX="8" refY="3.25" orient="auto">
         <polygon class="tip-cap" points="0 0, 9 3.25, 0 6.5"/>
@@ -751,122 +237,122 @@
     <path d="M 615.3,341.8 A 190 190 0 0 1 471.8,485.3" class="arc-cap" marker-end="url(#m-cap)"/>
     <path d="M 388.2,485.3 A 190 190 0 0 1 244.7,341.8" class="arc-cap" marker-end="url(#m-cap)"/>
     <text x="590" y="150" class="lbl-cap" text-anchor="start"
-          data-en="deposits · premiums · fund units" data-zh="存款 · 保费 · 基金份额">deposits · premiums · fund units</text>
+          data-en="deposits · premiums · fund units" data-ru="депозиты · премии · паи фонда" data-ar="الودائع · الأقساط · وحدات الصندوق" data-zh="存款 · 保费 · 基金份额">deposits · premiums · fund units</text>
     <text x="590" y="458" class="lbl-cap" text-anchor="start"
-          data-en="buy securities" data-zh="购买证券">buy securities</text>
+          data-en="buy securities" data-ru="покупать ценные бумаги" data-ar="شراء الأوراق المالية" data-zh="购买证券">buy securities</text>
     <text x="270" y="458" class="lbl-cap" text-anchor="end"
-          data-en="IPOs · bond issues" data-zh="IPO · 债券发行">IPOs · bond issues</text>
+          data-en="IPOs · bond issues" data-ru="IPO · выпуск облигаций" data-ar="الاكتتابات العامة الأولية · إصدارات السندات" data-zh="IPO · 债券发行">IPOs · bond issues</text>
 
     <!-- ── LOOP-BACK: returns & risk, 04 → 01, outside the ring ── -->
     <path d="M 219,263.6 C 175,180 330,60 390.5,95.6" class="arc-ret" marker-end="url(#m-ret)"/>
     <text x="226" y="128" class="lbl-ret-phase" text-anchor="end"
-          data-en="RETURNS &amp; RISK" data-zh="回报与风险">RETURNS &amp; RISK</text>
+          data-en="RETURNS &amp; RISK" data-ru="ДОХОДНОСТЬ И РИСК" data-ar="العوائد والمخاطر" data-zh="回报与风险">RETURNS &amp; RISK</text>
     <text x="226" y="143" class="lbl-ret" text-anchor="end"
-          data-en="interest · dividends · coupons" data-zh="利息 · 股息 · 票息">interest · dividends · coupons</text>
+          data-en="interest · dividends · coupons" data-ru="проценты · дивиденды · купоны" data-ar="الفوائد · الأرباح · الكوبونات" data-zh="利息 · 股息 · 票息">interest · dividends · coupons</text>
 
     <!-- ── CENTRE: central bank & regulators ── -->
     <circle cx="430" cy="300" r="66" class="center-bg"/>
     <text x="430" y="286" class="center-title" text-anchor="middle"
-          data-en="CENTRAL BANK" data-zh="中央银行">CENTRAL BANK</text>
+          data-en="CENTRAL BANK" data-ru="ЦЕНТРАЛЬНЫЙ БАНК" data-ar="البنك المركزي" data-zh="中央银行">CENTRAL BANK</text>
     <text x="430" y="301" class="center-title" text-anchor="middle"
-          data-en="&amp; REGULATORS" data-zh="与监管机构">&amp; REGULATORS</text>
+          data-en="&amp; REGULATORS" data-ru="И РЕГУЛЯТОРЫ" data-ar="والجهات التنظيمية" data-zh="与监管机构">&amp; REGULATORS</text>
     <text x="430" y="319" class="center-sub" text-anchor="middle"
-          data-en="policy rate · LoLR" data-zh="政策利率 · 最后贷款人">policy rate · LoLR</text>
+          data-en="policy rate · LoLR" data-ru="учетная ставка · LoLR" data-ar="سعر السياسة · LoLR" data-zh="政策利率 · 最后贷款人">policy rate · LoLR</text>
     <text x="430" y="332" class="center-sub" text-anchor="middle"
-          data-en="RTGS · supervision" data-zh="RTGS · 审慎监管">RTGS · supervision</text>
+          data-en="RTGS · supervision" data-ru="RTGS · надзор" data-ar="RTGS · الإشراف" data-zh="RTGS · 审慎监管">RTGS · supervision</text>
 
     <!-- ── NODE 01 — top: savers & investors ── -->
     <circle cx="430" cy="110" r="34" class="node-bg"/>
     <text x="430" y="115" class="lbl-num" text-anchor="middle">01</text>
     <text x="430" y="30" class="lbl-phase" text-anchor="middle"
-          data-en="SURPLUS UNITS" data-zh="资金盈余方">SURPLUS UNITS</text>
+          data-en="SURPLUS UNITS" data-ru="ЕДИНИЦЫ ПРОФИЦИТА" data-ar="وحدات الفائض" data-zh="资金盈余方">SURPLUS UNITS</text>
     <text x="430" y="47" class="lbl-step" text-anchor="middle"
-          data-en="Savers &amp; Investors" data-zh="储蓄者与投资者">Savers &amp; Investors</text>
+          data-en="Savers &amp; Investors" data-ru="Вкладчики &amp; Инвесторы" data-ar="المدخرين &amp; المستثمرين" data-zh="储蓄者与投资者">Savers &amp; Investors</text>
     <text x="430" y="62" class="lbl-sub" text-anchor="middle"
-          data-en="households · pensions" data-zh="家庭 · 养老金">households · pensions</text>
+          data-en="households · pensions" data-ru="домохозяйства · пенсии" data-ar="الأسر · المعاشات" data-zh="家庭 · 养老金">households · pensions</text>
 
     <!-- ── NODE 02 — right: intermediaries ── -->
     <circle cx="620" cy="300" r="34" class="node-bg"/>
     <text x="620" y="305" class="lbl-num" text-anchor="middle">02</text>
     <text x="664" y="286" class="lbl-phase" text-anchor="start"
-          data-en="POOL &amp; TRANSFORM" data-zh="汇集与转换">POOL &amp; TRANSFORM</text>
+          data-en="POOL &amp; TRANSFORM" data-ru="ПУЛ И ТРАНСФОРМАЦИЯ" data-ar="تجميع وتحويل" data-zh="汇集与转换">POOL &amp; TRANSFORM</text>
     <text x="664" y="303" class="lbl-step" text-anchor="start"
-          data-en="Intermediaries" data-zh="金融中介">Intermediaries</text>
+          data-en="Intermediaries" data-ru="Посредники" data-ar="وسطاء" data-zh="金融中介">Intermediaries</text>
     <text x="664" y="318" class="lbl-sub" text-anchor="start"
-          data-en="banks · insurers · funds" data-zh="银行 · 保险 · 基金">banks · insurers · funds</text>
+          data-en="banks · insurers · funds" data-ru="банки · страховщики · фонды" data-ar="البنوك · شركات التأمين · الأموال" data-zh="银行 · 保险 · 基金">banks · insurers · funds</text>
 
     <!-- ── NODE 03 — bottom: markets ── -->
     <circle cx="430" cy="490" r="34" class="node-bg"/>
     <text x="430" y="495" class="lbl-num" text-anchor="middle">03</text>
     <text x="430" y="546" class="lbl-phase" text-anchor="middle"
-          data-en="PRICE &amp; ALLOCATE" data-zh="定价与配置">PRICE &amp; ALLOCATE</text>
+          data-en="PRICE &amp; ALLOCATE" data-ru="ЦЕНА И РАСПРЕДЕЛЕНИЕ" data-ar="السعر والتخصيص" data-zh="定价与配置">PRICE &amp; ALLOCATE</text>
     <text x="430" y="562" class="lbl-step" text-anchor="middle"
-          data-en="Markets" data-zh="金融市场">Markets</text>
+          data-en="Markets" data-ru="Рынки" data-ar="الأسواق" data-zh="金融市场">Markets</text>
     <text x="430" y="577" class="lbl-sub" text-anchor="middle"
-          data-en="primary · secondary" data-zh="一级 · 二级市场">primary · secondary</text>
+          data-en="primary · secondary" data-ru="первичный · вторичный" data-ar="الابتدائي · الثانوي" data-zh="一级 · 二级市场">primary · secondary</text>
 
     <!-- ── NODE 04 — left: borrowers & issuers ── -->
     <circle cx="240" cy="300" r="34" class="node-bg"/>
     <text x="240" y="305" class="lbl-num" text-anchor="middle">04</text>
     <text x="196" y="286" class="lbl-phase" text-anchor="end"
-          data-en="DEFICIT UNITS" data-zh="资金短缺方">DEFICIT UNITS</text>
+          data-en="DEFICIT UNITS" data-ru="ЕДИНИЦЫ ДЕФИЦИТА" data-ar="وحدات العجز" data-zh="资金短缺方">DEFICIT UNITS</text>
     <text x="196" y="303" class="lbl-step" text-anchor="end"
-          data-en="Borrowers &amp; Issuers" data-zh="借款人与发行人">Borrowers &amp; Issuers</text>
+          data-en="Borrowers &amp; Issuers" data-ru="Заемщики &amp; Эмитенты" data-ar="المقترضون &amp; المصدرون" data-zh="借款人与发行人">Borrowers &amp; Issuers</text>
     <text x="196" y="318" class="lbl-sub" text-anchor="end"
-          data-en="firms · governments" data-zh="企业 · 政府">firms · governments</text>
+          data-en="firms · governments" data-ru="фирмы · правительства" data-ar="الشركات · الحكومات" data-zh="企业 · 政府">firms · governments</text>
 
     <!-- ── PLUMBING ── -->
     <rect x="150" y="596" width="560" height="34" rx="17" class="plumb-bg"/>
     <text x="430" y="618" class="plumb-text" text-anchor="middle"
-          data-en="PLUMBING — payments · clearing · settlement · custody"
+          data-en="PLUMBING — payments · clearing · settlement · custody" data-ru="PLUMBING — платежи · клиринг · расчет · хранение" data-ar="PLUMBING — المدفوعات · المقاصة · التسوية · الحضانة"
           data-zh="基础设施 —— 支付 · 清算 · 结算 · 托管">PLUMBING — payments · clearing · settlement · custody</text>
   </svg>
   </div>
-  <p class="swipe-hint" data-en="← swipe to see the full diagram →" data-zh="← 左右滑动查看完整图示 →">← swipe to see the full diagram →</p>
+  <p class="swipe-hint" data-en="← swipe to see the full diagram →" data-ru="← листайте, чтобы увидеть полную схему →" data-ar="← اسحب لرؤية المخطط الكامل →" data-zh="← 左右滑动查看完整图示 →">← swipe to see the full diagram →</p>
 
   <div class="flow-chips">
-    <span class="chip chip-cap"><span class="sw"></span><span data-en="Capital: savers → users" data-zh="资本：储蓄方 → 使用方">Capital: savers → users</span></span>
-    <span class="chip chip-ret"><span class="sw sw-ret"></span><span data-en="Returns &amp; risk flow back" data-zh="回报与风险回流">Returns &amp; risk flow back</span></span>
-    <span class="chip chip-cb"><span class="sw sw-cb"></span><span data-en="Central bank &amp; regulators" data-zh="中央银行与监管机构">Central bank &amp; regulators</span></span>
+    <span class="chip chip-cap"><span class="sw"></span><span data-en="Capital: savers → users" data-ru="Капитал: вкладчики → пользователи" data-ar="رأس المال: المدخرون → المستخدمون" data-zh="资本：储蓄方 → 使用方">Capital: savers → users</span></span>
+    <span class="chip chip-ret"><span class="sw sw-ret"></span><span data-en="Returns &amp; risk flow back" data-ru="Возвращает &amp; возврат риска" data-ar="إرجاع &amp; تدفق المخاطر مرة أخرى" data-zh="回报与风险回流">Returns &amp; risk flow back</span></span>
+    <span class="chip chip-cb"><span class="sw sw-cb"></span><span data-en="Central bank &amp; regulators" data-ru="Регуляторы центрального банка &amp;" data-ar="البنك المركزي &amp; الجهات الرقابية" data-zh="中央银行与监管机构">Central bank &amp; regulators</span></span>
   </div>
 
   <div class="flow-grid">
     <div class="flow-card">
-      <div class="step" data-en="01 · Supply" data-zh="01 · 供给">01 · Supply</div>
-      <h3 data-en="Savers &amp; Investors" data-zh="储蓄者与投资者">Savers &amp; Investors</h3>
-      <p data-en="Households, pension funds, insurers and sovereign wealth funds supply capital as deposits, premiums and investments, and bear risk in return for interest, dividends and coupons."
+      <div class="step" data-en="01 · Supply" data-ru="01 · Поставка" data-ar="01 · العرض" data-zh="01 · 供给">01 · Supply</div>
+      <h3 data-en="Savers &amp; Investors" data-ru="Вкладчики &amp; Инвесторы" data-ar="المدخرين &amp; المستثمرين" data-zh="储蓄者与投资者">Savers &amp; Investors</h3>
+      <p data-en="Households, pension funds, insurers and sovereign wealth funds supply capital as deposits, premiums and investments, and bear risk in return for interest, dividends and coupons." data-ru="Домохозяйства, пенсионные фонды, страховщики и суверенные фонды благосостояния предоставляют капитал в виде депозитов, премий и инвестиций и несут риск в обмен на проценты, дивиденды и купоны." data-ar="وتقوم الأسر وصناديق التقاعد وشركات التأمين وصناديق الثروة السيادية بتوفير رأس المال على شكل ودائع وأقساط واستثمارات، وتتحمل المخاطر مقابل الفوائد والأرباح والكوبونات."
          data-zh="家庭、养老基金、保险公司与主权财富基金以存款、保费和投资的形式提供资本，并以承担风险换取利息、股息与票息。">
         Households, pension funds, insurers and sovereign wealth funds supply capital as deposits, premiums and investments, and bear risk in return for interest, dividends and coupons.
       </p>
     </div>
     <div class="flow-card">
-      <div class="step" data-en="02 · Pool &amp; transform" data-zh="02 · 汇集与转换">02 · Pool &amp; transform</div>
-      <h3 data-en="Intermediaries" data-zh="金融中介">Intermediaries</h3>
-      <p data-en="Funds and insurers pool savings and invest them through markets. Banks transform short-term deposits into long-term loans and usually lend straight to borrowers, skipping markets; most credit in Mainland China and the euro area flows that way."
+      <div class="step" data-en="02 · Pool &amp; transform" data-ru="02 · Преобразование пула &amp;" data-ar="02 · تجمع &amp; تحويل" data-zh="02 · 汇集与转换">02 · Pool &amp; transform</div>
+      <h3 data-en="Intermediaries" data-ru="Посредники" data-ar="وسطاء" data-zh="金融中介">Intermediaries</h3>
+      <p data-en="Funds and insurers pool savings and invest them through markets. Banks transform short-term deposits into long-term loans and usually lend straight to borrowers, skipping markets; most credit in Mainland China and the euro area flows that way." data-ru="Фонды и страховщики объединяют сбережения и инвестируют их через рынки. Банки трансформируют краткосрочные депозиты в долгосрочные кредиты и обычно кредитуют непосредственно заемщиков, минуя рынки; большая часть кредитов в материковом Китае и зоне евро течет именно таким образом." data-ar="تقوم الصناديق وشركات التأمين بتجميع المدخرات واستثمارها من خلال الأسواق. تقوم البنوك بتحويل الودائع قصيرة الأجل إلى قروض طويلة الأجل وعادة ما تقرض مباشرة للمقترضين، متخطية الأسواق؛ ويتدفق معظم الائتمان في البر الرئيسي للصين ومنطقة اليورو بهذه الطريقة."
          data-zh="基金与保险公司汇集储蓄并通过市场进行投资。银行把短期存款转化为长期贷款，通常直接贷给借款人而不经过市场；中国内地与欧元区的大部分信贷即以此方式发放。">
         Funds and insurers pool savings and invest them through markets. Banks transform short-term deposits into long-term loans and usually lend straight to borrowers, skipping markets; most credit in Mainland China and the euro area flows that way.
       </p>
     </div>
     <div class="flow-card">
-      <div class="step" data-en="03 · Price &amp; allocate" data-zh="03 · 定价与配置">03 · Price &amp; allocate</div>
-      <h3 data-en="Markets" data-zh="金融市场">Markets</h3>
-      <p data-en="Primary markets raise new capital (IPOs, bonds, sukuk). Secondary markets — NYSE, HKEX, SSE, ADX, DFM — provide liquidity and price discovery but no new cash for the issuer. Savers can also buy securities directly, without an intermediary."
+      <div class="step" data-en="03 · Price &amp; allocate" data-ru="03 · Цена &amp; выделить" data-ar="03 · تخصيص السعر &amp;" data-zh="03 · 定价与配置">03 · Price &amp; allocate</div>
+      <h3 data-en="Markets" data-ru="Рынки" data-ar="الأسواق" data-zh="金融市场">Markets</h3>
+      <p data-en="Primary markets raise new capital (IPOs, bonds, sukuk). Secondary markets — NYSE, HKEX, SSE, ADX, DFM — provide liquidity and price discovery but no new cash for the issuer. Savers can also buy securities directly, without an intermediary." data-ru="Первичные рынки привлекают новый капитал (IPO, облигации, сукук). Вторичные рынки — NYSE, HKEX, SSE, ADX, DFM — обеспечивают ликвидность и определение цен, но не дают эмитенту новых денежных средств. Вкладчики также могут покупать ценные бумаги напрямую, без посредника." data-ar="تقوم الأسواق الأولية بجمع رؤوس أموال جديدة (الاكتتابات العامة الأولية والسندات والصكوك). الأسواق الثانوية - NYSE، HKEX، SSE، ADX، DFM - توفر السيولة واكتشاف الأسعار ولكن لا يوجد نقد جديد للمصدر. ويمكن للمدخرين أيضًا شراء الأوراق المالية مباشرة، دون وسيط."
          data-zh="一级市场募集新资本（IPO、债券、伊斯兰债券）。二级市场（纽交所、港交所、上交所、阿布扎比证券交易所、迪拜金融市场）提供流动性与价格发现，但不为发行人带来新增资金。储蓄者也可绕过中介直接购买证券。">
         Primary markets raise new capital (IPOs, bonds, sukuk). Secondary markets — NYSE, HKEX, SSE, ADX, DFM — provide liquidity and price discovery but no new cash for the issuer. Savers can also buy securities directly, without an intermediary.
       </p>
     </div>
     <div class="flow-card">
-      <div class="step" data-en="04 · Use" data-zh="04 · 使用">04 · Use</div>
-      <h3 data-en="Borrowers &amp; Issuers" data-zh="借款人与发行人">Borrowers &amp; Issuers</h3>
-      <p data-en="Firms, households and governments put the capital to work and pay it back as interest, coupons and dividends — the returns that flow back to savers."
+      <div class="step" data-en="04 · Use" data-ru="04 · Использование" data-ar="04 · الاستخدام" data-zh="04 · 使用">04 · Use</div>
+      <h3 data-en="Borrowers &amp; Issuers" data-ru="Заемщики &amp; Эмитенты" data-ar="المقترضون &amp; المصدرون" data-zh="借款人与发行人">Borrowers &amp; Issuers</h3>
+      <p data-en="Firms, households and governments put the capital to work and pay it back as interest, coupons and dividends — the returns that flow back to savers." data-ru="Фирмы, домохозяйства и правительства заставляют капитал работать и возвращают его в виде процентов, купонов и дивидендов — доходов, которые возвращаются вкладчикам." data-ar="تقوم الشركات والأسر والحكومات بتشغيل رأس المال وتسديده على شكل فوائد وكوبونات وأرباح - وهي العوائد التي تتدفق مرة أخرى إلى المدخرين."
          data-zh="企业、家庭与政府运用资本，并以利息、票息和股息的形式偿付——这些回报最终回流至储蓄者。">
         Firms, households and governments put the capital to work and pay it back as interest, coupons and dividends — the returns that flow back to savers.
       </p>
     </div>
     <div class="flow-card wide">
-      <div class="step" data-en="Centre &amp; base" data-zh="中心与底座">Centre &amp; base</div>
-      <h3 data-en="Central Banks, Regulators &amp; Plumbing" data-zh="中央银行、监管机构与金融基础设施">Central Banks, Regulators &amp; Plumbing</h3>
-      <p data-en="Central banks set the policy rate, act as lender of last resort and run RTGS systems (Fedwire, T2, CHAPS, CNAPS, CHATS, UAEFTS); regulators license and supervise every node. Underneath, payments, clearing, settlement and custody move the cash and securities legs — where stress usually shows first."
+      <div class="step" data-en="Centre &amp; base" data-ru="Центр &amp; базы" data-ar="مركز &amp; القاعدة" data-zh="中心与底座">Centre &amp; base</div>
+      <h3 data-en="Central Banks, Regulators &amp; Plumbing" data-ru="Центральные банки, регулирующие органы &amp; Сантехника" data-ar="البنوك المركزية، الجهات التنظيمية &amp; السباكة" data-zh="中央银行、监管机构与金融基础设施">Central Banks, Regulators &amp; Plumbing</h3>
+      <p data-en="Central banks set the policy rate, act as lender of last resort and run RTGS systems (Fedwire, T2, CHAPS, CNAPS, CHATS, UAEFTS); regulators license and supervise every node. Underneath, payments, clearing, settlement and custody move the cash and securities legs — where stress usually shows first." data-ru="Центральные банки устанавливают учетную ставку, выступают в качестве кредитора последней инстанции и управляют системами RTGS (Fedwire, T2, CHAPS, CNAPS, CHATS, ОАЭFTS); регулирующие органы лицензируют и контролируют каждый узел. Внизу платежи, клиринг, расчеты и хранение перемещают наличные деньги и ценные бумаги, где стресс обычно проявляется в первую очередь." data-ar="تحدد البنوك المركزية سعر الفائدة، وتعمل كمقرض الملاذ الأخير وتدير أنظمة RTGS (Fedwire، T2، CHAPS، CNAPS، CHATS، الإماراتFTS)؛ يقوم المنظمون بترخيص كل عقدة والإشراف عليها. وفي الأسفل، تعمل المدفوعات والمقاصة والتسوية والحضانة على تحريك أرجل النقد والأوراق المالية - حيث يظهر الضغط عادة أولاً."
          data-zh="中央银行制定政策利率、充当最后贷款人并运营RTGS系统（Fedwire、T2、CHAPS、CNAPS、CHATS、UAEFTS）；监管机构对每个节点实施准入与监管。底层的支付、清算、结算与托管负责资金与证券的交收——压力往往最先在这里显现。">
         Central banks set the policy rate, act as lender of last resort and run RTGS systems (Fedwire, T2, CHAPS, CNAPS, CHATS, UAEFTS); regulators license and supervise every node. Underneath, payments, clearing, settlement and custody move the cash and securities legs — where stress usually shows first.
       </p>
@@ -878,116 +364,116 @@
 <!-- ══ SIX-JURISDICTION LENS ══ -->
 <div class="page-section">
   <div class="page-section-title"
-       data-en="Six-Jurisdiction Lens"
+       data-en="Six-Jurisdiction Lens" data-ru="Объектив шести юрисдикций" data-ar="عدسة ستة اختصاص"
        data-zh="六大法域视角">Six-Jurisdiction Lens</div>
   <div class="jur-grid">
 
     <div class="jur-card">
       <div class="jur-head">
         <span class="flag">🇺🇸</span>
-        <h3 data-en="United States" data-zh="美国">United States</h3>
+        <h3 data-en="United States" data-ru="Соединенные Штаты" data-ar="الولايات المتحدة" data-zh="美国">United States</h3>
         <span class="code">US</span>
       </div>
       <dl>
-        <dt data-en="Regulators" data-zh="监管">Regulators</dt>
-        <dd data-en="Fed · OCC · FDIC · SEC · CFTC · FINRA · CFPB" data-zh="美联储 · OCC · FDIC · SEC · CFTC · FINRA · CFPB">Fed · OCC · FDIC · SEC · CFTC · FINRA · CFPB</dd>
-        <dt data-en="Rails" data-zh="通道">Rails</dt>
-        <dd data-en="Fedwire · CHIPS · ACH · RTP · FedNow" data-zh="Fedwire · CHIPS · ACH · RTP · FedNow">Fedwire · CHIPS · ACH · RTP · FedNow</dd>
-        <dt data-en="Note" data-zh="要点">Note</dt>
-        <dd data-en="Market-based system; USD is the main global funding currency." data-zh="以市场为主导的体系；美元是全球主要融资货币。">Market-based system; USD is the main global funding currency.</dd>
+        <dt data-en="Regulators" data-ru="Регуляторы" data-ar="المنظمون" data-zh="监管">Regulators</dt>
+        <dd data-en="Fed · OCC · FDIC · SEC · CFTC · FINRA · CFPB" data-ru="ФРС · OCC · FDIC · SEC · CFTC · FINRA · CFPB" data-ar="الاحتياطي الفيدرالي · OCC · FDIC · SEC · CFTC · FINRA · CFPB" data-zh="美联储 · OCC · FDIC · SEC · CFTC · FINRA · CFPB">Fed · OCC · FDIC · SEC · CFTC · FINRA · CFPB</dd>
+        <dt data-en="Rails" data-ru="Рельсы" data-ar="القضبان" data-zh="通道">Rails</dt>
+        <dd data-en="Fedwire · CHIPS · ACH · RTP · FedNow" data-ru="Fedwire · CHIPS · ACH · RTP · FedNow" data-ar="Fedwire · CHIPS · ACH · RTP · FedNow" data-zh="Fedwire · CHIPS · ACH · RTP · FedNow">Fedwire · CHIPS · ACH · RTP · FedNow</dd>
+        <dt data-en="Note" data-ru="Примечание" data-ar="ملاحظة" data-zh="要点">Note</dt>
+        <dd data-en="Market-based system; USD is the main global funding currency." data-ru="Рыночная система; USD — основная глобальная валюта финансирования." data-ar="النظام القائم على السوق. USD هي عملة التمويل العالمية الرئيسية." data-zh="以市场为主导的体系；美元是全球主要融资货币。">Market-based system; USD is the main global funding currency.</dd>
       </dl>
       <div class="kpi">T+1</div>
-      <div class="kpi-label" data-en="Equity settlement since 28 May 2024" data-zh="自2024年5月28日起的股票结算周期">Equity settlement since 28 May 2024</div>
+      <div class="kpi-label" data-en="Equity settlement since 28 May 2024" data-ru="Долевое урегулирование с 28 мая 2024 г." data-ar="تسوية الأسهم منذ 28 مايو 2024" data-zh="自2024年5月28日起的股票结算周期">Equity settlement since 28 May 2024</div>
     </div>
 
     <div class="jur-card">
       <div class="jur-head">
         <span class="flag">🇪🇺</span>
-        <h3 data-en="European Union" data-zh="欧盟">European Union</h3>
+        <h3 data-en="European Union" data-ru="Европейский Союз" data-ar="الاتحاد الأوروبي" data-zh="欧盟">European Union</h3>
         <span class="code">EU</span>
       </div>
       <dl>
-        <dt data-en="Regulators" data-zh="监管">Regulators</dt>
-        <dd data-en="ECB/SSM · EBA · ESMA · national NCAs · AMLA" data-zh="欧洲央行/SSM · EBA · ESMA · 各国主管机构 · AMLA">ECB/SSM · EBA · ESMA · national NCAs · AMLA</dd>
-        <dt data-en="Rails" data-zh="通道">Rails</dt>
-        <dd data-en="T2 · EURO1 · SEPA · SCT Inst" data-zh="T2 · EURO1 · SEPA · SCT Inst">T2 · EURO1 · SEPA · SCT Inst</dd>
-        <dt data-en="Note" data-zh="要点">Note</dt>
-        <dd data-en="Single rulebook: MiFID II, EMIR, CRR3, MiCA, DORA." data-zh="统一规则手册：MiFID II、EMIR、CRR3、MiCA、DORA。">Single rulebook: MiFID II, EMIR, CRR3, MiCA, DORA.</dd>
+        <dt data-en="Regulators" data-ru="Регуляторы" data-ar="المنظمون" data-zh="监管">Regulators</dt>
+        <dd data-en="ECB/SSM · EBA · ESMA · national NCAs · AMLA" data-ru="ECB/SSM · EBA · ESMA · национальные НКА · AMLA" data-ar="ECB/SSM · EBA · ESMA · هيئات الاعتماد الوطنية الوطنية · AMLA" data-zh="欧洲央行/SSM · EBA · ESMA · 各国主管机构 · AMLA">ECB/SSM · EBA · ESMA · national NCAs · AMLA</dd>
+        <dt data-en="Rails" data-ru="Рельсы" data-ar="القضبان" data-zh="通道">Rails</dt>
+        <dd data-en="T2 · EURO1 · SEPA · SCT Inst" data-ru="T2 · EURO1 · SEPA · SCT Инст" data-ar="T2 · EURO1 · SEPA · SCT إنست" data-zh="T2 · EURO1 · SEPA · SCT Inst">T2 · EURO1 · SEPA · SCT Inst</dd>
+        <dt data-en="Note" data-ru="Примечание" data-ar="ملاحظة" data-zh="要点">Note</dt>
+        <dd data-en="Single rulebook: MiFID II, EMIR, CRR3, MiCA, DORA." data-ru="Единая книга правил: MiFID II, EMIR, CRR3, MiCA, DORA." data-ar="كتاب القواعد الفردي: MiFID II، EMIR، CRR3، MiCA، DORA." data-zh="统一规则手册：MiFID II、EMIR、CRR3、MiCA、DORA。">Single rulebook: MiFID II, EMIR, CRR3, MiCA, DORA.</dd>
       </dl>
       <div class="kpi">T+1</div>
-      <div class="kpi-label" data-en="From 11 Oct 2027 — CSDR amended in 2025" data-zh="2027年10月11日起实施——CSDR已于2025年修订">From 11 Oct 2027 — CSDR amended in 2025</div>
+      <div class="kpi-label" data-en="From 11 Oct 2027 — CSDR amended in 2025" data-ru="С 11 октября 2027 г. — CSDR изменено в 2025 г." data-ar="من 11 أكتوبر 2027 — CSDR تم تعديله في عام 2025" data-zh="2027年10月11日起实施——CSDR已于2025年修订">From 11 Oct 2027 — CSDR amended in 2025</div>
     </div>
 
     <div class="jur-card">
       <div class="jur-head">
         <span class="flag">🇬🇧</span>
-        <h3 data-en="United Kingdom" data-zh="英国">United Kingdom</h3>
+        <h3 data-en="United Kingdom" data-ru="Великобритания" data-ar="المملكة المتحدة" data-zh="英国">United Kingdom</h3>
         <span class="code">UK</span>
       </div>
       <dl>
-        <dt data-en="Regulators" data-zh="监管">Regulators</dt>
-        <dd data-en="BoE · PRA · FCA" data-zh="英格兰银行 · PRA · FCA">BoE · PRA · FCA</dd>
-        <dt data-en="Rails" data-zh="通道">Rails</dt>
-        <dd data-en="CHAPS · Bacs · Faster Payments" data-zh="CHAPS · Bacs · Faster Payments">CHAPS · Bacs · Faster Payments</dd>
-        <dt data-en="Note" data-zh="要点">Note</dt>
-        <dd data-en="Post-Brexit rulebook diverging from the EU (Basel 3.1, Consumer Duty)." data-zh="脱欧后规则逐步与欧盟分化（巴塞尔3.1、消费者责任规则）。">Post-Brexit rulebook diverging from the EU (Basel 3.1, Consumer Duty).</dd>
+        <dt data-en="Regulators" data-ru="Регуляторы" data-ar="المنظمون" data-zh="监管">Regulators</dt>
+        <dd data-en="BoE · PRA · FCA" data-ru="Банк Англии · PRA · FCA" data-ar="بنك إنجلترا · PRA · FCA" data-zh="英格兰银行 · PRA · FCA">BoE · PRA · FCA</dd>
+        <dt data-en="Rails" data-ru="Рельсы" data-ar="القضبان" data-zh="通道">Rails</dt>
+        <dd data-en="CHAPS · Bacs · Faster Payments" data-ru="CHAPS · Баксы · Быстрые платежи" data-ar="CHAPS · البكالوريا · دفعات أسرع" data-zh="CHAPS · Bacs · Faster Payments">CHAPS · Bacs · Faster Payments</dd>
+        <dt data-en="Note" data-ru="Примечание" data-ar="ملاحظة" data-zh="要点">Note</dt>
+        <dd data-en="Post-Brexit rulebook diverging from the EU (Basel 3.1, Consumer Duty)." data-ru="Свод правил после Брексита отличается от EU (Базель 3.1, Потребительские пошлины)." data-ar="كتاب قواعد ما بعد خروج بريطانيا من الاتحاد الأوروبي يختلف عن EU (بازل 3.1، واجب المستهلك)." data-zh="脱欧后规则逐步与欧盟分化（巴塞尔3.1、消费者责任规则）。">Post-Brexit rulebook diverging from the EU (Basel 3.1, Consumer Duty).</dd>
       </dl>
       <div class="kpi">T+1</div>
-      <div class="kpi-label" data-en="From 11 Oct 2027, alongside the EU and Switzerland" data-zh="2027年10月11日起实施，与欧盟、瑞士同步">From 11 Oct 2027, alongside the EU and Switzerland</div>
+      <div class="kpi-label" data-en="From 11 Oct 2027, alongside the EU and Switzerland" data-ru="С 11 октября 2027 г., наряду с EU и Швейцарией." data-ar="من 11 أكتوبر 2027، إلى جانب EU وسويسرا" data-zh="2027年10月11日起实施，与欧盟、瑞士同步">From 11 Oct 2027, alongside the EU and Switzerland</div>
     </div>
 
     <div class="jur-card">
       <div class="jur-head">
         <span class="flag">🇨🇳</span>
-        <h3 data-en="Mainland China" data-zh="中国内地">Mainland China</h3>
+        <h3 data-en="Mainland China" data-ru="Материковый Китай" data-ar="البر الرئيسى للصين" data-zh="中国内地">Mainland China</h3>
         <span class="code">CN</span>
       </div>
       <dl>
-        <dt data-en="Regulators" data-zh="监管">Regulators</dt>
-        <dd data-en="PBoC · NFRA · CSRC · SAFE" data-zh="中国人民银行 · 金融监管总局 · 证监会 · 外汇局">PBoC · NFRA · CSRC · SAFE</dd>
-        <dt data-en="Rails" data-zh="通道">Rails</dt>
-        <dd data-en="CNAPS · IBPS · NetsUnion · CIPS · UnionPay" data-zh="CNAPS · IBPS · 网联 · CIPS · 银联">CNAPS · IBPS · NetsUnion · CIPS · UnionPay</dd>
-        <dt data-en="Note" data-zh="要点">Note</dt>
-        <dd data-en="Bank-based system; capital-account controls; crypto trading banned since 2021." data-zh="以银行为主导；资本项目管制；2021年起禁止加密货币交易。">Bank-based system; capital-account controls; crypto trading banned since 2021.</dd>
+        <dt data-en="Regulators" data-ru="Регуляторы" data-ar="المنظمون" data-zh="监管">Regulators</dt>
+        <dd data-en="PBoC · NFRA · CSRC · SAFE" data-ru="НБК · NFRA · CSRC · SAFE" data-ar="بنك الشعب الصيني · NFRA · CSRC · SAFE" data-zh="中国人民银行 · 金融监管总局 · 证监会 · 外汇局">PBoC · NFRA · CSRC · SAFE</dd>
+        <dt data-en="Rails" data-ru="Рельсы" data-ar="القضبان" data-zh="通道">Rails</dt>
+        <dd data-en="CNAPS · IBPS · NetsUnion · CIPS · UnionPay" data-ru="CNAPS · IBPS · NetsUnion · CIPS · UnionPay" data-ar="CNAPS · IBPS · NetsUnion · CIPS · UnionPay" data-zh="CNAPS · IBPS · 网联 · CIPS · 银联">CNAPS · IBPS · NetsUnion · CIPS · UnionPay</dd>
+        <dt data-en="Note" data-ru="Примечание" data-ar="ملاحظة" data-zh="要点">Note</dt>
+        <dd data-en="Bank-based system; capital-account controls; crypto trading banned since 2021." data-ru="Банковская система; контроль за счетом движения капитала; торговля криптовалютой запрещена с 2021 года." data-ar="النظام القائم على البنك. ضوابط حساب رأس المال؛ تداول العملات المشفرة محظور منذ عام 2021" data-zh="以银行为主导；资本项目管制；2021年起禁止加密货币交易。">Bank-based system; capital-account controls; crypto trading banned since 2021.</dd>
       </dl>
       <div class="kpi">T+0 / T+1</div>
-      <div class="kpi-label" data-en="A-shares: securities / cash settlement" data-zh="A股：证券 / 资金交收">A-shares: securities / cash settlement</div>
+      <div class="kpi-label" data-en="A-shares: securities / cash settlement" data-ru="A-акции: ценные бумаги / расчет наличными" data-ar="A-الأسهم: الأوراق المالية / التسوية النقدية" data-zh="A股：证券 / 资金交收">A-shares: securities / cash settlement</div>
     </div>
 
     <div class="jur-card">
       <div class="jur-head">
         <span class="flag">🇭🇰</span>
-        <h3 data-en="Hong Kong SAR" data-zh="中国香港特区">Hong Kong SAR</h3>
+        <h3 data-en="Hong Kong SAR" data-ru="Гонконг SAR" data-ar="هونج كونج SAR" data-zh="中国香港特区">Hong Kong SAR</h3>
         <span class="code">HK</span>
       </div>
       <dl>
-        <dt data-en="Regulators" data-zh="监管">Regulators</dt>
-        <dd data-en="HKMA · SFC · IA" data-zh="香港金管局 · 证监会 · 保监局">HKMA · SFC · IA</dd>
-        <dt data-en="Rails" data-zh="通道">Rails</dt>
-        <dd data-en="CHATS (HKD/USD/EUR/RMB) · FPS" data-zh="CHATS（港元/美元/欧元/人民币）· 转数快">CHATS (HKD/USD/EUR/RMB) · FPS</dd>
-        <dt data-en="Note" data-zh="要点">Note</dt>
-        <dd data-en="Gateway to the Mainland via Stock, Bond and Swap Connect; offshore RMB (CNH) hub." data-zh="通过沪深港通、债券通与互换通连接内地；离岸人民币（CNH）中心。">Gateway to the Mainland via Stock, Bond and Swap Connect; offshore RMB (CNH) hub.</dd>
+        <dt data-en="Regulators" data-ru="Регуляторы" data-ar="المنظمون" data-zh="监管">Regulators</dt>
+        <dd data-en="HKMA · SFC · IA" data-ru="HKMA · SFC · IA" data-ar="HKMA · SFC · IA" data-zh="香港金管局 · 证监会 · 保监局">HKMA · SFC · IA</dd>
+        <dt data-en="Rails" data-ru="Рельсы" data-ar="القضبان" data-zh="通道">Rails</dt>
+        <dd data-en="CHATS (HKD/USD/EUR/RMB) · FPS" data-ru="CHATS (HKD/USD/EUR/RMB) · FPS" data-ar="CHATS (HKD/USD/EUR/RMB) · FPS" data-zh="CHATS（港元/美元/欧元/人民币）· 转数快">CHATS (HKD/USD/EUR/RMB) · FPS</dd>
+        <dt data-en="Note" data-ru="Примечание" data-ar="ملاحظة" data-zh="要点">Note</dt>
+        <dd data-en="Gateway to the Mainland via Stock, Bond and Swap Connect; offshore RMB (CNH) hub." data-ru="Ворота на материк через Stock, Bond и Swap Connect; оффшорный RMB (CNH) хаб." data-ar="بوابة إلى البر الرئيسي عبر Stock، Bond وSwap Connect؛ المحور البحري RMB (CNH) ." data-zh="通过沪深港通、债券通与互换通连接内地；离岸人民币（CNH）中心。">Gateway to the Mainland via Stock, Bond and Swap Connect; offshore RMB (CNH) hub.</dd>
       </dl>
       <div class="kpi">7.75–7.85</div>
-      <div class="kpi-label" data-en="HKD per USD — Linked Exchange Rate System" data-zh="港元兑美元——联系汇率制度">HKD per USD — Linked Exchange Rate System</div>
+      <div class="kpi-label" data-en="HKD per USD — Linked Exchange Rate System" data-ru="HKD за USD — связанная система валютных курсов" data-ar="HKD لكل USD — نظام سعر الصرف المرتبط" data-zh="港元兑美元——联系汇率制度">HKD per USD — Linked Exchange Rate System</div>
     </div>
 
     <div class="jur-card">
       <div class="jur-head">
         <span class="flag">🇦🇪</span>
-        <h3 data-en="United Arab Emirates" data-zh="阿联酋">United Arab Emirates</h3>
+        <h3 data-en="United Arab Emirates" data-ru="Объединенные Арабские Эмираты" data-ar="الإمارات العربية المتحدة" data-zh="阿联酋">United Arab Emirates</h3>
         <span class="code">UAE</span>
       </div>
       <dl>
-        <dt data-en="Regulators" data-zh="监管">Regulators</dt>
-        <dd data-en="CBUAE · SCA · VARA (Dubai) · DFSA (DIFC) · FSRA (ADGM)" data-zh="阿联酋央行 · SCA · VARA（迪拜）· DFSA（DIFC）· FSRA（ADGM）">CBUAE · SCA · VARA (Dubai) · DFSA (DIFC) · FSRA (ADGM)</dd>
-        <dt data-en="Rails" data-zh="通道">Rails</dt>
-        <dd data-en="UAEFTS · Aani · Jaywan · WPS" data-zh="UAEFTS · Aani · Jaywan · WPS">UAEFTS · Aani · Jaywan · WPS</dd>
-        <dt data-en="Note" data-zh="要点">Note</dt>
-        <dd data-en="Onshore civil law beside common-law free zones; Islamic and conventional banking side by side." data-zh="在岸大陆法体系与普通法自贸区并存；伊斯兰银行与传统银行并行。">Onshore civil law beside common-law free zones; Islamic and conventional banking side by side.</dd>
+        <dt data-en="Regulators" data-ru="Регуляторы" data-ar="المنظمون" data-zh="监管">Regulators</dt>
+        <dd data-en="CBUAE · SCA · VARA (Dubai) · DFSA (DIFC) · FSRA (ADGM)" data-ru="CBОАЭ · SCA · VARA (Дубай) · DFSA (DIFC) · FSRA (ADGM)" data-ar="CBالإمارات · SCA · VARA (دبي) · DFSA (DIFC) · FSRA (ADGM)" data-zh="阿联酋央行 · SCA · VARA（迪拜）· DFSA（DIFC）· FSRA（ADGM）">CBUAE · SCA · VARA (Dubai) · DFSA (DIFC) · FSRA (ADGM)</dd>
+        <dt data-en="Rails" data-ru="Рельсы" data-ar="القضبان" data-zh="通道">Rails</dt>
+        <dd data-en="UAEFTS · Aani · Jaywan · WPS" data-ru="ОАЭFTS · Аани · Джайван · WPS" data-ar="الإماراتFTS · آني · جيوان · WPS" data-zh="UAEFTS · Aani · Jaywan · WPS">UAEFTS · Aani · Jaywan · WPS</dd>
+        <dt data-en="Note" data-ru="Примечание" data-ar="ملاحظة" data-zh="要点">Note</dt>
+        <dd data-en="Onshore civil law beside common-law free zones; Islamic and conventional banking side by side." data-ru="Береговое гражданское право, за исключением свободных зон общего права; Исламский и традиционный банкинг бок о бок." data-ar="القانون المدني البري إلى جانب المناطق الحرة للقانون العام؛ المصرفية الإسلامية والتقليدية جنبا إلى جنب." data-zh="在岸大陆法体系与普通法自贸区并存；伊斯兰银行与传统银行并行。">Onshore civil law beside common-law free zones; Islamic and conventional banking side by side.</dd>
       </dl>
       <div class="kpi">3.6725</div>
-      <div class="kpi-label" data-en="AED per USD — fixed peg" data-zh="迪拉姆兑美元——固定汇率">AED per USD — fixed peg</div>
+      <div class="kpi-label" data-en="AED per USD — fixed peg" data-ru="AED за USD — фиксированная привязка" data-ar="AED لكل USD — ربط ثابت" data-zh="迪拉姆兑美元——固定汇率">AED per USD — fixed peg</div>
     </div>
 
   </div>
@@ -997,38 +483,38 @@
 <!-- ══ CROSS-BORDER LINKS ══ -->
 <div class="page-section">
   <div class="page-section-title"
-       data-en="Cross-Border Links"
+       data-en="Cross-Border Links" data-ru="Трансграничные связи" data-ar="الروابط عبر الحدود"
        data-zh="跨境连接">Cross-Border Links</div>
   <div class="cards-3">
 
     <div class="force-card">
       <div class="force-num">01</div>
-      <h3 data-en="Mainland–Hong Kong Connect" data-zh="内地与香港互联互通">Mainland–Hong Kong Connect</h3>
-      <p data-en="Stock Connect (2014/2016), Bond Connect (2017/2021), Swap Connect (2023) and Wealth Management Connect (2021) open each market through Hong Kong while Mainland capital controls stay in place."
+      <h3 data-en="Mainland–Hong Kong Connect" data-ru="Соединение материкового Китая и Гонконга" data-ar="اتصال بين البر الرئيسي وهونج كونج" data-zh="内地与香港互联互通">Mainland–Hong Kong Connect</h3>
+      <p data-en="Stock Connect (2014/2016), Bond Connect (2017/2021), Swap Connect (2023) and Wealth Management Connect (2021) open each market through Hong Kong while Mainland capital controls stay in place." data-ru="Stock Connect (2014/2016), Bond Connect (2017/2021), Swap Connect (2023) и Wealth Management Connect (2021) открывают каждый рынок через Гонконг, в то время как контроль над капиталом на материке остается в силе." data-ar="Stock Connect (2014/2016)، Bond Connect (2017/2021)، Swap Connect (2023) وWealth Management Connect (2021) تفتح كل سوق عبر هونغ كونغ بينما تظل ضوابط رأس المال في البر الرئيسي قائمة."
          data-zh="沪深港通（2014/2016）、债券通（2017/2021）、互换通（2023）与跨境理财通（2021）经由香港打通两地市场，同时保留内地资本管制。">
         Stock Connect (2014/2016), Bond Connect (2017/2021), Swap Connect (2023) and Wealth Management Connect (2021) open each market through Hong Kong while Mainland capital controls stay in place.
       </p>
-      <div class="stat" data-en="Closed-loop flows" data-zh="资金闭环流动">Closed-loop flows</div>
+      <div class="stat" data-en="Closed-loop flows" data-ru="Замкнутые потоки" data-ar="تدفقات حلقة مغلقة" data-zh="资金闭环流动">Closed-loop flows</div>
     </div>
 
     <div class="force-card">
       <div class="force-num">02</div>
-      <h3 data-en="Cross-Border Payment Rails" data-zh="跨境支付通道">Cross-Border Payment Rails</h3>
-      <p data-en="SWIFT messaging over correspondent banks (ISO 20022 after the Nov 2025 MT cut-over); CIPS for RMB; the mBridge multi-CBDC platform (PBoC, HKMA, CBUAE, BoT; Macao since 2026); Payment Connect (since Jun 2025) linking Hong Kong FPS with Mainland IBPS."
+      <h3 data-en="Cross-Border Payment Rails" data-ru="Трансграничные платежные пути" data-ar="قضبان الدفع عبر الحدود" data-zh="跨境支付通道">Cross-Border Payment Rails</h3>
+      <p data-en="SWIFT messaging over correspondent banks (ISO 20022 after the Nov 2025 MT cut-over); CIPS for RMB; the mBridge multi-CBDC platform (PBoC, HKMA, CBUAE, BoT; Macao since 2026); Payment Connect (since Jun 2025) linking Hong Kong FPS with Mainland IBPS." data-ru="SWIFT обмен сообщениями через банки-корреспонденты (ISO 20022 г. после отключения в ноябре 2025 г. MT); CIPS вместо RMB; мульти-CBDC платформа mBridge (PBoC, HKMA, CBОАЭ, BoT; Макао с 2026 г.); Payment Connect (с июня 2025 г.), связывающий Гонконг FPS с материком IBPS." data-ar="SWIFT المراسلة عبر البنوك المراسلة (ISO 20022 بعد نوفمبر 2025 MT)؛ CIPS لـ RMB؛ منصة mBridge المتعددة CBDC (PBoC، HKMA، CBالإمارات، BoT؛ ماكاو منذ عام 2026)؛ ربط الدفع (منذ يونيو 2025) يربط هونج كونج FPS بالبر الرئيسي IBPS."
          data-zh="基于代理行网络的SWIFT报文（2025年11月MT报文退役后转用ISO 20022）；人民币跨境支付系统CIPS；多边央行数字货币桥mBridge（人民银行、香港金管局、阿联酋央行、泰国央行；澳门金管局2026年加入）；连接香港转数快与内地网上支付跨行清算系统的“跨境支付通”（2025年6月上线）。">
         SWIFT messaging over correspondent banks (ISO 20022 after the Nov 2025 MT cut-over); CIPS for RMB; the mBridge multi-CBDC platform (PBoC, HKMA, CBUAE, BoT; Macao since 2026); Payment Connect (since Jun 2025) linking Hong Kong FPS with Mainland IBPS.
       </p>
-      <div class="stat" data-en="SWIFT · CIPS · mBridge · Payment Connect" data-zh="SWIFT · CIPS · mBridge · 跨境支付通">SWIFT · CIPS · mBridge · Payment Connect</div>
+      <div class="stat" data-en="SWIFT · CIPS · mBridge · Payment Connect" data-ru="SWIFT · CIPS · mBridge · Платежное соединение" data-ar="SWIFT · CIPS · mBridge · اتصال الدفع" data-zh="SWIFT · CIPS · mBridge · 跨境支付通">SWIFT · CIPS · mBridge · Payment Connect</div>
     </div>
 
     <div class="force-card">
       <div class="force-num">03</div>
-      <h3 data-en="UAE: Onshore vs Free Zones" data-zh="阿联酋：在岸与自贸区">UAE: Onshore vs Free Zones</h3>
-      <p data-en="DIFC (2004) and ADGM (2015) run their own common-law-based legal systems, courts and regulators (DFSA, FSRA) beside federal law, the CBUAE and SCA. Same country, different rulebooks — always name the regime."
+      <h3 data-en="UAE: Onshore vs Free Zones" data-ru="ОАЭ: Береговые и свободные зоны" data-ar="الإمارات: المناطق البرية مقابل المناطق الحرة" data-zh="阿联酋：在岸与自贸区">UAE: Onshore vs Free Zones</h3>
+      <p data-en="DIFC (2004) and ADGM (2015) run their own common-law-based legal systems, courts and regulators (DFSA, FSRA) beside federal law, the CBUAE and SCA. Same country, different rulebooks — always name the regime." data-ru="DIFC (2004 г.) и ADGM (2015 г.) управляют собственными правовыми системами, основанными на общем праве, судами и регулирующими органами (DFSA, FSRA) помимо федерального закона, CBОАЭ и SCA. Одна и та же страна, разные своды правил — всегда называйте режим." data-ar="DIFC (2004) وADGM (2015) يديرون أنظمتهم القانونية والمحاكم والهيئات التنظيمية القائمة على القانون العام (DFSA، FSRA) إلى جانب القانون الفيدرالي، CBالإمارات و SCA. نفس البلد، وقواعد مختلفة - قم دائمًا بتسمية النظام."
          data-zh="迪拜国际金融中心（DIFC，2004）与阿布扎比全球市场（ADGM，2015）拥有各自以普通法为基础的法律体系、法院与监管机构（DFSA、FSRA），与联邦法律、阿联酋央行及SCA并行。同一国家、不同规则——务必注明适用体制。">
         DIFC (2004) and ADGM (2015) run their own common-law-based legal systems, courts and regulators (DFSA, FSRA) beside federal law, the CBUAE and SCA. Same country, different rulebooks — always name the regime.
       </p>
-      <div class="stat" data-en="Onshore · DIFC · ADGM" data-zh="在岸 · DIFC · ADGM">Onshore · DIFC · ADGM</div>
+      <div class="stat" data-en="Onshore · DIFC · ADGM" data-ru="Береговой · DIFC · ADGM" data-ar="على البر · DIFC · ADGM" data-zh="在岸 · DIFC · ADGM">Onshore · DIFC · ADGM</div>
     </div>
 
   </div>
@@ -1038,68 +524,68 @@
 <!-- ══ TRENDS & OPEN QUESTIONS ══ -->
 <div class="page-section">
   <div class="page-section-title"
-       data-en="Trends to Watch — as of October 2026"
+       data-en="Trends to Watch — as of October 2026" data-ru="Тенденции, за которыми стоит следить — по состоянию на октябрь 2026 г." data-ar="الاتجاهات التي يجب مراقبتها – اعتبارًا من أكتوبر 2026"
        data-zh="值得关注的趋势 — 截至2026年10月">Trends to Watch — as of October 2026</div>
   <div class="cards-3">
 
     <div class="force-card">
       <div class="force-num">01</div>
-      <h3 data-en="Settlement Compression" data-zh="结算周期压缩">Settlement Compression</h3>
-      <p data-en="EU, UK and Switzerland move to T+1 on 11 Oct 2027; Hong Kong targets Q4 2027 (HKEX consulted in 2026); tokenized collateral and atomic-settlement pilots."
+      <h3 data-en="Settlement Compression" data-ru="Сжатие расчетов" data-ar="ضغط التسوية" data-zh="结算周期压缩">Settlement Compression</h3>
+      <p data-en="EU, UK and Switzerland move to T+1 on 11 Oct 2027; Hong Kong targets Q4 2027 (HKEX consulted in 2026); tokenized collateral and atomic-settlement pilots." data-ru="EU, UK и Швейцария переедут в T+1 11 октября 2027 г.; Гонконг нацелен на Q4 2027 год (HKEX консультировался в 2026 году); токенизированное залоговое обеспечение и пилотные проекты атомных расчетов." data-ar="EU، UK وسويسرا ينتقلان إلى T+1 في 11 أكتوبر 2027؛ أهداف هونج كونج Q4 2027 (HKEX تمت استشارتها في 2026)؛ طيارو الضمانات والتسويات الذرية الرمزية."
          data-zh="欧盟、英国与瑞士将于2027年10月11日转为T+1；香港目标为2027年第四季度（港交所已于2026年就此咨询）；代币化抵押品与原子结算试点。">
         EU, UK and Switzerland move to T+1 on 11 Oct 2027; Hong Kong targets Q4 2027 (HKEX consulted in 2026); tokenized collateral and atomic-settlement pilots.
       </p>
-      <div class="stat" data-en="EU · UK · CH: 11 Oct 2027" data-zh="欧盟 · 英国 · 瑞士：2027年10月11日">EU · UK · CH: 11 Oct 2027</div>
+      <div class="stat" data-en="EU · UK · CH: 11 Oct 2027" data-ru="EU · UK · CH: 11 октября 2027 г." data-ar="EU · UK · CH: 11 أكتوبر 2027" data-zh="欧盟 · 英国 · 瑞士：2027年10月11日">EU · UK · CH: 11 Oct 2027</div>
     </div>
 
     <div class="force-card">
       <div class="force-num">02</div>
-      <h3 data-en="Capital Rules Diverge" data-zh="资本规则分化">Capital Rules Diverge</h3>
-      <p data-en="Basel III final reforms: EU CRR3 live since Jan 2025; UK Basel 3.1 from 1 Jan 2027; US re-proposed in Mar 2026 with net capital relief; FRTB timing still differs by region."
+      <h3 data-en="Capital Rules Diverge" data-ru="Правила капитала расходятся" data-ar="قواعد رأس المال تتباعد" data-zh="资本规则分化">Capital Rules Diverge</h3>
+      <p data-en="Basel III final reforms: EU CRR3 live since Jan 2025; UK Basel 3.1 from 1 Jan 2027; US re-proposed in Mar 2026 with net capital relief; FRTB timing still differs by region." data-ru="Basel III окончательные реформы: EU CRR3 действуют с января 2025 года; UK Базель 3.1 от 1 января 2027 г.; US повторно предложено в марте 2026 года с чистым облегчением капитала; FRTB время по-прежнему зависит от региона." data-ar="Basel III الإصلاحات النهائية: EU CRR3 سارية منذ يناير 2025؛ UK بازل 3.1 اعتبارًا من 1 يناير 2027؛ US أعيد اقتراحه في مارس 2026 مع تخفيف رأس المال الصافي؛ FRTB لا يزال التوقيت يختلف حسب المنطقة."
          data-zh="巴塞尔III最终改革：欧盟CRR3自2025年1月起实施；英国巴塞尔3.1自2027年1月1日起实施；美国于2026年3月重新提案，整体降低资本要求；各地FRTB实施时间仍不一致。">
         Basel III final reforms: EU CRR3 live since Jan 2025; UK Basel 3.1 from 1 Jan 2027; US re-proposed in Mar 2026 with net capital relief; FRTB timing still differs by region.
       </p>
-      <div class="stat" data-en="UK 1 Jan 2027 · US re-proposal Mar 2026" data-zh="英国2027年1月1日 · 美国2026年3月重新提案">UK 1 Jan 2027 · US re-proposal Mar 2026</div>
+      <div class="stat" data-en="UK 1 Jan 2027 · US re-proposal Mar 2026" data-ru="UK 1 января 2027 г. · US повторное предложение, март 2026 г." data-ar="UK 1 يناير 2027 · US إعادة الاقتراح مارس 2026" data-zh="英国2027年1月1日 · 美国2026年3月重新提案">UK 1 Jan 2027 · US re-proposal Mar 2026</div>
     </div>
 
     <div class="force-card">
       <div class="force-num">03</div>
-      <h3 data-en="Stablecoin Licensing" data-zh="稳定币牌照">Stablecoin Licensing</h3>
-      <p data-en="GENIUS Act (US, effective by 18 Jan 2027), MiCA (EU), Hong Kong's Stablecoins Ordinance (first licences Apr 2026) and CBUAE payment-token rules set who may issue and where tokens may be used to pay."
+      <h3 data-en="Stablecoin Licensing" data-ru="Лицензирование стейблкоина" data-ar="ترخيص العملة المستقرة" data-zh="稳定币牌照">Stablecoin Licensing</h3>
+      <p data-en="GENIUS Act (US, effective by 18 Jan 2027), MiCA (EU), Hong Kong's Stablecoins Ordinance (first licences Apr 2026) and CBUAE payment-token rules set who may issue and where tokens may be used to pay." data-ru="GENIUS Act (US, вступает в силу 18 января 2027 г.), MiCA (EU), Постановление о стейблкоинах Гонконга (первые лицензии — апрель 2026 г.) и CBОАЭ правила платежных токенов устанавливают, кто может выпускать и где токены могут использоваться для оплаты." data-ar="GENIUS Act (US، ساري المفعول بحلول 18 يناير 2027)، MiCA (EU)، قانون العملات المستقرة في هونغ كونغ (التراخيص الأولى في أبريل 2026) وCBالإمارات تحدد قواعد رموز الدفع من يمكنه إصدار الرموز المميزة وأين يمكن استخدام الرموز المميزة للدفع."
          data-zh="美国GENIUS法案（最迟于2027年1月18日生效）、欧盟MiCA、香港《稳定币条例》（2026年4月发出首批牌照）与阿联酋央行支付代币规则，界定谁可发行、在何处可用于支付。">
         GENIUS Act (US, effective by 18 Jan 2027), MiCA (EU), Hong Kong's Stablecoins Ordinance (first licences Apr 2026) and CBUAE payment-token rules set who may issue and where tokens may be used to pay.
       </p>
-      <div class="stat" data-en="Live: EU · HK · UAE — US by Jan 2027" data-zh="已实施：欧盟 · 香港 · 阿联酋——美国2027年1月前">Live: EU · HK · UAE — US by Jan 2027</div>
+      <div class="stat" data-en="Live: EU · HK · UAE — US by Jan 2027" data-ru="В реальном времени: EU · HK · ОАЭ — US к январю 2027 г." data-ar="مباشر: EU · HK · الإمارات — US بحلول يناير 2027" data-zh="已实施：欧盟 · 香港 · 阿联酋——美国2027年1月前">Live: EU · HK · UAE — US by Jan 2027</div>
     </div>
 
     <div class="force-card">
       <div class="force-num">04</div>
-      <h3 data-en="CBDCs &amp; Tokenization" data-zh="央行数字货币与代币化">CBDCs &amp; Tokenization</h3>
-      <p data-en="e-CNY became an interest-bearing deposit in Jan 2026; mBridge, the Digital Dirham rollout, wholesale e-HKD and the digital euro (pilot planned for 2027); tokenized money-market funds and Treasuries used as collateral."
+      <h3 data-en="CBDCs &amp; Tokenization" data-ru="CBDC &amp; Токенизация" data-ar="العملات الرقمية للبنوك المركزية &amp; الترميز" data-zh="央行数字货币与代币化">CBDCs &amp; Tokenization</h3>
+      <p data-en="e-CNY became an interest-bearing deposit in Jan 2026; mBridge, the Digital Dirham rollout, wholesale e-HKD and the digital euro (pilot planned for 2027); tokenized money-market funds and Treasuries used as collateral." data-ru="e-CNY стал процентным вкладом в январе 2026 года; mBridge, внедрение цифрового дирхама, оптового электронного HKD и цифрового евро (пилотный проект запланирован на 2027 год); токенизированные фонды денежного рынка и казначейские облигации, используемые в качестве залога." data-ar="e-CNY أصبحت وديعة بفائدة في يناير 2026؛ وmBridge، وطرح الدرهم الرقمي، والبيع الإلكتروني بالجملة HKD واليورو الرقمي (من المخطط إطلاقه في عام 2027)؛ تستخدم صناديق سوق المال وسندات الخزانة الرمزية كضمان."
          data-zh="数字人民币自2026年1月起转为计息存款；mBridge、数字迪拉姆分阶段推出、批发型数码港元，以及数字欧元（计划2027年试点）；代币化货币基金与美国国债被用作抵押品。">
         e-CNY became an interest-bearing deposit in Jan 2026; mBridge, the Digital Dirham rollout, wholesale e-HKD and the digital euro (pilot planned for 2027); tokenized money-market funds and Treasuries used as collateral.
       </p>
-      <div class="stat" data-en="e-CNY interest-bearing since 1 Jan 2026" data-zh="数字人民币自2026年1月1日起计息">e-CNY interest-bearing since 1 Jan 2026</div>
+      <div class="stat" data-en="e-CNY interest-bearing since 1 Jan 2026" data-ru="e-CNY процентный с 1 января 2026 г." data-ar="هـ-CNY تحمل فائدة منذ 1 يناير 2026" data-zh="数字人民币自2026年1月1日起计息">e-CNY interest-bearing since 1 Jan 2026</div>
     </div>
 
     <div class="force-card">
       <div class="force-num">05</div>
-      <h3 data-en="China's Credit Cycle" data-zh="中国信贷周期">China's Credit Cycle</h3>
-      <p data-en="Resolving property-developer and LGFV debt, monetary easing, and further opening of onshore markets to foreign investors."
+      <h3 data-en="China's Credit Cycle" data-ru="Кредитный цикл Китая" data-ar="دورة الائتمان في الصين" data-zh="中国信贷周期">China's Credit Cycle</h3>
+      <p data-en="Resolving property-developer and LGFV debt, monetary easing, and further opening of onshore markets to foreign investors." data-ru="Урегулирование задолженности застройщиков и LGFV долгов, смягчение денежно-кредитной политики и дальнейшее открытие оншорных рынков для иностранных инвесторов." data-ar="حل ديون المطورين العقاريين وديون LGFV، وتخفيف القيود النقدية، وفتح الأسواق المحلية أمام المستثمرين الأجانب."
          data-zh="化解房地产开发商与地方政府融资平台债务、货币宽松，以及境内市场对外资的进一步开放。">
         Resolving property-developer and LGFV debt, monetary easing, and further opening of onshore markets to foreign investors.
       </p>
-      <div class="stat" data-en="PBoC: “moderately loose” policy, 2026" data-zh="人民银行：2026年实施“适度宽松”货币政策">PBoC: “moderately loose” policy, 2026</div>
+      <div class="stat" data-en="PBoC: “moderately loose” policy, 2026" data-ru="НБК: «умеренно мягкая» политика, 2026 г." data-ar="بنك الشعب الصيني: سياسة &quot;تيسيرة إلى حد ما&quot; 2026" data-zh="人民银行：2026年实施“适度宽松”货币政策">PBoC: “moderately loose” policy, 2026</div>
     </div>
 
     <div class="force-card">
       <div class="force-num">06</div>
-      <h3 data-en="AI in Finance" data-zh="金融业中的AI">AI in Finance</h3>
-      <p data-en="Model-risk guidance (SR 26-2, which replaced SR 11-7 in Apr 2026; PRA SS1/23), EU AI Act high-risk credit scoring (deferred to Dec 2027), China's generative-AI measures, and explainability for credit decisions."
+      <h3 data-en="AI in Finance" data-ru="AI в области финансов" data-ar="AI في المالية" data-zh="金融业中的AI">AI in Finance</h3>
+      <p data-en="Model-risk guidance (SR 26-2, which replaced SR 11-7 in Apr 2026; PRA SS1/23), EU AI Act high-risk credit scoring (deferred to Dec 2027), China's generative-AI measures, and explainability for credit decisions." data-ru="Руководство по модельному риску (SR 26-2, которое заменило SR 11-7 в апреле 2026 года; PRA SS1/23), EU AI Закон о кредитном скоринге высокого риска (отложено до декабря 2027 года), генеративные меры Китая AI и объяснимость кредитных решений." data-ar="إرشادات نموذج المخاطر (SR 26-2، التي حلت محل SR 11-7 في أبريل 2026؛ PRA SS1/23)، EU AI قانون التصنيف الائتماني عالي المخاطر (مؤجل إلى ديسمبر 2027)، والتدابير التوليدية AI في الصين، وتفسير القرارات الائتمانية."
          data-zh="模型风险监管指引（SR 26-2于2026年4月取代SR 11-7；英国PRA SS1/23）、欧盟《人工智能法》信用评分高风险义务（推迟至2027年12月）、中国生成式AI管理办法，以及信贷决策的可解释性。">
         Model-risk guidance (SR 26-2, which replaced SR 11-7 in Apr 2026; PRA SS1/23), EU AI Act high-risk credit scoring (deferred to Dec 2027), China's generative-AI measures, and explainability for credit decisions.
       </p>
-      <div class="stat" data-en="EU high-risk AI rules: Dec 2027" data-zh="欧盟高风险AI规则：2027年12月">EU high-risk AI rules: Dec 2027</div>
+      <div class="stat" data-en="EU high-risk AI rules: Dec 2027" data-ru="EU правила высокого риска AI: декабрь 2027 г." data-ar="EU قواعد عالية المخاطر AI: ديسمبر 2027" data-zh="欧盟高风险AI规则：2027年12月">EU high-risk AI rules: Dec 2027</div>
     </div>
 
   </div>
@@ -1108,91 +594,28 @@
 
 <!-- ══ LEGEND ══ -->
 <div class="legend">
-  <div class="legend-item"><div class="legend-dot" style="background:#1a9080;"></div><span data-en="Regulation &amp; Central Banks (Paradigm)" data-zh="监管与中央银行（范式）">Regulation &amp; Central Banks (Paradigm)</span></div>
-  <div class="legend-item"><div class="legend-dot" style="background:#b88a10;"></div><span data-en="Value-Chain Layers (Upper)" data-zh="价值链层级（上层）">Value-Chain Layers (Upper)</span></div>
-  <div class="legend-item"><div class="legend-dot" style="background:#7a50c8;"></div><span data-en="Foundation Pillars (Lower)" data-zh="基础支柱（下层）">Foundation Pillars (Lower)</span></div>
-  <div class="legend-item"><div class="legend-dot" style="background:#3a78d0;"></div><span data-en="Jurisdiction Lens" data-zh="法域视角">Jurisdiction Lens</span></div>
-  <div class="legend-item"><div class="legend-dot" style="background:#485090;"></div><span data-en="Cross-Border Links &amp; Trends" data-zh="跨境连接与趋势">Cross-Border Links &amp; Trends</span></div>
+  <div class="legend-item"><div class="legend-dot legend-dot--regulation"></div><span data-en="Regulation &amp; Central Banks (Paradigm)" data-ru="Регулирование &amp; Центральные банки (Парадигма)" data-ar="اللائحة &amp; البنوك المركزية (النموذج)" data-zh="监管与中央银行（范式）">Regulation &amp; Central Banks (Paradigm)</span></div>
+  <div class="legend-item"><div class="legend-dot legend-dot--layers"></div><span data-en="Value-Chain Layers (Upper)" data-ru="Уровни цепочки создания стоимости (верхний)" data-ar="طبقات سلسلة القيمة (العلوية)" data-zh="价值链层级（上层）">Value-Chain Layers (Upper)</span></div>
+  <div class="legend-item"><div class="legend-dot legend-dot--pillars"></div><span data-en="Foundation Pillars (Lower)" data-ru="Столбы фундамента (нижние)" data-ar="ركائز الأساس (السفلى)" data-zh="基础支柱（下层）">Foundation Pillars (Lower)</span></div>
+  <div class="legend-item"><div class="legend-dot legend-dot--jurisdiction"></div><span data-en="Jurisdiction Lens" data-ru="Объектив юрисдикции" data-ar="عدسة القضاء" data-zh="法域视角">Jurisdiction Lens</span></div>
+  <div class="legend-item"><div class="legend-dot legend-dot--cross-border"></div><span data-en="Cross-Border Links &amp; Trends" data-ru="Трансграничные ссылки &amp; Тенденции" data-ar="الروابط عبر الحدود &amp; الاتجاهات" data-zh="跨境连接与趋势">Cross-Border Links &amp; Trends</span></div>
 </div>
 
 <p class="footnote"
-   data-en="Educational overview — not investment, legal or tax advice. Facts checked as of October 2026; regulatory timelines can shift."
+   data-en="Educational overview — not investment, legal or tax advice. Facts checked as of October 2026; regulatory timelines can shift." data-ru="Образовательный обзор, а не инвестиционные, юридические или налоговые консультации. Факты проверены по состоянию на октябрь 2026 г.; сроки регулирования могут измениться." data-ar="نظرة عامة تعليمية - وليس نصيحة استثمارية أو قانونية أو ضريبية. تم التحقق من الحقائق اعتبارًا من أكتوبر 2026؛ الجداول الزمنية التنظيمية يمكن أن تتغير."
    data-zh="教育性概览——不构成投资、法律或税务建议。信息核实截至2026年10月；监管时间表可能调整。">Educational overview — not investment, legal or tax advice. Facts checked as of October 2026; regulatory timelines can shift.</p>
 
-<script>
-  let currentLang = 'en';
-  const TITLES = {
-    en: 'Finance Industry Overview — October 2026',
-    zh: '金融行业全览 — 2026年10月'
-  };
-  const DESCRIPTIONS = {
-    en: 'Layered map of the finance industry: regulation and central banks, five value-chain layers, foundation pillars, a flow-of-funds diagram, and a six-jurisdiction lens (US, EU, UK, Mainland China, Hong Kong, UAE).',
-    zh: '金融行业的层状图谱：监管与中央银行、五大价值链层级、基础支柱、资金流动图，以及六大法域视角（美国、欧盟、英国、中国内地、香港、阿联酋）。'
-  };
 
-  function setLang(lang, remember) {
-    if (lang !== 'zh') lang = 'en';
-    currentLang = lang;
-    const btnEn = document.getElementById('btn-en');
-    const btnZh = document.getElementById('btn-zh');
-    btnEn.classList.toggle('active', lang === 'en');
-    btnZh.classList.toggle('active', lang === 'zh');
-    btnEn.setAttribute('aria-pressed', String(lang === 'en'));
-    btnZh.setAttribute('aria-pressed', String(lang === 'zh'));
-    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
-    document.title = TITLES[lang];
+<p class="gics-source">
+  <span data-en="Classification source: GICS® — The Global Industry Classification Standard, developed by S&amp;P Dow Jones Indices and MSCI. 11 sectors · 25 industry groups · 74 industries · 163 sub-industries. GICS® is a registered trademark of S&amp;P Dow Jones Indices LLC and MSCI Inc.; this independent site is not affiliated with or endorsed by either." data-zh="分类来源：GICS®——全球行业分类标准，由标普道琼斯指数与 MSCI 编制。11 个行业板块 · 25 个行业组 · 74 个行业 · 163 个子行业。GICS® 是标普道琼斯指数有限责任公司和 MSCI 公司的注册商标；本独立网站与上述机构无关联，亦未获其背书。" data-ru="Источник классификации: GICS® — Глобальный стандарт отраслевой классификации, разработанный S&amp;P Dow Jones Indices и MSCI. 11 секторов · 25 групп отраслей · 74 отрасли · 163 подотрасли. GICS® — зарегистрированная торговая марка S&amp;P Dow Jones Indices LLC и MSCI Inc.; этот независимый сайт не связан с ними и не одобрен ими." data-ar="مصدر التصنيف: GICS® — المعيار العالمي لتصنيف القطاعات، طوّرته S&amp;P Dow Jones Indices وMSCI. 11 قطاعًا · 25 مجموعة صناعية · 74 صناعة · 163 صناعة فرعية. GICS® علامة تجارية مسجلة لـ S&amp;P Dow Jones Indices LLC وMSCI Inc.؛ هذا الموقع المستقل غير تابع لهما ولا يحظى بتأييدهما.">Classification source: GICS® — The Global Industry Classification Standard, developed by S&amp;P Dow Jones Indices and MSCI. 11 sectors · 25 industry groups · 74 industries · 163 sub-industries. GICS® is a registered trademark of S&amp;P Dow Jones Indices LLC and MSCI Inc.; this independent site is not affiliated with or endorsed by either.</span>
+  <span aria-hidden="true"> · </span>
+  <a href="https://www.spglobal.com/spdji/en/landing/topic/gics/" target="_blank" rel="noopener" data-en="Official GICS page" data-zh="GICS 官方页面" data-ru="Официальная страница GICS" data-ar="صفحة GICS الرسمية">Official GICS page</a>
+  <span aria-hidden="true"> · </span>
+  <a href="https://www.msci.com/indexes/index-resources/gics" target="_blank" rel="noopener" data-en="MSCI GICS resource" data-zh="MSCI GICS 资源" data-ru="Ресурс GICS от MSCI" data-ar="مورد GICS من MSCI">MSCI GICS resource</a>
+</p>
 
-    const description = document.querySelector('meta[name="description"]');
-    if (description) description.setAttribute('content', DESCRIPTIONS[lang]);
-
-    document.querySelectorAll('[data-en]').forEach(el => { el.innerHTML = el.dataset[lang]; });
-    document.querySelectorAll('[data-title-en]').forEach(el => {
-      el.setAttribute('title', lang === 'zh' ? el.dataset.titleZh : el.dataset.titleEn);
-    });
-    document.querySelectorAll('[data-aria-en]').forEach(el => {
-      el.setAttribute('aria-label', lang === 'zh' ? el.dataset.ariaZh : el.dataset.ariaEn);
-    });
-
-    if (remember !== false) {
-      try { localStorage.setItem('voltai-lang', lang); } catch (e) {}
-    }
-  }
-
-  (function () {
-    let saved = null;
-    try { saved = localStorage.getItem('voltai-lang'); } catch (e) {}
-    if (location.hash === '#zh') saved = 'zh';
-    if (location.hash === '#en') saved = 'en';
-    if (saved === 'zh') setLang('zh', false);
-    else if (location.hash === '#en') setLang('en', false);
-  })();
-
-  function toggleTheme() {
-    const cur  = document.documentElement.getAttribute('data-theme') || 'dark';
-    const next = cur === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    try { localStorage.setItem('voltai-theme', next); } catch (e) {}
-    updateThemeIcon(next);
-  }
-
-  function updateThemeIcon(theme) {
-    const btn = document.getElementById('theme-btn');
-    if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    updateThemeIcon(document.documentElement.getAttribute('data-theme') || 'dark');
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
-      let stored = null;
-      try { stored = localStorage.getItem('voltai-theme'); } catch (err) {}
-      if (!stored) {
-        const t = e.matches ? 'dark' : 'light';
-        document.documentElement.setAttribute('data-theme', t);
-        updateThemeIcon(t);
-      }
-    });
-  });
-</script>
+<script src="assets/js/page-meta.js"></script>
+<script src="assets/js/site.js"></script>
 
 </body>
 </html>

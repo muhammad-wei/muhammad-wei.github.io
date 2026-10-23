@@ -1,544 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page="web3">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="assets/img/logo.png">
 <title>Web3 Industry Overview — October 2026</title>
 <meta name="description" content="Layered map of the Web3 industry in October 2026: regulatory architecture, five sectors, market pillars, the exchange landscape, and the news moving markets.">
-<!-- Anti-FOUC: set theme before first paint -->
-<script>
-  (function(){
-    var s = null;
-    try { s = localStorage.getItem('voltai-theme'); } catch (e) {}
-    var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    document.documentElement.setAttribute('data-theme', s || (dark ? 'dark' : 'light'));
-  })();
-</script>
-<style>
-  /* ═══════════════════════════════
-     DARK TOKENS  (default)
-  ═══════════════════════════════ */
-  :root {
-    color-scheme: dark;
-    --bg-page:          #080b12;
-    --text-body:        #e0e4f0;
-    --h1-color:         #d4c090;
-    --subtitle-color:   #7a82a0;
-    /* controls */
-    --ctrl-bg:          #0f1220;
-    --ctrl-border:      #1e2438;
-    --ctrl-btn:         #7880a8;
-    --ctrl-active-bg:   #946f0d;
-    --ctrl-active:      #fff;
-    /* regulatory / institutional paradigm (teal) */
-    --reg-bg:           linear-gradient(135deg, #061614 0%, #0c2422 100%);
-    --reg-border:       #1a8070;
-    --reg-shadow:       rgba(26,144,128,.28);
-    --reg-badge-bg:     #16786b;
-    --reg-badge-color:  #bffaf2;
-    --reg-h2:           #38c0a8;
-    --reg-p:            #6ab0a0;
-    --reg-tag-bg:       rgba(26,144,128,.16);
-    --reg-tag-border:   rgba(26,144,128,.40);
-    --reg-tag-color:    #24b098;
-    /* connectors */
-    --conn-line-1:      linear-gradient(to bottom, #1a9080, #b88a10);
-    --conn-line-2:      linear-gradient(to bottom, #b88a10, #7a50c8);
-    --conn-arrow-gold:  #b88a10;
-    --conn-arrow-pur:   #7a50c8;
-    --conn-label:       #6b78b8;
-    --conn-label-bd:    #161c34;
-    /* section headers */
-    --sector-hdr:       #b88a10;
-    --pillar-hdr:       #9070e0;
-    /* sector layer cards (gold) */
-    --layer-bg:         linear-gradient(160deg, #181208 0%, #100c05 100%);
-    --layer-border:     #282008;
-    --layer-hover:      #b88a10;
-    --layer-num:        #a17a11;
-    --layer-h3:         #c09040;
-    --layer-p:          #a08a5c;
-    --layer-stag:       #ac8109;
-    --layer-stag-bg:    rgba(184,138,16,.10);
-    --layer-hot-border: #3a2a08;
-    --layer-hot-h3:     #e0b050;
-    /* pillar cards (purple) */
-    --pil-bg:           linear-gradient(160deg, #100c1c 0%, #090714 100%);
-    --pil-border:       #1a1230;
-    --pil-hover:        #7a50c8;
-    --pil-h3:           #8868d8;
-    --pil-p:            #9488c4;
-    --nbadge-bg:        #7a50c8;
-    --nbadge-color:     #f0ebff;
-    /* macro force cards */
-    --force-bg:         #0c0f1a;
-    --force-border:     #161b2e;
-    --force-num:        #141830;
-    --force-h3:         #8090e0;
-    --force-p:          #8088b0;
-    --force-stat:       #a0a8e0;
-    --force-stat-bg:    rgba(72,80,144,.10);
-    --force-stat-bd:    rgba(72,80,144,.22);
-    /* sector scoreboard cards */
-    --sec-bg:           linear-gradient(160deg, #181408 0%, #0f0e05 100%);
-    --sec-border:       #242008;
-    --sec-h3:           #bfa040;
-    --sec-p:            #997c32;
-    --sec-kpi:          #e0c050;
-    --sec-kpi-label:    #9c7d2a;
-    /* allocation cards */
-    --alloc-bg:         #0d101c;
-    --alloc-border:     #181e32;
-    --alloc-h3:         #7080b8;
-    --alloc-p:          #6c7ab6;
-    --alloc-pct:        #d0a020;
-    --alloc-pct-label:  #8378a5;
-    /* bull / bear */
-    --bear-bg:          linear-gradient(135deg, #180808 0%, #0e0505 100%);
-    --bear-border:      #320d0d;
-    --bear-h3:          #c65b5b;
-    --bear-li:          #b46666;
-    --bear-mark:        #882828;
-    --bull-bg:          linear-gradient(135deg, #081618 0%, #040e0c 100%);
-    --bull-border:      #0d3028;
-    --bull-h3:          #38b890;
-    --bull-li:          #3b8e69;
-    --bull-mark:        #249c70;
-    /* page sections */
-    --pst-color:        #6e78b7;
-    --pst-line:         #161c32;
-    /* legend */
-    --legend-color:     #7078a0;
-  }
+<script src="assets/js/boot.js"></script>
+<link rel="stylesheet" href="assets/css/pages/web3-industry-chart.css">
+<link rel="stylesheet" href="assets/css/gics.css">
 
-  /* ═══════════════════════════════
-     LIGHT TOKENS
-  ═══════════════════════════════ */
-  html[data-theme="light"] {
-    color-scheme: light;
-    --bg-page:          #f4f6fc;
-    --text-body:        #181a28;
-    --h1-color:         #28200c;
-    --subtitle-color:   #686f85;
-    --ctrl-bg:          #ffffff;
-    --ctrl-border:      #dde4f0;
-    --ctrl-btn:         #62759d;
-    --ctrl-active-bg:   #946f07;
-    --ctrl-active:      #fff;
-    --reg-bg:           linear-gradient(135deg, #e0faf6 0%, #d4f4ee 100%);
-    --reg-border:       #40a090;
-    --reg-shadow:       rgba(26,144,128,.12);
-    --reg-badge-bg:     #0e7868;
-    --reg-badge-color:  #fff;
-    --reg-h2:           #0a5848;
-    --reg-p:            #286858;
-    --reg-tag-bg:       rgba(26,144,128,.07);
-    --reg-tag-border:   rgba(26,144,128,.22);
-    --reg-tag-color:    #0a6858;
-    --conn-line-1:      linear-gradient(to bottom, #2a9080, #a07808);
-    --conn-line-2:      linear-gradient(to bottom, #a07808, #6030b0);
-    --conn-arrow-gold:  #a07808;
-    --conn-arrow-pur:   #6030b0;
-    --conn-label:       #5f6da3;
-    --conn-label-bd:    #c8d0e8;
-    --sector-hdr:       #906008;
-    --pillar-hdr:       #5030a8;
-    --layer-bg:         linear-gradient(160deg, #fffbec 0%, #fff6d8 100%);
-    --layer-border:     #d8c040;
-    --layer-hover:      #a07808;
-    --layer-num:        #876c29;
-    --layer-h3:         #7c4808;
-    --layer-p:          #6c5830;
-    --layer-stag:       #985808;
-    --layer-stag-bg:    rgba(152,88,8,.09);
-    --layer-hot-border: #c8a830;
-    --layer-hot-h3:     #884010;
-    --pil-bg:           linear-gradient(160deg, #f2eeff 0%, #eae0ff 100%);
-    --pil-border:       #a880e0;
-    --pil-hover:        #5030a8;
-    --pil-h3:           #3820a0;
-    --pil-p:            #4c3880;
-    --nbadge-bg:        #5030a8;
-    --nbadge-color:     #f4eeff;
-    --force-bg:         #f0f2fc;
-    --force-border:     #d0d8f0;
-    --force-num:        #d0d8f4;
-    --force-h3:         #2840a0;
-    --force-p:          #485080;
-    --force-stat:       #3850a0;
-    --force-stat-bg:    rgba(56,80,160,.07);
-    --force-stat-bd:    rgba(56,80,160,.18);
-    --sec-bg:           linear-gradient(160deg, #fffbec 0%, #fff6d8 100%);
-    --sec-border:       #d0b840;
-    --sec-h3:           #7c5008;
-    --sec-p:            #6a5828;
-    --sec-kpi:          #8c5008;
-    --sec-kpi-label:    #97652b;
-    --alloc-bg:         #f0f2fc;
-    --alloc-border:     #d0d8f0;
-    --alloc-h3:         #2840a0;
-    --alloc-p:          #485080;
-    --alloc-pct:        #8c6808;
-    --alloc-pct-label:  #5b6d92;
-    --bear-bg:          linear-gradient(135deg, #fff4f4 0%, #ffe8e8 100%);
-    --bear-border:      #e0b0b0;
-    --bear-h3:          #a82020;
-    --bear-li:          #782828;
-    --bear-mark:        #a02020;
-    --bull-bg:          linear-gradient(135deg, #f0fff8 0%, #e4f8ef 100%);
-    --bull-border:      #88d0b0;
-    --bull-h3:          #147048;
-    --bull-li:          #285840;
-    --bull-mark:        #147040;
-    --pst-color:        #5d7096;
-    --pst-line:         #dde4f0;
-    --legend-color:     #607090;
-  }
-
-  /* ═══════════════════════════════
-     BASE
-  ═══════════════════════════════ */
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", sans-serif;
-    background: var(--bg-page);
-    color: var(--text-body);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 24px 64px;
-  }
-
-  /* ── CONTROLS ── */
-  .controls {
-    position: fixed;
-    top: 20px;
-    right: 24px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    z-index: 100;
-  }
-  .theme-btn {
-    width: 34px; height: 34px;
-    border-radius: 8px;
-    border: 1px solid var(--ctrl-border);
-    background: var(--ctrl-bg);
-    cursor: pointer;
-    font-size: 16px;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
-    transition: background 0.2s, border-color 0.2s;
-  }
-  .lang-toggle {
-    display: flex;
-    background: var(--ctrl-bg);
-    border: 1px solid var(--ctrl-border);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
-  }
-  .lang-toggle button {
-    padding: 7px 16px;
-    font-size: 13px; font-weight: 600;
-    border: none; cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-    background: transparent;
-    color: var(--ctrl-btn);
-    letter-spacing: 0.04em;
-  }
-  .lang-toggle button.active { background: var(--ctrl-active-bg); color: var(--ctrl-active); }
-
-  /* ── PAGE HEADER ── */
-  h1 {
-    font-size: 22px; font-weight: 600;
-    color: var(--h1-color);
-    margin-bottom: 6px;
-    text-align: center;
-    letter-spacing: 0.03em;
-  }
-  .subtitle {
-    font-size: 13px;
-    color: var(--subtitle-color);
-    margin-bottom: 52px;
-    text-align: center;
-  }
-
-  /* ── CHART WRAPPER ── */
-  .chart {
-    width: 100%;
-    max-width: 960px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* ── REGULATORY PARADIGM ── */
-  .regulatory {
-    width: 100%;
-    background: var(--reg-bg);
-    border: 1.5px solid var(--reg-border);
-    border-radius: 14px;
-    padding: 22px 28px;
-    box-shadow: 0 0 32px var(--reg-shadow);
-  }
-  .regulatory .badge {
-    display: inline-block;
-    font-size: 10px; font-weight: 700;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    background: var(--reg-badge-bg); color: var(--reg-badge-color);
-    border-radius: 4px; padding: 2px 8px; margin-bottom: 10px;
-  }
-  .regulatory h2 { font-size: 19px; font-weight: 700; color: var(--reg-h2); margin-bottom: 6px; }
-  .regulatory p  { font-size: 13px; color: var(--reg-p); line-height: 1.6; }
-  .regulatory .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-  .regulatory .tag {
-    font-size: 11px;
-    background: var(--reg-tag-bg);
-    border: 1px solid var(--reg-tag-border);
-    color: var(--reg-tag-color);
-    border-radius: 20px; padding: 3px 12px;
-  }
-
-  /* ── CONNECTORS ── */
-  .connector {
-    display: flex; flex-direction: column; align-items: center;
-    padding: 4px 0; gap: 2px;
-  }
-  .connector .line   { width: 2px; height: 18px; }
-  .connector .line-1 { background: var(--conn-line-1); }
-  .connector .line-2 { background: var(--conn-line-2); }
-  .connector .arrow  { width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; }
-  .connector .arrow-gold { border-top: 8px solid var(--conn-arrow-gold); }
-  .connector .arrow-pur  { border-top: 8px solid var(--conn-arrow-pur); }
-  .connector-label {
-    font-size: 10px; color: var(--conn-label);
-    letter-spacing: 0.06em; text-transform: uppercase;
-    padding: 2px 10px;
-    border: 1px dashed var(--conn-label-bd);
-    border-radius: 20px; margin: 3px 0;
-  }
-
-  /* ── SECTION HEADERS ── */
-  .section { width: 100%; }
-  .section-header {
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    margin-bottom: 12px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .section-header::before,
-  .section-header::after { content: ""; flex: 1; height: 1px; background: currentColor; opacity: 0.18; }
-  .sectors-header { color: var(--sector-hdr); }
-  .pillars-header { color: var(--pillar-hdr); }
-
-  /* ── GRIDS ── */
-  .cards-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
-  .cards-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-  .cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-
-  /* ── SECTOR LAYER CARDS ── */
-  .layer-card {
-    background: var(--layer-bg);
-    border: 1.5px solid var(--layer-border);
-    border-radius: 12px; padding: 16px 14px;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .layer-card:hover { border-color: var(--layer-hover); transform: translateY(-2px); }
-  .layer-card .num  { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: var(--layer-num); text-transform: uppercase; margin-bottom: 6px; }
-  .layer-card .icon { font-size: 22px; margin-bottom: 8px; }
-  .layer-card h3    { font-size: 13px; font-weight: 700; color: var(--layer-h3); margin-bottom: 5px; }
-  .layer-card p     { font-size: 11px; color: var(--layer-p); line-height: 1.55; }
-  .layer-card .sub-tags { display: flex; flex-direction: column; gap: 3px; margin-top: 8px; }
-  .layer-card .sub-tag  { font-size: 9.5px; color: var(--layer-stag); background: var(--layer-stag-bg); border-radius: 4px; padding: 2px 6px; width: fit-content; }
-  .layer-card.hot   { border-color: var(--layer-hot-border); }
-  .layer-card.hot h3 { color: var(--layer-hot-h3); }
-
-  /* ── PILLAR CARDS ── */
-  .pillar-card {
-    background: var(--pil-bg);
-    border: 1.5px solid var(--pil-border);
-    border-radius: 12px; padding: 16px 14px;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .pillar-card:hover { border-color: var(--pil-hover); transform: translateY(-2px); }
-  .pillar-card .icon { font-size: 22px; margin-bottom: 8px; }
-  .pillar-card h3    { font-size: 13px; font-weight: 700; color: var(--pil-h3); margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
-  .pillar-card p     { font-size: 11px; color: var(--pil-p); line-height: 1.55; }
-  .new-badge {
-    font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-    background: var(--nbadge-bg); color: var(--nbadge-color);
-    border-radius: 3px; padding: 1px 5px;
-  }
-
-  /* ── PAGE SECTIONS ── */
-  .page-section { width: 100%; max-width: 960px; margin-top: 52px; }
-  .page-section-title {
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--pst-color);
-    text-align: center; margin-bottom: 20px;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .page-section-title::before,
-  .page-section-title::after { content: ""; flex: 1; height: 1px; background: var(--pst-line); }
-
-  /* ── MACRO FORCE CARDS ── */
-  .force-card {
-    background: var(--force-bg);
-    border: 1.5px solid var(--force-border);
-    border-radius: 12px; padding: 18px 16px;
-  }
-  .force-card .force-num { font-size: 28px; font-weight: 800; color: var(--force-num); line-height: 1; margin-bottom: 8px; }
-  .force-card h3  { font-size: 13px; font-weight: 700; color: var(--force-h3); margin-bottom: 6px; }
-  .force-card p   { font-size: 11px; color: var(--force-p); line-height: 1.6; }
-  .force-card .stat {
-    display: inline-block; margin-top: 10px; font-size: 10px;
-    color: var(--force-stat); background: var(--force-stat-bg);
-    border: 1px solid var(--force-stat-bd); border-radius: 4px; padding: 2px 8px;
-  }
-
-  /* ── SECTOR SCOREBOARD CARDS ── */
-  .sec-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
-  .sec-card {
-    background: var(--sec-bg);
-    border: 1.5px solid var(--sec-border);
-    border-radius: 12px; padding: 16px 14px;
-  }
-  .sec-card .icon      { font-size: 22px; margin-bottom: 8px; }
-  .sec-card h3         { font-size: 13px; font-weight: 700; color: var(--sec-h3); margin-bottom: 5px; }
-  .sec-card p          { font-size: 11px; color: var(--sec-p); line-height: 1.6; }
-  .sec-card .kpi       { margin-top: 10px; font-size: 18px; font-weight: 700; color: var(--sec-kpi); line-height: 1.2; }
-  .sec-card .kpi-label { font-size: 9.5px; color: var(--sec-kpi-label); margin-top: 2px; }
-
-  /* ── ALLOCATION CARDS ── */
-  .alloc-card {
-    background: var(--alloc-bg);
-    border: 1.5px solid var(--alloc-border);
-    border-radius: 12px; padding: 18px 16px;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .alloc-card:hover { border-color: var(--conn-arrow-gold); transform: translateY(-2px); }
-  .alloc-card .icon      { font-size: 24px; margin-bottom: 10px; }
-  .alloc-card .pct       { font-size: 28px; font-weight: 800; color: var(--alloc-pct); line-height: 1.1; }
-  .alloc-card .pct-label { font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--alloc-pct-label); margin-bottom: 8px; }
-  .alloc-card h3         { font-size: 13px; font-weight: 700; color: var(--alloc-h3); margin-bottom: 5px; }
-  .alloc-card p          { font-size: 11px; color: var(--alloc-p); line-height: 1.55; }
-
-  /* ── NEWS TIMELINE ── */
-  .news-list { display: flex; flex-direction: column; gap: 10px; }
-  .news-item {
-    display: grid; grid-template-columns: 92px 1fr; gap: 14px;
-    background: var(--force-bg); border: 1.5px solid var(--force-border);
-    border-radius: 12px; padding: 14px 16px;
-  }
-  .news-item.headline { border-color: var(--layer-hover); }
-  .news-date     { font-size: 11px; font-weight: 700; letter-spacing: 0.04em; color: var(--alloc-pct); line-height: 1.5; }
-  .news-item h3  { font-size: 13px; font-weight: 700; color: var(--force-h3); margin-bottom: 5px; }
-  .news-item p   { font-size: 11.5px; color: var(--force-p); line-height: 1.6; }
-  .news-item .why { margin-top: 6px; color: var(--force-stat); }
-
-  /* ── BULL / BEAR ── */
-  .decision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .decision-card { border-radius: 12px; padding: 18px 18px; }
-  .decision-card.bear { background: var(--bear-bg); border: 1.5px solid var(--bear-border); }
-  .decision-card.bull { background: var(--bull-bg); border: 1.5px solid var(--bull-border); }
-  .decision-card h3   { font-size: 13px; font-weight: 700; margin-bottom: 10px; }
-  .decision-card.bear h3 { color: var(--bear-h3); }
-  .decision-card.bull h3 { color: var(--bull-h3); }
-  .decision-card ul   { list-style: none; display: flex; flex-direction: column; gap: 7px; }
-  .decision-card li   { font-size: 11.5px; line-height: 1.5; display: flex; gap: 8px; align-items: flex-start; }
-  .decision-card.bear li { color: var(--bear-li); }
-  .decision-card.bull li { color: var(--bull-li); }
-  .decision-card li::before { flex-shrink: 0; margin-top: 1px; }
-  .decision-card.bear li::before { content: "✕"; color: var(--bear-mark); }
-  .decision-card.bull li::before { content: "✓"; color: var(--bull-mark); }
-
-  /* ── LEGEND ── */
-  .legend { margin-top: 48px; display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
-  .legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--legend-color); }
-  .legend-dot  { width: 10px; height: 10px; border-radius: 50%; }
-  .footnote {
-    width: 100%; max-width: 960px;
-    margin-top: 28px; padding-top: 16px;
-    border-top: 1px solid var(--pst-line);
-    font-size: 11px; line-height: 1.6;
-    color: var(--legend-color); text-align: center;
-  }
-
-  @media (max-width: 1024px) {
-    body { padding-top: 72px; }   /* clear the fixed controls */
-  }
-  @media (max-width: 800px) {
-    .cards-5, .sec-grid { grid-template-columns: repeat(2, 1fr); }
-    .cards-4 { grid-template-columns: repeat(2, 1fr); }
-    .cards-3 { grid-template-columns: 1fr; }
-    .decision-grid { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 460px) {
-    .cards-5, .sec-grid, .cards-4 { grid-template-columns: 1fr; }
-    .news-item { grid-template-columns: 1fr; gap: 4px; }
-  }
-  /* ── HOME LINK (top-left, mirrors the controls) ── */
-  .home-link {
-    position: fixed; top: 20px; left: 24px; z-index: 100;
-    display: flex; align-items: center; height: 34px; padding: 0 12px;
-    border: 1px solid var(--ctrl-border); border-radius: 8px;
-    background: var(--ctrl-bg); color: var(--text-body);
-    font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-decoration: none;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
-    transition: border-color 0.2s;
-  }
-  .home-link:hover, .home-link:focus-visible { border-color: var(--text-body); }
-</style>
 </head>
 <body>
 
 <!-- Controls -->
-<a class="home-link" href="index.html" title="Back to homepage" data-title-en="Back to homepage" data-title-zh="返回首页" data-en="← Home" data-zh="← 首页">← Home</a>
+<a class="home-link" href="index.html" title="Back to homepage" data-title-en="Back to homepage" data-title-ru="Вернуться на главную страницу" data-title-ar="العودة إلى الصفحة الرئيسية" data-title-zh="返回首页" data-en="← Home" data-ru="← Главная" data-ar="→ الرئيسية" data-zh="← 首页">← Home</a>
 <div class="controls">
-  <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Switch theme" aria-label="Switch theme" data-title-en="Switch theme" data-title-zh="切换主题" data-aria-en="Switch theme" data-aria-zh="切换主题">🌙</button>
-  <div class="lang-toggle" role="group" aria-label="Language" data-aria-en="Language" data-aria-zh="语言">
-    <button id="btn-en" class="active" onclick="setLang('en')" aria-pressed="true">EN</button>
-    <button id="btn-zh" onclick="setLang('zh')" aria-pressed="false">中文</button>
-  </div>
+  <button class="theme-btn" id="theme-btn" title="Switch theme" aria-label="Switch theme" data-title-en="Switch theme" data-title-ru="Переключить тему" data-title-ar="تبديل المظهر" data-title-zh="切换主题" data-aria-en="Switch theme" data-aria-ru="Переключить тему" data-aria-ar="تبديل المظهر" data-aria-zh="切换主题">🌙</button>
+  <div class="lang-toggle" role="group" aria-label="Language" data-aria-en="Language" data-aria-ru="Язык" data-aria-ar="اللغة" data-aria-zh="语言">
+                    <select id="lang-select" aria-label="Language" data-aria-en="Language" data-aria-zh="语言" data-aria-ru="Язык" data-aria-ar="اللغة">
+                      <option value="en" lang="en">EN</option>
+                      <option value="zh" lang="zh-CN">中文</option>
+                      <option value="ru" lang="ru">РУ</option>
+                      <option value="ar" lang="ar">عربي</option>
+                    </select>
+                  </div>
 </div>
 
-<h1 data-en="Web3 Industry — Full Overview (Oct 2026)"
+<h1 data-en="Web3 Industry — Full Overview (Oct 2026)" data-ru="Индустрия Web3 — полный обзор (октябрь 2026)" data-ar="قطاع Web3 — نظرة شاملة (أكتوبر 2026)"
     data-zh="Web3 行业全览（2026年10月）">Web3 Industry — Full Overview (Oct 2026)</h1>
 <p class="subtitle"
-   data-en="Regulatory Architecture · Five Sectors · Market Pillars · Exchanges · Market-Moving News"
+   data-en="Regulatory Architecture · Five Sectors · Market Pillars · Exchanges · Market-Moving News" data-ru="Регуляторная архитектура · Пять секторов · Рыночные опоры · Биржи · Новости, влияющие на рынок" data-ar="البنية التنظيمية · خمسة قطاعات · دعائم السوق · البورصات · أخبار مؤثرة في السوق"
    data-zh="监管架构 · 五大赛道 · 市场支柱 · 交易所 · 市场要闻">Regulatory Architecture · Five Sectors · Market Pillars · Exchanges · Market-Moving News</p>
+<aside class="gics-lens">
+  <span class="gics-lens-label" data-en="GICS® lens" data-zh="GICS® 视角" data-ru="Разрез GICS®" data-ar="منظور GICS®">GICS® lens</span>
+  <p class="gics-lens-text" data-en="Web3 is not a GICS sector. Related companies sit mainly in Financials, Information Technology and Communication Services." data-zh="Web3 不是 GICS 行业板块。相关公司主要归入金融、信息技术与通信服务。" data-ru="Web3 не является сектором GICS. Связанные компании относятся главным образом к финансам, информационным технологиям и коммуникационным услугам." data-ar="Web3 ليس قطاعًا في GICS. تندرج الشركات المرتبطة به أساسًا ضمن القطاع المالي وتقنية المعلومات وخدمات الاتصالات.">Web3 is not a GICS sector. Related companies sit mainly in Financials, Information Technology and Communication Services.</p>
+</aside>
 
 <div class="chart">
 
   <!-- ══ REGULATORY ARCHITECTURE (paradigm) ══ -->
   <div class="regulatory">
-    <div class="badge" data-en="Higher-Order Force" data-zh="高阶驱动力">Higher-Order Force</div>
-    <h2 data-en="Regulatory Architecture &amp; Institutional Rails"
+    <div class="badge" data-en="Higher-Order Force" data-ru="Силы высшего порядка" data-ar="قوة النظام العالي" data-zh="高阶驱动力">Higher-Order Force</div>
+    <h2 data-en="Regulatory Architecture &amp; Institutional Rails" data-ru="Нормативная архитектура &amp; Институциональные рельсы" data-ar="البنية التنظيمية &amp; القضبان المؤسسية"
         data-zh="监管架构与机构通道">Regulatory Architecture &amp; Institutional Rails</h2>
-    <p data-en="Not a sector — a <strong>cross-cutting strategic field</strong> that determines how every Web3 layer is built, funded, and connected. GENIUS Act (U.S., signed July 2025; agencies still finalizing rules; effective Jan 18, 2027), MiCA (EU, fully applicable since July 1, 2026), and HK/SG/UAE frameworks form the first coherent global regulatory skeleton for crypto. Gaps remain: the U.S. CLARITY market-structure bill failed a 49–50 Senate cloture vote (Sept 15, 2026), and sanctions now reach exchanges directly (UK/EU vs. HTX)."
+    <p data-en="Not a sector — a <strong>cross-cutting strategic field</strong> that determines how every Web3 layer is built, funded, and connected. GENIUS Act (U.S., signed July 2025; agencies still finalizing rules; effective Jan 18, 2027), MiCA (EU, fully applicable since July 1, 2026), and HK/SG/UAE frameworks form the first coherent global regulatory skeleton for crypto. Gaps remain: the U.S. CLARITY market-structure bill failed a 49–50 Senate cloture vote (Sept 15, 2026), and sanctions now reach exchanges directly (UK/EU vs. HTX)." data-ru="Не сектор — это <strong>сквозная стратегическая область</strong>, которая определяет, как создается, финансируется и подключается каждый уровень Web3. GENIUS Act (U.S., подписано в июле 2025 года; агентства еще дорабатывают правила; вступают в силу 18 января 2027 года), MiCA (EU, полностью применимо с 1 июля 2026 года) и HK/SG/ОАЭ структуры образуют первый согласованный глобальный нормативный скелет для криптовалют. Пробелы остаются: U.S. CLARITY законопроект о рыночной структуре провалился при закрытом голосовании в Сенате 49–50 голосами (15 сентября 2026 г.), и санкции теперь напрямую распространяются на биржи (UK/EU против HTX)." data-ar="ليس قطاعًا - <strong>مجال استراتيجي شامل</strong> يحدد كيفية إنشاء كل طبقة Web3 وتمويلها وربطها. GENIUS Act (U.S.، تم التوقيع عليها في يوليو 2025؛ ولا تزال الوكالات تضع اللمسات النهائية على القواعد؛ اعتبارًا من 18 يناير 2027)، MiCA (EU، قابلة للتطبيق بالكامل منذ 1 يوليو 2026)، وHK/SG/الإمارات تشكل الأطر أول هيكل تنظيمي عالمي متماسك للعملات المشفرة. لا تزال هناك فجوات: فشل مشروع قانون هيكل السوق في التصويت بأغلبية 49 صوتًا مقابل 50 في مجلس الشيوخ (15 سبتمبر 2026)، وتصل العقوبات الآن إلى التبادلات مباشرة (UK/EU مقابل HTX)."
        data-zh="并非某一赛道，而是<strong>横跨所有 Web3 层级的战略场域</strong>，决定着每一层级的构建、融资与衔接方式。GENIUS 法案（美国，2025年7月签署；各机构仍在制定细则；2027年1月18日生效）、MiCA（欧盟，2026年7月1日起全面适用）以及香港/新加坡/UAE 框架，共同构成首个全球加密监管骨架。缺口仍在：美国 CLARITY 市场结构法案在参议院程序性投票中以49比50未获通过（2026年9月15日）；制裁已直接波及交易所（英国/欧盟制裁 HTX）。">
       Not a sector — a <strong>cross-cutting strategic field</strong> that determines how every Web3 layer is built, funded, and connected. GENIUS Act (U.S., signed July 2025; agencies still finalizing rules; effective Jan 18, 2027), MiCA (EU, fully applicable since July 1, 2026), and HK/SG/UAE frameworks form the first coherent global regulatory skeleton for crypto. Gaps remain: the U.S. CLARITY market-structure bill failed a 49–50 Senate cloture vote (Sept 15, 2026), and sanctions now reach exchanges directly (UK/EU vs. HTX).
     </p>
     <div class="tags">
-      <span class="tag" data-en="GENIUS Act — effective Jan 2027" data-zh="GENIUS 法案 — 2027年1月生效">GENIUS Act — effective Jan 2027</span>
-      <span class="tag" data-en="MiCA — live July 2026"      data-zh="MiCA — 2026年7月全面实施">MiCA — live July 2026</span>
-      <span class="tag" data-en="CLARITY Act stalled (49–50)" data-zh="CLARITY 法案搁浅（49比50）">CLARITY Act stalled (49–50)</span>
-      <span class="tag" data-en="Spot BTC ETFs ~$107B"       data-zh="现货 BTC ETF 约1070亿美元">Spot BTC ETFs ~$107B</span>
-      <span class="tag" data-en="U.S. Strategic BTC Reserve" data-zh="美国战略比特币储备">U.S. Strategic BTC Reserve</span>
-      <span class="tag" data-en="JPM Kinexys &gt;$5B/day"   data-zh="摩根大通 Kinexys &gt;50亿美元/天">JPM Kinexys &gt;$5B/day</span>
-      <span class="tag" data-en="OCC Letter 1183 (Banks + Public Chains)" data-zh="OCC 解释函1183（银行可使用公链）">OCC Letter 1183 (Banks + Public Chains)</span>
+      <span class="tag" data-en="GENIUS Act — effective Jan 2027" data-ru="GENIUS Act — вступает в силу с января 2027 г." data-ar="GENIUS Act — اعتبارًا من يناير 2027" data-zh="GENIUS 法案 — 2027年1月生效">GENIUS Act — effective Jan 2027</span>
+      <span class="tag" data-en="MiCA — live July 2026" data-ru="MiCA — концерт в июле 2026 г." data-ar="MiCA — مباشر يوليو 2026"      data-zh="MiCA — 2026年7月全面实施">MiCA — live July 2026</span>
+      <span class="tag" data-en="CLARITY Act stalled (49–50)" data-ru="CLARITY Act застопорилось (49–50)" data-ar="CLARITY Act متوقف (49-50)" data-zh="CLARITY 法案搁浅（49比50）">CLARITY Act stalled (49–50)</span>
+      <span class="tag" data-en="Spot BTC ETFs ~$107B" data-ru="Спотовые BTC ETF ~$107 млрд." data-ar="بقعة BTC صناديق الاستثمار المتداولة ~ 107 مليار دولار"       data-zh="现货 BTC ETF 约1070亿美元">Spot BTC ETFs ~$107B</span>
+      <span class="tag" data-en="U.S. Strategic BTC Reserve" data-ru="U.S. Стратегический BTC Резерв" data-ar="U.S. احتياطي استراتيجي BTC" data-zh="美国战略比特币储备">U.S. Strategic BTC Reserve</span>
+      <span class="tag" data-en="JPM Kinexys &gt;$5B/day" data-ru="JPM Kinexys &gt;$5 млрд/день" data-ar="JPM كينكسيس &gt;5 مليار دولار/اليوم"   data-zh="摩根大通 Kinexys &gt;50亿美元/天">JPM Kinexys &gt;$5B/day</span>
+      <span class="tag" data-en="OCC Letter 1183 (Banks + Public Chains)" data-ru="OCC Письмо 1183 (Банки + Публичные сети)" data-ar="OCC الرسالة رقم 1183 (البنوك + السلاسل العامة)" data-zh="OCC 解释函1183（银行可使用公链）">OCC Letter 1183 (Banks + Public Chains)</span>
     </div>
   </div>
 
   <!-- Connector 1 -->
   <div class="connector">
     <div class="line line-1"></div>
-    <div class="connector-label" data-en="integrates &amp; spans across" data-zh="整合并横跨所有赛道">integrates &amp; spans across</div>
+    <div class="connector-label" data-en="integrates &amp; spans across" data-ru="объединяет промежутки &amp; по всем" data-ar="يدمج &amp; يمتد عبر" data-zh="整合并横跨所有赛道">integrates &amp; spans across</div>
     <div class="line line-1"></div>
     <div class="arrow arrow-gold"></div>
   </div>
@@ -546,82 +70,82 @@
   <!-- ══ FIVE INDUSTRY SECTORS ══ -->
   <div class="section">
     <div class="section-header sectors-header"
-         data-en="Five Industry Sectors — Upper Layer"
+         data-en="Five Industry Sectors — Upper Layer" data-ru="Пять отраслей промышленности — верхний уровень" data-ar="خمسة قطاعات صناعية - الطبقة العليا"
          data-zh="五大行业赛道 — 上层">Five Industry Sectors — Upper Layer</div>
     <div class="cards-5">
 
       <div class="layer-card">
-        <div class="num" data-en="Sector 1" data-zh="赛道 1">Sector 1</div>
+        <div class="num" data-en="Sector 1" data-ru="Сектор 1" data-ar="القطاع 1" data-zh="赛道 1">Sector 1</div>
         <div class="icon">🏗️</div>
-        <h3 data-en="Infrastructure &amp; Scalability" data-zh="基础设施与可扩展性">Infrastructure &amp; Scalability</h3>
-        <p data-en="Two-engine architecture: Ethereum ($51.7B DeFi TVL, 56% of all chains; ~64% with Base + Arbitrum) as institutional settlement; Solana as the trading floor ($14.8B weekly DEX volume vs Ethereum's $9.9B). Base ($6.2B TVL) is the largest L2, ~4.5× Arbitrum."
+        <h3 data-en="Infrastructure &amp; Scalability" data-ru="Инфраструктура &amp; Масштабируемость" data-ar="البنية التحتية &amp; قابلية التوسع" data-zh="基础设施与可扩展性">Infrastructure &amp; Scalability</h3>
+        <p data-en="Two-engine architecture: Ethereum ($51.7B DeFi TVL, 56% of all chains; ~64% with Base + Arbitrum) as institutional settlement; Solana as the trading floor ($14.8B weekly DEX volume vs Ethereum's $9.9B). Base ($6.2B TVL) is the largest L2, ~4.5× Arbitrum." data-ru="Двухмоторная архитектура: Ethereum ($51,7 млрд DeFi TVL, 56% всех цепочек; ~64% с Base + Arbitrum) как институциональное урегулирование; Solana в качестве торговой площадки (еженедельный объем DEX $14,8 млрд против $9,9 млрд у Ethereum). Base (6,2 миллиарда долларов TVL) — самый крупный L2, ~4,5× Arbitrum." data-ar="بنية ذات محركين: Ethereum (51.7 مليار دولار DeFi TVL، 56% من جميع السلاسل؛ ~64% مع Base + Arbitrum) كتسوية مؤسسية؛ Solana كقاعة تداول (14.8 مليار دولار حجم DEX أسبوعيًا مقابل 9.9 مليار دولار Ethereum). Base (6.2 مليار دولار TVL) هو الأكبر L2، ~4.5× Arbitrum."
            data-zh="双引擎架构：以太坊（DeFi TVL 517亿美元，占全部公链56%；计入Base与Arbitrum约64%）作为机构结算层；Solana作为交易平台（周DEX交易量148亿美元，以太坊为99亿美元）。Base（TVL 62亿美元）为最大L2，约为Arbitrum的4.5倍。">
           Two-engine architecture: Ethereum ($51.7B DeFi TVL, 56% of all chains; ~64% with Base + Arbitrum) as institutional settlement; Solana as the trading floor ($14.8B weekly DEX volume vs Ethereum's $9.9B). Base ($6.2B TVL) is the largest L2, ~4.5× Arbitrum.
         </p>
         <div class="sub-tags">
-          <span class="sub-tag" data-en="ETH + L2s"       data-zh="ETH + L2">ETH + L2s</span>
-          <span class="sub-tag" data-en="Solana"           data-zh="Solana">Solana</span>
-          <span class="sub-tag" data-en="CCIP (bridges)"  data-zh="CCIP（跨链）">CCIP (bridges)</span>
+          <span class="sub-tag" data-en="ETH + L2s" data-ru="ETH + L2с" data-ar="ETH + L2s"       data-zh="ETH + L2">ETH + L2s</span>
+          <span class="sub-tag" data-en="Solana" data-ru="Solana" data-ar="Solana"           data-zh="Solana">Solana</span>
+          <span class="sub-tag" data-en="CCIP (bridges)" data-ru="CCIP (мосты)" data-ar="CCIP (الجسور)"  data-zh="CCIP（跨链）">CCIP (bridges)</span>
         </div>
       </div>
 
       <div class="layer-card hot">
-        <div class="num" data-en="Sector 2 · Fastest" data-zh="赛道 2 · 最快增长">Sector 2 · Fastest</div>
+        <div class="num" data-en="Sector 2 · Fastest" data-ru="Сектор 2 · Самый быстрый" data-ar="القطاع 2 · الأسرع" data-zh="赛道 2 · 最快增长">Sector 2 · Fastest</div>
         <div class="icon">💡</div>
-        <h3 data-en="Sector Depth &amp; Value Capture" data-zh="垂直赛道与价值捕获">Sector Depth &amp; Value Capture</h3>
-        <p data-en="Live verticals: DeAI (Bittensor $43M Q1 rev), DePIN ($150M Jan on-chain rev), RWA ($38.9B distributed on-chain), restaking (EigenLayer ~$6.6B), Web3 Consumer (gaming collapse). Newest: tokenized stocks — Binance bStocks, Coinbase on Base, OKX × ICE."
+        <h3 data-en="Sector Depth &amp; Value Capture" data-ru="Глубина сектора &amp; Сбор значений" data-ar="عمق القطاع &amp; التقاط القيمة" data-zh="垂直赛道与价值捕获">Sector Depth &amp; Value Capture</h3>
+        <p data-en="Live verticals: DeAI (Bittensor $43M Q1 rev), DePIN ($150M Jan on-chain rev), RWA ($38.9B distributed on-chain), restaking (EigenLayer ~$6.6B), Web3 Consumer (gaming collapse). Newest: tokenized stocks — Binance bStocks, Coinbase on Base, OKX × ICE." data-ru="Живые вертикали: DeAI (Bittensor, 43 миллиона долларов, Q1 оборот), DePIN (150 миллионов долларов, январский оборот в цепочке), RWA (38,9 миллиарда долларов, распределенных внутри цепочки), рестейкинг (EigenLayer ~ 6,6 миллиарда долларов), Web3 Consumer (игровой коллапс). Новейшие: токенизированные акции — Binance bStocks, Coinbase на Base, OKX × ICE." data-ar="القطاعات المباشرة: DeAI (Bittensor 43 مليون دولار Q1 مراجعة)، DePIN (150 مليون دولار في شهر يناير على السلسلة)، RWA (38.9 مليار دولار موزعة على السلسلة)، إعادة التخزين (EigenLayer ~ 6.6 مليار دولار)، Web3 Consumer (انهيار الألعاب). الأحدث: الأسهم المرمزة — Binance bStocks، Coinbase على Base، OKX × ICE."
            data-zh="活跃垂直赛道：DeAI（Bittensor Q1收入4300万美元）、DePIN（1月链上收入1.5亿美元）、RWA（链上分发资产389亿美元）、再质押（EigenLayer约66亿美元）、Web3消费（游戏崩溃）。最新赛道：代币化股票——币安bStocks、Coinbase（Base链）、OKX × ICE。">
           Live verticals: DeAI (Bittensor $43M Q1 rev), DePIN ($150M Jan on-chain rev), RWA ($38.9B distributed on-chain), restaking (EigenLayer ~$6.6B), Web3 Consumer (gaming collapse). Newest: tokenized stocks — Binance bStocks, Coinbase on Base, OKX × ICE.
         </p>
         <div class="sub-tags">
-          <span class="sub-tag" data-en="DeAI / DePIN"    data-zh="DeAI / DePIN">DeAI / DePIN</span>
-          <span class="sub-tag" data-en="RWA ~$39B"       data-zh="RWA 约390亿美元">RWA ~$39B</span>
-          <span class="sub-tag" data-en="Tokenized Stocks" data-zh="代币化股票">Tokenized Stocks</span>
+          <span class="sub-tag" data-en="DeAI / DePIN" data-ru="DeAI / DePIN" data-ar="DeAI / DePIN"    data-zh="DeAI / DePIN">DeAI / DePIN</span>
+          <span class="sub-tag" data-en="RWA ~$39B" data-ru="RWA ~39 миллиардов долларов" data-ar="RWA ~ 39 مليار دولار"       data-zh="RWA 约390亿美元">RWA ~$39B</span>
+          <span class="sub-tag" data-en="Tokenized Stocks" data-ru="Токенизированные акции" data-ar="الأسهم الرمزية" data-zh="代币化股票">Tokenized Stocks</span>
         </div>
       </div>
 
       <div class="layer-card">
-        <div class="num" data-en="Sector 3" data-zh="赛道 3">Sector 3</div>
+        <div class="num" data-en="Sector 3" data-ru="Сектор 3" data-ar="القطاع 3" data-zh="赛道 3">Sector 3</div>
         <div class="icon">🔑</div>
-        <h3 data-en="Frictionless UX Layer" data-zh="无摩擦用户体验层">Frictionless UX Layer</h3>
-        <p data-en="40M+ ERC-4337 smart accounts, 100M+ UserOps. Passkey-native wallets eliminate seed phrases. M&amp;A wave (Stripe/Privy, Fireblocks/Dynamic, Mastercard/BVNK) consolidates embedded wallet infra into payment incumbents."
+        <h3 data-en="Frictionless UX Layer" data-ru="Беспрепятственный UX слой" data-ar="طبقة عديمة الاحتكاك UX" data-zh="无摩擦用户体验层">Frictionless UX Layer</h3>
+        <p data-en="40M+ ERC-4337 smart accounts, 100M+ UserOps. Passkey-native wallets eliminate seed phrases. M&amp;A wave (Stripe/Privy, Fireblocks/Dynamic, Mastercard/BVNK) consolidates embedded wallet infra into payment incumbents." data-ru="Более 40 миллионов ERC-4337 смарт-аккаунтов, более 100 миллионов пользователей UserOps. Кошельки с ключами доступа исключают начальные фразы. M&amp;Волна (Stripe/Privy, Fireblocks/Dynamic, Mastercard/BVNK) объединяет встроенный инфраструктурный кошелек в платежных операторов." data-ar="40 مليون+ ERC-4337 حسابات ذكية، 100 مليون+ UserOps. تعمل محافظ مفتاح المرور الأصلية على التخلص من العبارات الأولية. M&amp;موجة (Stripe/Privy, Fireblocks/Dynamic, Mastercard/BVNK) تعمل على دمج الأشعة تحت الحمراء للمحفظة المضمنة في وظائف الدفع."
            data-zh="4000万以上ERC-4337智能账户，1亿以上UserOps。原生Passkey钱包消除助记词。并购潮（Stripe/Privy、Fireblocks/Dynamic、万事达/BVNK）将嵌入式钱包基础设施整合至支付巨头。">
           40M+ ERC-4337 smart accounts, 100M+ UserOps. Passkey-native wallets eliminate seed phrases. M&amp;A wave (Stripe/Privy, Fireblocks/Dynamic, Mastercard/BVNK) consolidates embedded wallet infra into payment incumbents.
         </p>
         <div class="sub-tags">
-          <span class="sub-tag" data-en="ERC-4337"         data-zh="ERC-4337">ERC-4337</span>
-          <span class="sub-tag" data-en="Passkeys"         data-zh="Passkey">Passkeys</span>
-          <span class="sub-tag" data-en="Embedded Wallets" data-zh="嵌入式钱包">Embedded Wallets</span>
+          <span class="sub-tag" data-en="ERC-4337" data-ru="ERC-4337" data-ar="ERC-4337"         data-zh="ERC-4337">ERC-4337</span>
+          <span class="sub-tag" data-en="Passkeys" data-ru="Ключи доступа" data-ar="مفاتيح المرور"         data-zh="Passkey">Passkeys</span>
+          <span class="sub-tag" data-en="Embedded Wallets" data-ru="Встроенные кошельки" data-ar="محافظ مدمجة" data-zh="嵌入式钱包">Embedded Wallets</span>
         </div>
       </div>
 
       <div class="layer-card">
-        <div class="num" data-en="Sector 4" data-zh="赛道 4">Sector 4</div>
+        <div class="num" data-en="Sector 4" data-ru="Сектор 4" data-ar="القطاع 4" data-zh="赛道 4">Sector 4</div>
         <div class="icon">💰</div>
-        <h3 data-en="Capital &amp; Tokenomics" data-zh="资本流动与代币经济">Capital &amp; Tokenomics</h3>
-        <p data-en="Spot BTC ETF net assets ~$107B (IBIT ~$67B); +$2.65B net inflows in September. Stablecoins $315B (USDT 58.4% / USDC 23.4%). Exchange equity is the new capital flow: OKX raised at a $25B valuation (ICE, Circle, Ripple, Standard Chartered); Binance bought $100M of Circle."
+        <h3 data-en="Capital &amp; Tokenomics" data-ru="Капитал &amp; Токеномика" data-ar="رأس المال &amp; الاقتصاد الرمزي" data-zh="资本流动与代币经济">Capital &amp; Tokenomics</h3>
+        <p data-en="Spot BTC ETF net assets ~$107B (IBIT ~$67B); +$2.65B net inflows in September. Stablecoins $315B (USDT 58.4% / USDC 23.4%). Exchange equity is the new capital flow: OKX raised at a $25B valuation (ICE, Circle, Ripple, Standard Chartered); Binance bought $100M of Circle." data-ru="Спотовые BTC ETF чистые активы ~ 107 млрд долларов США (IBIT ~ 67 млрд долларов США); +$2,65 млрд чистого притока в сентябре. Стейблкоины $315 млрд (USDT 58,4% / USDC 23,4%). Биржевой капитал — это новый поток капитала: OKX привлечен при оценке в $25 млрд (ICE, Circle, Ripple, Standard Chartered; Binance купил Circle на 100 миллионов долларов." data-ar="صافي الأصول الفورية BTC ETF ~ 107 مليار دولار أمريكي (IBIT ~ 67 مليار دولار أمريكي)؛ + 2.65 مليار دولار صافي التدفقات الداخلة في سبتمبر. العملات المستقرة 315 مليار دولار (USDT 58.4% / USDC 23.4%). حقوق الصرف هي تدفق رأس المال الجديد: OKX تم جمعها بتقييم قدره 25 مليار دولار (ICE، Circle، Ripple، ستاندرد تشارترد)؛ Binance اشترى 100 مليون دولار من Circle."
            data-zh="现货BTC ETF净资产约1070亿美元（IBIT约670亿美元）；9月净流入26.5亿美元。稳定币3150亿美元（USDT 58.4% / USDC 23.4%）。交易所股权成为新的资本流向：OKX以250亿美元估值融资（ICE、Circle、Ripple、渣打）；币安入股Circle 1亿美元。">
           Spot BTC ETF net assets ~$107B (IBIT ~$67B); +$2.65B net inflows in September. Stablecoins $315B (USDT 58.4% / USDC 23.4%). Exchange equity is the new capital flow: OKX raised at a $25B valuation (ICE, Circle, Ripple, Standard Chartered); Binance bought $100M of Circle.
         </p>
         <div class="sub-tags">
-          <span class="sub-tag" data-en="Spot BTC ETFs"    data-zh="现货BTC ETF">Spot BTC ETFs</span>
-          <span class="sub-tag" data-en="Stables $315B"    data-zh="稳定币3150亿">Stables $315B</span>
-          <span class="sub-tag" data-en="Exchange Equity"  data-zh="交易所股权">Exchange Equity</span>
+          <span class="sub-tag" data-en="Spot BTC ETFs" data-ru="Спотовые BTC ETF" data-ar="بقعة BTC صناديق الاستثمار المتداولة"    data-zh="现货BTC ETF">Spot BTC ETFs</span>
+          <span class="sub-tag" data-en="Stables $315B" data-ru="Стейблкоины $315 млрд." data-ar="العملات المستقرة بقيمة 315 مليار دولار"    data-zh="稳定币3150亿">Stables $315B</span>
+          <span class="sub-tag" data-en="Exchange Equity" data-ru="Биржевой капитал" data-ar="أسهم البورصة"  data-zh="交易所股权">Exchange Equity</span>
         </div>
       </div>
 
       <div class="layer-card">
-        <div class="num" data-en="Sector 5" data-zh="赛道 5">Sector 5</div>
+        <div class="num" data-en="Sector 5" data-ru="Сектор 5" data-ar="القطاع 5" data-zh="赛道 5">Sector 5</div>
         <div class="icon">⚠️</div>
-        <h3 data-en="Risk Vectors" data-zh="风险向量">Risk Vectors</h3>
-        <p data-en="Hacks: Bitget hot wallets ~$387.5M (Sept 24, 2026); KelpDAO bridge ~$292M (April) → $13B DeFi deleveraging in 48h. Enforcement: UK/EU sanctions on HTX; reported DOJ probe of Binance over Iran-linked flows. Every major L2 still runs a centralized sequencer."
+        <h3 data-en="Risk Vectors" data-ru="Векторы риска" data-ar="ناقلات المخاطر" data-zh="风险向量">Risk Vectors</h3>
+        <p data-en="Hacks: Bitget hot wallets ~$387.5M (Sept 24, 2026); KelpDAO bridge ~$292M (April) → $13B DeFi deleveraging in 48h. Enforcement: UK/EU sanctions on HTX; reported DOJ probe of Binance over Iran-linked flows. Every major L2 still runs a centralized sequencer." data-ru="Взломы: горячие кошельки Bitget ~ $387,5 млн (24 сентября 2026 г.); Мост KelpDAO ~ 292 млн долларов США (апрель) → 13 млрд долларов США DeFi сокращение доли заемных средств за 48 часов. Правоприменение: UK/EU санкции в отношении HTX; сообщил DOJ о расследовании Binance потоков, связанных с Ираном. Каждый основной L2 по-прежнему использует централизованный секвенсор." data-ar="الاختراقات: محافظ Bitget الساخنة بقيمة 387.5 مليون دولار تقريبًا (24 سبتمبر 2026)؛ جسر KelpDAO ~ 292 مليون دولار (أبريل) → 13 مليار دولار DeFi تخفيض المديونية في 48 ساعة. التنفيذ: UK/EU عقوبات على HTX؛ تم الإبلاغ عن DOJ تحقيق في Binance بشأن التدفقات المرتبطة بإيران. لا يزال كل تخصص L2 يدير جهاز تسلسل مركزي."
            data-zh="黑客：Bitget热钱包被盗约3.875亿美元（2026年9月24日）；KelpDAO跨链桥约2.92亿美元（4月）→ 48小时内DeFi去杠杆130亿美元。执法：英国/欧盟制裁HTX；据报美国司法部就涉伊朗资金调查币安。所有主要L2仍使用中心化排序器。">
           Hacks: Bitget hot wallets ~$387.5M (Sept 24, 2026); KelpDAO bridge ~$292M (April) → $13B DeFi deleveraging in 48h. Enforcement: UK/EU sanctions on HTX; reported DOJ probe of Binance over Iran-linked flows. Every major L2 still runs a centralized sequencer.
         </p>
         <div class="sub-tags">
-          <span class="sub-tag" data-en="CEX &amp; Bridge Hacks" data-zh="交易所与跨链桥被盗">CEX &amp; Bridge Hacks</span>
-          <span class="sub-tag" data-en="Sanctions"        data-zh="制裁">Sanctions</span>
-          <span class="sub-tag" data-en="L2 Centralization" data-zh="L2中心化">L2 Centralization</span>
+          <span class="sub-tag" data-en="CEX &amp; Bridge Hacks" data-ru="Взломы CEX и мостов" data-ar="اختراقات CEX والجسور" data-zh="交易所与跨链桥被盗">CEX &amp; Bridge Hacks</span>
+          <span class="sub-tag" data-en="Sanctions" data-ru="Санкции" data-ar="العقوبات"        data-zh="制裁">Sanctions</span>
+          <span class="sub-tag" data-en="L2 Centralization" data-ru="L2 Централизация" data-ar="L2 المركزية" data-zh="L2中心化">L2 Centralization</span>
         </div>
       </div>
 
@@ -631,7 +155,7 @@
   <!-- Connector 2 -->
   <div class="connector">
     <div class="line line-2"></div>
-    <div class="connector-label" data-en="sustained by" data-zh="由以下支柱支撑">sustained by</div>
+    <div class="connector-label" data-en="sustained by" data-ru="поддерживается" data-ar="مستدامة من قبل" data-zh="由以下支柱支撑">sustained by</div>
     <div class="line line-2"></div>
     <div class="arrow arrow-pur"></div>
   </div>
@@ -639,14 +163,14 @@
   <!-- ══ MARKET PILLARS ══ -->
   <div class="section">
     <div class="section-header pillars-header"
-         data-en="Market Pillars — Lower Layer"
+         data-en="Market Pillars — Lower Layer" data-ru="Рыночные столпы — нижний уровень" data-ar="ركائز السوق - الطبقة السفلى"
          data-zh="市场支柱 — 下层">Market Pillars — Lower Layer</div>
     <div class="cards-4">
 
       <div class="pillar-card">
         <div class="icon">💎</div>
-        <h3 data-en="Capital" data-zh="资本">Capital</h3>
-        <p data-en="Spot BTC ETFs ~$107B; Strategy holds 848,000 BTC (Oct 4) after its first sales since 2022 in Jun–Aug; U.S. government ~328K BTC (est.). Strategic money now buys exchanges: OKX's $25B round (ICE, Circle, Ripple, Standard Chartered)."
+        <h3 data-en="Capital" data-ru="Столица" data-ar="رأس المال" data-zh="资本">Capital</h3>
+        <p data-en="Spot BTC ETFs ~$107B; Strategy holds 848,000 BTC (Oct 4) after its first sales since 2022 in Jun–Aug; U.S. government ~328K BTC (est.). Strategic money now buys exchanges: OKX's $25B round (ICE, Circle, Ripple, Standard Chartered)." data-ru="Спотовые BTC ETF ~ $107 млрд; Strategy держит 848 000 BTC (4 октября) после первых продаж с 2022 года в июне – августе; U.S. правительство ~328 тыс. BTC (оценка). Стратегические деньги теперь покупают биржи: раунд OKX на 25 миллиардов долларов (ICE, Circle, Ripple, Standard Chartered)." data-ar="صناديق الاستثمار المتداولة الفورية BTC بقيمة 107 مليار دولار تقريبًا؛ تمتلك الإستراتيجية 848000 BTC (4 أكتوبر) بعد مبيعاتها الأولى منذ عام 2022 في يونيو-أغسطس؛ U.S. الحكومة ~ 328 ألف BTC (تقديريًا). تشتري الأموال الاستراتيجية الآن البورصات: جولة OKX بقيمة 25 مليار دولار (ICE، Circle، Ripple، ستاندرد تشارترد)."
            data-zh="现货BTC ETF约1070亿美元；Strategy持有848,000枚BTC（10月4日），此前于6–8月进行了2022年以来首次出售；美国政府约32.8万枚BTC（估算）。战略资本开始直接入股交易所：OKX 250亿美元估值融资（ICE、Circle、Ripple、渣打）。">
           Spot BTC ETFs ~$107B; Strategy holds 848,000 BTC (Oct 4) after its first sales since 2022 in Jun–Aug; U.S. government ~328K BTC (est.). Strategic money now buys exchanges: OKX's $25B round (ICE, Circle, Ripple, Standard Chartered).
         </p>
@@ -654,8 +178,8 @@
 
       <div class="pillar-card">
         <div class="icon">⚙️</div>
-        <h3 data-en="Technology" data-zh="技术">Technology</h3>
-        <p data-en="EVM ecosystem (ETH + L2s), Solana/Move VMs, ZK proof systems, ERC-4337, Chainlink CCIP. Near-term frontier: Ethereum Glamsterdam (live on Sepolia testnet since Oct 6; mainnet date not set), Solana Alpenglow (12.8s → &amp;lt;150ms finality; testnet/devnet only, not yet on mainnet), Firedancer."
+        <h3 data-en="Technology" data-ru="Технология" data-ar="التكنولوجيا" data-zh="技术">Technology</h3>
+        <p data-en="EVM ecosystem (ETH + L2s), Solana/Move VMs, ZK proof systems, ERC-4337, Chainlink CCIP. Near-term frontier: Ethereum Glamsterdam (live on Sepolia testnet since Oct 6; mainnet date not set), Solana Alpenglow (12.8s → &amp;lt;150ms finality; testnet/devnet only, not yet on mainnet), Firedancer." data-ru="EVM экосистема (ETH + L2), Solana/Перемещение виртуальных машин, ZK системы проверки, ERC-4337, Chainlink CCIP. Ближайшие рубежи: Ethereum Glamsterdam (работает в тестовой сети Sepolia с 6 октября; дата основной сети не установлена), Solana Alpenglow (12,8 с → &amp;lt; финальность 150 мс; только тестовая сеть/девнет, еще не в основной сети), Firedancer." data-ar="EVM النظام البيئي (ETH + L2s)، Solana/Move VMs، ZK أنظمة الإثبات، ERC-4337، Chainlink CCIP. الحدود على المدى القريب: Ethereum Glamsterdam (مباشر على شبكة اختبار Sepolia منذ 6 أكتوبر؛ لم يتم تحديد تاريخ الشبكة الرئيسية)، Solana Alpenglow (12.8 ثانية → &amp;lt؛ 150 مللي ثانية نهائية؛ testnet/devnet فقط، ليس على الشبكة الرئيسية بعد)، Firedancer."
            data-zh="EVM生态（ETH + L2）、Solana/Move虚拟机、ZK证明系统、ERC-4337、Chainlink CCIP。近期前沿：以太坊Glamsterdam升级（10月6日起在Sepolia测试网运行，主网日期未定）、Solana Alpenglow（终局时间12.8秒→150毫秒以内；仅在测试网/开发网运行，尚未上主网）、Firedancer。">
           EVM ecosystem (ETH + L2s), Solana/Move VMs, ZK proof systems, ERC-4337, Chainlink CCIP. Near-term frontier: Ethereum Glamsterdam (live on Sepolia testnet since Oct 6; mainnet date not set), Solana Alpenglow (12.8s → &lt;150ms finality; testnet/devnet only, not yet on mainnet), Firedancer.
         </p>
@@ -663,8 +187,8 @@
 
       <div class="pillar-card">
         <div class="icon">🌊</div>
-        <h3 data-en="Liquidity" data-zh="流动性">Liquidity</h3>
-        <p data-en="~$92B DeFi TVL (up from a $68B low on July 1); $315B stablecoins; ~$310B in tracked exchange reserves (Binance 55%); ~$16.5T centralized-exchange volume in Q2 2026 (73% derivatives)."
+        <h3 data-en="Liquidity" data-ru="Ликвидность" data-ar="السيولة" data-zh="流动性">Liquidity</h3>
+        <p data-en="~$92B DeFi TVL (up from a $68B low on July 1); $315B stablecoins; ~$310B in tracked exchange reserves (Binance 55%); ~$16.5T centralized-exchange volume in Q2 2026 (73% derivatives)." data-ru="~92 миллиарда долларов DeFi TVL (по сравнению с минимумом в 68 миллиардов долларов 1 июля); стейблкоины на сумму 315 миллиардов долларов; ~$310 млрд отслеживаемых валютных резервов (Binance 55%); Объем централизованного обмена ~$16,5 трлн в Q2 2026 г. (73% деривативов)." data-ar="~92 مليار دولار DeFi TVL (ارتفاعًا من أدنى مستوى عند 68 مليار دولار في 1 يوليو)؛ عملات مستقرة بقيمة 315 مليار دولار؛ ~310 مليار دولار أمريكي من احتياطيات الصرف المتعقبة (Binance 55%)؛ ~16.5 تريليون دولار حجم التبادل المركزي في Q2 2026 (73% مشتقات)."
            data-zh="DeFi TVL约920亿美元（7月1日低点为680亿美元）；稳定币3150亿美元；可追踪的交易所储备约3100亿美元（币安占55%）；2026年Q2中心化交易所交易量约16.5万亿美元（73%为衍生品）。">
           ~$92B DeFi TVL (up from a $68B low on July 1); $315B stablecoins; ~$310B in tracked exchange reserves (Binance 55%); ~$16.5T centralized-exchange volume in Q2 2026 (73% derivatives).
         </p>
@@ -673,10 +197,10 @@
       <div class="pillar-card">
         <div class="icon">📣</div>
         <h3>
-          <span data-en="Narrative" data-zh="叙事">Narrative</span>
-          <span class="new-badge" data-en="Emerging" data-zh="新兴">Emerging</span>
+          <span data-en="Narrative" data-ru="Повествование" data-ar="السرد" data-zh="叙事">Narrative</span>
+          <span class="new-badge" data-en="Emerging" data-ru="Новые" data-ar="الناشئة" data-zh="新兴">Emerging</span>
         </h3>
-        <p data-en="Adoption cycles, institutional legitimacy, speculative premium. The 2026 story: exchanges become &quot;everything apps&quot; — tokenized stocks, stablecoin savings (OKX Money, Open USD), prediction markets — while real revenue (Bittensor $43M, DePIN $150M/month) checks the hype."
+        <p data-en="Adoption cycles, institutional legitimacy, speculative premium. The 2026 story: exchanges become &quot;everything apps&quot; — tokenized stocks, stablecoin savings (OKX Money, Open USD), prediction markets — while real revenue (Bittensor $43M, DePIN $150M/month) checks the hype." data-ru="Циклы принятия, институциональная легитимность, спекулятивная премия. История 2026 года: биржи становятся &quot;всеми приложениями&quot; — токенизированными акциями, сбережениями в стейблкоинах (OKX Money, Open USD), рынками прогнозов — в то время как реальный доход (Bittensor — 43 миллиона долларов, DePIN 150 миллионов долларов в месяц) сдерживает ажиотаж." data-ar="دورات التبني، الشرعية المؤسسية، علاوة المضاربة. قصة عام 2026: أصبحت البورصات &quot;تطبيقات كل شيء&quot; - الأسهم المُرمزة، ومدخرات العملات المستقرة (OKX المال، المفتوحة USD)، وأسواق التنبؤ - في حين أن الإيرادات الحقيقية (Bittensor 43 مليون دولار، DePIN 150 مليون دولار شهريًا) تحقق من الضجيج."
            data-zh="采用周期、机构合法性与投机溢价。2026年的主线：交易所演变为“超级应用”——代币化股票、稳定币储蓄（OKX Money、Open USD）、预测市场——同时真实收入（Bittensor 4300万美元、DePIN每月1.5亿美元）检验着炒作。">
           Adoption cycles, institutional legitimacy, speculative premium. The 2026 story: exchanges become "everything apps" — tokenized stocks, stablecoin savings (OKX Money, Open USD), prediction markets — while real revenue (Bittensor $43M, DePIN $150M/month) checks the hype.
         </p>
@@ -691,43 +215,43 @@
 <!-- ══ MARKET MACRO SNAPSHOT ══ -->
 <div class="page-section">
   <div class="page-section-title"
-       data-en="Market Macro Snapshot — Oct 2026"
+       data-en="Market Macro Snapshot — Oct 2026" data-ru="Макро-снимок рынка — октябрь 2026 г." data-ar="لمحة سريعة عن السوق – أكتوبر 2026"
        data-zh="市场宏观快照 — 2026年10月">Market Macro Snapshot — Oct 2026</div>
   <div class="cards-3">
 
     <div class="force-card">
       <div class="force-num">01</div>
-      <h3 data-en="BTC &amp; the ETF Era" data-zh="BTC 与 ETF 时代">BTC &amp; the ETF Era</h3>
-      <p data-en="~$2.81T total market cap (Oct 8, 2026), ~36% below the Oct 2025 peak (~$4.4T). BTC ~$82.4K (58.9% dominance), ~35% below its $126.1K ATH (Oct 6, 2025); its lowest 2026 close was $58.6K (Jul 1). Spot BTC ETF net assets ~$107B; September net inflows +$2.65B."
+      <h3 data-en="BTC &amp; the ETF Era" data-ru="BTC &amp; эпоха ETF" data-ar="BTC &amp; العصر ETF العصر" data-zh="BTC 与 ETF 时代">BTC &amp; the ETF Era</h3>
+      <p data-en="~$2.81T total market cap (Oct 8, 2026), ~36% below the Oct 2025 peak (~$4.4T). BTC ~$82.4K (58.9% dominance), ~35% below its $126.1K ATH (Oct 6, 2025); its lowest 2026 close was $58.6K (Jul 1). Spot BTC ETF net assets ~$107B; September net inflows +$2.65B." data-ru="Общая рыночная капитализация ~ $2,81 трлн (8 октября 2026 г.), что примерно на 36% ниже пика октября 2025 года (~ $4,4 трлн). BTC ~$82,4 тыс. (доминирование 58,9%), что на ~35% ниже $126,1 тыс. ATH (6 октября 2025 г.); его самое низкое закрытие в 2026 году составило $58,6 тыс. (1 июля). Спотовые BTC ETF чистые активы ~ 107 млрд долларов США; Чистый приток в сентябре +2,65 миллиарда долларов." data-ar="~2.81 تريليون دولار أمريكي إجمالي القيمة السوقية (8 أكتوبر 2026)، أقل بنسبة 36% تقريبًا من ذروة أكتوبر 2025 (حوالي 4.4 تريليون دولار أمريكي). BTC ~82.4 ألف دولار أمريكي (58.9% هيمنة)، ~35% أقل من 126.1 ألف دولار أمريكي ATH (6 أكتوبر 2025)؛ كان أدنى إغلاق لعام 2026 هو 58.6 ألف دولار (1 يوليو). صافي الأصول الفورية BTC ETF ~ 107 مليار دولار أمريكي؛ صافي التدفقات الداخلة لشهر سبتمبر +2.65 مليار دولار."
          data-zh="总市值约2.81万亿美元（2026年10月8日），较2025年10月高点（约4.4万亿美元）低约36%。BTC约8.24万美元（市占率58.9%），较历史高点12.61万美元（2025年10月6日）低约35%；2026年最低收盘价为5.86万美元（7月1日）。现货BTC ETF净资产约1070亿美元；9月净流入26.5亿美元。">
         ~$2.81T total market cap (Oct 8, 2026), ~36% below the Oct 2025 peak (~$4.4T). BTC ~$82.4K (58.9% dominance), ~35% below its $126.1K ATH (Oct 6, 2025); its lowest 2026 close was $58.6K (Jul 1). Spot BTC ETF net assets ~$107B; September net inflows +$2.65B.
       </p>
       <span class="stat"
-            data-en="Strategy 848,000 BTC · U.S. gov ~328K BTC (est.) · ETF net assets ~$107B"
+            data-en="Strategy 848,000 BTC · U.S. gov ~328K BTC (est.) · ETF net assets ~$107B" data-ru="Стратегия 848 000 BTC · U.S. правительство ~328 тыс. BTC (оценка) · ETF чистые активы ~107 млрд долларов США" data-ar="الإستراتيجية 848,000 BTC · U.S. حكومة ~ 328 ألف BTC (تقديريًا) · ETF صافي الأصول ~ 107 مليار دولار"
             data-zh="Strategy持有848,000 BTC · 美国政府约32.8万枚BTC（估算） · ETF净资产约1070亿美元">Strategy 848,000 BTC · U.S. gov ~328K BTC (est.) · ETF net assets ~$107B</span>
     </div>
 
     <div class="force-card">
       <div class="force-num">02</div>
-      <h3 data-en="Stablecoin Settlement Infrastructure" data-zh="稳定币结算基础设施">Stablecoin Settlement Infrastructure</h3>
-      <p data-en="$315B total supply (~11% of crypto market cap). New distribution models: Open USD (Sept 30; reserve income shared with Coinbase, Stripe, Visa, Mastercard, Shopify) and OKX Money (up to 10% APY on USDG). GENIUS Act rules are still being finalized (OCC targets November); the law takes effect Jan 18, 2027."
+      <h3 data-en="Stablecoin Settlement Infrastructure" data-ru="Инфраструктура расчетов стейблкоинов" data-ar="البنية التحتية لتسوية العملات المستقرة" data-zh="稳定币结算基础设施">Stablecoin Settlement Infrastructure</h3>
+      <p data-en="$315B total supply (~11% of crypto market cap). New distribution models: Open USD (Sept 30; reserve income shared with Coinbase, Stripe, Visa, Mastercard, Shopify) and OKX Money (up to 10% APY on USDG). GENIUS Act rules are still being finalized (OCC targets November); the law takes effect Jan 18, 2027." data-ru="Общий объем предложения составляет 315 миллиардов долларов США (~ 11% рыночной капитализации криптовалют). Новые модели распределения: Open USD (30 сентября; резервный доход разделен с Coinbase, Stripe, Visa, Mastercard, Shopify) и OKX Money (до 10% APY на USDG). GENIUS Act правила все еще дорабатываются (OCC планируется на ноябрь); закон вступает в силу 18 января 2027 года." data-ar="إجمالي العرض 315 مليار دولار (حوالي 11% من القيمة السوقية للعملات المشفرة). نماذج توزيع جديدة: مفتوح USD (30 سبتمبر؛ دخل احتياطي مشترك مع Coinbase، Stripe، Visa، Mastercard، Shopify) وOKX المال (حتى 10% APY على USDG). GENIUS Act لا تزال القواعد قيد اللمسات النهائية (OCC تستهدف شهر نوفمبر)؛ يدخل القانون حيز التنفيذ في 18 يناير 2027."
          data-zh="稳定币总供应量3150亿美元（约占加密市值11%）。新的分发模式：Open USD（9月30日上线；储备收益与Coinbase、Stripe、Visa、万事达、Shopify分成）与OKX Money（USDG年化收益最高10%）。GENIUS法案细则仍在制定中（OCC目标11月完成）；法案于2027年1月18日生效。">
         $315B total supply (~11% of crypto market cap). New distribution models: Open USD (Sept 30; reserve income shared with Coinbase, Stripe, Visa, Mastercard, Shopify) and OKX Money (up to 10% APY on USDG). GENIUS Act rules are still being finalized (OCC targets November); the law takes effect Jan 18, 2027.
       </p>
       <span class="stat"
-            data-en="USDT $184.3B · USDC $73.7B · USDG $3.1B"
+            data-en="USDT $184.3B · USDC $73.7B · USDG $3.1B" data-ru="USDT 184,3 миллиарда долларов · USDC 73,7 миллиарда долларов · USDG 3,1 миллиарда долларов" data-ar="USDT 184.3 مليار دولار · USDC 73.7 مليار دولار · USDG 3.1 مليار دولار"
             data-zh="USDT 1843亿美元 · USDC 737亿美元 · USDG 31亿美元">USDT $184.3B · USDC $73.7B · USDG $3.1B</span>
     </div>
 
     <div class="force-card">
       <div class="force-num">03</div>
-      <h3 data-en="Two-Engine Architecture" data-zh="双引擎架构">Two-Engine Architecture</h3>
-      <p data-en="Ethereum: $51.7B DeFi TVL (56% of all chains); Base ($6.2B) is the largest L2. Solana: $14.8B weekly DEX volume vs Ethereum's $9.9B; 100% uptime since Feb 2024 — an Aug 12 hosting failure took 28.8% of stake offline without halting blocks. Q1 2026: RWA TVL first crossed total DEX TVL."
+      <h3 data-en="Two-Engine Architecture" data-ru="Двухмоторная архитектура" data-ar="بنية بمحركين" data-zh="双引擎架构">Two-Engine Architecture</h3>
+      <p data-en="Ethereum: $51.7B DeFi TVL (56% of all chains); Base ($6.2B) is the largest L2. Solana: $14.8B weekly DEX volume vs Ethereum's $9.9B; 100% uptime since Feb 2024 — an Aug 12 hosting failure took 28.8% of stake offline without halting blocks. Q1 2026: RWA TVL first crossed total DEX TVL." data-ru="Ethereum: 51,7 млрд долларов США DeFi TVL (56% всех цепочек); Base (6,2 млрд долларов США) является крупнейшим L2. Solana: еженедельный объем DEX $14,8 млрд против $9,9 млрд у Ethereum; 100% время безотказной работы с февраля 2024 года — из-за сбоя хостинга 12 августа 28,8% ставок были отключены от сети без остановки блоков. Q1 2026: RWA TVL впервые пересек тотал DEX TVL." data-ar="Ethereum: 51.7 مليار دولار DeFi TVL (56% من جميع السلاسل)؛ Base (6.2 مليار دولار) هو الأكبر L2. Solana: 14.8 مليار دولار حجم DEX أسبوعيًا مقابل 9.9 مليار دولار Ethereum؛ وقت تشغيل بنسبة 100% منذ فبراير 2024 - أدى فشل الاستضافة في 12 أغسطس إلى سلب 28.8% من الحصة في وضع عدم الاتصال دون إيقاف عمليات الحظر. Q1 2026: RWA TVL أول من عبر المجموع DEX TVL."
          data-zh="以太坊：DeFi TVL 517亿美元（占全部公链56%）；Base（62亿美元）为最大L2。Solana：周DEX交易量148亿美元，以太坊为99亿美元；自2024年2月以来保持100%在线——8月12日托管服务商故障使28.8%的质押离线，但出块未中断。2026年Q1：RWA TVL首次超越DEX TVL总量。">
         Ethereum: $51.7B DeFi TVL (56% of all chains); Base ($6.2B) is the largest L2. Solana: $14.8B weekly DEX volume vs Ethereum's $9.9B; 100% uptime since Feb 2024 — an Aug 12 hosting failure took 28.8% of stake offline without halting blocks. Q1 2026: RWA TVL first crossed total DEX TVL.
       </p>
       <span class="stat"
-            data-en="ETH = settlement · SOL = trading floor · Base = largest L2"
+            data-en="ETH = settlement · SOL = trading floor · Base = largest L2" data-ru="ETH = поселок · SOL = торговая площадка · Base = крупнейший L2" data-ar="ETH = التسوية · SOL = قاعة التداول · Base = الأكبر L2"
             data-zh="ETH = 结算层 · SOL = 交易平台 · Base = 最大L2">ETH = settlement · SOL = trading floor · Base = largest L2</span>
     </div>
 
@@ -738,105 +262,105 @@
 <!-- ══ MARKET-MOVING NEWS ══ -->
 <div class="page-section">
   <div class="page-section-title"
-       data-en="Market-Moving News — Jun → Oct 2026"
+       data-en="Market-Moving News — Jun → Oct 2026" data-ru="Новости, меняющие рынок — июнь → октябрь 2026 г." data-ar="الأخبار المؤثرة على السوق — يونيو → أكتوبر 2026"
        data-zh="市场要闻 — 2026年6月至10月">Market-Moving News — Jun → Oct 2026</div>
   <div class="news-list">
 
     <div class="news-item headline">
-      <div class="news-date" data-en="Oct 6" data-zh="10月6日">Oct 6</div>
+      <div class="news-date" data-en="Oct 6" data-ru="6 октября" data-ar="6 أكتوبر" data-zh="10月6日">Oct 6</div>
       <div>
-        <h3><span data-en="OKX NOW (Singapore): OKX Money, U.S. tokenized stocks, $25B round" data-zh="OKX NOW（新加坡）：OKX Money、面向美国的代币化股票、250亿美元估值融资">OKX NOW (Singapore): OKX Money, U.S. tokenized stocks, $25B round</span> <span class="new-badge" data-en="Headline" data-zh="头条">Headline</span></h3>
-        <p data-en="OKX Money, a standalone stablecoin app: fund in 50+ local currencies into USDG, USDC or USDT, earn up to 10% APY on eligible USDG balances, spend with zero-FX cards; first in Latin America, Africa, South Asia and the Middle East. OKXICE, its 50/50 venture with NYSE-owner ICE, plans tokenized U.S. stocks for U.S. users (60+ companies with dividends and voting rights; pending SEC approval). Also: one-click on-chain wallet for perps on crypto, stocks and commodities, plus AI trading tools. The same day Circle, Ripple, Standard Chartered (SC Ventures) and QRT joined OKX's $25B-valuation round; OKB rose ~6%."
+        <h3><span data-en="OKX NOW (Singapore): OKX Money, U.S. tokenized stocks, $25B round" data-ru="OKX NOW (Сингапур): OKX Деньги, U.S. токенизированные акции, раунд на 25 миллиардов долларов" data-ar="OKX NOW (سنغافورة): OKX أموال، U.S. أسهم رمزية، جولة بقيمة 25 مليار دولار" data-zh="OKX NOW（新加坡）：OKX Money、面向美国的代币化股票、250亿美元估值融资">OKX NOW (Singapore): OKX Money, U.S. tokenized stocks, $25B round</span> <span class="new-badge" data-en="Headline" data-ru="Заголовок" data-ar="العنوان" data-zh="头条">Headline</span></h3>
+        <p data-en="OKX Money, a standalone stablecoin app: fund in 50+ local currencies into USDG, USDC or USDT, earn up to 10% APY on eligible USDG balances, spend with zero-FX cards; first in Latin America, Africa, South Asia and the Middle East. OKXICE, its 50/50 venture with NYSE-owner ICE, plans tokenized U.S. stocks for U.S. users (60+ companies with dividends and voting rights; pending SEC approval). Also: one-click on-chain wallet for perps on crypto, stocks and commodities, plus AI trading tools. The same day Circle, Ripple, Standard Chartered (SC Ventures) and QRT joined OKX's $25B-valuation round; OKB rose ~6%." data-ru="OKX Деньги, автономное приложение для стабильных монет: вносите средства в более чем 50 местных валютах в USDG, USDC или USDT, зарабатывайте до 10% APY на соответствующих балансах USDG и тратьте с помощью карт с нулевым значением FX; сначала в Латинской Америке, Африке, Южной Азии и на Ближнем Востоке. OKXICE, его предприятие с долей 50/50 с NYSE-владельцем ICE планирует токенизировать U.S. акции для U.S. пользователей (более 60 компаний с дивидендами и правом голоса; ожидается одобрение SEC). А также: цепной кошелек для преступников, работающих в криптовалюте, акциях и сырьевых товарах, в один клик, а также AI торговые инструменты. В тот же день Circle, Ripple, Standard Chartered (SC Ventures) и QRT присоединились к раунду оценки OKX на сумму 25 миллиардов долларов; OKB выросли примерно на 6%." data-ar="OKX Money، وهو تطبيق مستقل للعملات المستقرة: قم بالتمويل بأكثر من 50 عملة محلية في USDG أو USDC أو USDT، واكسب ما يصل إلى 10% APY على أرصدة USDG المؤهلة، وأنفق ببطاقات صفر FX؛ أولاً في أمريكا اللاتينية وأفريقيا وجنوب آسيا والشرق الأوسط. OKXICE، مشروعها بنسبة 50/50 مع NYSE المالك ICE، يخطط لأسهم U.S. رمزية لـ U.S. المستخدمين (أكثر من 60 شركة ذات أرباح وحقوق تصويت؛ في انتظار موافقة SEC). أيضًا: محفظة على السلسلة بنقرة واحدة للخسائر في العملات المشفرة والأسهم والسلع، بالإضافة إلى AI أدوات التداول. في نفس اليوم، انضم Circle وRipple وStandard Chartered (SC Ventures) وQRT إلى جولة تقييم OKX بقيمة 25 مليار دولار أمريكي؛ OKB ارتفع ~6%."
            data-zh="OKX Money——独立的稳定币应用：可用50多种本地货币入金并兑换为USDG、USDC或USDT，符合条件的USDG余额年化收益最高10%，零汇率加价卡片消费；率先上线拉美、非洲、南亚与中东。OKXICE（与纽交所母公司ICE各持50%的合资公司）计划向美国用户提供代币化美股（首批60余家公司，保留分红与投票权；待SEC批准）。此外：一键开通链上钱包交易加密、股票与大宗商品永续合约，以及AI交易工具。同日，Circle、Ripple、渣打（SC Ventures）与QRT加入OKX 250亿美元估值融资；OKB上涨约6%。">OKX Money, a standalone stablecoin app: fund in 50+ local currencies into USDG, USDC or USDT, earn up to 10% APY on eligible USDG balances, spend with zero-FX cards; first in Latin America, Africa, South Asia and the Middle East. OKXICE, its 50/50 venture with NYSE-owner ICE, plans tokenized U.S. stocks for U.S. users (60+ companies with dividends and voting rights; pending SEC approval). Also: one-click on-chain wallet for perps on crypto, stocks and commodities, plus AI trading tools. The same day Circle, Ripple, Standard Chartered (SC Ventures) and QRT joined OKX's $25B-valuation round; OKB rose ~6%.</p>
-        <p class="why" data-en="Why it matters: a leading derivatives venue (16% share in Q2) moves into U.S. equities and emerging-market stablecoin banking — head-on with Binance (bStocks) and Coinbase (USDC, stocks on Base). 10% APY is far above ~3.7% tokenized T-bill yields, so expect it to be tiered and subsidized."
+        <p class="why" data-en="Why it matters: a leading derivatives venue (16% share in Q2) moves into U.S. equities and emerging-market stablecoin banking — head-on with Binance (bStocks) and Coinbase (USDC, stocks on Base). 10% APY is far above ~3.7% tokenized T-bill yields, so expect it to be tiered and subsidized." data-ru="Почему это важно: ведущая площадка по деривативам (16% доля в Q2) переходит в U.S. акции и банковские операции со стейблкоинами на развивающихся рынках — в лоб с Binance (bStocks) и Coinbase (USDC, акциями на Base). 10% APY намного превышает доходность токенизированных T- векселей примерно в 3,7%, поэтому ожидайте, что они будут многоуровневыми и субсидируемыми." data-ar="لماذا يهم: مكان رائد للمشتقات المالية (حصة 16% في Q2) ينتقل إلى U.S. الأسهم والخدمات المصرفية بالعملات المستقرة في الأسواق الناشئة - وجهاً لوجه مع Binance (bStocks) و Coinbase (USDC، الأسهم في Base). 10% APY أعلى بكثير من ~ 3.7% من عائدات الفواتير T-، لذا توقع أن تكون متدرجة ومدعومة."
            data-zh="影响：一家头部衍生品平台（Q2份额16%）进军美股与新兴市场稳定币银行业务——与币安（bStocks）和Coinbase（USDC、Base链股票）正面竞争。10%年化远高于代币化美债约3.7%的收益率，预计为分级且带补贴的收益。">Why it matters: a leading derivatives venue (16% share in Q2) moves into U.S. equities and emerging-market stablecoin banking — head-on with Binance (bStocks) and Coinbase (USDC, stocks on Base). 10% APY is far above ~3.7% tokenized T-bill yields, so expect it to be tiered and subsidized.</p>
       </div>
     </div>
 
     <div class="news-item">
-      <div class="news-date" data-en="Sep 30" data-zh="9月30日">Sep 30</div>
+      <div class="news-date" data-en="Sep 30" data-ru="30 сентября" data-ar="30 سبتمبر" data-zh="9月30日">Sep 30</div>
       <div>
-        <h3 data-en="Open USD launches, backed by Coinbase, Stripe, Visa, Mastercard and Shopify" data-zh="Open USD上线，由Coinbase、Stripe、Visa、万事达与Shopify支持">Open USD launches, backed by Coinbase, Stripe, Visa, Mastercard and Shopify</h3>
-        <p data-en="OUSD went live on Ethereum, Solana, Base and Tempo with $1B+ in liquidity commitments; Bridge (Stripe) issues it, and most reserve income goes to partners."
+        <h3 data-en="Open USD launches, backed by Coinbase, Stripe, Visa, Mastercard and Shopify" data-ru="Открытый запуск USD при поддержке Coinbase, Stripe, Visa, Mastercard и Shopify" data-ar="إطلاق USD مفتوح، مدعومًا بـ Coinbase، Stripe، Visa، Mastercard وShopify" data-zh="Open USD上线，由Coinbase、Stripe、Visa、万事达与Shopify支持">Open USD launches, backed by Coinbase, Stripe, Visa, Mastercard and Shopify</h3>
+        <p data-en="OUSD went live on Ethereum, Solana, Base and Tempo with $1B+ in liquidity commitments; Bridge (Stripe) issues it, and most reserve income goes to partners." data-ru="OUSD был запущен на Ethereum, Solana, Base и Tempo с обязательствами по ликвидности на сумму более $1 млрд; Его выпускает Bridge (Stripe), и большая часть резервного дохода уходит партнерам." data-ar="تم إطلاق OUSD على Ethereum، Solana، Base وTempo مع التزامات سيولة تزيد عن 1 مليار دولار أمريكي؛ يقوم بريدج (Stripe) بإصداره، ويذهب معظم الدخل الاحتياطي إلى الشركاء."
            data-zh="OUSD在以太坊、Solana、Base与Tempo上线，流动性承诺超10亿美元；由Bridge（Stripe旗下）发行，大部分储备收益归合作方。">OUSD went live on Ethereum, Solana, Base and Tempo with $1B+ in liquidity commitments; Bridge (Stripe) issues it, and most reserve income goes to partners.</p>
-        <p class="why" data-en="Why it matters: distributors keep the yield instead of the issuer — Mizuho cut its 2027 Circle EBITDA estimate from $1.09B to $699M."
+        <p class="why" data-en="Why it matters: distributors keep the yield instead of the issuer — Mizuho cut its 2027 Circle EBITDA estimate from $1.09B to $699M." data-ru="Почему это важно: доходность удерживают дистрибьюторы, а не эмитент — Mizuho снизила оценку на 2027 год Circle EBITDA с $1,09 млрд до $699 млн." data-ar="سبب أهمية ذلك: يحتفظ الموزعون بالعائد بدلاً من المصدر - خفضت Mizuho تقديراتها لعام 2027 Circle EBITDA من 1.09 مليار دولار إلى 699 مليون دولار."
            data-zh="影响：收益归分发方而非发行方——瑞穗将Circle 2027年EBITDA预测从10.9亿美元下调至6.99亿美元。">Why it matters: distributors keep the yield instead of the issuer — Mizuho cut its 2027 Circle EBITDA estimate from $1.09B to $699M.</p>
       </div>
     </div>
 
     <div class="news-item">
-      <div class="news-date" data-en="Sep 24" data-zh="9月24日">Sep 24</div>
+      <div class="news-date" data-en="Sep 24" data-ru="24 сентября" data-ar="24 سبتمبر" data-zh="9月24日">Sep 24</div>
       <div>
-        <h3 data-en="Bitget loses ~$387.5M from hot and warm wallets" data-zh="Bitget热钱包与温钱包被盗约3.875亿美元">Bitget loses ~$387.5M from hot and warm wallets</h3>
-        <p data-en="Withdrawals were paused, then restarted in phases from Sept 28; Bitget says user balances are covered by its ~5,500 BTC protection fund. Its CEO attributes the attack to North Korea."
+        <h3 data-en="Bitget loses ~$387.5M from hot and warm wallets" data-ru="Bitget теряет около $387,5 млн на горячих и теплых кошельках" data-ar="تخسر Bitget ما يقرب من 387.5 مليون دولار من المحافظ الساخنة والدافئة" data-zh="Bitget热钱包与温钱包被盗约3.875亿美元">Bitget loses ~$387.5M from hot and warm wallets</h3>
+        <p data-en="Withdrawals were paused, then restarted in phases from Sept 28; Bitget says user balances are covered by its ~5,500 BTC protection fund. Its CEO attributes the attack to North Korea." data-ru="Вывод средств был приостановлен, а затем поэтапно возобновлен с 28 сентября; Bitget сообщает, что балансы пользователей покрываются его фондом защиты в размере ~5500 BTC. CEO приписывает нападение Северной Корее." data-ar="وتم إيقاف عمليات السحب مؤقتًا، ثم استؤنفت على مراحل اعتبارًا من 28 سبتمبر/أيلول؛ تقول Bitget أن أرصدة المستخدمين مغطاة بصندوق الحماية الذي يبلغ حوالي 5500 BTC الخاص بها. وتنسب CEO الهجوم إلى كوريا الشمالية."
            data-zh="提现一度暂停，9月28日起分阶段恢复；Bitget称用户余额由约5,500枚BTC的保护基金覆盖。其CEO将攻击归因于朝鲜。">Withdrawals were paused, then restarted in phases from Sept 28; Bitget says user balances are covered by its ~5,500 BTC protection fund. Its CEO attributes the attack to North Korea.</p>
-        <p class="why" data-en="Why it matters: a top-10 exchange halting withdrawals tests trust in mid-tier venues; reserves and protection funds become a competitive feature."
+        <p class="why" data-en="Why it matters: a top-10 exchange halting withdrawals tests trust in mid-tier venues; reserves and protection funds become a competitive feature." data-ru="Почему это важно: биржа из топ-10, останавливающая вывод средств, проверяет доверие к площадкам среднего уровня; резервы и защитные фонды становятся конкурентной особенностью." data-ar="لماذا يهم: أعلى 10 بورصات توقف عمليات السحب تختبر الثقة في الأماكن المتوسطة المستوى؛ تصبح الاحتياطيات وصناديق الحماية ميزة تنافسية."
            data-zh="影响：头部十大交易所暂停提现，考验市场对中型平台的信任；储备与保护基金成为竞争要素。">Why it matters: a top-10 exchange halting withdrawals tests trust in mid-tier venues; reserves and protection funds become a competitive feature.</p>
       </div>
     </div>
 
     <div class="news-item">
-      <div class="news-date" data-en="Sep 22" data-zh="9月22日">Sep 22</div>
+      <div class="news-date" data-en="Sep 22" data-ru="22 сентября" data-ar="22 سبتمبر" data-zh="9月22日">Sep 22</div>
       <div>
-        <h3 data-en="Binance buys $100M of Circle; a DOJ probe is reported" data-zh="币安入股Circle 1亿美元；同日传出美国司法部调查">Binance buys $100M of Circle; a DOJ probe is reported</h3>
-        <p data-en="Binance bought 1.24M Circle shares at $80.84 (two-year lock-up) and signed a five-year deal to promote USDC, especially in emerging markets. The same day Bloomberg reported a U.S. DOJ probe into Iran-linked flows on Binance; no charges have been filed."
+        <h3 data-en="Binance buys $100M of Circle; a DOJ probe is reported" data-ru="Binance покупает Circle на 100 миллионов долларов; сообщается о зонде DOJ" data-ar="Binance يشتري 100 مليون دولار من Circle؛ تم الإبلاغ عن مسبار DOJ" data-zh="币安入股Circle 1亿美元；同日传出美国司法部调查">Binance buys $100M of Circle; a DOJ probe is reported</h3>
+        <p data-en="Binance bought 1.24M Circle shares at $80.84 (two-year lock-up) and signed a five-year deal to promote USDC, especially in emerging markets. The same day Bloomberg reported a U.S. DOJ probe into Iran-linked flows on Binance; no charges have been filed." data-ru="Binance купил 1,24 млн Circle акций по цене $80,84 (двухлетняя блокировка) и подписал пятилетний контракт на продвижение USDC, особенно на развивающихся рынках. В тот же день Bloomberg сообщил о U.S. DOJ расследовании связанных с Ираном потоков на Binance; никаких обвинений предъявлено не было." data-ar="Binance اشترى 1.24 مليون Circle من الأسهم بسعر 80.84 دولارًا أمريكيًا (حجز لمدة عامين) ووقع عقدًا مدته خمس سنوات للترويج لـ USDC، خاصة في الأسواق الناشئة. وفي نفس اليوم أعلنت بلومبرج عن U.S. DOJ تحقيق في التدفقات المرتبطة بإيران على Binance؛ لم يتم تقديم أي اتهامات."
            data-zh="币安以每股80.84美元买入124万股Circle股票（锁定两年），并签署为期五年的USDC推广协议，重点面向新兴市场。同日彭博社报道美国司法部调查币安上涉伊朗资金流动；目前尚无指控。">Binance bought 1.24M Circle shares at $80.84 (two-year lock-up) and signed a five-year deal to promote USDC, especially in emerging markets. The same day Bloomberg reported a U.S. DOJ probe into Iran-linked flows on Binance; no charges have been filed.</p>
-        <p class="why" data-en="Why it matters: the largest exchange now owns equity in the No. 2 stablecoin issuer — while legal risk from its 2023 plea deal resurfaces."
+        <p class="why" data-en="Why it matters: the largest exchange now owns equity in the No. 2 stablecoin issuer — while legal risk from its 2023 plea deal resurfaces." data-ru="Почему это важно: крупнейшая биржа теперь владеет акциями эмитента стейблкоинов №2, в то время как юридический риск, связанный со сделкой о признании вины в 2023 году, снова всплывает на поверхность." data-ar="سبب أهميتها: تمتلك أكبر بورصة الآن أسهمًا في ثاني مصدر للعملة المستقرة - بينما تعود المخاطر القانونية الناجمة عن صفقة الإقرار بالذنب لعام 2023 إلى الظهور."
            data-zh="影响：最大交易所持有第二大稳定币发行方股权——同时其2023年认罪协议带来的法律风险再度浮现。">Why it matters: the largest exchange now owns equity in the No. 2 stablecoin issuer — while legal risk from its 2023 plea deal resurfaces.</p>
       </div>
     </div>
 
     <div class="news-item">
-      <div class="news-date" data-en="Sep 15" data-zh="9月15日">Sep 15</div>
+      <div class="news-date" data-en="Sep 15" data-ru="15 сентября" data-ar="15 سبتمبر" data-zh="9月15日">Sep 15</div>
       <div>
-        <h3 data-en="CLARITY Act fails Senate cloture, 49–50" data-zh="CLARITY法案参议院程序性投票以49比50失败">CLARITY Act fails Senate cloture, 49–50</h3>
-        <p data-en="The U.S. market-structure bill needed 60 votes to open debate; all 49 yes votes were Republican. A motion to reconsider keeps it alive, but nothing is scheduled before the Nov 3 midterms."
+        <h3 data-en="CLARITY Act fails Senate cloture, 49–50" data-ru="CLARITY Act не удалось закрыть Сенат, 49–50" data-ar="CLARITY Act فشل في جلسة مجلس الشيوخ، 49-50" data-zh="CLARITY法案参议院程序性投票以49比50失败">CLARITY Act fails Senate cloture, 49–50</h3>
+        <p data-en="The U.S. market-structure bill needed 60 votes to open debate; all 49 yes votes were Republican. A motion to reconsider keeps it alive, but nothing is scheduled before the Nov 3 midterms." data-ru="Законопроекту о U.S. рыночной структуре требовалось 60 голосов, чтобы начать дебаты; все 49 голосов «за» были республиканцами. Предложение о пересмотре сохраняет его в силе, но до промежуточных выборов 3 ноября ничего не запланировано." data-ar="U.S. احتاج مشروع قانون هيكل السوق إلى 60 صوتًا لفتح النقاش؛ جميع الأصوات الـ 49 بنعم كانت من الجمهوريين. إن اقتراح إعادة النظر يبقيه على قيد الحياة، ولكن لا يوجد جدول زمني قبل الانتخابات النصفية في 3 نوفمبر."
            data-zh="这项美国市场结构法案需要60票才能开启辩论；49张赞成票全部来自共和党。复议动议使其仍有机会，但11月3日中期选举前未安排新的投票。">The U.S. market-structure bill needed 60 votes to open debate; all 49 yes votes were Republican. A motion to reconsider keeps it alive, but nothing is scheduled before the Nov 3 midterms.</p>
-        <p class="why" data-en="Why it matters: SEC/CFTC jurisdiction over tokens stays unsettled; agencies act by rule instead (comments on the SEC's Regulation Crypto Assets proposal are due Oct 20)."
+        <p class="why" data-en="Why it matters: SEC/CFTC jurisdiction over tokens stays unsettled; agencies act by rule instead (comments on the SEC's Regulation Crypto Assets proposal are due Oct 20)." data-ru="Почему это важно: SEC/CFTC юрисдикция в отношении токенов остается нерешенной; Вместо этого агентства действуют по правилам (комментарии к предложению SEC по регулированию криптоактивов должны быть поданы 20 октября)." data-ar="سبب أهميتها: SEC/CFTC لا تزال الولاية القضائية على الرموز المميزة غير مستقرة؛ تتصرف الوكالات وفقًا للقاعدة بدلاً من ذلك (من المقرر التعليقات على مقترح تنظيم الأصول المشفرة SEC في 20 أكتوبر)."
            data-zh="影响：SEC与CFTC对代币的管辖权仍未厘清；监管机构转而通过规则推进（SEC“加密资产监管规则”提案意见征询截止10月20日）。">Why it matters: SEC/CFTC jurisdiction over tokens stays unsettled; agencies act by rule instead (comments on the SEC's Regulation Crypto Assets proposal are due Oct 20).</p>
       </div>
     </div>
 
     <div class="news-item">
-      <div class="news-date" data-en="May 26 → Aug 23" data-zh="5月26日 → 8月23日">May 26 → Aug 23</div>
+      <div class="news-date" data-en="May 26 → Aug 23" data-ru="26 мая → 23 августа" data-ar="26 مايو → 23 أغسطس" data-zh="5月26日 → 8月23日">May 26 → Aug 23</div>
       <div>
-        <h3 data-en="HTX sanctioned by the UK and the EU" data-zh="HTX遭英国与欧盟制裁">HTX sanctioned by the UK and the EU</h3>
-        <p data-en="The UK designated HTX operator Huobi Global S.A. on May 26 over alleged services to Russia's A7/Garantex network (~$1.5B). The EU's 21st Russia package (Jul 23) bans EU dealings with HTX from Aug 23; Binance moved to block transactions with HTX and 10 other sanctioned exchanges. HTX says the platform is unaffected."
+        <h3 data-en="HTX sanctioned by the UK and the EU" data-ru="HTX санкционировано UK и EU" data-ar="HTX تمت المصادقة عليه من قبل UK وEU" data-zh="HTX遭英国与欧盟制裁">HTX sanctioned by the UK and the EU</h3>
+        <p data-en="The UK designated HTX operator Huobi Global S.A. on May 26 over alleged services to Russia's A7/Garantex network (~$1.5B). The EU's 21st Russia package (Jul 23) bans EU dealings with HTX from Aug 23; Binance moved to block transactions with HTX and 10 other sanctioned exchanges. HTX says the platform is unaffected." data-ru="UK обозначил HTX оператора Huobi Global S.A. 26 мая по поводу предполагаемых услуг российской A7/сети Garantex (около 1,5 млрд долларов США). 21-й пакет EU по России (23 июля) запрещает EU сделки с HTX с 23 августа; Binance перешел к блокировке транзакций с HTX и 10 другими санкционированными биржами. HTX сообщает, что платформа не затронута." data-ar="UK المشغل المعين HTX Huobi Global S.A. في 26 مايو بشأن الخدمات المزعومة لشبكة Garantex الروسية A7/ (~ 1.5 مليار دولار). تحظر حزمة EU روسيا الحادية والعشرون (23 يوليو) التعامل مع EU اعتبارًا من 23 أغسطس؛ تم نقل Binance لمنع المعاملات مع HTX و10 بورصات أخرى خاضعة للعقوبات. HTX يقول أن النظام الأساسي لم يتأثر."
            data-zh="英国于5月26日将HTX运营方Huobi Global S.A.列入制裁名单，指其为俄罗斯A7/Garantex网络提供服务（约15亿美元）。欧盟第21轮对俄制裁（7月23日）自8月23日起禁止欧盟主体与HTX交易；币安着手屏蔽与HTX及另外10家受制裁交易所的交易。HTX称平台运营未受影响。">The UK designated HTX operator Huobi Global S.A. on May 26 over alleged services to Russia's A7/Garantex network (~$1.5B). The EU's 21st Russia package (Jul 23) bans EU dealings with HTX from Aug 23; Binance moved to block transactions with HTX and 10 other sanctioned exchanges. HTX says the platform is unaffected.</p>
-        <p class="why" data-en="Why it matters: TRM Labs calls it the biggest crypto sanctions action yet — exchanges must now screen each other, not just their users."
+        <p class="why" data-en="Why it matters: TRM Labs calls it the biggest crypto sanctions action yet — exchanges must now screen each other, not just their users." data-ru="Почему это важно: TRM Labs называет это крупнейшей акцией по санкциям в отношении криптовалют — биржи теперь должны проверять друг друга, а не только своих пользователей." data-ar="سبب أهميته: TRM تصفه Labs بأنه أكبر إجراء لعقوبات العملات المشفرة حتى الآن - يجب على البورصات الآن فحص بعضها البعض، وليس فقط مستخدميها."
            data-zh="影响：TRM Labs称其为迄今规模最大的加密制裁行动——交易所之间也必须相互筛查，而不仅是筛查用户。">Why it matters: TRM Labs calls it the biggest crypto sanctions action yet — exchanges must now screen each other, not just their users.</p>
       </div>
     </div>
 
     <div class="news-item">
-      <div class="news-date" data-en="Jul 1" data-zh="7月1日">Jul 1</div>
+      <div class="news-date" data-en="Jul 1" data-ru="1 июля" data-ar="1 يوليو" data-zh="7月1日">Jul 1</div>
       <div>
-        <h3 data-en="MiCA transition ends; Binance has no EU licence" data-zh="MiCA过渡期结束；币安未获欧盟牌照">MiCA transition ends; Binance has no EU licence</h3>
-        <p data-en="Binance withdrew its Greek MiCA application on June 24 after reports the regulator would reject it, and is not on ESMA's register of authorized firms. OKX, Coinbase and Bybit operate under MiCA licences."
+        <h3 data-en="MiCA transition ends; Binance has no EU licence" data-ru="MiCA переход завершается; Binance не имеет лицензии EU" data-ar="MiCA انتهاء الفترة الانتقالية؛ Binance ليس لديه ترخيص EU" data-zh="MiCA过渡期结束；币安未获欧盟牌照">MiCA transition ends; Binance has no EU licence</h3>
+        <p data-en="Binance withdrew its Greek MiCA application on June 24 after reports the regulator would reject it, and is not on ESMA's register of authorized firms. OKX, Coinbase and Bybit operate under MiCA licences." data-ru="Binance отозвал свою греческую MiCA заявку 24 июня после сообщений о том, что регулятор отклонит ее, и ее нет в реестре авторизованных фирм ESMA. OKX, Coinbase и Bybit работают по лицензиям MiCA." data-ar="Binance سحبت طلبها اليوناني MiCA في 24 يونيو بعد تقارير عن رفض الهيئة التنظيمية له، وهو ليس مدرجًا في سجل ESMA للشركات المرخصة. تعمل OKX وCoinbase وBybit بموجب تراخيص MiCA."
            data-zh="在有报道称希腊监管机构将拒绝其申请后，币安于6月24日撤回MiCA申请，目前不在ESMA授权机构名单中。OKX、Coinbase与Bybit均持MiCA牌照运营。">Binance withdrew its Greek MiCA application on June 24 after reports the regulator would reject it, and is not on ESMA's register of authorized firms. OKX, Coinbase and Bybit operate under MiCA licences.</p>
-        <p class="why" data-en="Why it matters: the world's largest exchange faces limits on new EU business, handing share to licensed rivals."
+        <p class="why" data-en="Why it matters: the world's largest exchange faces limits on new EU business, handing share to licensed rivals." data-ru="Почему это важно: крупнейшая в мире биржа сталкивается с ограничениями на новый EU бизнес, передавая долю лицензированным конкурентам." data-ar="سبب أهمية ذلك: تواجه أكبر بورصة في العالم قيودًا على الأعمال الجديدة EU، وتسليم الأسهم إلى المنافسين المرخصين."
            data-zh="影响：全球最大交易所在欧盟拓展新业务受限，份额流向持牌竞争对手。">Why it matters: the world's largest exchange faces limits on new EU business, handing share to licensed rivals.</p>
       </div>
     </div>
 
     <div class="news-item">
-      <div class="news-date" data-en="Jun 11 → Oct 6" data-zh="6月11日 → 10月6日">Jun 11 → Oct 6</div>
+      <div class="news-date" data-en="Jun 11 → Oct 6" data-ru="11 июня → 6 октября" data-ar="11 يونيو → 6 أكتوبر" data-zh="6月11日 → 10月6日">Jun 11 → Oct 6</div>
       <div>
-        <h3 data-en="The tokenized-stock race" data-zh="代币化股票竞赛">The tokenized-stock race</h3>
-        <p data-en="Binance launched bStocks (Jun 11–12; ADGM-approved, 1:1-backed, 24/7); Coinbase put U.S. stocks on Base for non-U.S. users (Aug 24); OKX × ICE targets U.S. users next."
+        <h3 data-en="The tokenized-stock race" data-ru="Гонка токенизированных акций" data-ar="سباق الأسهم المميزة" data-zh="代币化股票竞赛">The tokenized-stock race</h3>
+        <p data-en="Binance launched bStocks (Jun 11–12; ADGM-approved, 1:1-backed, 24/7); Coinbase put U.S. stocks on Base for non-U.S. users (Aug 24); OKX × ICE targets U.S. users next." data-ru="Binance запустил bStocks (11–12 июня; ADGM — одобрено, поддержка 1:1, круглосуточно, 7 дней в неделю); Coinbase разместил акции U.S. на Base для пользователей, не являющихся пользователями U.S. (24 августа); Следующими будут OKX × ICE для U.S. пользователей." data-ar="Binance تم إطلاق bStocks (11-12 يونيو؛ ADGM - تمت الموافقة عليه، ومدعوم بنسبة 1:1، على مدار الساعة طوال أيام الأسبوع)؛ Coinbase وضع U.S. الأسهم على Base لغير المستخدمين U.S. (24 أغسطس)؛ OKX × ICE يستهدف U.S. المستخدمين التاليين."
            data-zh="币安推出bStocks（6月11–12日；经ADGM批准，1:1锚定，全天候交易）；Coinbase在Base链上向非美国用户提供美股代币（8月24日）；OKX × ICE下一步瞄准美国用户。">Binance launched bStocks (Jun 11–12; ADGM-approved, 1:1-backed, 24/7); Coinbase put U.S. stocks on Base for non-U.S. users (Aug 24); OKX × ICE targets U.S. users next.</p>
-        <p class="why" data-en="Why it matters: exchanges now compete with brokers for equity flow — the next leg of RWA growth."
+        <p class="why" data-en="Why it matters: exchanges now compete with brokers for equity flow — the next leg of RWA growth." data-ru="Почему это важно: биржи теперь конкурируют с брокерами за поток капитала — следующий этап RWA роста." data-ar="سبب أهميته: تتنافس البورصات الآن مع الوسطاء على تدفق الأسهم - المرحلة التالية من النمو RWA."
            data-zh="影响：交易所开始与券商争夺股票交易流量——RWA增长的下一阶段。">Why it matters: exchanges now compete with brokers for equity flow — the next leg of RWA growth.</p>
       </div>
     </div>
 
     <div class="news-item">
-      <div class="news-date" data-en="Jun 2–6" data-zh="6月2–6日">Jun 2–6</div>
+      <div class="news-date" data-en="Jun 2–6" data-ru="2–6 июня" data-ar="2-6 يونيو" data-zh="6月2–6日">Jun 2–6</div>
       <div>
-        <h3 data-en="June crash: BTC drops ~20% in a week" data-zh="6月暴跌：BTC一周内下跌约20%">June crash: BTC drops ~20% in a week</h3>
-        <p data-en="BTC fell from $73.6K (Jun 1) to ~$59K intraday as &gt;$3B of leveraged positions were liquidated; U.S. spot ETFs logged 13 straight outflow days ($4.33B), and Strategy disclosed its first BTC sale since 2022."
+        <h3 data-en="June crash: BTC drops ~20% in a week" data-ru="Июньский сбой: BTC падает примерно на 20% за неделю" data-ar="انهيار يونيو: BTC ينخفض بنسبة 20% تقريبًا في أسبوع" data-zh="6月暴跌：BTC一周内下跌约20%">June crash: BTC drops ~20% in a week</h3>
+        <p data-en="BTC fell from $73.6K (Jun 1) to ~$59K intraday as &gt;$3B of leveraged positions were liquidated; U.S. spot ETFs logged 13 straight outflow days ($4.33B), and Strategy disclosed its first BTC sale since 2022." data-ru="BTC упал с $73,6 тыс. (1 июня) до ~$59 тыс. в течение дня, поскольку &gt;$3 млрд позиций с кредитным плечом были ликвидированы; U.S. спотовые ETF зафиксировали отток 13 дней подряд (4,33 млрд долларов США), а Strategy объявила о своей первой BTC продаже с 2022 года." data-ar="BTC انخفض من 73.6 ألف دولار أمريكي (1 يونيو) إلى ~59 ألف دولار أمريكي خلال اليوم حيث تمت تصفية &gt; 3 مليار دولار أمريكي من المراكز ذات الرافعة المالية؛ U.S. سجلت صناديق الاستثمار المتداولة الفورية 13 يومًا متتاليًا من التدفق الخارجي (4.33 مليار دولار)، وكشفت Strategy عن أول BTC بيع لها منذ عام 2022."
            data-zh="BTC从7.36万美元（6月1日）跌至盘中约5.9万美元，超30亿美元杠杆仓位被清算；美国现货ETF连续13天净流出（43.3亿美元），Strategy披露2022年以来首次出售BTC。">BTC fell from $73.6K (Jun 1) to ~$59K intraday as &gt;$3B of leveraged positions were liquidated; U.S. spot ETFs logged 13 straight outflow days ($4.33B), and Strategy disclosed its first BTC sale since 2022.</p>
-        <p class="why" data-en="Why it matters: institutions, not retail, drove the sell-off — ETF flows and treasury companies are now the swing factor."
+        <p class="why" data-en="Why it matters: institutions, not retail, drove the sell-off — ETF flows and treasury companies are now the swing factor." data-ru="Почему это важно: распродажу вызвали институты, а не розничная торговля — ETF потоки и казначейские компании теперь являются фактором колебания." data-ar="لماذا يهم: المؤسسات، وليس التجزئة، هي التي قادت عمليات البيع - ETF التدفقات وشركات الخزانة هي الآن عامل التأرجح."
            data-zh="影响：此轮抛售由机构而非散户主导——ETF资金流与财库公司已成为关键变量。">Why it matters: institutions, not retail, drove the sell-off — ETF flows and treasury companies are now the swing factor.</p>
       </div>
     </div>
@@ -848,63 +372,63 @@
 <!-- ══ EXCHANGE LANDSCAPE ══ -->
 <div class="page-section">
   <div class="page-section-title"
-       data-en="Exchange Landscape — Oct 2026"
+       data-en="Exchange Landscape — Oct 2026" data-ru="Обзор обмена — октябрь 2026 г." data-ar="مشهد التبادل – أكتوبر 2026"
        data-zh="交易所格局 — 2026年10月">Exchange Landscape — Oct 2026</div>
   <div class="sec-grid">
 
     <div class="sec-card">
       <div class="icon">🔶</div>
-      <h3 data-en="Binance" data-zh="币安 Binance">Binance</h3>
-      <p data-en="323M registered users (Jul 2026). #1 in spot (32%) and derivatives (36%) volume in Q2. 2026 moves: bStocks, 7,000+ U.S. stocks for non-U.S. users, $100M Circle stake. Risks: no MiCA licence; reported DOJ Iran probe."
+      <h3 data-en="Binance" data-ru="Binance" data-ar="Binance" data-zh="币安 Binance">Binance</h3>
+      <p data-en="323M registered users (Jul 2026). #1 in spot (32%) and derivatives (36%) volume in Q2. 2026 moves: bStocks, 7,000+ U.S. stocks for non-U.S. users, $100M Circle stake. Risks: no MiCA licence; reported DOJ Iran probe." data-ru="323 миллиона зарегистрированных пользователей (июль 2026 г.). №1 по объему спотовых (32%) и деривативов (36%) в Q2. Переезды на 2026 год: bStocks, более 7000 U.S. акций для пользователей, не являющихся U.S., ставка на $100 млн Circle. Риски: отсутствие MiCA лицензии; сообщило DOJ Иранское расследование." data-ar="323 مليون مستخدم مسجل (يوليو 2026). رقم 1 في حجم التداول الفوري (32%) والمشتقات (36%) في Q2. تحركات 2026: bStocks، 7,000+ U.S. سهم لغير المستخدمين U.S.، حصة 100 مليون دولار Circle. المخاطر: لا يوجد MiCA ترخيص؛ أفاد DOJ مسبار إيران."
          data-zh="注册用户3.23亿（2026年7月）。Q2现货（32%）与衍生品（36%）交易量均居第一。2026年动作：bStocks、向非美国用户开放7,000余只美股、入股Circle 1亿美元。风险：无MiCA牌照；据报遭美国司法部涉伊朗调查。">
         323M registered users (Jul 2026). #1 in spot (32%) and derivatives (36%) volume in Q2. 2026 moves: bStocks, 7,000+ U.S. stocks for non-U.S. users, $100M Circle stake. Risks: no MiCA licence; reported DOJ Iran probe.
       </p>
       <div class="kpi">$172B</div>
-      <div class="kpi-label" data-en="on-chain reserves — 55% of tracked CEX total" data-zh="链上储备——占可追踪交易所总量55%">on-chain reserves — 55% of tracked CEX total</div>
+      <div class="kpi-label" data-en="on-chain reserves — 55% of tracked CEX total" data-ru="внутрисетевые резервы — 55% от отслеживаемого CEX общего количества" data-ar="الاحتياطيات الموجودة على السلسلة — 55% من إجمالي CEX المتتبع" data-zh="链上储备——占可追踪交易所总量55%">on-chain reserves — 55% of tracked CEX total</div>
     </div>
 
     <div class="sec-card">
       <div class="icon">◼️</div>
-      <h3 data-en="OKX" data-zh="欧易 OKX">OKX</h3>
-      <p data-en="Valued at $25B (ICE in March; Circle, Ripple, Standard Chartered, QRT in October). 16% of derivatives and 7% of spot volume in Q2; $31B reserves. OKX NOW: OKX Money, U.S. tokenized stocks via OKXICE, on-chain perps, AI tools."
+      <h3 data-en="OKX" data-ru="OKX" data-ar="OKX" data-zh="欧易 OKX">OKX</h3>
+      <p data-en="Valued at $25B (ICE in March; Circle, Ripple, Standard Chartered, QRT in October). 16% of derivatives and 7% of spot volume in Q2; $31B reserves. OKX NOW: OKX Money, U.S. tokenized stocks via OKXICE, on-chain perps, AI tools." data-ru="Оценена в $25 млрд (ICE в марте; Circle, Ripple, Standard Chartered, QRT в октябре). 16% деривативов и 7% спотового объема в Q2; Резервы в размере 31 миллиарда долларов. OKX NOW: OKX Деньги, U.S. токенизированные акции через OKXICE, внутрисетевые преступники, AI инструменты." data-ar="بقيمة 25 مليار دولار (ICE في مارس؛ Circle، Ripple، ستاندرد تشارترد، QRT في أكتوبر). 16% من المشتقات و7% من الحجم الفوري في Q2؛ احتياطيات 31 مليار دولار OKX NOW: OKX أموال، U.S. أسهم مُرمزة عبر OKXICE، برامج ضارة على السلسلة، AI أدوات."
          data-zh="估值250亿美元（3月ICE入股；10月Circle、Ripple、渣打、QRT加入）。Q2衍生品份额16%、现货7%；储备310亿美元。OKX NOW：OKX Money、经OKXICE推出面向美国的代币化股票、链上永续合约、AI工具。">
         Valued at $25B (ICE in March; Circle, Ripple, Standard Chartered, QRT in October). 16% of derivatives and 7% of spot volume in Q2; $31B reserves. OKX NOW: OKX Money, U.S. tokenized stocks via OKXICE, on-chain perps, AI tools.
       </p>
       <div class="kpi">$25B</div>
-      <div class="kpi-label" data-en="valuation, Oct 2026 round" data-zh="估值，2026年10月融资">valuation, Oct 2026 round</div>
+      <div class="kpi-label" data-en="valuation, Oct 2026 round" data-ru="оценка, октябрь 2026 г." data-ar="التقييم، جولة أكتوبر 2026" data-zh="估值，2026年10月融资">valuation, Oct 2026 round</div>
     </div>
 
     <div class="sec-card">
       <div class="icon">🔵</div>
-      <h3 data-en="Coinbase" data-zh="Coinbase">Coinbase</h3>
-      <p data-en="Q2 revenue fell 19% to $1.22B, with a $359.5M net loss. Building the U.S. stack: CFTC clearinghouse approved Sept 28, Deribit, prediction markets ($100M+ run-rate), stocks on Base, Open USD backer; &gt;30% of USDC sits on Coinbase."
+      <h3 data-en="Coinbase" data-ru="Coinbase" data-ar="Coinbase" data-zh="Coinbase">Coinbase</h3>
+      <p data-en="Q2 revenue fell 19% to $1.22B, with a $359.5M net loss. Building the U.S. stack: CFTC clearinghouse approved Sept 28, Deribit, prediction markets ($100M+ run-rate), stocks on Base, Open USD backer; &gt;30% of USDC sits on Coinbase." data-ru="Q2 выручка упала на 19% до $1,22 млрд при чистом убытке в $359,5 млн. Формирование стека U.S.: CFTC одобрено клиринговой палатой 28 сентября, Deribit, рынки прогнозов (прогонная ставка более 100 миллионов долларов), акции на Base, открытый спонсор USD; &gt;30% из USDC находится на Coinbase." data-ar="Q2 انخفضت الإيرادات بنسبة 19٪ إلى 1.22 مليار دولار، مع خسارة صافية قدرها 359.5 مليون دولار. بناء مجموعة U.S.: تمت الموافقة على غرفة المقاصة CFTC في 28 سبتمبر، Deribit، أسواق التنبؤ (100 مليون دولار + معدل التشغيل)، الأسهم في Base، الداعم المفتوح USD؛ &gt;30% من USDC يجلسون على Coinbase."
          data-zh="Q2营收下降19%至12.2亿美元，净亏损3.595亿美元。打造美国全栈：9月28日获CFTC清算所批准、Deribit、预测市场（年化收入超1亿美元）、Base链股票、Open USD支持方；超30%的USDC存放于Coinbase。">
         Q2 revenue fell 19% to $1.22B, with a $359.5M net loss. Building the U.S. stack: CFTC clearinghouse approved Sept 28, Deribit, prediction markets ($100M+ run-rate), stocks on Base, Open USD backer; &gt;30% of USDC sits on Coinbase.
       </p>
       <div class="kpi">10.3%</div>
-      <div class="kpi-label" data-en="trading-volume share, Q2 2026 (record)" data-zh="交易量份额，2026年Q2（历史新高）">trading-volume share, Q2 2026 (record)</div>
+      <div class="kpi-label" data-en="trading-volume share, Q2 2026 (record)" data-ru="Доля объема торгов, Q2 2026 г. (рекорд)" data-ar="حصة حجم التداول، Q2 2026 (سجل)" data-zh="交易量份额，2026年Q2（历史新高）">trading-volume share, Q2 2026 (record)</div>
     </div>
 
     <div class="sec-card">
       <div class="icon">🔥</div>
-      <h3 data-en="HTX" data-zh="火币 HTX">HTX</h3>
-      <p data-en="Justin Sun-backed; 59M registered users (Q1, self-reported). UK designated its operator Huobi Global S.A. (May 26); EU transaction ban since Aug 23; Binance blocks transactions with it. HTX says trading is unaffected; EU users may only wind down."
+      <h3 data-en="HTX" data-ru="HTX" data-ar="HTX" data-zh="火币 HTX">HTX</h3>
+      <p data-en="Justin Sun-backed; 59M registered users (Q1, self-reported). UK designated its operator Huobi Global S.A. (May 26); EU transaction ban since Aug 23; Binance blocks transactions with it. HTX says trading is unaffected; EU users may only wind down." data-ru="Джастин Сан поддержан; 59 миллионов зарегистрированных пользователей (Q1, самооценка). UK обозначил своего оператора Huobi Global S.A. (26 мая); EU запрет транзакций с 23 августа; Binance блокирует транзакции с ним. HTX говорит, что торговля не затронута; EU пользователи могут только свернуть." data-ar="جوستين صن المدعومة؛ 59 مليون مستخدم مسجل (Q1، تقرير ذاتي). UK عينت مشغلها Huobi Global S.A. (26 مايو)؛ EU حظر المعاملات منذ 23 أغسطس؛ Binance يمنع المعاملات معه. HTX يقول أن التداول لم يتأثر؛ EU يمكن للمستخدمين الإنهاء فقط."
          data-zh="孙宇晨支持；注册用户5900万（Q1，自报）。英国制裁其运营方Huobi Global S.A.（5月26日）；欧盟自8月23日起禁止交易；币安屏蔽与其交易。HTX称交易未受影响；欧盟用户仅可清退账户。">
         Justin Sun-backed; 59M registered users (Q1, self-reported). UK designated its operator Huobi Global S.A. (May 26); EU transaction ban since Aug 23; Binance blocks transactions with it. HTX says trading is unaffected; EU users may only wind down.
       </p>
       <div class="kpi">$4.2B</div>
-      <div class="kpi-label" data-en="on-chain reserves (DefiLlama)" data-zh="链上储备（DefiLlama）">on-chain reserves (DefiLlama)</div>
+      <div class="kpi-label" data-en="on-chain reserves (DefiLlama)" data-ru="внутрисетевые резервы (DefiLlama)" data-ar="احتياطيات السلسلة (DefiLlama)" data-zh="链上储备（DefiLlama）">on-chain reserves (DefiLlama)</div>
     </div>
 
     <div class="sec-card">
       <div class="icon">⚔️</div>
-      <h3 data-en="Challengers" data-zh="挑战者">Challengers</h3>
-      <p data-en="Bybit: $16.2B reserves, 10% of derivatives volume. Bitget: ~$387.5M hack (Sept 24). Hyperliquid leads the perp DEXs. Kraken: IPO on hold since March. BitMEX set its closure for Sept 23."
+      <h3 data-en="Challengers" data-ru="Претенденты" data-ar="المتحدون" data-zh="挑战者">Challengers</h3>
+      <p data-en="Bybit: $16.2B reserves, 10% of derivatives volume. Bitget: ~$387.5M hack (Sept 24). Hyperliquid leads the perp DEXs. Kraken: IPO on hold since March. BitMEX set its closure for Sept 23." data-ru="Bybit: резервы $16,2 млрд, 10% объема деривативов. Bitget: взлом на сумму ~$387,5 млн (24 сентября). Hyperliquid лидирует среди преступных DEX. Kraken: IPO приостановлено с марта. BitMEX назначила закрытие на 23 сентября." data-ar="بايبيت: احتياطيات تبلغ 16.2 مليار دولار، 10% من حجم المشتقات. Bitget: اختراق بقيمة 387.5 مليون دولار تقريبًا (24 سبتمبر). Hyperliquid يقود Perp DEXs. Kraken: IPO معلق منذ شهر مارس. حددت BitMEX إغلاقها في 23 سبتمبر."
          data-zh="Bybit：储备162亿美元，衍生品份额10%。Bitget：被盗约3.875亿美元（9月24日）。Hyperliquid领跑永续合约DEX。Kraken：IPO自3月起暂缓。BitMEX宣布于9月23日关闭。">
         Bybit: $16.2B reserves, 10% of derivatives volume. Bitget: ~$387.5M hack (Sept 24). Hyperliquid leads the perp DEXs. Kraken: IPO on hold since March. BitMEX set its closure for Sept 23.
       </p>
       <div class="kpi">~12%</div>
-      <div class="kpi-label" data-en="perp-DEX share of global perp volume, Sept" data-zh="永续合约DEX占全球永续交易量份额，9月">perp-DEX share of global perp volume, Sept</div>
+      <div class="kpi-label" data-en="perp-DEX share of global perp volume, Sept" data-ru="perp-DEX доля в мировом объеме перпов, сентябрь" data-ar="حصة perp-DEX من حجم perp العالمي، سبتمبر" data-zh="永续合约DEX占全球永续交易量份额，9月">perp-DEX share of global perp volume, Sept</div>
     </div>
 
   </div>
@@ -914,63 +438,63 @@
 <!-- ══ SECTOR SCOREBOARD ══ -->
 <div class="page-section">
   <div class="page-section-title"
-       data-en="Sector Scoreboard — Latest Reported"
+       data-en="Sector Scoreboard — Latest Reported" data-ru="Табло сектора — последние сообщения" data-ar="لوحة نتائج القطاع — آخر ما تم الإبلاغ عنه"
        data-zh="赛道计分板 — 最新公布数据">Sector Scoreboard — Latest Reported</div>
   <div class="sec-grid">
 
     <div class="sec-card">
       <div class="icon">🤖</div>
-      <h3 data-en="DeAI" data-zh="去中心化AI">DeAI</h3>
-      <p data-en="Bittensor: ~$43M Q1 2026 revenue across 128 subnets; NVIDIA deployed $420M. Render: $38M January 2026 revenue on Solana. AI tokens –14% Q1 2026 vs –30% for speculative consumer tokens (Grayscale)."
+      <h3 data-en="DeAI" data-ru="DeAI" data-ar="DeAI" data-zh="去中心化AI">DeAI</h3>
+      <p data-en="Bittensor: ~$43M Q1 2026 revenue across 128 subnets; NVIDIA deployed $420M. Render: $38M January 2026 revenue on Solana. AI tokens –14% Q1 2026 vs –30% for speculative consumer tokens (Grayscale)." data-ru="Bittensor: доход ~$43 млн Q1 в 2026 году в 128 подсетях; NVIDIA вложило 420 миллионов долларов. Визуализация: доход в размере 38 миллионов долларов США за январь 2026 года от Solana. Токены AI –14% Q1 2026 г. против –30% для спекулятивных потребительских токенов (оттенки серого)." data-ar="Bittensor: إيرادات تصل إلى 43 مليون دولار أمريكي Q1 في عام 2026 عبر 128 شبكة فرعية؛ NVIDIA تم توزيع 420 مليون دولار. العرض: 38 مليون دولار أمريكي إيرادات يناير 2026 على Solana. AI الرموز -14% Q1 2026 مقابل -30% لرموز المستهلك المضاربة (التدرج الرمادي)."
          data-zh="Bittensor：2026年Q1跨128个子网收入约4300万美元；英伟达部署4.2亿美元。Render：2026年1月在Solana上收入3800万美元。AI代币Q1 2026下跌14%，优于投机性消费代币的30%跌幅（Grayscale数据）。">
         Bittensor: ~$43M Q1 2026 revenue across 128 subnets; NVIDIA deployed $420M. Render: $38M January 2026 revenue on Solana. AI tokens –14% Q1 2026 vs –30% for speculative consumer tokens (Grayscale).
       </p>
       <div class="kpi">$43M</div>
-      <div class="kpi-label" data-en="Bittensor Q1 2026 revenue" data-zh="Bittensor 2026年Q1收入">Bittensor Q1 2026 revenue</div>
+      <div class="kpi-label" data-en="Bittensor Q1 2026 revenue" data-ru="Bittensor Q1 Выручка за 2026 год" data-ar="بيتنسور Q1 إيرادات 2026" data-zh="Bittensor 2026年Q1收入">Bittensor Q1 2026 revenue</div>
     </div>
 
     <div class="sec-card">
       <div class="icon">📡</div>
-      <h3 data-en="DePIN" data-zh="去中心化物理基础设施">DePIN</h3>
-      <p data-en="~250–650 live projects; ~$9–10B combined market cap. Helium: 120K+ Mobile subscribers, 900K+ IoT hotspots, ~$13.3M ARR. Hivemapper: mapped &gt;25% of world roads. Leading networks: ~$150M on-chain revenue in January 2026 alone."
+      <h3 data-en="DePIN" data-ru="DePIN" data-ar="DePIN" data-zh="去中心化物理基础设施">DePIN</h3>
+      <p data-en="~250–650 live projects; ~$9–10B combined market cap. Helium: 120K+ Mobile subscribers, 900K+ IoT hotspots, ~$13.3M ARR. Hivemapper: mapped &gt;25% of world roads. Leading networks: ~$150M on-chain revenue in January 2026 alone." data-ru="~250–650 живых проектов; Совокупная рыночная капитализация ~9–10 млрд долларов. Helium: более 120 тысяч абонентов мобильной связи, более 900 тысяч точек доступа IoT, ~ 13,3 миллиона долларов США ARR. Hivemapper: нанесены на карту &gt;25% дорог мира. Ведущие сети: только в январе 2026 года ончейн-выручка составляет около 150 миллионов долларов." data-ar="~250-650 مشروعًا حيًا؛ ~ 9-10 مليار دولار القيمة السوقية المجمعة. هيليوم: أكثر من 120 ألف مشترك في الهاتف المحمول، و900 ألف + نقطة اتصال لإنترنت الأشياء، ~ 13.3 مليون دولار ARR. Hivemapper: تم تعيين &gt;25% من الطرق في العالم. الشبكات الرائدة: إيرادات على السلسلة تصل إلى 150 مليون دولار أمريكي في يناير 2026 وحده."
          data-zh="约250–650个活跃项目；合并市值约90–100亿美元。Helium：超12万移动用户，超90万IoT热点，年化收入约1330万美元。Hivemapper：已绘制全球超25%的道路。主要网络：仅2026年1月链上收入约1.5亿美元。">
         ~250–650 live projects; ~$9–10B combined market cap. Helium: 120K+ Mobile subscribers, 900K+ IoT hotspots, ~$13.3M ARR. Hivemapper: mapped &gt;25% of world roads. Leading networks: ~$150M on-chain revenue in January 2026 alone.
       </p>
       <div class="kpi">$150M</div>
-      <div class="kpi-label" data-en="on-chain revenue, Jan 2026" data-zh="链上收入，2026年1月">on-chain revenue, Jan 2026</div>
+      <div class="kpi-label" data-en="on-chain revenue, Jan 2026" data-ru="внутрисетевой доход, январь 2026 г." data-ar="الإيرادات على السلسلة، يناير 2026" data-zh="链上收入，2026年1月">on-chain revenue, Jan 2026</div>
     </div>
 
     <div class="sec-card">
       <div class="icon">🏦</div>
-      <h3 data-en="RWA &amp; Tokenization" data-zh="现实资产代币化">RWA &amp; Tokenization</h3>
-      <p data-en="Distributed on-chain RWA stands at $38.9B (Oct 8) across 5.2M holders. Tokenized stocks are the new front: Binance bStocks, Coinbase on Base, OKX × ICE. JPM Kinexys &gt;$3T cumulative."
+      <h3 data-en="RWA &amp; Tokenization" data-ru="RWA &amp; Токенизация" data-ar="RWA &amp; الترميز" data-zh="现实资产代币化">RWA &amp; Tokenization</h3>
+      <p data-en="Distributed on-chain RWA stands at $38.9B (Oct 8) across 5.2M holders. Tokenized stocks are the new front: Binance bStocks, Coinbase on Base, OKX × ICE. JPM Kinexys &gt;$3T cumulative." data-ru="Распределенная внутри цепочки RWA составляет $38,9 млрд (8 октября) среди 5,2 млн держателей. Токенизированные акции — это новый фронт: Binance bStocks, Coinbase на Base, OKX × ICE. JPM Kinexys &gt;3 трлн долларов в совокупности." data-ar="تبلغ القيمة الموزعة على السلسلة RWA 38.9 مليار دولار (8 أكتوبر) عبر 5.2 مليون حامل. الأسهم الرمزية هي الواجهة الجديدة: Binance bStocks، Coinbase على Base، OKX × ICE. JPM كينكسيس &gt;$3T تراكمية."
          data-zh="链上分发RWA为389亿美元（10月8日），持有人520万。代币化股票成为新战场：币安bStocks、Coinbase（Base链）、OKX × ICE。摩根大通Kinexys累计超3万亿美元。">
         Distributed on-chain RWA stands at $38.9B (Oct 8) across 5.2M holders. Tokenized stocks are the new front: Binance bStocks, Coinbase on Base, OKX × ICE. JPM Kinexys &gt;$3T cumulative.
       </p>
       <div class="kpi">$38.9B</div>
-      <div class="kpi-label" data-en="distributed on-chain RWA, Oct 8, 2026 (RWA.xyz)" data-zh="链上分发RWA，2026年10月8日（RWA.xyz）">distributed on-chain RWA, Oct 8, 2026 (RWA.xyz)</div>
+      <div class="kpi-label" data-en="distributed on-chain RWA, Oct 8, 2026 (RWA.xyz)" data-ru="распространяется по цепочке RWA, 8 октября 2026 г. (RWA.xyz)" data-ar="تم توزيعها على السلسلة RWA، 8 أكتوبر 2026 (RWA.xyz)" data-zh="链上分发RWA，2026年10月8日（RWA.xyz）">distributed on-chain RWA, Oct 8, 2026 (RWA.xyz)</div>
     </div>
 
     <div class="sec-card">
       <div class="icon">🔄</div>
-      <h3 data-en="DeFi 3.0 — Restaking" data-zh="DeFi 3.0 — 再质押">DeFi 3.0 — Restaking</h3>
-      <p data-en="EigenLayer TVL ~$6.6B, down from ~$9.7B in mid-April. Lido ~$24.6B, ether.fi ~$4.9B. KelpDAO exploit Apr 18, 2026: ~$292M drained, $13B DeFi deleveraging in 48h; Kelp TVL now ~$1.05B. Industry migrating to Chainlink CCIP."
+      <h3 data-en="DeFi 3.0 — Restaking" data-ru="DeFi 3.0 — Рестейкинг" data-ar="DeFi 3.0 — الاستعادة" data-zh="DeFi 3.0 — 再质押">DeFi 3.0 — Restaking</h3>
+      <p data-en="EigenLayer TVL ~$6.6B, down from ~$9.7B in mid-April. Lido ~$24.6B, ether.fi ~$4.9B. KelpDAO exploit Apr 18, 2026: ~$292M drained, $13B DeFi deleveraging in 48h; Kelp TVL now ~$1.05B. Industry migrating to Chainlink CCIP." data-ru="EigenLayer TVL ~6,6 млрд долларов по сравнению с примерно 9,7 млрд долларов в середине апреля. Lido ~ 24,6 миллиарда долларов, ether.fi ~ 4,9 миллиарда долларов. Эксплойт KelpDAO 18 апреля 2026 г.: израсходовано ~292 млн долларов, сокращение доли заемных средств на 13 млрд долларов DeFi за 48 часов; Kelp TVL сейчас составляет ~1,05 миллиарда долларов. Промышленность мигрирует в Chainlink CCIP." data-ar="EigenLayer TVL ~6.6 مليار دولار أمريكي، بانخفاض من حوالي 9.7 مليار دولار أمريكي في منتصف أبريل. Lido ~24.6 مليار دولار، ether.fi ~4.9 مليار دولار. استغلال KelpDAO 18 أبريل 2026: استنزاف ما يقرب من 292 مليون دولار أمريكي، وتقليص المديونيات بقيمة 13 مليار دولار أمريكي DeFi في 48 ساعة؛ عشب البحر TVL الآن ~ 1.05 مليار دولار. الصناعة المهاجرة إلى Chainlink CCIP."
          data-zh="EigenLayer TVL约66亿美元，4月中旬约为97亿美元。Lido约246亿美元，ether.fi约49亿美元。KelpDAO漏洞（2026年4月18日）：约2.92亿美元被盗，48小时内DeFi去杠杆130亿美元；Kelp TVL现约10.5亿美元。行业迁移至Chainlink CCIP。">
         EigenLayer TVL ~$6.6B, down from ~$9.7B in mid-April. Lido ~$24.6B, ether.fi ~$4.9B. KelpDAO exploit Apr 18, 2026: ~$292M drained, $13B DeFi deleveraging in 48h; Kelp TVL now ~$1.05B. Industry migrating to Chainlink CCIP.
       </p>
       <div class="kpi">~$6.6B</div>
-      <div class="kpi-label" data-en="EigenLayer TVL, Oct 2026 (DefiLlama)" data-zh="EigenLayer TVL，2026年10月（DefiLlama）">EigenLayer TVL, Oct 2026 (DefiLlama)</div>
+      <div class="kpi-label" data-en="EigenLayer TVL, Oct 2026 (DefiLlama)" data-ru="EigenLayer TVL, октябрь 2026 г. (DefiLlama)" data-ar="EigenLayer TVL، أكتوبر 2026 (ديفيلاما)" data-zh="EigenLayer TVL，2026年10月（DefiLlama）">EigenLayer TVL, Oct 2026 (DefiLlama)</div>
     </div>
 
     <div class="sec-card">
       <div class="icon">🎮</div>
-      <h3 data-en="Web3 Consumer" data-zh="Web3消费">Web3 Consumer</h3>
-      <p data-en="Gaming 'effectively in collapse' (Caladan 2026): 90%+ depth of decline. Web3 gaming VC $4B (2022) → &amp;lt;$400M (2025–Q1 2026). Farcaster DAU peaked 100K → ~60K. Only Ronin maintains millions of DAU."
+      <h3 data-en="Web3 Consumer" data-ru="Потребитель Web3" data-ar="مستهلك ويب 3" data-zh="Web3消费">Web3 Consumer</h3>
+      <p data-en="Gaming 'effectively in collapse' (Caladan 2026): 90%+ depth of decline. Web3 gaming VC $4B (2022) → &amp;lt;$400M (2025–Q1 2026). Farcaster DAU peaked 100K → ~60K. Only Ronin maintains millions of DAU." data-ru="Игровая деятельность «фактически в крахе» (Каладан, 2026 г.): глубина спада более 90%. Веб3-игры VC 4 млрд долларов (2022 г.) → &amp;lt;400 млн долларов (2025–Q1 2026 г.). Фаркастер DAU достиг максимума 100К → ~60К. Только Ронин поддерживает миллионы DAU." data-ar="الألعاب &quot;في حالة انهيار فعال&quot; (Caladan 2026): 90% + عمق التراجع. ألعاب ويب 3 VC 4 مليار دولار (2022) → &amp;lt;400 مليون دولار (2025-Q1 2026). وصل Farcaster DAU إلى ذروته 100 ألف → ~60 ألف. فقط رونين يحتفظ بملايين DAU."
          data-zh="游戏'实质上已崩溃'（Caladan 2026）：跌幅超90%。Web3游戏风投从40亿美元（2022年）降至4亿美元以下（2025年–2026年Q1）。Farcaster日活峰值10万降至约6万。只有Ronin维持数百万日活。">
         Gaming 'effectively in collapse' (Caladan 2026): 90%+ depth of decline. Web3 gaming VC $4B (2022) → &lt;$400M (2025–Q1 2026). Farcaster DAU peaked 100K → ~60K. Only Ronin maintains millions of DAU.
       </p>
       <div class="kpi">~99K</div>
-      <div class="kpi-label" data-en="Axie DAU (down from 2.8M peak)" data-zh="Axie日活（较280万峰值大幅下降）">Axie DAU (down from 2.8M peak)</div>
+      <div class="kpi-label" data-en="Axie DAU (down from 2.8M peak)" data-ru="Axie DAU (по сравнению с пиком 2,8M)" data-ar="أكسي DAU (أقل من الذروة 2.8 مليون)" data-zh="Axie日活（较280万峰值大幅下降）">Axie DAU (down from 2.8M peak)</div>
     </div>
 
   </div>
@@ -980,16 +504,16 @@
 <!-- ══ CONSENSUS ALLOCATION FRAMEWORK ══ -->
 <div class="page-section">
   <div class="page-section-title"
-       data-en="Consensus Allocation Framework (Sell-Side Band: 1–4% of Portfolio)"
+       data-en="Consensus Allocation Framework (Sell-Side Band: 1–4% of Portfolio)" data-ru="Механизм консенсусного распределения (диапазон продаж: 1–4% портфеля)" data-ar="إطار التخصيص بالإجماع (نطاق جانب البيع: 1-4% من المحفظة)"
        data-zh="主流配置框架（卖方建议：占投资组合1–4%）">Consensus Allocation Framework (Sell-Side Band: 1–4% of Portfolio)</div>
   <div class="cards-4">
 
     <div class="alloc-card">
       <div class="icon">₿</div>
       <div class="pct">70–80%</div>
-      <div class="pct-label" data-en="of crypto allocation" data-zh="加密配置占比">of crypto allocation</div>
-      <h3 data-en="Bitcoin — Monetary Core" data-zh="比特币 — 货币核心">Bitcoin — Monetary Core</h3>
-      <p data-en="Monetary-premium store-of-value. Access via spot ETF (IBIT, FBTC) for liquidity; Coinbase Custody / BitGo / Fidelity for strategic positions &gt;$5M. Avoid MSTR as BTC proxy — it carries a preferred-equity + convertible-debt overlay and sold BTC in Jun–Aug 2026."
+      <div class="pct-label" data-en="of crypto allocation" data-ru="распределения криптовалют" data-ar="لتخصيص التشفير" data-zh="加密配置占比">of crypto allocation</div>
+      <h3 data-en="Bitcoin — Monetary Core" data-ru="Bitcoin — Денежное ядро" data-ar="Bitcoin — النواة النقدية" data-zh="比特币 — 货币核心">Bitcoin — Monetary Core</h3>
+      <p data-en="Monetary-premium store-of-value. Access via spot ETF (IBIT, FBTC) for liquidity; Coinbase Custody / BitGo / Fidelity for strategic positions &gt;$5M. Avoid MSTR as BTC proxy — it carries a preferred-equity + convertible-debt overlay and sold BTC in Jun–Aug 2026." data-ru="Средство сбережения с денежной премией. Доступ через спот ETF (IBIT, FBTC) для ликвидности; Coinbase Хранение / BitGo / Fidelity для стратегических позиций &gt;$5M. Избегайте MSTR в качестве прокси-сервера BTC — он содержит наложение привилегированных акций + конвертируемого долга и продан BTC в июне – августе 2026 года." data-ar="مخزن القيمة النقدية المتميزة. الوصول عبر النقطة ETF (IBIT، FBTC) للسيولة؛ Coinbase الحضانة / BitGo / Fidelity للمناصب الإستراتيجية &gt; 5 ملايين دولار. تجنب MSTR كوكيل BTC - فهو يحمل أسهمًا مفضلة + تراكب ديون قابلة للتحويل ويتم بيعه BTC في يونيو - أغسطس 2026."
          data-zh="货币溢价价值储存。通过现货ETF（IBIT、FBTC）获取流动性敞口；5M美元以上战略持仓可选Coinbase Custody / BitGo / Fidelity。避免以MSTR替代BTC——附带优先股+可转债风险层，且曾于2026年6–8月出售BTC。">
         Monetary-premium store-of-value. Access via spot ETF (IBIT, FBTC) for liquidity; Coinbase Custody / BitGo / Fidelity for strategic positions &gt;$5M. Avoid MSTR as BTC proxy — it carries a preferred-equity + convertible-debt overlay and sold BTC in Jun–Aug 2026.
       </p>
@@ -998,9 +522,9 @@
     <div class="alloc-card">
       <div class="icon">Ξ</div>
       <div class="pct">15–25%</div>
-      <div class="pct-label" data-en="of crypto allocation" data-zh="加密配置占比">of crypto allocation</div>
-      <h3 data-en="Ethereum — Settlement Layer" data-zh="以太坊 — 结算层">Ethereum — Settlement Layer</h3>
-      <p data-en="Institutional settlement layer; ~3–4% base staking yield. Thesis: RWA and stablecoin throughput. Monitor ETH/BTC ratio — 0.0306 on Oct 8, 2026, up from a 0.0276 low in mid-May. Spot ETH ETFs ~$17.8B net assets (late Sept)."
+      <div class="pct-label" data-en="of crypto allocation" data-ru="распределения криптовалют" data-ar="لتخصيص التشفير" data-zh="加密配置占比">of crypto allocation</div>
+      <h3 data-en="Ethereum — Settlement Layer" data-ru="Ethereum — Уровень расчетов" data-ar="Ethereum — طبقة التسوية" data-zh="以太坊 — 结算层">Ethereum — Settlement Layer</h3>
+      <p data-en="Institutional settlement layer; ~3–4% base staking yield. Thesis: RWA and stablecoin throughput. Monitor ETH/BTC ratio — 0.0306 on Oct 8, 2026, up from a 0.0276 low in mid-May. Spot ETH ETFs ~$17.8B net assets (late Sept)." data-ru="Институциональный уровень урегулирования; ~3–4% базовой доходности от стейкинга. Тезис: RWA и пропускная способность стейблкоинов. Мониторинг отношения ETH/BTC — 0,0306 на 8 октября 2026 года по сравнению с минимумом 0,0276 в середине мая. Спотовые ETH ETF чистые активы ~$17,8 млрд (конец сентября)." data-ar="طبقة التسوية المؤسسية؛ ~ 3-4٪ عائد التوقيع الأساسي. الأطروحة: RWA وإنتاجية العملة المستقرة. رصد نسبة ETH/BTC — 0.0306 في 8 أكتوبر 2026، ارتفاعًا من أدنى مستوى عند 0.0276 في منتصف مايو. ETH صناديق الاستثمار المتداولة الفورية ~ 17.8 مليار دولار صافي الأصول (أواخر سبتمبر)."
          data-zh="机构结算层；基础质押收益约3–4%。逻辑：RWA与稳定币吞吐量。关注ETH/BTC比率——2026年10月8日为0.0306，高于5月中旬0.0276的低点。现货ETH ETF净资产约178亿美元（9月下旬）。">
         Institutional settlement layer; ~3–4% base staking yield. Thesis: RWA and stablecoin throughput. Monitor ETH/BTC ratio — 0.0306 on Oct 8, 2026, up from a 0.0276 low in mid-May. Spot ETH ETFs ~$17.8B net assets (late Sept).
       </p>
@@ -1009,9 +533,9 @@
     <div class="alloc-card">
       <div class="icon">◎</div>
       <div class="pct">0–10%</div>
-      <div class="pct-label" data-en="of crypto allocation" data-zh="加密配置占比">of crypto allocation</div>
-      <h3 data-en="SOL + Selective Alts" data-zh="SOL + 精选山寨">SOL + Selective Alts</h3>
-      <p data-en="High-throughput utility exposure. Mid-to-high risk tolerance only. Avoid an undifferentiated altcoin basket — BTC dominance near 59% means no altcoin season. SOL ETFs launched Oct 28, 2025; $213M Q1 inflows. Alpenglow runs on testnet/devnet; no mainnet date yet."
+      <div class="pct-label" data-en="of crypto allocation" data-ru="распределения криптовалют" data-ar="لتخصيص التشفير" data-zh="加密配置占比">of crypto allocation</div>
+      <h3 data-en="SOL + Selective Alts" data-ru="SOL + выборочные альтернативы" data-ar="SOL + بدائل انتقائية" data-zh="SOL + 精选山寨">SOL + Selective Alts</h3>
+      <p data-en="High-throughput utility exposure. Mid-to-high risk tolerance only. Avoid an undifferentiated altcoin basket — BTC dominance near 59% means no altcoin season. SOL ETFs launched Oct 28, 2025; $213M Q1 inflows. Alpenglow runs on testnet/devnet; no mainnet date yet." data-ru="Воздействие коммунальных услуг с высокой пропускной способностью. Только толерантность к риску от среднего до высокого. Избегайте недифференцированной корзины альткойнов — доминирование BTC около 59% означает отсутствие сезона альткойнов. SOL ETF запущены 28 октября 2025 г.; Приток $213 млн Q1. Alpenglow работает в сети testnet/devnet; даты основной сети пока нет." data-ar="التعرض للمرافق عالية الإنتاجية. تحمل المخاطر المتوسطة إلى العالية فقط. تجنب سلة العملات البديلة غير المتمايزة - BTC الهيمنة بنسبة 59٪ تقريبًا تعني عدم وجود موسم للعملات البديلة. SOL تم إطلاق صناديق الاستثمار المتداولة في 28 أكتوبر 2025؛ 213 مليون دولار Q1 تدفقات واردة. يعمل Alpenglow على testnet/devnet؛ لا يوجد تاريخ للشبكة الرئيسية حتى الآن."
          data-zh="高吞吐量效用敞口。仅适合中高风险承受能力。避免无差异化的山寨币组合——BTC市占率接近59%，山寨季尚未到来。SOL ETF于2025年10月28日上市；Q1净流入2.13亿美元。Alpenglow在测试网/开发网运行，主网日期未定。">
         High-throughput utility exposure. Mid-to-high risk tolerance only. Avoid an undifferentiated altcoin basket — BTC dominance near 59% means no altcoin season. SOL ETFs launched Oct 28, 2025; $213M Q1 inflows. Alpenglow runs on testnet/devnet; no mainnet date yet.
       </p>
@@ -1019,10 +543,10 @@
 
     <div class="alloc-card">
       <div class="icon">⚖️</div>
-      <div class="pct" style="font-size:20px;line-height:1.4" data-en="Triggers" data-zh="触发条件">Triggers</div>
-      <div class="pct-label" data-en="conditional rebalancing" data-zh="条件性再平衡">conditional rebalancing</div>
-      <h3 data-en="Conditional Rebalancing" data-zh="条件性再平衡">Conditional Rebalancing</h3>
-      <p data-en="↑ ETH/alts: ETH/BTC &gt;0.035 with rising volume + spot ETH ETF flows positive 2 consecutive months. ↓ Risk: BTC–SPX 30-day correlation &gt;0.7 + realized-cap flows negative 30+ days. Add tokenized RWA (BUIDL, OUSG, USYC) when DeFi stablecoin yields compress below 4%."
+      <div class="pct pct--compact" data-en="Triggers" data-ru="Триггеры" data-ar="المشغلات" data-zh="触发条件">Triggers</div>
+      <div class="pct-label" data-en="conditional rebalancing" data-ru="условная ребалансировка" data-ar="إعادة التوازن المشروط" data-zh="条件性再平衡">conditional rebalancing</div>
+      <h3 data-en="Conditional Rebalancing" data-ru="Условная ребалансировка" data-ar="إعادة التوازن المشروط" data-zh="条件性再平衡">Conditional Rebalancing</h3>
+      <p data-en="↑ ETH/alts: ETH/BTC &gt;0.035 with rising volume + spot ETH ETF flows positive 2 consecutive months. ↓ Risk: BTC–SPX 30-day correlation &gt;0.7 + realized-cap flows negative 30+ days. Add tokenized RWA (BUIDL, OUSG, USYC) when DeFi stablecoin yields compress below 4%." data-ru="↑ ETH/alts: ETH/BTC &gt;0,035 с растущим объемом + спотовый поток ETH ETF положительный 2 месяца подряд. ↓ Риск: BTC–SPX 30-дневная корреляция &gt;0,7 + отрицательный поток реализованной капитализации более 30 дней. Добавьте токенизированный RWA (BUIDL, OUSG, USYC), когда доходность стейблкоина DeFi упадет ниже 4%." data-ar="↑ ETH/alts: ETH/BTC &gt;0.035 مع ارتفاع حجم + بقعة ETH ETF تدفقات إيجابية لمدة شهرين متتاليين. ↓ المخاطر: BTC–SPX ارتباط لمدة 30 يومًا &gt;0.7 + تدفقات الحد الأقصى المحقق سالبة لأكثر من 30 يومًا. أضف الرمز المميز RWA (BUIDL، OUSG، USYC) عندما تنخفض عائدات العملة المستقرة DeFi إلى أقل من 4%."
          data-zh="↑增加ETH/山寨：ETH/BTC突破0.035且成交量上升 + 现货ETH ETF连续两个月净流入正值。↓降低风险：BTC-标普500 30日相关性&gt;0.7 + 实现资本净流入连续30天为负。当DeFi稳定币收益率压缩至4%以下时，加仓代币化RWA（BUIDL、OUSG、USYC）。">
         ↑ ETH/alts: ETH/BTC &gt;0.035 with rising volume + spot ETH ETF flows positive 2 consecutive months. ↓ Risk: BTC–SPX 30-day correlation &gt;0.7 + realized-cap flows negative 30+ days. Add tokenized RWA (BUIDL, OUSG, USYC) when DeFi stablecoin yields compress below 4%.
       </p>
@@ -1035,38 +559,38 @@
 <!-- ══ BULL / BEAR SCENARIOS ══ -->
 <div class="page-section">
   <div class="page-section-title"
-       data-en="12–18 Month Scenarios (from Oct 2026)"
+       data-en="12–18 Month Scenarios (from Oct 2026)" data-ru="Сценарии на 12–18 месяцев (с октября 2026 г.)" data-ar="سيناريوهات 12-18 شهرًا (من أكتوبر 2026)"
        data-zh="12–18个月情景预判（自2026年10月起）">12–18 Month Scenarios (from Oct 2026)</div>
   <div class="decision-grid">
 
     <div class="decision-card bear">
-      <h3 data-en="✕  Bear Case" data-zh="✕  悲观情景">✕  Bear Case</h3>
+      <h3 data-en="✕  Bear Case" data-ru="✕ Чехол с медведем" data-ar="✕ حالة الدب" data-zh="✕  悲观情景">✕  Bear Case</h3>
       <ul>
-        <li data-en="CLARITY stays stalled after the Nov 3 midterms; agency rules alone can't anchor U.S. exchange licensing → U.S. listings and tokenized-stock launches slip"
+        <li data-en="CLARITY stays stalled after the Nov 3 midterms; agency rules alone can't anchor U.S. exchange licensing → U.S. listings and tokenized-stock launches slip" data-ru="CLARITY остается в тупике после промежуточных выборов 3 ноября; Сами по себе правила агентства не могут закрепить U.S. лицензирование биржи → U.S. листинги и запуск токенизированных акций проскальзывают" data-ar="CLARITY يظل متوقفًا بعد الانتخابات النصفية في 3 نوفمبر؛ لا يمكن لقواعد الوكالة وحدها تثبيت U.S. ترخيص البورصة → U.S. قوائم القوائم وقسيمة إطلاق الأسهم المميزة"
             data-zh="CLARITY法案在11月3日中期选举后仍然搁浅；仅靠监管规则无法为美国交易所牌照提供依据 → 美国上市与代币化股票发行推迟">CLARITY stays stalled after the Nov 3 midterms; agency rules alone can't anchor U.S. exchange licensing → U.S. listings and tokenized-stock launches slip</li>
-        <li data-en="Another major exchange or bridge hack after Bitget ($387.5M) and KelpDAO ($292M) → withdrawal runs on mid-tier venues; DeFi TVL falls back toward the $68B July low"
+        <li data-en="Another major exchange or bridge hack after Bitget ($387.5M) and KelpDAO ($292M) → withdrawal runs on mid-tier venues; DeFi TVL falls back toward the $68B July low" data-ru="Еще один крупный взлом биржи или моста после Bitget (387,5 млн долларов США) и KelpDAO (292 млн долларов США) → вывод средств осуществляется на площадках среднего уровня; DeFi TVL падает до июльского минимума в 68 миллиардов долларов." data-ar="اختراق بورصة أو جسر رئيسي آخر بعد Bitget (387.5 مليون دولار) وKelpDAO (292 مليون دولار) ← يتم السحب في أماكن متوسطة المستوى؛ DeFi TVL يتراجع نحو أدنى مستوى في يوليو عند 68 مليار دولار"
             data-zh="继Bitget（3.875亿美元）与KelpDAO（2.92亿美元）之后再现大型交易所或跨链桥被盗 → 中型平台遭挤兑；DeFi TVL回落至7月680亿美元低点附近">Another major exchange or bridge hack after Bitget ($387.5M) and KelpDAO ($292M) → withdrawal runs on mid-tier venues; DeFi TVL falls back toward the $68B July low</li>
-        <li data-en="Enforcement widens: the DOJ Iran probe extends Binance's compliance monitorship; UK/EU sanctions reach beyond HTX → liquidity fragments by jurisdiction"
+        <li data-en="Enforcement widens: the DOJ Iran probe extends Binance's compliance monitorship; UK/EU sanctions reach beyond HTX → liquidity fragments by jurisdiction" data-ru="Расширяется правоприменение: DOJ расследование по Ирану расширяет контроль за соблюдением требований со стороны Binance; Санкции UK/EU выходят за пределы HTX → фрагменты ликвидности по юрисдикциям" data-ar="توسيع نطاق التنفيذ: التحقيق في إيران يوسع Binance مراقبة الامتثال؛ UK/EU تصل العقوبات إلى ما هو أبعد من HTX → تجزئة السيولة حسب الولاية القضائية"
             data-zh="执法扩大：美国司法部涉伊朗调查延长币安合规监察期；英国/欧盟制裁范围超出HTX → 流动性按司法辖区割裂">Enforcement widens: the DOJ Iran probe extends Binance's compliance monitorship; UK/EU sanctions reach beyond HTX → liquidity fragments by jurisdiction</li>
-        <li data-en="Stablecoin yield war (OKX Money's up to 10% APY, Open USD revenue sharing) squeezes issuer margins; a subsidized-yield product fails to pay out"
+        <li data-en="Stablecoin yield war (OKX Money's up to 10% APY, Open USD revenue sharing) squeezes issuer margins; a subsidized-yield product fails to pay out" data-ru="Война за доходность стейблкоинов (OKX Деньги до 10% APY, Открытое распределение доходов USD) снижает прибыль эмитентов; продукт с субсидированной доходностью не окупается" data-ar="حرب عائدات العملات المستقرة (OKX أموال تصل إلى 10% APY، مشاركة الإيرادات المفتوحة USD) تضغط على هوامش المصدر؛ فشل منتج مدعوم في الدفع"
             data-zh="稳定币收益战（OKX Money最高10%年化、Open USD收益分成）压缩发行方利润；某补贴型收益产品无法兑付">Stablecoin yield war (OKX Money's up to 10% APY, Open USD revenue sharing) squeezes issuer margins; a subsidized-yield product fails to pay out</li>
-        <li data-en="ETF outflows like June's 13-day, $4.33B run return; BTC–equity correlation stays high and BTC retests the ~$59K summer lows"
+        <li data-en="ETF outflows like June's 13-day, $4.33B run return; BTC–equity correlation stays high and BTC retests the ~$59K summer lows" data-ru="ETF отток, как и июньский 13-дневный доход в размере 4,33 миллиарда долларов США; Корреляция BTC – капитал остается высокой, а BTC повторно тестирует летние минимумы в размере ~ 59 тысяч долларов." data-ar="ETF التدفقات الخارجة مثل عائد شهر يونيو لمدة 13 يومًا بقيمة 4.33 مليار دولار؛ BTC – يظل ارتباط الأسهم مرتفعًا وBTC يعيد اختبار أدنى مستوياته في الصيف والتي تبلغ حوالي 59 ألف دولار"
             data-zh="类似6月连续13天、43.3亿美元的ETF净流出重现；BTC与股市相关性维持高位，BTC回测夏季约5.9万美元低点">ETF outflows like June's 13-day, $4.33B run return; BTC–equity correlation stays high and BTC retests the ~$59K summer lows</li>
       </ul>
     </div>
 
     <div class="decision-card bull">
-      <h3 data-en="✓  Bull Case" data-zh="✓  乐观情景">✓  Bull Case</h3>
+      <h3 data-en="✓  Bull Case" data-ru="✓ Бычий случай" data-ar="✓ حالة الثور" data-zh="✓  乐观情景">✓  Bull Case</h3>
       <ul>
-        <li data-en="GENIUS takes effect Jan 18, 2027 with final OCC/FDIC/Fed rules → U.S. bank-issued stablecoins; supply passes $400B as Open USD, USDG and USDC compete on distribution"
+        <li data-en="GENIUS takes effect Jan 18, 2027 with final OCC/FDIC/Fed rules → U.S. bank-issued stablecoins; supply passes $400B as Open USD, USDG and USDC compete on distribution" data-ru="GENIUS вступает в силу 18 января 2027 г. с окончательными OCC/FDIC/правилами ФРС → U.S. стейблкоины, выпущенные банками; предложение превышает 400 миллиардов долларов, поскольку Open USD, USDG и USDC конкурируют за распространение" data-ar="GENIUS تدخل حيز التنفيذ في 18 يناير 2027 مع OCC/FDIC/قواعد بنك الاحتياطي الفيدرالي النهائية → U.S. العملات المستقرة الصادرة عن البنك؛ يتجاوز العرض 400 مليار دولار مع تنافس مفتوح USD و USDG و USDC على التوزيع"
             data-zh="GENIUS法案于2027年1月18日生效，OCC/FDIC/美联储最终规则落地 → 美国银行发行稳定币；Open USD、USDG与USDC竞争分发渠道，稳定币供应突破4000亿美元">GENIUS takes effect Jan 18, 2027 with final OCC/FDIC/Fed rules → U.S. bank-issued stablecoins; supply passes $400B as Open USD, USDG and USDC compete on distribution</li>
-        <li data-en="Tokenized stocks go mainstream: OKXICE (60+ U.S. stocks with dividends and voting rights), Coinbase and Binance pull equity flow on-chain; tokenized RWAs cross $100B"
+        <li data-en="Tokenized stocks go mainstream: OKXICE (60+ U.S. stocks with dividends and voting rights), Coinbase and Binance pull equity flow on-chain; tokenized RWAs cross $100B" data-ru="Токенизированные акции становятся мейнстримом: OKXICE (60+ U.S. акций с дивидендами и правом голоса), Coinbase и Binance перетягивают поток акций в цепочку; токенизированные RWA превысили 100 миллиардов долларов" data-ar="الأسهم الرمزية تسير في الاتجاه السائد: OKXICE (أكثر من 60 سهمًا أمريكيًا مع أرباح وحقوق تصويت)، Coinbase و Binance يسحبان تدفق الأسهم عبر السلسلة؛ تتجاوز RWAs الرمزية 100 مليار دولار"
             data-zh="代币化股票走向主流：OKXICE（60余只美股，含分红与投票权）、Coinbase与币安将股票交易流量引至链上；代币化RWA突破1000亿美元">Tokenized stocks go mainstream: OKXICE (60+ U.S. stocks with dividends and voting rights), Coinbase and Binance pull equity flow on-chain; tokenized RWAs cross $100B</li>
-        <li data-en="Exchanges become regulated super-apps: Coinbase's in-house clearing + Deribit, OKX Money and Binance's USDC push widen fee pools beyond trading"
+        <li data-en="Exchanges become regulated super-apps: Coinbase's in-house clearing + Deribit, OKX Money and Binance's USDC push widen fee pools beyond trading" data-ru="Биржи становятся регулируемыми супер-приложениями: внутренний клиринг + Deribit Coinbase, OKX Money и Binance USDC расширяют пулы комиссий за пределы торговли." data-ar="أصبحت عمليات التبادل تطبيقات فائقة منظمة: المقاصة الداخلية لـ Coinbase + Deribit وOKX Money وBinance USDC تعمل على توسيع مجمعات الرسوم إلى ما هو أبعد من التداول"
             data-zh="交易所成为受监管的超级应用：Coinbase自有清算 + Deribit、OKX Money与币安的USDC推广，将收入来源扩展至交易之外">Exchanges become regulated super-apps: Coinbase's in-house clearing + Deribit, OKX Money and Binance's USDC push widen fee pools beyond trading</li>
-        <li data-en="Ethereum Glamsterdam and Solana Alpenglow (12.8s → &amp;lt;150ms finality) reach mainnet → faster settlement for tokenized assets"
+        <li data-en="Ethereum Glamsterdam and Solana Alpenglow (12.8s → &amp;lt;150ms finality) reach mainnet → faster settlement for tokenized assets" data-ru="Ethereum Glamsterdam и Solana Alpenglow (12,8 с → &amp;lt; завершение 150 мс) достигают основной сети → более быстрый расчет токенизированных активов" data-ar="Ethereum Glamsterdam و Solana Alpenglow (12.8 ثانية → &amp;lt؛ 150 مللي ثانية نهائية) يصلان إلى الشبكة الرئيسية → تسوية أسرع للأصول المميزة"
             data-zh="以太坊Glamsterdam与Solana Alpenglow（终局时间12.8秒→150毫秒以内）登陆主网 → 代币化资产结算更快">Ethereum Glamsterdam and Solana Alpenglow (12.8s → &lt;150ms finality) reach mainnet → faster settlement for tokenized assets</li>
-        <li data-en="ETF demand resumes (September: +$2.65B); ETH/BTC reclaims 0.035+ and altcoin breadth improves as BTC dominance eases from ~59%"
+        <li data-en="ETF demand resumes (September: +$2.65B); ETH/BTC reclaims 0.035+ and altcoin breadth improves as BTC dominance eases from ~59%" data-ru="ETF спрос возобновляется (сентябрь: +2,65 млрд долларов США); ETH/BTC возвращает себе 0,035+, а широта охвата альткойнов увеличивается по мере того, как доминирование BTC снижается с ~ 59%" data-ar="ETF استئناف الطلب (سبتمبر: +2.65 مليار دولار)؛ ETH/BTC يستعيد 0.035+ ويتحسن اتساع العملة البديلة مع تراجع هيمنة BTC من ~59%"
             data-zh="ETF需求恢复（9月净流入26.5亿美元）；ETH/BTC收复0.035以上，BTC市占率自约59%回落，山寨币普涨面扩大">ETF demand resumes (September: +$2.65B); ETH/BTC reclaims 0.035+ and altcoin breadth improves as BTC dominance eases from ~59%</li>
       </ul>
     </div>
@@ -1077,91 +601,28 @@
 
 <!-- ══ LEGEND ══ -->
 <div class="legend">
-  <div class="legend-item"><div class="legend-dot" style="background:#1a9080;"></div><span data-en="Strategic Field (Paradigm)" data-zh="战略场域（范式）">Strategic Field (Paradigm)</span></div>
-  <div class="legend-item"><div class="legend-dot" style="background:#b88a10;"></div><span data-en="Industry Sectors (Upper Layer)" data-zh="行业赛道（上层）">Industry Sectors (Upper Layer)</span></div>
-  <div class="legend-item"><div class="legend-dot" style="background:#7a50c8;"></div><span data-en="Market Pillars (Lower Layer)" data-zh="市场支柱（下层）">Market Pillars (Lower Layer)</span></div>
-  <div class="legend-item"><div class="legend-dot" style="background:#7a50c8; opacity:0.5;"></div><span data-en="Emerging Pillar" data-zh="新兴支柱">Emerging Pillar</span></div>
-  <div class="legend-item"><div class="legend-dot" style="background:#d0a020;"></div><span data-en="Scoreboard / Exchanges / Allocation" data-zh="计分板 / 交易所 / 配置">Scoreboard / Exchanges / Allocation</span></div>
+  <div class="legend-item"><div class="legend-dot legend-dot--field"></div><span data-en="Strategic Field (Paradigm)" data-ru="Стратегическое поле (парадигма)" data-ar="المجال الاستراتيجي (النموذج)" data-zh="战略场域（范式）">Strategic Field (Paradigm)</span></div>
+  <div class="legend-item"><div class="legend-dot legend-dot--sectors"></div><span data-en="Industry Sectors (Upper Layer)" data-ru="Отрасли промышленности (верхний уровень)" data-ar="قطاعات الصناعة (الطبقة العليا)" data-zh="行业赛道（上层）">Industry Sectors (Upper Layer)</span></div>
+  <div class="legend-item"><div class="legend-dot legend-dot--pillars"></div><span data-en="Market Pillars (Lower Layer)" data-ru="Рыночные столпы (нижний уровень)" data-ar="ركائز السوق (الطبقة السفلى)" data-zh="市场支柱（下层）">Market Pillars (Lower Layer)</span></div>
+  <div class="legend-item"><div class="legend-dot legend-dot--emerging"></div><span data-en="Emerging Pillar" data-ru="Новый столп" data-ar="عمود الناشئة" data-zh="新兴支柱">Emerging Pillar</span></div>
+  <div class="legend-item"><div class="legend-dot legend-dot--scoreboard"></div><span data-en="Scoreboard / Exchanges / Allocation" data-ru="Табло / Обмены / Распределение" data-ar="لوحة النتائج / التبادلات / التخصيص" data-zh="计分板 / 交易所 / 配置">Scoreboard / Exchanges / Allocation</span></div>
 </div>
 
 <p class="footnote"
-   data-en="Educational overview — not investment, legal or tax advice. Market data as of Oct 8, 2026 (CoinGecko, DefiLlama, RWA.xyz, SoSoValue, company filings) unless dated otherwise."
+   data-en="Educational overview — not investment, legal or tax advice. Market data as of Oct 8, 2026 (CoinGecko, DefiLlama, RWA.xyz, SoSoValue, company filings) unless dated otherwise." data-ru="Образовательный обзор, а не инвестиционные, юридические или налоговые консультации. Рыночные данные по состоянию на 8 октября 2026 г. (CoinGecko, DefiLlama, RWA.xyz, SoSoValue, отчеты компаний), если не указано иное." data-ar="نظرة عامة تعليمية - وليس نصيحة استثمارية أو قانونية أو ضريبية. بيانات السوق اعتبارًا من 8 أكتوبر 2026 (CoinGecko، DefiLlama، RWA.xyz، SoSoValue، ملفات الشركة) ما لم يتم تأريخ خلاف ذلك."
    data-zh="教育性概览——不构成投资、法律或税务建议。除另有注明外，市场数据截至2026年10月8日（CoinGecko、DefiLlama、RWA.xyz、SoSoValue及公司公告）。">Educational overview — not investment, legal or tax advice. Market data as of Oct 8, 2026 (CoinGecko, DefiLlama, RWA.xyz, SoSoValue, company filings) unless dated otherwise.</p>
 
-<script>
-  let currentLang = 'en';
-  const TITLES = {
-    en: 'Web3 Industry Overview — October 2026',
-    zh: 'Web3 行业全览——2026年10月'
-  };
-  const DESCRIPTIONS = {
-    en: 'Layered map of the Web3 industry in October 2026: regulatory architecture, five sectors, market pillars, the exchange landscape, and the news moving markets.',
-    zh: '2026年10月 Web3 行业的层状图谱：监管架构、五大赛道、市场支柱、交易所版图，以及影响市场的新闻。'
-  };
 
-  function setLang(lang, remember) {
-    if (lang !== 'zh') lang = 'en';
-    currentLang = lang;
-    const btnEn = document.getElementById('btn-en');
-    const btnZh = document.getElementById('btn-zh');
-    btnEn.classList.toggle('active', lang === 'en');
-    btnZh.classList.toggle('active', lang === 'zh');
-    btnEn.setAttribute('aria-pressed', String(lang === 'en'));
-    btnZh.setAttribute('aria-pressed', String(lang === 'zh'));
-    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
-    document.title = TITLES[lang];
+<p class="gics-source">
+  <span data-en="Classification source: GICS® — The Global Industry Classification Standard, developed by S&amp;P Dow Jones Indices and MSCI. 11 sectors · 25 industry groups · 74 industries · 163 sub-industries. GICS® is a registered trademark of S&amp;P Dow Jones Indices LLC and MSCI Inc.; this independent site is not affiliated with or endorsed by either." data-zh="分类来源：GICS®——全球行业分类标准，由标普道琼斯指数与 MSCI 编制。11 个行业板块 · 25 个行业组 · 74 个行业 · 163 个子行业。GICS® 是标普道琼斯指数有限责任公司和 MSCI 公司的注册商标；本独立网站与上述机构无关联，亦未获其背书。" data-ru="Источник классификации: GICS® — Глобальный стандарт отраслевой классификации, разработанный S&amp;P Dow Jones Indices и MSCI. 11 секторов · 25 групп отраслей · 74 отрасли · 163 подотрасли. GICS® — зарегистрированная торговая марка S&amp;P Dow Jones Indices LLC и MSCI Inc.; этот независимый сайт не связан с ними и не одобрен ими." data-ar="مصدر التصنيف: GICS® — المعيار العالمي لتصنيف القطاعات، طوّرته S&amp;P Dow Jones Indices وMSCI. 11 قطاعًا · 25 مجموعة صناعية · 74 صناعة · 163 صناعة فرعية. GICS® علامة تجارية مسجلة لـ S&amp;P Dow Jones Indices LLC وMSCI Inc.؛ هذا الموقع المستقل غير تابع لهما ولا يحظى بتأييدهما.">Classification source: GICS® — The Global Industry Classification Standard, developed by S&amp;P Dow Jones Indices and MSCI. 11 sectors · 25 industry groups · 74 industries · 163 sub-industries. GICS® is a registered trademark of S&amp;P Dow Jones Indices LLC and MSCI Inc.; this independent site is not affiliated with or endorsed by either.</span>
+  <span aria-hidden="true"> · </span>
+  <a href="https://www.spglobal.com/spdji/en/landing/topic/gics/" target="_blank" rel="noopener" data-en="Official GICS page" data-zh="GICS 官方页面" data-ru="Официальная страница GICS" data-ar="صفحة GICS الرسمية">Official GICS page</a>
+  <span aria-hidden="true"> · </span>
+  <a href="https://www.msci.com/indexes/index-resources/gics" target="_blank" rel="noopener" data-en="MSCI GICS resource" data-zh="MSCI GICS 资源" data-ru="Ресурс GICS от MSCI" data-ar="مورد GICS من MSCI">MSCI GICS resource</a>
+</p>
 
-    const description = document.querySelector('meta[name="description"]');
-    if (description) description.setAttribute('content', DESCRIPTIONS[lang]);
-
-    document.querySelectorAll('[data-en]').forEach(el => { el.innerHTML = el.dataset[lang]; });
-    document.querySelectorAll('[data-title-en]').forEach(el => {
-      el.setAttribute('title', lang === 'zh' ? el.dataset.titleZh : el.dataset.titleEn);
-    });
-    document.querySelectorAll('[data-aria-en]').forEach(el => {
-      el.setAttribute('aria-label', lang === 'zh' ? el.dataset.ariaZh : el.dataset.ariaEn);
-    });
-
-    if (remember !== false) {
-      try { localStorage.setItem('voltai-lang', lang); } catch (e) {}
-    }
-  }
-
-  (function () {
-    let saved = null;
-    try { saved = localStorage.getItem('voltai-lang'); } catch (e) {}
-    if (location.hash === '#zh') saved = 'zh';
-    if (location.hash === '#en') saved = 'en';
-    if (saved === 'zh') setLang('zh', false);
-    else if (location.hash === '#en') setLang('en', false);
-  })();
-
-  function toggleTheme() {
-    const cur  = document.documentElement.getAttribute('data-theme') || 'dark';
-    const next = cur === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    try { localStorage.setItem('voltai-theme', next); } catch (e) {}
-    updateThemeIcon(next);
-  }
-
-  function updateThemeIcon(theme) {
-    const btn = document.getElementById('theme-btn');
-    if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    updateThemeIcon(document.documentElement.getAttribute('data-theme') || 'dark');
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
-      let stored = null;
-      try { stored = localStorage.getItem('voltai-theme'); } catch (err) {}
-      if (!stored) {
-        const t = e.matches ? 'dark' : 'light';
-        document.documentElement.setAttribute('data-theme', t);
-        updateThemeIcon(t);
-      }
-    });
-  });
-</script>
+<script src="assets/js/page-meta.js"></script>
+<script src="assets/js/site.js"></script>
 
 </body>
 </html>

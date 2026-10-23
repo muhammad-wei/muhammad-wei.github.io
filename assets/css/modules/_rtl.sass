@@ -1,0 +1,195 @@
+// Arabic (RTL) home-page mirroring. Kept in sync with the [dir="rtl"] block in main.css.
+html[dir="rtl"]
+  .header--lang
+    right: auto
+    left: 60px
+
+  .l-side-nav
+    left: auto
+    right: 0
+
+    &::before
+      left: auto
+      right: 0
+
+  .side-nav > li span,
+  .side-nav > li::before
+    left: auto
+    right: 10px
+
+  .side-nav li.is-active::before
+    left: auto
+    right: -33px
+
+  .intro
+    text-align: right
+
+  .intro--banner
+    img
+      right: auto
+      left: -12px
+
+    &::before
+      left: 0
+      right: -15px
+
+    &::after
+      left: auto
+      right: 0
+
+    button
+      .btn-background
+        left: auto
+        right: 23px
+
+      &:hover .btn-background
+        left: auto
+        right: 0
+
+      svg
+        left: auto
+        right: 5px
+        transform: scaleX(-1)
+
+  .work--lockup
+    .slider--item-left
+      left: auto
+      right: 0
+
+    .slider--item-right
+      right: auto
+      left: 0
+
+    .slider--item-center
+      left: auto
+      right: 50%
+      transform: translateX(50%)
+
+    .slider--next
+      right: auto
+      left: 0
+
+    .slider--prev
+      left: auto
+      right: 0
+
+    .slider--next svg,
+    .slider--prev svg
+      transform: scaleX(-1)
+
+  .vision
+    text-align: right
+
+  .vision-rain
+    right: auto
+    left: 0
+    -webkit-mask-image: linear-gradient(to left, transparent 0%, transparent 35%, #000 65%)
+    mask-image: linear-gradient(to left, transparent 0%, transparent 35%, #000 65%)
+
+  .vision-tree
+    direction: rtl
+
+  .vision-tree--note
+    direction: ltr
+    text-align: right
+
+  .vision--now
+    padding-left: 0
+    padding-right: 16px
+    border-left: 0
+    border-right: 2px solid $highlight
+
+  .contact--lockup
+    justify-content: flex-end
+    padding-right: 0
+    padding-left: 5%
+
+    .modal
+      text-align: right
+
+  .contact--channel-label,
+  .contact--channel a,
+  .contact--channel-id
+    text-align: right
+
+  .outer-nav
+    left: 55%
+    right: auto
+
+    & > li
+      transform: translateX(-350px) translateZ(-1000px)
+
+    & > li.is-vis
+      transform: translateX(0) translateZ(0)
+
+  @media (max-width: 767px)
+    .contact--lockup
+      justify-content: center
+      padding-left: 0
+      padding-right: 0
+
+  @media (max-width: 600px)
+    .header--lang
+      left: 52px
+
+    .outer-nav
+      left: 50%
+
+  @media (max-width: 900px)
+    .vision-tree
+      padding-left: 0
+      padding-right: 22px
+
+      &::before
+        left: auto
+        right: 4px
+
+      &--root::before
+        left: auto
+        right: -21px
+
+    .vision-branch
+      &::before
+        left: auto
+        right: -18px
+
+      &::after
+        left: auto
+        right: -19px
+
+    .vision-tree--open::before
+      left: auto
+      right: -21px
+
+    .vision-branch--node
+      text-align: right
+
+    .vision-branch--leaves li
+      text-align: right
+
+      & + li
+        padding-left: 0
+        padding-right: 9px
+
+        &::before
+          left: auto
+          right: 0
+
+    .vision-tree--open
+      text-align: right
+
+  @media (max-width: 600px) and (max-height: 760px)
+    .vision-tree
+      &::before
+        right: 4px
+
+      &--root::before,
+      &--open::before
+        right: -19px
+
+    .vision-branch
+      &::before
+        right: -16px
+
+      &::after
+        right: -17px

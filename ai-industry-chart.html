@@ -1,412 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page="ai">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="assets/img/logo.png">
 <title>AI Industry Overview — Reviewed October 2026</title>
 <meta name="description" content="Layered map of the AI industry: world models, four core modalities, and the data, algorithm, compute and energy pillars that sustain them.">
-<!-- Anti-FOUC: set theme before first paint -->
-<script>
-  (function(){
-    var s = null;
-    try { s = localStorage.getItem('voltai-theme'); } catch (e) {}
-    var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    document.documentElement.setAttribute('data-theme', s || (dark ? 'dark' : 'light'));
-  })();
-</script>
-<style>
-  /* ═══════════════════════════════
-     DARK TOKENS  (default)
-  ═══════════════════════════════ */
-  :root {
-    color-scheme: dark;
-    --bg-page:        #0f1117;
-    --text-body:      #e8eaf0;
-    --h1-color:       #c9d1e8;
-    --subtitle-color: #747d98;
-    /* controls */
-    --ctrl-bg:        #1a1f2e;
-    --ctrl-border:    #252b3d;
-    --ctrl-btn:       #7b86b3;
-    --ctrl-active-bg: #3b6fd4;
-    --ctrl-active:    #fff;
-    /* world models */
-    --wm-bg:          linear-gradient(135deg, #1a1060 0%, #2d1b69 100%);
-    --wm-border:      #6c3fc7;
-    --wm-shadow:      rgba(108,63,199,.35);
-    --wm-badge-bg:    #6c3fc7;
-    --wm-badge-color: #e2d9ff;
-    --wm-h2:          #d4bbff;
-    --wm-p:           #9d88ca;
-    --wm-tag-bg:      rgba(108,63,199,.25);
-    --wm-tag-border:  rgba(108,63,199,.5);
-    --wm-tag-color:   #c5adff;
-    /* connectors */
-    --conn1:          linear-gradient(to bottom, #6c3fc7, #3b6fd4);
-    --conn2:          linear-gradient(to bottom, #3b6fd4, #2da884);
-    --conn-arrow-1:   #3b6fd4;
-    --conn-arrow-2:   #2da884;
-    --conn-label:     #707cac;
-    --conn-label-bd:  #2a3050;
-    /* section headers */
-    --mod-hdr:        #3b8de8;
-    --pil-hdr:        #2da884;
-    /* modality cards */
-    --mod-bg:         linear-gradient(160deg, #111c38 0%, #0d1628 100%);
-    --mod-border:     #1e3060;
-    --mod-hover:      #3b6fd4;
-    --mod-h3:         #8ab4f8;
-    --mod-p:          #7f91ba;
-    --stag-color:     #668fde;
-    --stag-bg:        rgba(59,111,212,.12);
-    /* pillar cards */
-    --pil-bg:         linear-gradient(160deg, #0d2620 0%, #091a14 100%);
-    --pil-border:     #184030;
-    --pil-hover:      #2da884;
-    --pil-h3:         #5ecfa8;
-    --pil-p:          #6fa08a;
-    --nbadge-bg:      #2da884;
-    --nbadge-color:   #001a10;
-    /* legend */
-    --legend-color:   #707cac;
-  }
+<script src="assets/js/boot.js"></script>
+<link rel="stylesheet" href="assets/css/pages/ai-industry-chart.css">
+<link rel="stylesheet" href="assets/css/gics.css">
 
-  /* ═══════════════════════════════
-     LIGHT TOKENS
-  ═══════════════════════════════ */
-  html[data-theme="light"] {
-    color-scheme: light;
-    --bg-page:        #f2f4fc;
-    --text-body:      #1a1d2e;
-    --h1-color:       #252840;
-    --subtitle-color: #5e6e8e;
-    --ctrl-bg:        #ffffff;
-    --ctrl-border:    #dde4f0;
-    --ctrl-btn:       #62759d;
-    --ctrl-active-bg: #2060c0;
-    --ctrl-active:    #fff;
-    --wm-bg:          linear-gradient(135deg, #ede8ff 0%, #e6dcff 100%);
-    --wm-border:      #a080e0;
-    --wm-shadow:      rgba(108,63,199,.12);
-    --wm-badge-bg:    #7050c0;
-    --wm-badge-color: #fff;
-    --wm-h2:          #3a1880;
-    --wm-p:           #6040a0;
-    --wm-tag-bg:      rgba(108,63,199,.08);
-    --wm-tag-border:  rgba(108,63,199,.22);
-    --wm-tag-color:   #5030a0;
-    --conn1:          linear-gradient(to bottom, #8060d0, #4070d4);
-    --conn2:          linear-gradient(to bottom, #4070d4, #1a8060);
-    --conn-arrow-1:   #4070d4;
-    --conn-arrow-2:   #1a8060;
-    --conn-label:     #616d92;
-    --conn-label-bd:  #c8d0e8;
-    --mod-hdr:        #2060c0;
-    --pil-hdr:        #197d5e;
-    --mod-bg:         linear-gradient(160deg, #eef4ff 0%, #e8f0ff 100%);
-    --mod-border:     #b8cef0;
-    --mod-hover:      #4070d0;
-    --mod-h3:         #1a50b0;
-    --mod-p:          #4060a0;
-    --stag-color:     #2050b0;
-    --stag-bg:        rgba(32,80,176,.09);
-    --pil-bg:         linear-gradient(160deg, #eaf6ef 0%, #e0f2e8 100%);
-    --pil-border:     #98d4b8;
-    --pil-hover:      #1a8060;
-    --pil-h3:         #1a6848;
-    --pil-p:          #3a6050;
-    --nbadge-bg:      #1a7050;
-    --nbadge-color:   #e8fff5;
-    --legend-color:   #5c6f94;
-  }
-
-  /* ═══════════════════════════════
-     BASE
-  ═══════════════════════════════ */
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", sans-serif;
-    background: var(--bg-page);
-    color: var(--text-body);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 24px;
-  }
-
-  /* ── CONTROLS ── */
-  .controls {
-    position: fixed;
-    top: 20px;
-    right: 24px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    z-index: 100;
-  }
-
-  .theme-btn {
-    width: 34px;
-    height: 34px;
-    border-radius: 8px;
-    border: 1px solid var(--ctrl-border);
-    background: var(--ctrl-bg);
-    cursor: pointer;
-    font-size: 16px;
-    line-height: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
-    transition: background 0.2s, border-color 0.2s;
-  }
-
-  .lang-toggle {
-    display: flex;
-    background: var(--ctrl-bg);
-    border: 1px solid var(--ctrl-border);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
-  }
-  .lang-toggle button {
-    padding: 7px 14px;
-    font-size: 13px;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-    background: transparent;
-    color: var(--ctrl-btn);
-    letter-spacing: 0.04em;
-  }
-  .lang-toggle button.active {
-    background: var(--ctrl-active-bg);
-    color: var(--ctrl-active);
-  }
-
-  /* ── PAGE HEADER ── */
-  h1 {
-    font-size: 22px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    color: var(--h1-color);
-    margin-bottom: 8px;
-    text-align: center;
-  }
-  .subtitle {
-    font-size: 13px;
-    color: var(--subtitle-color);
-    margin-bottom: 48px;
-    text-align: center;
-  }
-
-  /* ── CHART WRAPPER ── */
-  .chart {
-    width: 100%;
-    max-width: 860px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-  }
-
-  /* ── WORLD MODELS ── */
-  .world-models {
-    width: 100%;
-    background: var(--wm-bg);
-    border: 1.5px solid var(--wm-border);
-    border-radius: 14px;
-    padding: 22px 28px;
-    position: relative;
-    box-shadow: 0 0 32px var(--wm-shadow);
-  }
-  .world-models .badge {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    background: var(--wm-badge-bg);
-    color: var(--wm-badge-color);
-    border-radius: 4px;
-    padding: 2px 8px;
-    margin-bottom: 10px;
-  }
-  .world-models h2 { font-size: 20px; font-weight: 700; color: var(--wm-h2); margin-bottom: 6px; }
-  .world-models p  { font-size: 13px; color: var(--wm-p); line-height: 1.6; }
-  .world-models .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-  .world-models .tag {
-    font-size: 11px;
-    background: var(--wm-tag-bg);
-    border: 1px solid var(--wm-tag-border);
-    color: var(--wm-tag-color);
-    border-radius: 20px;
-    padding: 3px 12px;
-  }
-
-  /* ── CONNECTORS ── */
-  .connector {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 6px 0;
-    gap: 2px;
-  }
-  .connector .line {
-    width: 2px;
-    height: 20px;
-    background: var(--conn1);
-  }
-  .conn-2 .line { background: var(--conn2); }
-  .connector .arrow {
-    width: 0; height: 0;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-  }
-  .connector.down .arrow  { border-top: 8px solid var(--conn-arrow-1); }
-  .conn-2.down .arrow     { border-top-color: var(--conn-arrow-2); }
-  .connector-label {
-    font-size: 10px;
-    color: var(--conn-label);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 2px 10px;
-    border: 1px dashed var(--conn-label-bd);
-    border-radius: 20px;
-    margin: 4px 0;
-  }
-
-  /* ── SECTION ── */
-  .section { width: 100%; }
-  .section-header {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .section-header::before,
-  .section-header::after { content: ""; flex: 1; height: 1px; background: currentColor; opacity: 0.2; }
-  .modalities-header { color: var(--mod-hdr); }
-  .pillars-header    { color: var(--pil-hdr); }
-
-  .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-
-  /* ── MODALITY CARDS ── */
-  .modality-card {
-    background: var(--mod-bg);
-    border: 1.5px solid var(--mod-border);
-    border-radius: 12px;
-    padding: 18px 16px;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .modality-card:hover { border-color: var(--mod-hover); transform: translateY(-2px); }
-  .modality-card .icon { font-size: 24px; margin-bottom: 10px; }
-  .modality-card h3 { font-size: 14px; font-weight: 600; color: var(--mod-h3); margin-bottom: 6px; }
-  .modality-card p  { font-size: 11.5px; color: var(--mod-p); line-height: 1.55; }
-  .modality-card .sub-tags { display: flex; flex-direction: column; gap: 4px; margin-top: 10px; }
-  .modality-card .sub-tag {
-    font-size: 10px;
-    color: var(--stag-color);
-    background: var(--stag-bg);
-    border-radius: 4px;
-    padding: 2px 7px;
-    width: fit-content;
-  }
-
-  /* ── PILLAR CARDS ── */
-  .pillar-card {
-    background: var(--pil-bg);
-    border: 1.5px solid var(--pil-border);
-    border-radius: 12px;
-    padding: 18px 16px;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .pillar-card:hover { border-color: var(--pil-hover); transform: translateY(-2px); }
-  .pillar-card .icon { font-size: 24px; margin-bottom: 10px; }
-  .pillar-card h3 {
-    font-size: 14px; font-weight: 600; color: var(--pil-h3); margin-bottom: 6px;
-    display: flex; align-items: center; gap: 6px;
-  }
-  .pillar-card p  { font-size: 11.5px; color: var(--pil-p); line-height: 1.55; }
-  .new-badge {
-    font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-    background: var(--nbadge-bg); color: var(--nbadge-color);
-    border-radius: 3px; padding: 1px 5px;
-  }
-
-  /* ── LEGEND ── */
-  .legend { margin-top: 40px; display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
-  .legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--legend-color); }
-  .footnote {
-    width: 100%; max-width: 960px;
-    margin: 28px auto 0; padding-top: 16px;
-    border-top: 1px solid var(--ctrl-border);
-    font-size: 11px; line-height: 1.6;
-    color: var(--legend-color); text-align: center;
-  }
-  .legend-dot  { width: 10px; height: 10px; border-radius: 50%; }
-
-  @media (max-width: 1024px) { body { padding-top: 72px; } }   /* clear the fixed controls */
-  @media (max-width: 640px) { .cards { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 380px) { .cards { grid-template-columns: 1fr; } }
-  /* ── HOME LINK (top-left, mirrors the controls) ── */
-  .home-link {
-    position: fixed; top: 20px; left: 24px; z-index: 100;
-    display: flex; align-items: center; height: 34px; padding: 0 12px;
-    border: 1px solid var(--ctrl-border); border-radius: 8px;
-    background: var(--ctrl-bg); color: var(--text-body);
-    font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-decoration: none;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
-    transition: border-color 0.2s;
-  }
-  .home-link:hover, .home-link:focus-visible { border-color: var(--text-body); }
-</style>
 </head>
 <body>
 
-<a class="home-link" href="index.html" title="Back to homepage" data-title-en="Back to homepage" data-title-zh="返回首页" data-en="← Home" data-zh="← 首页">← Home</a>
+<a class="home-link" href="index.html" title="Back to homepage" data-title-en="Back to homepage" data-title-ru="Вернуться на главную страницу" data-title-ar="العودة إلى الصفحة الرئيسية" data-title-zh="返回首页" data-en="← Home" data-ru="← Главная" data-ar="→ الرئيسية" data-zh="← 首页">← Home</a>
 <div class="controls">
-  <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Switch theme" aria-label="Switch theme" data-title-en="Switch theme" data-title-zh="切换主题" data-aria-en="Switch theme" data-aria-zh="切换主题">🌙</button>
-  <div class="lang-toggle" role="group" aria-label="Language" data-aria-en="Language" data-aria-zh="语言">
-    <button id="btn-en" class="active" onclick="setLang('en')" aria-pressed="true">EN</button>
-    <button id="btn-zh" onclick="setLang('zh')" aria-pressed="false">中文</button>
-  </div>
+  <button class="theme-btn" id="theme-btn" title="Switch theme" aria-label="Switch theme" data-title-en="Switch theme" data-title-ru="Переключить тему" data-title-ar="تبديل المظهر" data-title-zh="切换主题" data-aria-en="Switch theme" data-aria-ru="Переключить тему" data-aria-ar="تبديل المظهر" data-aria-zh="切换主题">🌙</button>
+  <div class="lang-toggle" role="group" aria-label="Language" data-aria-en="Language" data-aria-ru="Язык" data-aria-ar="اللغة" data-aria-zh="语言">
+                    <select id="lang-select" aria-label="Language" data-aria-en="Language" data-aria-zh="语言" data-aria-ru="Язык" data-aria-ar="اللغة">
+                      <option value="en" lang="en">EN</option>
+                      <option value="zh" lang="zh-CN">中文</option>
+                      <option value="ru" lang="ru">РУ</option>
+                      <option value="ar" lang="ar">عربي</option>
+                    </select>
+                  </div>
 </div>
 
-<h1 data-en="AI Industry — Full Overview" data-zh="AI 行业全览">AI Industry — Full Overview</h1>
-<p class="subtitle" data-en="Reviewed October 2026 · Modalities · World Models · Industry Pillars" data-zh="2026年10月复核 · 模态 · 世界模型 · 行业支柱">Reviewed October 2026 · Modalities · World Models · Industry Pillars</p>
+<h1 data-en="AI Industry — Full Overview" data-ru="AI-индустрия — полный обзор" data-ar="قطاع AI — نظرة شاملة" data-zh="AI 行业全览">AI Industry — Full Overview</h1>
+<p class="subtitle" data-en="Reviewed October 2026 · Modalities · World Models · Industry Pillars" data-ru="Проверено в октябре 2026 · Модальности · Мировые модели · Отраслевые опоры" data-ar="مراجعة أكتوبر 2026 · الأنماط · النماذج العالمية · دعائم القطاع" data-zh="2026年10月复核 · 模态 · 世界模型 · 行业支柱">Reviewed October 2026 · Modalities · World Models · Industry Pillars</p>
+<aside class="gics-lens">
+  <span class="gics-lens-label" data-en="GICS® lens" data-zh="GICS® 视角" data-ru="Разрез GICS®" data-ar="منظور GICS®">GICS® lens</span>
+  <p class="gics-lens-text" data-en="AI is a cross-sector theme, not a GICS sector. Its value chain maps mainly to Information Technology and Communication Services, with demand links to Utilities and Industrials." data-zh="AI 是跨行业主题，不是 GICS 行业板块。其价值链主要对应信息技术与通信服务，并与公用事业和工业存在需求关联。" data-ru="AI — межотраслевая тема, а не сектор GICS. Его цепочка создания стоимости относится главным образом к информационным технологиям и коммуникационным услугам, а спрос связан с коммунальными услугами и промышленностью." data-ar="AI موضوع متعدد القطاعات وليس قطاعًا في GICS. تندرج سلسلة قيمته أساسًا ضمن تقنية المعلومات وخدمات الاتصالات، مع روابط طلب بالمرافق العامة والصناعات.">AI is a cross-sector theme, not a GICS sector. Its value chain maps mainly to Information Technology and Communication Services, with demand links to Utilities and Industrials.</p>
+</aside>
 
 <div class="chart">
 
   <!-- WORLD MODELS -->
   <div class="world-models">
-    <div class="badge" data-en="Higher-Order Paradigm" data-zh="高阶范式">Higher-Order Paradigm</div>
-    <h2 data-en="World Models" data-zh="世界模型">World Models</h2>
-    <p data-en="Not a peer modality — a <strong>system-level paradigm</strong> that integrates all modalities below. Learns 3D spatial structure, physical laws, causal logic, and environmental interaction to simulate how the real world operates."
+    <div class="badge" data-en="Higher-Order Paradigm" data-ru="Парадигма высшего порядка" data-ar="نموذج النظام الأعلى" data-zh="高阶范式">Higher-Order Paradigm</div>
+    <h2 data-en="World Models" data-ru="Мировые модели" data-ar="نماذج عالمية" data-zh="世界模型">World Models</h2>
+    <p data-en="Not a peer modality — a <strong>system-level paradigm</strong> that integrates all modalities below. Learns 3D spatial structure, physical laws, causal logic, and environmental interaction to simulate how the real world operates." data-ru="Не одноранговая модальность — это <strong>парадигма системного уровня</strong>, которая объединяет все приведенные ниже модальности. Изучает трехмерную пространственную структуру, физические законы, причинно-следственную логику и взаимодействие с окружающей средой, чтобы моделировать работу реального мира." data-ar="ليست طريقة نظير — <strong>نموذج على مستوى النظام</strong> يدمج جميع الأساليب أدناه. يتعلم البنية المكانية ثلاثية الأبعاد والقوانين الفيزيائية والمنطق السببي والتفاعل البيئي لمحاكاة كيفية عمل العالم الحقيقي."
        data-zh="并非并列模态——而是一种<strong>系统级范式</strong>，整合以下所有模态。学习三维空间结构、物理定律、因果逻辑与环境交互，以模拟真实世界的运作方式。">
       Not a peer modality — a <strong>system-level paradigm</strong> that integrates all modalities below. Learns 3D spatial structure, physical laws, causal logic, and environmental interaction to simulate how the real world operates.
     </p>
     <div class="tags">
-      <span class="tag" data-en="3D Spatial Structure"   data-zh="三维空间结构">3D Spatial Structure</span>
-      <span class="tag" data-en="Physical Laws"          data-zh="物理定律">Physical Laws</span>
-      <span class="tag" data-en="Causal Logic"           data-zh="因果逻辑">Causal Logic</span>
-      <span class="tag" data-en="Environment Simulation" data-zh="环境模拟">Environment Simulation</span>
-      <span class="tag" data-en="General AI Cornerstone" data-zh="通用AI基石">General AI Cornerstone</span>
+      <span class="tag" data-en="3D Spatial Structure" data-ru="3D пространственная структура" data-ar="الهيكل المكاني ثلاثي الأبعاد"   data-zh="三维空间结构">3D Spatial Structure</span>
+      <span class="tag" data-en="Physical Laws" data-ru="Физические законы" data-ar="القوانين الفيزيائية"          data-zh="物理定律">Physical Laws</span>
+      <span class="tag" data-en="Causal Logic" data-ru="Причинная логика" data-ar="المنطق السببي"           data-zh="因果逻辑">Causal Logic</span>
+      <span class="tag" data-en="Environment Simulation" data-ru="Моделирование окружающей среды" data-ar="محاكاة البيئة" data-zh="环境模拟">Environment Simulation</span>
+      <span class="tag" data-en="General AI Cornerstone" data-ru="Общее AI Краеугольный камень" data-ar="عام AI حجر الزاوية" data-zh="通用AI基石">General AI Cornerstone</span>
     </div>
   </div>
 
   <!-- Connector 1 -->
   <div class="connector down">
     <div class="line"></div>
-    <div class="connector-label" data-en="integrates &amp; sits above" data-zh="整合并凌驾于上">integrates &amp; sits above</div>
+    <div class="connector-label" data-en="integrates &amp; sits above" data-ru="объединяет &amp; находится выше" data-ar="يدمج &amp; يجلس أعلاه" data-zh="整合并凌驾于上">integrates &amp; sits above</div>
     <div class="line"></div>
     <div class="arrow"></div>
   </div>
@@ -414,63 +63,63 @@
   <!-- CORE MODALITIES -->
   <div class="section">
     <div class="section-header modalities-header"
-         data-en="Core AI Modalities — Upper Layer"
+         data-en="Core AI Modalities — Upper Layer" data-ru="Основные AI модальности — верхний уровень" data-ar="الأساسية AI الطرائق - الطبقة العليا"
          data-zh="核心 AI 模态 — 上层">Core AI Modalities — Upper Layer</div>
     <div class="cards">
 
       <div class="modality-card">
         <div class="icon">💬</div>
-        <h3 data-en="Language" data-zh="语言">Language</h3>
-        <p data-en="Text, dialogue, code, logical reasoning, knowledge induction. The foundation for cognitive thinking and human-computer interaction."
+        <h3 data-en="Language" data-ru="Язык" data-ar="اللغة" data-zh="语言">Language</h3>
+        <p data-en="Text, dialogue, code, logical reasoning, knowledge induction. The foundation for cognitive thinking and human-computer interaction." data-ru="Текст, диалог, код, логические рассуждения, индукция знаний. Основа когнитивного мышления и взаимодействия человека и компьютера." data-ar="النص، الحوار، الكود، الاستدلال المنطقي، استخلاص المعرفة. أساس التفكير المعرفي والتفاعل بين الإنسان والحاسوب."
            data-zh="文本、对话、代码、逻辑推理与知识归纳。认知思维与人机交互的底层基础。">
           Text, dialogue, code, logical reasoning, knowledge induction. The foundation for cognitive thinking and human-computer interaction.
         </p>
         <div class="sub-tags">
-          <span class="sub-tag" data-en="Text &amp; Dialogue" data-zh="文本与对话">Text &amp; Dialogue</span>
-          <span class="sub-tag" data-en="Code Generation"     data-zh="代码生成">Code Generation</span>
-          <span class="sub-tag" data-en="Reasoning"           data-zh="推理">Reasoning</span>
+          <span class="sub-tag" data-en="Text &amp; Dialogue" data-ru="Текст &amp; Диалог" data-ar="النص &amp; الحوار" data-zh="文本与对话">Text &amp; Dialogue</span>
+          <span class="sub-tag" data-en="Code Generation" data-ru="Генерация кода" data-ar="توليد الكود"     data-zh="代码生成">Code Generation</span>
+          <span class="sub-tag" data-en="Reasoning" data-ru="Рассуждение" data-ar="المنطق"           data-zh="推理">Reasoning</span>
         </div>
       </div>
 
       <div class="modality-card">
         <div class="icon">🎙️</div>
-        <h3 data-en="Voice &amp; Audio" data-zh="语音与音频">Voice &amp; Audio</h3>
-        <p data-en="Independent acoustic dimension. Speech recognition, synthesis, sound-field understanding, and voiceprint analysis."
+        <h3 data-en="Voice &amp; Audio" data-ru="Голос &amp; Аудио" data-ar="صوت &amp; صوت" data-zh="语音与音频">Voice &amp; Audio</h3>
+        <p data-en="Independent acoustic dimension. Speech recognition, synthesis, sound-field understanding, and voiceprint analysis." data-ru="Независимое акустическое измерение. Распознавание речи, синтез, понимание звукового поля и анализ голосового отпечатка." data-ar="البعد الصوتي المستقل. التعرف على الكلام، والتوليف، وفهم المجال الصوتي، وتحليل البصمة الصوتية."
            data-zh="独立的声学维度。涵盖语音识别、语音合成、声场理解与声纹分析。">
           Independent acoustic dimension. Speech recognition, synthesis, sound-field understanding, and voiceprint analysis.
         </p>
         <div class="sub-tags">
-          <span class="sub-tag" data-en="ASR / TTS"           data-zh="ASR / TTS">ASR / TTS</span>
-          <span class="sub-tag" data-en="Environmental Audio" data-zh="环境音频">Environmental Audio</span>
-          <span class="sub-tag" data-en="Voiceprint"          data-zh="声纹">Voiceprint</span>
+          <span class="sub-tag" data-en="ASR / TTS" data-ru="ASR / TTS" data-ar="ASR / TTS"           data-zh="ASR / TTS">ASR / TTS</span>
+          <span class="sub-tag" data-en="Environmental Audio" data-ru="Экологическое аудио" data-ar="الصوت البيئي" data-zh="环境音频">Environmental Audio</span>
+          <span class="sub-tag" data-en="Voiceprint" data-ru="Голосовой отпечаток" data-ar="بصمة صوتية"          data-zh="声纹">Voiceprint</span>
         </div>
       </div>
 
       <div class="modality-card">
         <div class="icon">👁️</div>
-        <h3 data-en="Vision" data-zh="视觉">Vision</h3>
-        <p data-en="Image + Video. Static 2D parsing and feature recognition, plus temporal understanding of continuous frames and dynamic scenes."
+        <h3 data-en="Vision" data-ru="Видение" data-ar="الرؤية" data-zh="视觉">Vision</h3>
+        <p data-en="Image + Video. Static 2D parsing and feature recognition, plus temporal understanding of continuous frames and dynamic scenes." data-ru="Изображение + Видео. Статический 2D-анализ и распознавание объектов, а также временное понимание непрерывных кадров и динамических сцен." data-ar="صورة + فيديو. التحليل الثابت ثنائي الأبعاد والتعرف على الميزات، بالإضافة إلى الفهم الزمني للإطارات المستمرة والمشاهد الديناميكية."
            data-zh="图像 + 视频。静态二维解析与特征识别，以及对连续帧和动态场景的时序理解。">
           Image + Video. Static 2D parsing and feature recognition, plus temporal understanding of continuous frames and dynamic scenes.
         </p>
         <div class="sub-tags">
-          <span class="sub-tag" data-en="Static (Image)"        data-zh="静态（图像）">Static (Image)</span>
-          <span class="sub-tag" data-en="Temporal (Video)"      data-zh="时序（视频）">Temporal (Video)</span>
-          <span class="sub-tag" data-en="Industrial Inspection" data-zh="工业检测">Industrial Inspection</span>
+          <span class="sub-tag" data-en="Static (Image)" data-ru="Статический (изображение)" data-ar="ثابت (صورة)"        data-zh="静态（图像）">Static (Image)</span>
+          <span class="sub-tag" data-en="Temporal (Video)" data-ru="Временное (Видео)" data-ar="مؤقت (فيديو)"      data-zh="时序（视频）">Temporal (Video)</span>
+          <span class="sub-tag" data-en="Industrial Inspection" data-ru="Промышленная инспекция" data-ar="التفتيش الصناعي" data-zh="工业检测">Industrial Inspection</span>
         </div>
       </div>
 
       <div class="modality-card">
         <div class="icon">🤖</div>
-        <h3 data-en="Embodied / Action" data-zh="具身 / 行动">Embodied / Action</h3>
-        <p data-en="Physical-world interaction: robotic control, manipulation, locomotion, and the mapping from perception to action."
+        <h3 data-en="Embodied / Action" data-ru="Воплощенное / Действие" data-ar="مجسد / عمل" data-zh="具身 / 行动">Embodied / Action</h3>
+        <p data-en="Physical-world interaction: robotic control, manipulation, locomotion, and the mapping from perception to action." data-ru="Взаимодействие физического мира: роботизированное управление, манипуляции, передвижение и переход от восприятия к действию." data-ar="التفاعل بين العالم المادي: التحكم الآلي، والتلاعب، والحركة، ورسم الخرائط من الإدراك إلى العمل."
            data-zh="物理世界交互：机器人控制、操作、运动，以及从感知到行动的映射。">
           Physical-world interaction: robotic control, manipulation, locomotion, and the mapping from perception to action.
         </p>
         <div class="sub-tags">
-          <span class="sub-tag" data-en="Robotics"              data-zh="机器人">Robotics</span>
-          <span class="sub-tag" data-en="Autonomous Driving"    data-zh="自动驾驶">Autonomous Driving</span>
-          <span class="sub-tag" data-en="Industrial Automation" data-zh="工业自动化">Industrial Automation</span>
+          <span class="sub-tag" data-en="Robotics" data-ru="Робототехника" data-ar="الروبوتات"              data-zh="机器人">Robotics</span>
+          <span class="sub-tag" data-en="Autonomous Driving" data-ru="Автономное вождение" data-ar="القيادة الذاتية"    data-zh="自动驾驶">Autonomous Driving</span>
+          <span class="sub-tag" data-en="Industrial Automation" data-ru="Промышленная автоматизация" data-ar="الأتمتة الصناعية" data-zh="工业自动化">Industrial Automation</span>
         </div>
       </div>
 
@@ -480,7 +129,7 @@
   <!-- Connector 2 -->
   <div class="connector down conn-2">
     <div class="line"></div>
-    <div class="connector-label" data-en="sustained by" data-zh="由以下支柱支撑">sustained by</div>
+    <div class="connector-label" data-en="sustained by" data-ru="поддерживается" data-ar="مستدامة من قبل" data-zh="由以下支柱支撑">sustained by</div>
     <div class="line"></div>
     <div class="arrow"></div>
   </div>
@@ -488,14 +137,14 @@
   <!-- INDUSTRY PILLARS -->
   <div class="section">
     <div class="section-header pillars-header"
-         data-en="Industry Pillars — Lower Layer"
+         data-en="Industry Pillars — Lower Layer" data-ru="Столпы отрасли — нижний уровень" data-ar="ركائز الصناعة – الطبقة السفلى"
          data-zh="行业支柱 — 下层">Industry Pillars — Lower Layer</div>
     <div class="cards">
 
       <div class="pillar-card">
         <div class="icon">🗄️</div>
-        <h3 data-en="Data" data-zh="数据">Data</h3>
-        <p data-en="Raw material of AI. Collection, cleaning, labeling, general corpora, and vertical-industry data. Determines the upper limit of model capability."
+        <h3 data-en="Data" data-ru="Данные" data-ar="البيانات" data-zh="数据">Data</h3>
+        <p data-en="Raw material of AI. Collection, cleaning, labeling, general corpora, and vertical-industry data. Determines the upper limit of model capability." data-ru="Сырье AI. Сбор, очистка, маркировка, общие массивы и вертикальные отраслевые данные. Определяет верхний предел возможностей модели." data-ar="المادة الخام AI. التجميع والتنظيف ووضع العلامات والبيانات العامة وبيانات الصناعة الرأسية. يحدد الحد الأعلى لقدرة النموذج."
            data-zh="AI 的原材料。采集、清洗、标注、通用语料与垂直行业数据，直接决定模型能力的上限。">
           Raw material of AI. Collection, cleaning, labeling, general corpora, and vertical-industry data. Determines the upper limit of model capability.
         </p>
@@ -503,8 +152,8 @@
 
       <div class="pillar-card">
         <div class="icon">🧠</div>
-        <h3 data-en="Algorithms" data-zh="算法">Algorithms</h3>
-        <p data-en="Logical brain of AI. Foundational architectures, training paradigms, fine-tuning, and alignment strategies define how models learn, understand, and generate."
+        <h3 data-en="Algorithms" data-ru="Алгоритмы" data-ar="الخوارزميات" data-zh="算法">Algorithms</h3>
+        <p data-en="Logical brain of AI. Foundational architectures, training paradigms, fine-tuning, and alignment strategies define how models learn, understand, and generate." data-ru="Логический мозг AI. Фундаментальные архитектуры, парадигмы обучения, стратегии точной настройки и согласования определяют, как модели обучаются, понимают и генерируют." data-ar="العقل المنطقي لAI. تحدد البنى التأسيسية، ونماذج التدريب، واستراتيجيات الضبط الدقيق والمواءمة كيفية تعلم النماذج وفهمها وإنشاءها."
            data-zh="AI 的逻辑大脑。基础架构、训练范式、微调与对齐策略，定义模型的学习、理解与生成能力。">
           Logical brain of AI. Foundational architectures, training paradigms, fine-tuning, and alignment strategies define how models learn, understand, and generate.
         </p>
@@ -512,8 +161,8 @@
 
       <div class="pillar-card">
         <div class="icon">⚡</div>
-        <h3 data-en="Compute" data-zh="算力">Compute</h3>
-        <p data-en="Physical carrier of AI. GPUs, NPUs, server clusters, and edge devices that execute training and inference."
+        <h3 data-en="Compute" data-ru="Вычислить" data-ar="حساب" data-zh="算力">Compute</h3>
+        <p data-en="Physical carrier of AI. GPUs, NPUs, server clusters, and edge devices that execute training and inference." data-ru="Физический носитель AI. Графические процессоры, NPU, серверные кластеры и периферийные устройства, выполняющие обучение и логический вывод." data-ar="الناقل المادي لAI. وحدات معالجة الرسومات، ووحدات NPU، ومجموعات الخوادم، وأجهزة الحافة التي تنفذ التدريب والاستدلال."
            data-zh="AI 的物理载体。执行训练与推理的 GPU、NPU、服务器集群与边缘设备。">
           Physical carrier of AI. GPUs, NPUs, server clusters, and edge devices that execute training and inference.
         </p>
@@ -522,10 +171,10 @@
       <div class="pillar-card">
         <div class="icon">🔋</div>
         <h3>
-          <span data-en="Energy" data-zh="能源">Energy</span>
-          <span class="new-badge" data-en="Emerging" data-zh="新兴">Emerging</span>
+          <span data-en="Energy" data-ru="Энергия" data-ar="الطاقة" data-zh="能源">Energy</span>
+          <span class="new-badge" data-en="Emerging" data-ru="Новые" data-ar="الناشئة" data-zh="新兴">Emerging</span>
         </h3>
-        <p data-en="Physical foundation for large-scale AI. Power supply, data-center cooling, carbon footprint. Rising to co-equal pillar status as frontier-model power demand reaches gigawatt scale."
+        <p data-en="Physical foundation for large-scale AI. Power supply, data-center cooling, carbon footprint. Rising to co-equal pillar status as frontier-model power demand reaches gigawatt scale." data-ru="Физическая основа для крупномасштабного AI. Электроснабжение, охлаждение центров обработки данных, углеродный след. Повышение статуса равноправной опоры по мере того, как спрос на электроэнергию передовой модели достигает гигаваттного масштаба." data-ar="الأساس المادي لنطاق واسع AI. مصدر الطاقة، تبريد مركز البيانات، البصمة الكربونية. الارتقاء إلى وضع الركيزة المتساوية مع وصول الطلب على الطاقة في النموذج الحدودي إلى نطاق جيجاوات."
            data-zh="大规模 AI 运行的物理基础。算力供电、数据中心冷却与碳排放。随着前沿模型电力需求迈入吉瓦级别，正逐步跃升为并列支柱。">
           Physical foundation for large-scale AI. Power supply, data-center cooling, carbon footprint. Rising to co-equal pillar status as frontier-model power demand reaches gigawatt scale.
         </p>
@@ -538,101 +187,38 @@
 
 <div class="legend">
   <div class="legend-item">
-    <div class="legend-dot" style="background:#6c3fc7;"></div>
-    <span data-en="Integrative Paradigm" data-zh="整合范式">Integrative Paradigm</span>
+    <div class="legend-dot legend-dot--paradigm"></div>
+    <span data-en="Integrative Paradigm" data-ru="Интегративная парадигма" data-ar="النموذج التكاملي" data-zh="整合范式">Integrative Paradigm</span>
   </div>
   <div class="legend-item">
-    <div class="legend-dot" style="background:#3b6fd4;"></div>
-    <span data-en="Core Modalities (Upper Layer)" data-zh="核心模态（上层）">Core Modalities (Upper Layer)</span>
+    <div class="legend-dot legend-dot--modalities"></div>
+    <span data-en="Core Modalities (Upper Layer)" data-ru="Основные модальности (верхний уровень)" data-ar="الطرائق الأساسية (الطبقة العليا)" data-zh="核心模态（上层）">Core Modalities (Upper Layer)</span>
   </div>
   <div class="legend-item">
-    <div class="legend-dot" style="background:#2da884;"></div>
-    <span data-en="Industry Pillars (Lower Layer)" data-zh="行业支柱（下层）">Industry Pillars (Lower Layer)</span>
+    <div class="legend-dot legend-dot--pillars"></div>
+    <span data-en="Industry Pillars (Lower Layer)" data-ru="Столпы отрасли (нижний уровень)" data-ar="ركائز الصناعة (الطبقة السفلى)" data-zh="行业支柱（下层）">Industry Pillars (Lower Layer)</span>
   </div>
   <div class="legend-item">
-    <div class="legend-dot" style="background:#2da884; opacity:0.5;"></div>
-    <span data-en="Emerging Pillar" data-zh="新兴支柱">Emerging Pillar</span>
+    <div class="legend-dot legend-dot--emerging"></div>
+    <span data-en="Emerging Pillar" data-ru="Новый столп" data-ar="عمود الناشئة" data-zh="新兴支柱">Emerging Pillar</span>
   </div>
 </div>
 
 <p class="footnote"
-   data-en="Educational overview — not investment, legal or tax advice. Conceptual map reviewed October 2026; it contains no market figures."
+   data-en="Educational overview — not investment, legal or tax advice. Conceptual map reviewed October 2026; it contains no market figures." data-ru="Образовательный обзор, а не инвестиционные, юридические или налоговые консультации. Концептуальная карта проверена в октябре 2026 г.; он не содержит рыночных показателей." data-ar="نظرة عامة تعليمية - وليس نصيحة استثمارية أو قانونية أو ضريبية. تمت مراجعة الخريطة المفاهيمية في أكتوبر 2026؛ ولا يحتوي على أرقام السوق."
    data-zh="教育性概览——不构成投资、法律或税务建议。概念图谱于2026年10月复核，不含市场数据。">Educational overview — not investment, legal or tax advice. Conceptual map reviewed October 2026; it contains no market figures.</p>
 
-<script>
-  let currentLang = 'en';
-  const TITLES = {
-    en: 'AI Industry Overview — Reviewed October 2026',
-    zh: 'AI 行业全览——2026年10月复核'
-  };
-  const DESCRIPTIONS = {
-    en: 'Layered map of the AI industry: world models, four core modalities, and the data, algorithm, compute and energy pillars that sustain them.',
-    zh: 'AI 行业的层状图谱：世界模型、四大核心模态，以及支撑它们的数据、算法、算力与能源支柱。'
-  };
 
-  function setLang(lang, remember) {
-    if (lang !== 'zh') lang = 'en';
-    currentLang = lang;
-    const btnEn = document.getElementById('btn-en');
-    const btnZh = document.getElementById('btn-zh');
-    btnEn.classList.toggle('active', lang === 'en');
-    btnZh.classList.toggle('active', lang === 'zh');
-    btnEn.setAttribute('aria-pressed', String(lang === 'en'));
-    btnZh.setAttribute('aria-pressed', String(lang === 'zh'));
-    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
-    document.title = TITLES[lang];
+<p class="gics-source">
+  <span data-en="Classification source: GICS® — The Global Industry Classification Standard, developed by S&amp;P Dow Jones Indices and MSCI. 11 sectors · 25 industry groups · 74 industries · 163 sub-industries. GICS® is a registered trademark of S&amp;P Dow Jones Indices LLC and MSCI Inc.; this independent site is not affiliated with or endorsed by either." data-zh="分类来源：GICS®——全球行业分类标准，由标普道琼斯指数与 MSCI 编制。11 个行业板块 · 25 个行业组 · 74 个行业 · 163 个子行业。GICS® 是标普道琼斯指数有限责任公司和 MSCI 公司的注册商标；本独立网站与上述机构无关联，亦未获其背书。" data-ru="Источник классификации: GICS® — Глобальный стандарт отраслевой классификации, разработанный S&amp;P Dow Jones Indices и MSCI. 11 секторов · 25 групп отраслей · 74 отрасли · 163 подотрасли. GICS® — зарегистрированная торговая марка S&amp;P Dow Jones Indices LLC и MSCI Inc.; этот независимый сайт не связан с ними и не одобрен ими." data-ar="مصدر التصنيف: GICS® — المعيار العالمي لتصنيف القطاعات، طوّرته S&amp;P Dow Jones Indices وMSCI. 11 قطاعًا · 25 مجموعة صناعية · 74 صناعة · 163 صناعة فرعية. GICS® علامة تجارية مسجلة لـ S&amp;P Dow Jones Indices LLC وMSCI Inc.؛ هذا الموقع المستقل غير تابع لهما ولا يحظى بتأييدهما.">Classification source: GICS® — The Global Industry Classification Standard, developed by S&amp;P Dow Jones Indices and MSCI. 11 sectors · 25 industry groups · 74 industries · 163 sub-industries. GICS® is a registered trademark of S&amp;P Dow Jones Indices LLC and MSCI Inc.; this independent site is not affiliated with or endorsed by either.</span>
+  <span aria-hidden="true"> · </span>
+  <a href="https://www.spglobal.com/spdji/en/landing/topic/gics/" target="_blank" rel="noopener" data-en="Official GICS page" data-zh="GICS 官方页面" data-ru="Официальная страница GICS" data-ar="صفحة GICS الرسمية">Official GICS page</a>
+  <span aria-hidden="true"> · </span>
+  <a href="https://www.msci.com/indexes/index-resources/gics" target="_blank" rel="noopener" data-en="MSCI GICS resource" data-zh="MSCI GICS 资源" data-ru="Ресурс GICS от MSCI" data-ar="مورد GICS من MSCI">MSCI GICS resource</a>
+</p>
 
-    const description = document.querySelector('meta[name="description"]');
-    if (description) description.setAttribute('content', DESCRIPTIONS[lang]);
-
-    document.querySelectorAll('[data-en]').forEach(el => { el.innerHTML = el.dataset[lang]; });
-    document.querySelectorAll('[data-title-en]').forEach(el => {
-      el.setAttribute('title', lang === 'zh' ? el.dataset.titleZh : el.dataset.titleEn);
-    });
-    document.querySelectorAll('[data-aria-en]').forEach(el => {
-      el.setAttribute('aria-label', lang === 'zh' ? el.dataset.ariaZh : el.dataset.ariaEn);
-    });
-
-    if (remember !== false) {
-      try { localStorage.setItem('voltai-lang', lang); } catch (e) {}
-    }
-  }
-
-  (function () {
-    let saved = null;
-    try { saved = localStorage.getItem('voltai-lang'); } catch (e) {}
-    if (location.hash === '#zh') saved = 'zh';
-    if (location.hash === '#en') saved = 'en';
-    if (saved === 'zh') setLang('zh', false);
-    else if (location.hash === '#en') setLang('en', false);
-  })();
-
-  function toggleTheme() {
-    const cur  = document.documentElement.getAttribute('data-theme') || 'dark';
-    const next = cur === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    try { localStorage.setItem('voltai-theme', next); } catch (e) {}
-    updateThemeIcon(next);
-  }
-
-  function updateThemeIcon(theme) {
-    const btn = document.getElementById('theme-btn');
-    if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    updateThemeIcon(document.documentElement.getAttribute('data-theme') || 'dark');
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
-      let stored = null;
-      try { stored = localStorage.getItem('voltai-theme'); } catch (err) {}
-      if (!stored) {
-        const t = e.matches ? 'dark' : 'light';
-        document.documentElement.setAttribute('data-theme', t);
-        updateThemeIcon(t);
-      }
-    });
-  });
-</script>
+<script src="assets/js/page-meta.js"></script>
+<script src="assets/js/site.js"></script>
 
 </body>
 </html>

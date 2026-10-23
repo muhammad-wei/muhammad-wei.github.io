@@ -1,361 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page="growth">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="assets/img/logo.png">
 <title>Business Growth Circular Framework</title>
 <meta name="description" content="An eight-step circular framework for business growth across discovery, build, launch and scale, with a step-by-step breakdown, five key principles and guidance for new and existing businesses.">
-<script>
-  (function(){
-    var s = null;
-    try { s = localStorage.getItem('voltai-theme'); } catch (e) {}
-    var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    document.documentElement.setAttribute('data-theme', s || (dark ? 'dark' : 'light'));
-  })();
-</script>
-<style>
-  /* ═══════════════ DARK TOKENS ═══════════════ */
-  :root {
-    color-scheme: dark;
-    --bg-page:       #08090f;
-    --text-body:     #dde2f0;
-    --h1-color:      #c8d0e8;
-    --subtitle-color:#6d78ad;
-    --ctrl-bg:       #0f1224;
-    --ctrl-border:   #1e2440;
-    --ctrl-btn:      #747dae;
-    --ctrl-active-bg:#946f0d;
-    --ctrl-active:   #fff;
-    /* phase colors */
-    --disc:   #c89020;
-    --build:  #c4621b;
-    --launch: #1b85c3;
-    --scale:  #4f79dc;
-    /* SVG */
-    --orbit:       #1a1e30;
-    --center-fill: #0e1120;
-    --center-ring: #242848;
-    --node-fill:   #0e1120;
-    --conn-neutral:#2e3660;
-    --conn-arrow:  #3a4470;
-    --loop-dash:   #c89020;
-    --lbl-phase:   #6e77aa;
-    --lbl-step:    #b8c4e0;
-    --lbl-num:     #e0e8ff;
-    /* step cards */
-    --card-disc-bg:    linear-gradient(160deg,#1c1508,#120f04);
-    --card-disc-border:#382c10;
-    --card-disc-h:     #d4a030;
-    --card-disc-p:     #9c7d37;
-    --card-disc-badge: #986d18;
-    --card-build-bg:   linear-gradient(160deg,#1c1008,#100a04);
-    --card-build-border:#381808;
-    --card-build-h:    #c07830;
-    --card-build-p:    #be6834;
-    --card-build-badge:#b05818;
-    --card-launch-bg:  linear-gradient(160deg,#081420,#040e14);
-    --card-launch-border:#102030;
-    --card-launch-h:   #40a0d8;
-    --card-launch-p:   #3688b0;
-    --card-launch-badge:#1878b0;
-    --card-scale-bg:   linear-gradient(160deg,#080e28,#040818);
-    --card-scale-border:#102040;
-    --card-scale-h:    #5888e0;
-    --card-scale-p:    #627acf;
-    --card-scale-badge:#2858c8;
-    /* principle + use-case */
-    --prin-bg:     #0d1020;
-    --prin-border: #181e38;
-    --prin-h:      #6b7bba;
-    --prin-p:      #6e7abc;
-    --use-bg:      #0d1020;
-    --use-border:  #181e38;
-    --use-h:       #5f7eb3;
-    --use-p:       #6e7bbd;
-    --use-num:     #141a34;
-    /* page sections */
-    --pst-color:   #6a77bb;
-    --pst-line:    #141830;
-    --legend-color:#6e77b6;
-  }
+<script src="assets/js/boot.js"></script>
+<link rel="stylesheet" href="assets/css/pages/business_growth_circular_flow.css">
+<link rel="stylesheet" href="assets/css/gics.css">
 
-  /* ═══════════════ LIGHT TOKENS ═══════════════ */
-  html[data-theme="light"] {
-    color-scheme: light;
-    --bg-page:       #f4f6fd;
-    --text-body:     #18203a;
-    --h1-color:      #202840;
-    --subtitle-color:#607090;
-    --ctrl-bg:       #ffffff;
-    --ctrl-border:   #dde4f4;
-    --ctrl-btn:      #6074a6;
-    --ctrl-active-bg:#946f07;
-    --ctrl-active:   #fff;
-    --disc:   #86620e;
-    --build:  #884010;
-    --launch: #0860a0;
-    --scale:  #1840a0;
-    --orbit:       #e0e8f8;
-    --center-fill: #ffffff;
-    --center-ring: #e0e8f8;
-    --node-fill:   #ffffff;
-    --conn-neutral:#b8c8e0;
-    --conn-arrow:  #a0b0d0;
-    --loop-dash:   #987010;
-    --lbl-phase:   #9098b8;
-    --lbl-step:    #283050;
-    --lbl-num:     #101828;
-    --card-disc-bg:    linear-gradient(160deg,#fffbe8,#fff6d4);
-    --card-disc-border:#d8b840;
-    --card-disc-h:     #7c5008;
-    --card-disc-p:     #6a5820;
-    --card-disc-badge: #987010;
-    --card-build-bg:   linear-gradient(160deg,#fff6ec,#ffeed8);
-    --card-build-border:#d09040;
-    --card-build-h:    #7a3808;
-    --card-build-p:    #604818;
-    --card-build-badge:#884010;
-    --card-launch-bg:  linear-gradient(160deg,#edf6ff,#e0f0ff);
-    --card-launch-border:#80b8e8;
-    --card-launch-h:   #085898;
-    --card-launch-p:   #305878;
-    --card-launch-badge:#0860a0;
-    --card-scale-bg:   linear-gradient(160deg,#ecefff,#e4e8ff);
-    --card-scale-border:#8098e0;
-    --card-scale-h:    #1030a0;
-    --card-scale-p:    #304080;
-    --card-scale-badge:#1840a0;
-    --prin-bg:     #f0f3fc;
-    --prin-border: #d0d8f0;
-    --prin-h:      #283890;
-    --prin-p:      #485888;
-    --use-bg:      #f0f3fc;
-    --use-border:  #d0d8f0;
-    --use-h:       #1a3890;
-    --use-p:       #384878;
-    --use-num:     #d8e0f4;
-    --pst-color:   #5a6ea1;
-    --pst-line:    #d8e0f4;
-    --legend-color:#646d9b;
-  }
-
-  /* ═══════════════ BASE ═══════════════ */
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", sans-serif;
-    background: var(--bg-page);
-    color: var(--text-body);
-    min-height: 100vh;
-    display: flex; flex-direction: column; align-items: center;
-    padding: 40px 24px 64px;
-  }
-
-  .controls {
-    position: fixed; top: 20px; right: 24px;
-    display: flex; align-items: center; gap: 8px; z-index: 100;
-  }
-  .theme-btn {
-    width: 34px; height: 34px; border-radius: 8px;
-    border: 1px solid var(--ctrl-border); background: var(--ctrl-bg);
-    cursor: pointer; font-size: 16px;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 2px 12px rgba(0,0,0,.25);
-    transition: background .2s;
-  }
-  .lang-toggle {
-    display: flex; background: var(--ctrl-bg);
-    border: 1px solid var(--ctrl-border); border-radius: 8px;
-    overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,.25);
-  }
-  .lang-toggle button {
-    padding: 7px 16px; font-size: 13px; font-weight: 600;
-    border: none; cursor: pointer; background: transparent;
-    color: var(--ctrl-btn); letter-spacing: .04em;
-    transition: background .2s, color .2s;
-  }
-  .lang-toggle button.active { background: var(--ctrl-active-bg); color: var(--ctrl-active); }
-
-  h1 { font-size: 22px; font-weight: 600; color: var(--h1-color); margin-bottom: 6px; text-align: center; letter-spacing: .03em; }
-  .subtitle { font-size: 13px; color: var(--subtitle-color); margin-bottom: 44px; text-align: center; }
-
-  /* ═══════════════ SVG CONTAINER ═══════════════ */
-  .diagram-wrap {
-    width: 100%; max-width: 660px;
-    display: flex; flex-direction: column; align-items: center;
-    margin-bottom: 8px;
-    overflow: visible;
-  }
-  .diagram-wrap svg { width: 100%; height: auto; overflow: visible; }
-
-  /* SVG element classes - use CSS vars so theme changes apply */
-  .orbit-ring  { fill: none; stroke: var(--orbit); stroke-width: 1.5; }
-  .center-bg   { fill: var(--center-fill); stroke: var(--center-ring); stroke-width: 1.5; }
-  .node-bg     { fill: var(--node-fill); }
-  .node-disc   { stroke: var(--disc);   stroke-width: 2.5; }
-  .node-build  { stroke: var(--build);  stroke-width: 2.5; }
-  .node-launch { stroke: var(--launch); stroke-width: 2.5; }
-  .node-scale  { stroke: var(--scale);  stroke-width: 2.5; }
-  .conn-disc   { stroke: var(--disc);   stroke-width: 1.8; fill: none; }
-  .conn-build  { stroke: var(--build);  stroke-width: 1.8; fill: none; }
-  .conn-launch { stroke: var(--launch); stroke-width: 1.8; fill: none; }
-  .conn-scale  { stroke: var(--scale);  stroke-width: 1.8; fill: none; }
-  .conn-loop   { stroke: var(--loop-dash); stroke-width: 1.8; fill: none; stroke-dasharray: 6 4; }
-  .arr-tip     { fill: var(--conn-arrow); }
-  .lbl-phase   { fill: var(--lbl-phase); font-size: 9px; font-family: inherit; letter-spacing: .06em; }
-  .lbl-step    { fill: var(--lbl-step);  font-size: 11px; font-family: inherit; font-weight: 600; }
-  .lbl-num     { fill: var(--lbl-num);   font-size: 13px; font-family: inherit; font-weight: 700; }
-  .center-title { fill: var(--h1-color); font-size: 11px; font-family: inherit; font-weight: 700; letter-spacing: .04em; }
-  .center-sub   { fill: var(--subtitle-color); font-size: 9.5px; font-family: inherit; }
-  .loop-label  { fill: var(--loop-dash); font-size: 9px; font-family: inherit; letter-spacing: .05em; }
-
-  /* ═══════════════ PHASE LEGEND ═══════════════ */
-  .phase-legend {
-    display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
-    margin-bottom: 40px;
-  }
-  .phase-chip {
-    display: flex; align-items: center; gap: 6px;
-    font-size: 11px; font-weight: 600; letter-spacing: .04em;
-    padding: 4px 12px; border-radius: 20px; border: 1px solid;
-  }
-  .chip-disc   { color: var(--disc);   border-color: var(--disc);   background: rgba(200,144,32,.08); }
-  .chip-build  { color: var(--build);  border-color: var(--build);  background: rgba(176,88,24,.08); }
-  .chip-launch { color: var(--launch); border-color: var(--launch); background: rgba(24,120,176,.08); }
-  .chip-scale  { color: var(--scale);  border-color: var(--scale);  background: rgba(40,88,200,.08); }
-
-  /* ═══════════════ PAGE SECTIONS ═══════════════ */
-  .page-section { width: 100%; max-width: 960px; margin-top: 48px; }
-  .section-title {
-    font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
-    color: var(--pst-color); text-align: center; margin-bottom: 20px;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .section-title::before,
-  .section-title::after { content: ""; flex: 1; height: 1px; background: var(--pst-line); }
-
-  /* ═══════════════ STEP CARDS ═══════════════ */
-  .phase-group { margin-bottom: 20px; }
-  .phase-group-header {
-    font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-    margin-bottom: 10px; padding: 0 2px;
-  }
-  .phase-group-header.disc   { color: var(--disc); }
-  .phase-group-header.build  { color: var(--build); }
-  .phase-group-header.launch { color: var(--launch); }
-  .phase-group-header.scale  { color: var(--scale); }
-
-  .steps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
-  .step-card { border-radius: 12px; padding: 18px 16px; }
-  .step-card.disc   { background: var(--card-disc-bg);   border: 1.5px solid var(--card-disc-border); }
-  .step-card.build  { background: var(--card-build-bg);  border: 1.5px solid var(--card-build-border); }
-  .step-card.launch { background: var(--card-launch-bg); border: 1.5px solid var(--card-launch-border); }
-  .step-card.scale  { background: var(--card-scale-bg);  border: 1.5px solid var(--card-scale-border); }
-
-  .step-card .step-badge {
-    display: inline-flex; align-items: center; gap: 5px;
-    font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-    border-radius: 4px; padding: 2px 8px; margin-bottom: 8px; color: #fff;
-  }
-  .step-card.disc   .step-badge { background: var(--card-disc-badge); }
-  .step-card.build  .step-badge { background: var(--card-build-badge); }
-  .step-card.launch .step-badge { background: var(--card-launch-badge); }
-  .step-card.scale  .step-badge { background: var(--card-scale-badge); }
-
-  .step-card h3 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
-  .step-card.disc   h3 { color: var(--card-disc-h); }
-  .step-card.build  h3 { color: var(--card-build-h); }
-  .step-card.launch h3 { color: var(--card-launch-h); }
-  .step-card.scale  h3 { color: var(--card-scale-h); }
-
-  .step-card .phase-label {
-    font-size: 10px; font-weight: 600; margin-bottom: 10px;
-  }
-  .step-card.disc   .phase-label { color: var(--card-disc-h); }
-  .step-card.build  .phase-label { color: var(--card-build-h); }
-  .step-card.launch .phase-label { color: var(--card-launch-h); }
-  .step-card.scale  .phase-label { color: var(--card-scale-h); }
-
-  .step-card ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
-  .step-card li { font-size: 11px; line-height: 1.5; display: flex; gap: 6px; align-items: flex-start; }
-  .step-card.disc   li { color: var(--card-disc-p); }
-  .step-card.build  li { color: var(--card-build-p); }
-  .step-card.launch li { color: var(--card-launch-p); }
-  .step-card.scale  li { color: var(--card-scale-p); }
-  .step-card li::before { content: "→"; flex-shrink: 0; margin-top: 1px; opacity: .6; }
-
-  /* ═══════════════ PRINCIPLES ═══════════════ */
-  .prin-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
-  .prin-card {
-    background: var(--prin-bg); border: 1.5px solid var(--prin-border);
-    border-radius: 12px; padding: 16px 14px;
-  }
-  .prin-card .pnum { font-size: 22px; font-weight: 800; color: var(--use-num); line-height: 1; margin-bottom: 8px; }
-  .prin-card h3 { font-size: 12px; font-weight: 700; color: var(--prin-h); margin-bottom: 6px; }
-  .prin-card p  { font-size: 10.5px; color: var(--prin-p); line-height: 1.6; }
-
-  /* ═══════════════ USE CASES ═══════════════ */
-  .use-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-  .use-card {
-    background: var(--use-bg); border: 1.5px solid var(--use-border);
-    border-radius: 12px; padding: 18px 16px;
-  }
-  .use-card .icon { font-size: 24px; margin-bottom: 10px; }
-  .use-card h3 { font-size: 13px; font-weight: 700; color: var(--use-h); margin-bottom: 6px; }
-  .use-card p  { font-size: 11px; color: var(--use-p); line-height: 1.6; }
-  .use-card .tip {
-    margin-top: 10px; font-size: 10px; font-weight: 600;
-    color: var(--disc); background: rgba(200,144,32,.1);
-    border: 1px solid rgba(200,144,32,.2); border-radius: 4px; padding: 3px 8px;
-    display: inline-block;
-  }
-
-  /* ═══════════════ LEGEND ═══════════════ */
-  .legend { margin-top: 44px; display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
-  .legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--legend-color); }
-  .legend-dot  { width: 10px; height: 10px; border-radius: 50%; }
-
-  @media (max-width: 1024px) {
-    body { padding-top: 72px; }   /* clear the fixed controls */
-  }
-  @media (max-width: 700px) {
-    .prin-grid { grid-template-columns: repeat(2, 1fr); }
-    .use-grid  { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 500px) {
-    .steps-grid { grid-template-columns: 1fr; }
-    .prin-grid  { grid-template-columns: 1fr; }
-  }
-  /* ── HOME LINK (top-left, mirrors the controls) ── */
-  .home-link {
-    position: fixed; top: 20px; left: 24px; z-index: 100;
-    display: flex; align-items: center; height: 34px; padding: 0 12px;
-    border: 1px solid var(--ctrl-border); border-radius: 8px;
-    background: var(--ctrl-bg); color: var(--text-body);
-    font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-decoration: none;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
-    transition: border-color 0.2s;
-  }
-  .home-link:hover, .home-link:focus-visible { border-color: var(--text-body); }
-</style>
 </head>
 <body>
 
-<a class="home-link" href="index.html" title="Back to homepage" data-title-en="Back to homepage" data-title-zh="返回首页" data-en="← Home" data-zh="← 首页">← Home</a>
+<a class="home-link" href="index.html" title="Back to homepage" data-title-en="Back to homepage" data-title-ru="Вернуться на главную страницу" data-title-ar="العودة إلى الصفحة الرئيسية" data-title-zh="返回首页" data-en="← Home" data-ru="← Главная" data-ar="→ الرئيسية" data-zh="← 首页">← Home</a>
 <div class="controls">
-  <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Switch theme" aria-label="Switch theme" data-title-en="Switch theme" data-title-zh="切换主题" data-aria-en="Switch theme" data-aria-zh="切换主题">🌙</button>
-  <div class="lang-toggle" role="group" aria-label="Language" data-aria-en="Language" data-aria-zh="语言">
-    <button id="btn-en" class="active" onclick="setLang('en')" aria-pressed="true">EN</button>
-    <button id="btn-zh" onclick="setLang('zh')" aria-pressed="false">中文</button>
-  </div>
+  <button class="theme-btn" id="theme-btn" title="Switch theme" aria-label="Switch theme" data-title-en="Switch theme" data-title-ru="Переключить тему" data-title-ar="تبديل المظهر" data-title-zh="切换主题" data-aria-en="Switch theme" data-aria-ru="Переключить тему" data-aria-ar="تبديل المظهر" data-aria-zh="切换主题">🌙</button>
+  <div class="lang-toggle" role="group" aria-label="Language" data-aria-en="Language" data-aria-ru="Язык" data-aria-ar="اللغة" data-aria-zh="语言">
+                    <select id="lang-select" aria-label="Language" data-aria-en="Language" data-aria-zh="语言" data-aria-ru="Язык" data-aria-ar="اللغة">
+                      <option value="en" lang="en">EN</option>
+                      <option value="zh" lang="zh-CN">中文</option>
+                      <option value="ru" lang="ru">РУ</option>
+                      <option value="ar" lang="ar">عربي</option>
+                    </select>
+                  </div>
 </div>
 
-<h1 data-en="Business Growth Circular Framework"
+<h1 data-en="Business Growth Circular Framework" data-ru="Круговой фреймворк роста бизнеса" data-ar="إطار النمو الدائري للأعمال"
     data-zh="商业增长循环框架">Business Growth Circular Framework</h1>
 <p class="subtitle"
-   data-en="8-Step Continuous Iteration Cycle for Precise Target Audience Growth · VoltAI 2026"
+   data-en="8-Step Continuous Iteration Cycle for Precise Target Audience Growth · VoltAI 2026" data-ru="8-шаговый непрерывный цикл итераций для роста точной целевой аудитории · VoltAI 2026" data-ar="دورة تكرار مستمرة من 8 خطوات لنمو الجمهور المستهدف بدقة · VoltAI 2026"
    data-zh="面向精准目标受众增长的8步持续迭代循环 · VoltAI 2026">8-Step Continuous Iteration Cycle for Precise Target Audience Growth · VoltAI 2026</p>
+<aside class="gics-lens">
+  <span class="gics-lens-label" data-en="GICS® lens" data-zh="GICS® 视角" data-ru="Разрез GICS®" data-ar="منظور GICS®">GICS® lens</span>
+  <p class="gics-lens-text" data-en="Business Growth is a cross-sector framework, not a GICS sector or industry group. It uses GICS sectors as market context." data-zh="商业增长是跨行业框架，不是 GICS 行业板块或行业组。它以 GICS 行业板块作为市场背景。" data-ru="Рост бизнеса — межотраслевой фреймворк, а не сектор или группа отраслей GICS. Он использует секторы GICS как рыночный контекст." data-ar="نمو الأعمال إطار متعدد القطاعات، وليس قطاعًا أو مجموعة صناعية في GICS. ويستخدم قطاعات GICS كسياق للسوق.">Business Growth is a cross-sector framework, not a GICS sector or industry group. It uses GICS sectors as market context.</p>
+</aside>
 
 <!-- ══ CIRCULAR SVG DIAGRAM ══ -->
 <div class="diagram-wrap">
@@ -367,7 +46,7 @@
     </marker>
     <!-- loop arrowhead (amber) -->
     <marker id="arr-loop" markerWidth="9" markerHeight="6.5" refX="8" refY="3.25" orient="auto">
-      <polygon style="fill:var(--loop-dash)" points="0 0, 9 3.25, 0 6.5"/>
+      <polygon class="loop-arrow-head" points="0 0, 9 3.25, 0 6.5"/>
     </marker>
     <!-- radial gradient for center -->
     <radialGradient id="cg" cx="50%" cy="50%" r="50%">
@@ -399,131 +78,131 @@
 
   <!-- loop-back label -->
   <text x="178" y="82" class="loop-label" text-anchor="middle"
-        data-en="data → refine" data-zh="数据 → 迭代">data → refine</text>
+        data-en="data → refine" data-ru="данные → уточнить" data-ar="البيانات → صقل" data-zh="数据 → 迭代">data → refine</text>
 
   <!-- ── CENTER ── -->
   <circle cx="330" cy="330" r="96" class="center-bg"/>
   <text x="330" y="315" class="center-title" text-anchor="middle"
-        data-en="GROWTH CYCLE" data-zh="增长循环">GROWTH CYCLE</text>
+        data-en="GROWTH CYCLE" data-ru="ЦИКЛ РОСТА" data-ar="دورة النمو" data-zh="增长循环">GROWTH CYCLE</text>
   <text x="330" y="331" class="center-sub" text-anchor="middle"
-        data-en="8-step · clockwise" data-zh="8步 · 顺时针">8-step · clockwise</text>
+        data-en="8-step · clockwise" data-ru="8 шагов · по часовой стрелке" data-ar="8 خطوات · في اتجاه عقارب الساعة" data-zh="8步 · 顺时针">8-step · clockwise</text>
   <text x="330" y="350" class="center-sub" text-anchor="middle"
-        data-en="continuous iteration" data-zh="持续迭代">continuous iteration</text>
+        data-en="continuous iteration" data-ru="непрерывная итерация" data-ar="التكرار المستمر" data-zh="持续迭代">continuous iteration</text>
 
   <!-- ── NODE 1 — top (Discovery) ── -->
   <circle cx="330" cy="120" r="36" class="node-bg node-disc"/>
   <text x="330" y="125" class="lbl-num" text-anchor="middle">01</text>
   <!-- label above -->
   <text x="330" y="60" class="lbl-phase" text-anchor="middle"
-        data-en="STARTING POINT" data-zh="起始点">STARTING POINT</text>
+        data-en="STARTING POINT" data-ru="СТАРТОВАЯ ТОЧКА" data-ar="نقطة البداية" data-zh="起始点">STARTING POINT</text>
   <text x="330" y="75" class="lbl-step" text-anchor="middle"
-        data-en="Target Audience" data-zh="精准目标受众">Target Audience</text>
+        data-en="Target Audience" data-ru="Целевая аудитория" data-ar="الجمهور المستهدف" data-zh="精准目标受众">Target Audience</text>
 
   <!-- ── NODE 2 — top-right (Discovery) ── -->
   <circle cx="478" cy="182" r="36" class="node-bg node-disc"/>
   <text x="478" y="187" class="lbl-num" text-anchor="middle">02</text>
   <!-- label upper-right -->
   <text x="524" y="152" class="lbl-phase" text-anchor="start"
-        data-en="POSITIONING" data-zh="定位">POSITIONING</text>
+        data-en="POSITIONING" data-ru="ПОЗИЦИОНИРОВАНИЕ" data-ar="التموضع" data-zh="定位">POSITIONING</text>
   <text x="524" y="167" class="lbl-step" text-anchor="start"
-        data-en="Market Demands" data-zh="真实市场需求">Market Demands</text>
+        data-en="Market Demands" data-ru="Требования рынка" data-ar="طلبات السوق" data-zh="真实市场需求">Market Demands</text>
 
   <!-- ── NODE 3 — right (Build) ── -->
   <circle cx="540" cy="330" r="36" class="node-bg node-build"/>
   <text x="540" y="335" class="lbl-num" text-anchor="middle">03</text>
   <!-- label right -->
   <text x="586" y="322" class="lbl-phase" text-anchor="start"
-        data-en="VERIFICATION" data-zh="验证">VERIFICATION</text>
+        data-en="VERIFICATION" data-ru="ПРОВЕРКА" data-ar="التحقق" data-zh="验证">VERIFICATION</text>
   <text x="586" y="337" class="lbl-step" text-anchor="start"
-        data-en="Segmented Tracks" data-zh="分段赛道">Segmented Tracks</text>
+        data-en="Segmented Tracks" data-ru="Сегментированные треки" data-ar="المسارات المجزأة" data-zh="分段赛道">Segmented Tracks</text>
 
   <!-- ── NODE 4 — bottom-right (Build) ── -->
   <circle cx="478" cy="478" r="36" class="node-bg node-build"/>
   <text x="478" y="483" class="lbl-num" text-anchor="middle">04</text>
   <!-- label lower-right -->
   <text x="524" y="498" class="lbl-phase" text-anchor="start"
-        data-en="IMPLEMENTATION" data-zh="落地实施">IMPLEMENTATION</text>
+        data-en="IMPLEMENTATION" data-ru="ВНЕДРЕНИЕ" data-ar="التنفيذ" data-zh="落地实施">IMPLEMENTATION</text>
   <text x="524" y="513" class="lbl-step" text-anchor="start"
-        data-en="Core Business" data-zh="核心业务">Core Business</text>
+        data-en="Core Business" data-ru="Основной бизнес" data-ar="العمل الأساسي" data-zh="核心业务">Core Business</text>
 
   <!-- ── NODE 5 — bottom (Launch) ── -->
   <circle cx="330" cy="540" r="36" class="node-bg node-launch"/>
   <text x="330" y="545" class="lbl-num" text-anchor="middle">05</text>
   <!-- label below -->
   <text x="330" y="596" class="lbl-phase" text-anchor="middle"
-        data-en="TRIAL &amp; ERROR" data-zh="试错">TRIAL &amp; ERROR</text>
+        data-en="TRIAL &amp; ERROR" data-ru="ПРОБЫ И ОШИБКИ" data-ar="التجربة والخطأ" data-zh="试错">TRIAL &amp; ERROR</text>
   <text x="330" y="611" class="lbl-step" text-anchor="middle"
-        data-en="Minimalist MVP" data-zh="最小化产品">Minimalist MVP</text>
+        data-en="Minimalist MVP" data-ru="Минималистский MVP" data-ar="الحد الأدنى MVP" data-zh="最小化产品">Minimalist MVP</text>
 
   <!-- ── NODE 6 — bottom-left (Launch) ── -->
   <circle cx="182" cy="478" r="36" class="node-bg node-launch"/>
   <text x="182" y="483" class="lbl-num" text-anchor="middle">06</text>
   <!-- label lower-left -->
   <text x="136" y="498" class="lbl-phase" text-anchor="end"
-        data-en="TRUST BUILDING" data-zh="建立信任">TRUST BUILDING</text>
+        data-en="TRUST BUILDING" data-ru="ФОРМИРОВАНИЕ ДОВЕРИЯ" data-ar="بناء الثقة" data-zh="建立信任">TRUST BUILDING</text>
   <text x="136" y="513" class="lbl-step" text-anchor="end"
-        data-en="User Trust" data-zh="多维用户信任">User Trust</text>
+        data-en="User Trust" data-ru="Доверие пользователей" data-ar="ثقة المستخدم" data-zh="多维用户信任">User Trust</text>
 
   <!-- ── NODE 7 — left (Scale) ── -->
   <circle cx="120" cy="330" r="36" class="node-bg node-scale"/>
   <text x="120" y="335" class="lbl-num" text-anchor="middle">07</text>
   <!-- label left -->
   <text x="74" y="322" class="lbl-phase" text-anchor="end"
-        data-en="CLOSED LOOP" data-zh="闭环">CLOSED LOOP</text>
+        data-en="CLOSED LOOP" data-ru="ЗАМКНУТЫЙ ЦИКЛ" data-ar="حلقة مغلقة" data-zh="闭环">CLOSED LOOP</text>
   <text x="74" y="337" class="lbl-step" text-anchor="end"
-        data-en="Monetization" data-zh="商业变现">Monetization</text>
+        data-en="Monetization" data-ru="Монетизация" data-ar="تحقيق الدخل" data-zh="商业变现">Monetization</text>
 
   <!-- ── NODE 8 — top-left (Scale) ── -->
   <circle cx="182" cy="182" r="36" class="node-bg node-scale"/>
   <text x="182" y="187" class="lbl-num" text-anchor="middle">08</text>
   <!-- label upper-left -->
   <text x="136" y="152" class="lbl-phase" text-anchor="end"
-        data-en="DECISION MAKING" data-zh="决策">DECISION MAKING</text>
+        data-en="DECISION MAKING" data-ru="ПРИНЯТИЕ РЕШЕНИЙ" data-ar="اتخاذ القرار" data-zh="决策">DECISION MAKING</text>
   <text x="136" y="167" class="lbl-step" text-anchor="end"
-        data-en="Data &amp; Iteration" data-zh="数据与迭代">Data &amp; Iteration</text>
+        data-en="Data &amp; Iteration" data-ru="Данные &amp; Итерация" data-ar="البيانات &amp; التكرار" data-zh="数据与迭代">Data &amp; Iteration</text>
 </svg>
 </div>
 
 <!-- Phase legend chips -->
 <div class="phase-legend">
-  <div class="phase-chip chip-disc"  data-en="● Discovery (1–2)" data-zh="● 探索阶段 (1–2)">● Discovery (1–2)</div>
-  <div class="phase-chip chip-build" data-en="● Build (3–4)"     data-zh="● 构建阶段 (3–4)">● Build (3–4)</div>
-  <div class="phase-chip chip-launch"data-en="● Launch (5–6)"    data-zh="● 发布阶段 (5–6)">● Launch (5–6)</div>
-  <div class="phase-chip chip-scale" data-en="● Scale (7–8)"     data-zh="● 扩展阶段 (7–8)">● Scale (7–8)</div>
+  <div class="phase-chip chip-disc"  data-en="● Discovery (1–2)" data-ru="● Открытие (1–2)" data-ar="● الاكتشاف (1-2)" data-zh="● 探索阶段 (1–2)">● Discovery (1–2)</div>
+  <div class="phase-chip chip-build" data-en="● Build (3–4)" data-ru="● Строить (3–4)" data-ar="● بناء (3-4)"     data-zh="● 构建阶段 (3–4)">● Build (3–4)</div>
+  <div class="phase-chip chip-launch"data-en="● Launch (5–6)" data-ru="● Запуск (5–6)" data-ar="● الإطلاق (5-6)"    data-zh="● 发布阶段 (5–6)">● Launch (5–6)</div>
+  <div class="phase-chip chip-scale" data-en="● Scale (7–8)" data-ru="● Масштаб (7–8)" data-ar="● المقياس (7-8)"     data-zh="● 扩展阶段 (7–8)">● Scale (7–8)</div>
 </div>
 
 <!-- ══ STEP CARDS ══ -->
 <div class="page-section">
   <div class="section-title"
-       data-en="Step-by-Step Breakdown"
+       data-en="Step-by-Step Breakdown" data-ru="Пошаговая разбивка" data-ar="تفصيل خطوة بخطوة"
        data-zh="逐步解析">Step-by-Step Breakdown</div>
 
   <!-- Phase 1: Discovery -->
   <div class="phase-group">
     <div class="phase-group-header disc"
-         data-en="Phase 1 — Discovery · Steps 1–2"
+         data-en="Phase 1 — Discovery · Steps 1–2" data-ru="Этап 1. Открытие · Шаги 1–2" data-ar="المرحلة 1 – الاكتشاف · الخطوات 1-2"
          data-zh="第一阶段 — 探索 · 第1–2步">Phase 1 — Discovery · Steps 1–2</div>
     <div class="steps-grid">
       <div class="step-card disc">
-        <div class="step-badge" data-en="Step 01" data-zh="第01步">Step 01</div>
-        <div class="phase-label" data-en="【Starting Point】" data-zh="【起始点】">【Starting Point】</div>
-        <h3 data-en="Precise Target Audience" data-zh="精准目标受众">Precise Target Audience</h3>
+        <div class="step-badge" data-en="Step 01" data-ru="Шаг 01" data-ar="الخطوة 01" data-zh="第01步">Step 01</div>
+        <div class="phase-label" data-en="【Starting Point】" data-ru="【Отправная точка】" data-ar="【نقطة البداية】" data-zh="【起始点】">【Starting Point】</div>
+        <h3 data-en="Precise Target Audience" data-ru="Точная целевая аудитория" data-ar="الجمهور المستهدف الدقيق" data-zh="精准目标受众">Precise Target Audience</h3>
         <ul>
-          <li data-en="Define demographic + psychographic profiles" data-zh="定义人口与心理画像">Define demographic + psychographic profiles</li>
-          <li data-en="Identify jobs-to-be-done for your audience" data-zh="识别受众的核心待完成任务">Identify jobs-to-be-done for your audience</li>
-          <li data-en="Validate assumptions through direct conversation" data-zh="通过直接对话验证假设">Validate assumptions through direct conversation</li>
-          <li data-en="Resist broadening the audience too early" data-zh="抵制过早扩大受众的冲动">Resist broadening the audience too early</li>
+          <li data-en="Define demographic + psychographic profiles" data-ru="Определить демографические + психографические профили" data-ar="تحديد الملامح الديموغرافية + النفسية" data-zh="定义人口与心理画像">Define demographic + psychographic profiles</li>
+          <li data-en="Identify jobs-to-be-done for your audience" data-ru="Определите задачи, которые необходимо выполнить для вашей аудитории" data-ar="حدد المهام التي يتعين عليك القيام بها لجمهورك" data-zh="识别受众的核心待完成任务">Identify jobs-to-be-done for your audience</li>
+          <li data-en="Validate assumptions through direct conversation" data-ru="Подтвердить предположения посредством прямого разговора" data-ar="التحقق من صحة الافتراضات من خلال المحادثة المباشرة" data-zh="通过直接对话验证假设">Validate assumptions through direct conversation</li>
+          <li data-en="Resist broadening the audience too early" data-ru="Не допускайте слишком раннего расширения аудитории." data-ar="قاوم توسيع نطاق الجمهور في وقت مبكر جدًا" data-zh="抵制过早扩大受众的冲动">Resist broadening the audience too early</li>
         </ul>
       </div>
       <div class="step-card disc">
-        <div class="step-badge" data-en="Step 02" data-zh="第02步">Step 02</div>
-        <div class="phase-label" data-en="【Positioning】" data-zh="【定位】">【Positioning】</div>
-        <h3 data-en="Tap into Real Market Demands" data-zh="挖掘真实市场需求">Tap into Real Market Demands</h3>
+        <div class="step-badge" data-en="Step 02" data-ru="Шаг 02" data-ar="الخطوة 02" data-zh="第02步">Step 02</div>
+        <div class="phase-label" data-en="【Positioning】" data-ru="【Позиционирование】" data-ar="【تحديد المواقع】" data-zh="【定位】">【Positioning】</div>
+        <h3 data-en="Tap into Real Market Demands" data-ru="Учитывайте реальные потребности рынка" data-ar="الاستفادة من طلبات السوق الحقيقية" data-zh="挖掘真实市场需求">Tap into Real Market Demands</h3>
         <ul>
-          <li data-en="Run discovery interviews to surface latent pain" data-zh="开展发现访谈，挖掘潜在痛点">Run discovery interviews to surface latent pain</li>
-          <li data-en="Map competing solutions and identify gaps" data-zh="梳理竞品解决方案并识别差距">Map competing solutions and identify gaps</li>
-          <li data-en="Articulate your differentiated positioning statement" data-zh="提炼差异化定位声明">Articulate your differentiated positioning statement</li>
-          <li data-en="Test messaging resonance before building anything" data-zh="在构建任何产品前验证信息共鸣">Test messaging resonance before building anything</li>
+          <li data-en="Run discovery interviews to surface latent pain" data-ru="Проведите исследовательские интервью, чтобы выявить скрытую боль" data-ar="قم بإجراء مقابلات اكتشافية لتسليط الضوء على الألم الكامن" data-zh="开展发现访谈，挖掘潜在痛点">Run discovery interviews to surface latent pain</li>
+          <li data-en="Map competing solutions and identify gaps" data-ru="Составьте карту конкурирующих решений и выявите пробелы" data-ar="رسم خريطة للحلول المتنافسة وتحديد الفجوات" data-zh="梳理竞品解决方案并识别差距">Map competing solutions and identify gaps</li>
+          <li data-en="Articulate your differentiated positioning statement" data-ru="Сформулируйте свое дифференцированное заявление о позиционировании" data-ar="قم بصياغة بيان تحديد المواقع المتمايز الخاص بك" data-zh="提炼差异化定位声明">Articulate your differentiated positioning statement</li>
+          <li data-en="Test messaging resonance before building anything" data-ru="Прежде чем что-либо создавать, проверьте резонанс обмена сообщениями." data-ar="اختبار صدى الرسائل قبل بناء أي شيء" data-zh="在构建任何产品前验证信息共鸣">Test messaging resonance before building anything</li>
         </ul>
       </div>
     </div>
@@ -532,29 +211,29 @@
   <!-- Phase 2: Build -->
   <div class="phase-group">
     <div class="phase-group-header build"
-         data-en="Phase 2 — Build · Steps 3–4"
+         data-en="Phase 2 — Build · Steps 3–4" data-ru="Этап 2. Сборка · Шаги 3–4" data-ar="المرحلة الثانية – البناء · الخطوات 3-4"
          data-zh="第二阶段 — 构建 · 第3–4步">Phase 2 — Build · Steps 3–4</div>
     <div class="steps-grid">
       <div class="step-card build">
-        <div class="step-badge" data-en="Step 03" data-zh="第03步">Step 03</div>
-        <div class="phase-label" data-en="【Verification】" data-zh="【验证】">【Verification】</div>
-        <h3 data-en="Anchor Demands to Segmented Tracks" data-zh="将需求锚定至细分赛道">Anchor Demands to Segmented Tracks</h3>
+        <div class="step-badge" data-en="Step 03" data-ru="Шаг 03" data-ar="الخطوة 03" data-zh="第03步">Step 03</div>
+        <div class="phase-label" data-en="【Verification】" data-ru="【Верификация】" data-ar="【التحقق】" data-zh="【验证】">【Verification】</div>
+        <h3 data-en="Anchor Demands to Segmented Tracks" data-ru="Привязывайте требования к сегментированным дорожкам" data-ar="مطالب المرساة للمسارات المجزأة" data-zh="将需求锚定至细分赛道">Anchor Demands to Segmented Tracks</h3>
         <ul>
-          <li data-en="Score pain points by intensity, frequency, WTP" data-zh="按强度、频率、支付意愿对痛点评分">Score pain points by intensity, frequency, WTP</li>
-          <li data-en="Eliminate pain points with strong existing solutions" data-zh="淘汰已有强力解决方案的痛点">Eliminate pain points with strong existing solutions</li>
-          <li data-en="Segment customers by shared urgency" data-zh="按共同紧迫度对客户进行细分">Segment customers by shared urgency</li>
-          <li data-en="Select one primary track to anchor the core business" data-zh="选择一条主要赛道锚定核心业务">Select one primary track to anchor the core business</li>
+          <li data-en="Score pain points by intensity, frequency, WTP" data-ru="Оценивайте болевые точки по интенсивности, частоте, WTP" data-ar="سجل نقاط الألم حسب الشدة والتكرار WTP" data-zh="按强度、频率、支付意愿对痛点评分">Score pain points by intensity, frequency, WTP</li>
+          <li data-en="Eliminate pain points with strong existing solutions" data-ru="Устраните болевые точки с помощью эффективных существующих решений" data-ar="تخلص من نقاط الألم باستخدام الحلول القوية الموجودة" data-zh="淘汰已有强力解决方案的痛点">Eliminate pain points with strong existing solutions</li>
+          <li data-en="Segment customers by shared urgency" data-ru="Сегментируйте клиентов по общей срочности" data-ar="تقسيم العملاء حسب الإلحاح المشترك" data-zh="按共同紧迫度对客户进行细分">Segment customers by shared urgency</li>
+          <li data-en="Select one primary track to anchor the core business" data-ru="Выберите одно основное направление, чтобы закрепить основной бизнес." data-ar="حدد مسارًا أساسيًا واحدًا لترسيخ العمل الأساسي" data-zh="选择一条主要赛道锚定核心业务">Select one primary track to anchor the core business</li>
         </ul>
       </div>
       <div class="step-card build">
-        <div class="step-badge" data-en="Step 04" data-zh="第04步">Step 04</div>
-        <div class="phase-label" data-en="【Implementation】" data-zh="【落地实施】">【Implementation】</div>
-        <h3 data-en="Establish Core Business via Tracks" data-zh="通过赛道建立核心业务">Establish Core Business via Tracks</h3>
+        <div class="step-badge" data-en="Step 04" data-ru="Шаг 04" data-ar="الخطوة 04" data-zh="第04步">Step 04</div>
+        <div class="phase-label" data-en="【Implementation】" data-ru="【Реализация】" data-ar="【التنفيذ】" data-zh="【落地实施】">【Implementation】</div>
+        <h3 data-en="Establish Core Business via Tracks" data-ru="Создание основного бизнеса через треки" data-ar="إنشاء الأعمال الأساسية عبر المسارات" data-zh="通过赛道建立核心业务">Establish Core Business via Tracks</h3>
         <ul>
-          <li data-en="Draft core value proposition (what, for whom, why better)" data-zh="起草核心价值主张（是什么、为谁、为何更好）">Draft core value proposition (what, for whom, why better)</li>
-          <li data-en="Define revenue model: subscription, transaction, licensing" data-zh="确定收益模式：订阅、交易或授权">Define revenue model: subscription, transaction, licensing</li>
-          <li data-en="Map key activities, resources, and partners" data-zh="梳理关键活动、资源与合作伙伴">Map key activities, resources, and partners</li>
-          <li data-en="Set critical assumptions for the model to work" data-zh="设定模型成立所需的关键假设">Set critical assumptions for the model to work</li>
+          <li data-en="Draft core value proposition (what, for whom, why better)" data-ru="Проект основного ценностного предложения (что, для кого, почему лучше)" data-ar="صياغة مقترح القيمة الأساسية (ماذا ولمن ولماذا الأفضل)" data-zh="起草核心价值主张（是什么、为谁、为何更好）">Draft core value proposition (what, for whom, why better)</li>
+          <li data-en="Define revenue model: subscription, transaction, licensing" data-ru="Определите модель дохода: подписка, транзакция, лицензирование." data-ar="تحديد نموذج الإيرادات: الاشتراك، المعاملة، الترخيص" data-zh="确定收益模式：订阅、交易或授权">Define revenue model: subscription, transaction, licensing</li>
+          <li data-en="Map key activities, resources, and partners" data-ru="Составьте карту ключевых мероприятий, ресурсов и партнеров" data-ar="قم بتخطيط الأنشطة الرئيسية والموارد والشركاء" data-zh="梳理关键活动、资源与合作伙伴">Map key activities, resources, and partners</li>
+          <li data-en="Set critical assumptions for the model to work" data-ru="Установите критические предположения для работы модели." data-ar="ضع افتراضات حاسمة لكي يعمل النموذج" data-zh="设定模型成立所需的关键假设">Set critical assumptions for the model to work</li>
         </ul>
       </div>
     </div>
@@ -563,29 +242,29 @@
   <!-- Phase 3: Launch -->
   <div class="phase-group">
     <div class="phase-group-header launch"
-         data-en="Phase 3 — Launch · Steps 5–6"
+         data-en="Phase 3 — Launch · Steps 5–6" data-ru="Этап 3. Запуск · Шаги 5–6" data-ar="المرحلة 3 — الإطلاق · الخطوات 5-6"
          data-zh="第三阶段 — 发布 · 第5–6步">Phase 3 — Launch · Steps 5–6</div>
     <div class="steps-grid">
       <div class="step-card launch">
-        <div class="step-badge" data-en="Step 05" data-zh="第05步">Step 05</div>
-        <div class="phase-label" data-en="【Trial &amp; Error】" data-zh="【试错】">【Trial &amp; Error】</div>
-        <h3 data-en="Build Minimalist Products" data-zh="构建最小化产品">Build Minimalist Products</h3>
+        <div class="step-badge" data-en="Step 05" data-ru="Шаг 05" data-ar="الخطوة 05" data-zh="第05步">Step 05</div>
+        <div class="phase-label" data-en="【Trial &amp; Error】" data-ru="【Пробная ошибка &amp;】" data-ar="【المحاكمة &amp; خطأ】" data-zh="【试错】">【Trial &amp; Error】</div>
+        <h3 data-en="Build Minimalist Products" data-ru="Создавайте минималистичные продукты" data-ar="بناء منتجات الحد الأدنى" data-zh="构建最小化产品">Build Minimalist Products</h3>
         <ul>
-          <li data-en="Identify the single riskiest assumption to test" data-zh="识别最需验证的单一高风险假设">Identify the single riskiest assumption to test</li>
-          <li data-en="Build only what is needed to test that assumption" data-zh="只构建验证该假设所需的内容">Build only what is needed to test that assumption</li>
-          <li data-en="Run targeted internal or beta testing with core audience" data-zh="在核心受众中进行定向内测或公测">Run targeted internal or beta testing with core audience</li>
-          <li data-en="Define clear success/failure criteria before launching" data-zh="上线前设定明确的成功/失败标准">Define clear success/failure criteria before launching</li>
+          <li data-en="Identify the single riskiest assumption to test" data-ru="Определите единственное рискованное предположение для проверки." data-ar="تحديد الافتراض الأكثر خطورة للاختبار" data-zh="识别最需验证的单一高风险假设">Identify the single riskiest assumption to test</li>
+          <li data-en="Build only what is needed to test that assumption" data-ru="Создавайте только то, что необходимо для проверки этого предположения." data-ar="قم ببناء ما هو مطلوب فقط لاختبار هذا الافتراض" data-zh="只构建验证该假设所需的内容">Build only what is needed to test that assumption</li>
+          <li data-en="Run targeted internal or beta testing with core audience" data-ru="Проведите целевое внутреннее или бета-тестирование с основной аудиторией." data-ar="قم بإجراء اختبار داخلي أو تجريبي مستهدف مع الجمهور الأساسي" data-zh="在核心受众中进行定向内测或公测">Run targeted internal or beta testing with core audience</li>
+          <li data-en="Define clear success/failure criteria before launching" data-ru="Перед запуском определите четкие критерии успеха/неуспеха." data-ar="حدد معايير واضحة للنجاح/الفشل قبل الإطلاق" data-zh="上线前设定明确的成功/失败标准">Define clear success/failure criteria before launching</li>
         </ul>
       </div>
       <div class="step-card launch">
-        <div class="step-badge" data-en="Step 06" data-zh="第06步">Step 06</div>
-        <div class="phase-label" data-en="【Trust Building】" data-zh="【建立信任】">【Trust Building】</div>
-        <h3 data-en="Build Multi-Dimensional User Trust" data-zh="构建多维用户信任">Build Multi-Dimensional User Trust</h3>
+        <div class="step-badge" data-en="Step 06" data-ru="Шаг 06" data-ar="الخطوة 06" data-zh="第06步">Step 06</div>
+        <div class="phase-label" data-en="【Trust Building】" data-ru="【Формирование доверия】" data-ar="【بناء الثقة】" data-zh="【建立信任】">【Trust Building】</div>
+        <h3 data-en="Build Multi-Dimensional User Trust" data-ru="Создайте многомерное доверие пользователей" data-ar="بناء ثقة المستخدم متعددة الأبعاد" data-zh="构建多维用户信任">Build Multi-Dimensional User Trust</h3>
         <ul>
-          <li data-en="Professional: case studies, credentials, transparency" data-zh="专业维度：案例研究、资质认证、透明流程">Professional: case studies, credentials, transparency</li>
-          <li data-en="Emotional: storytelling, community, founder narrative" data-zh="情感维度：故事叙述、社区运营、创始人叙事">Emotional: storytelling, community, founder narrative</li>
-          <li data-en="Authoritative: testimonials, press, partnerships" data-zh="权威维度：用户证言、媒体报道、合作背书">Authoritative: testimonials, press, partnerships</li>
-          <li data-en="Monitor trust signals and address gaps continuously" data-zh="持续监测信任信号并填补不足">Monitor trust signals and address gaps continuously</li>
+          <li data-en="Professional: case studies, credentials, transparency" data-ru="Профессионал: тематические исследования, полномочия, прозрачность" data-ar="المهنية: دراسات الحالة، وأوراق الاعتماد، والشفافية" data-zh="专业维度：案例研究、资质认证、透明流程">Professional: case studies, credentials, transparency</li>
+          <li data-en="Emotional: storytelling, community, founder narrative" data-ru="Эмоциональный: рассказывание историй, сообщество, рассказ основателя." data-ar="عاطفياً: رواية القصص، المجتمع، رواية المؤسس" data-zh="情感维度：故事叙述、社区运营、创始人叙事">Emotional: storytelling, community, founder narrative</li>
+          <li data-en="Authoritative: testimonials, press, partnerships" data-ru="Авторитетность: отзывы, пресса, партнерство" data-ar="موثوقة: الشهادات، الصحافة، الشراكات" data-zh="权威维度：用户证言、媒体报道、合作背书">Authoritative: testimonials, press, partnerships</li>
+          <li data-en="Monitor trust signals and address gaps continuously" data-ru="Постоянно отслеживайте сигналы доверия и устраняйте пробелы" data-ar="مراقبة إشارات الثقة ومعالجة الثغرات بشكل مستمر" data-zh="持续监测信任信号并填补不足">Monitor trust signals and address gaps continuously</li>
         </ul>
       </div>
     </div>
@@ -594,29 +273,29 @@
   <!-- Phase 4: Scale -->
   <div class="phase-group">
     <div class="phase-group-header scale"
-         data-en="Phase 4 — Scale · Steps 7–8"
+         data-en="Phase 4 — Scale · Steps 7–8" data-ru="Этап 4. Масштабирование · Шаги 7–8" data-ar="المرحلة الرابعة – المقياس · الخطوات 7-8"
          data-zh="第四阶段 — 扩展 · 第7–8步">Phase 4 — Scale · Steps 7–8</div>
     <div class="steps-grid">
       <div class="step-card scale">
-        <div class="step-badge" data-en="Step 07" data-zh="第07步">Step 07</div>
-        <div class="phase-label" data-en="【Closed Loop】" data-zh="【闭环】">【Closed Loop】</div>
-        <h3 data-en="Realize Commercial Monetization" data-zh="实现商业变现">Realize Commercial Monetization</h3>
+        <div class="step-badge" data-en="Step 07" data-ru="Шаг 07" data-ar="الخطوة 07" data-zh="第07步">Step 07</div>
+        <div class="phase-label" data-en="【Closed Loop】" data-ru="【Замкнутый цикл】" data-ar="【حلقة مغلقة】" data-zh="【闭环】">【Closed Loop】</div>
+        <h3 data-en="Realize Commercial Monetization" data-ru="Реализуйте коммерческую монетизацию" data-ar="تحقيق الدخل التجاري" data-zh="实现商业变现">Realize Commercial Monetization</h3>
         <ul>
-          <li data-en="Optimize the conversion funnel end-to-end" data-zh="端到端优化转化漏斗">Optimize the conversion funnel end-to-end</li>
-          <li data-en="Reduce friction at the point of purchase" data-zh="降低购买环节的摩擦">Reduce friction at the point of purchase</li>
-          <li data-en="Set pricing anchors that reflect perceived value" data-zh="设定反映感知价值的定价锚点">Set pricing anchors that reflect perceived value</li>
-          <li data-en="Establish retention and expansion revenue mechanisms" data-zh="建立留存与扩张性收入机制">Establish retention and expansion revenue mechanisms</li>
+          <li data-en="Optimize the conversion funnel end-to-end" data-ru="Комплексно оптимизируйте воронку конверсии" data-ar="قم بتحسين مسار التحويل من البداية إلى النهاية" data-zh="端到端优化转化漏斗">Optimize the conversion funnel end-to-end</li>
+          <li data-en="Reduce friction at the point of purchase" data-ru="Уменьшите трение в момент покупки" data-ar="تقليل الاحتكاك عند نقطة الشراء" data-zh="降低购买环节的摩擦">Reduce friction at the point of purchase</li>
+          <li data-en="Set pricing anchors that reflect perceived value" data-ru="Установите якоря ценообразования, которые отражают воспринимаемую ценность" data-ar="قم بتعيين نقاط التسعير التي تعكس القيمة المتصورة" data-zh="设定反映感知价值的定价锚点">Set pricing anchors that reflect perceived value</li>
+          <li data-en="Establish retention and expansion revenue mechanisms" data-ru="Создать механизмы удержания и расширения доходов" data-ar="إنشاء آليات إيرادات الاحتفاظ والتوسع" data-zh="建立留存与扩张性收入机制">Establish retention and expansion revenue mechanisms</li>
         </ul>
       </div>
       <div class="step-card scale">
-        <div class="step-badge" data-en="Step 08" data-zh="第08步">Step 08</div>
-        <div class="phase-label" data-en="【Decision Making】" data-zh="【决策】">【Decision Making】</div>
-        <h3 data-en="Data Review &amp; Iterative Decisions" data-zh="数据复盘与迭代决策">Data Review &amp; Iterative Decisions</h3>
+        <div class="step-badge" data-en="Step 08" data-ru="Шаг 08" data-ar="الخطوة 08" data-zh="第08步">Step 08</div>
+        <div class="phase-label" data-en="【Decision Making】" data-ru="【Принятие решений】" data-ar="【صنع القرار】" data-zh="【决策】">【Decision Making】</div>
+        <h3 data-en="Data Review &amp; Iterative Decisions" data-ru="Обзор данных &amp; Итеративные решения" data-ar="مراجعة البيانات &amp; القرارات التكرارية" data-zh="数据复盘与迭代决策">Data Review &amp; Iterative Decisions</h3>
         <ul>
-          <li data-en="Define north-star metric and supporting KPIs" data-zh="确定北极星指标与辅助KPI">Define north-star metric and supporting KPIs</li>
-          <li data-en="Run structured reviews at weekly and monthly cadences" data-zh="按周、月频率开展结构化复盘">Run structured reviews at weekly and monthly cadences</li>
-          <li data-en="Apply Scale / Transform / Exit decision framework" data-zh="应用扩张/转型/退出决策框架">Apply Scale / Transform / Exit decision framework</li>
-          <li data-en="Feed learnings back to Step 1 — refine the audience" data-zh="将洞察反哺第1步——持续精炼受众定义">Feed learnings back to Step 1 — refine the audience</li>
+          <li data-en="Define north-star metric and supporting KPIs" data-ru="Определите метрику «полярной звезды» и вспомогательные ключевые показатели эффективности." data-ar="تحديد مقياس نجمة الشمال ودعم مؤشرات الأداء الرئيسية" data-zh="确定北极星指标与辅助KPI">Define north-star metric and supporting KPIs</li>
+          <li data-en="Run structured reviews at weekly and monthly cadences" data-ru="Проводите структурированные обзоры еженедельно и ежемесячно." data-ar="قم بإجراء مراجعات منظمة على إيقاعات أسبوعية وشهرية" data-zh="按周、月频率开展结构化复盘">Run structured reviews at weekly and monthly cadences</li>
+          <li data-en="Apply Scale / Transform / Exit decision framework" data-ru="Применить структуру принятия решений «Масштабирование/Преобразование/Выход»" data-ar="تطبيق إطار قرار النطاق/التحويل/الخروج" data-zh="应用扩张/转型/退出决策框架">Apply Scale / Transform / Exit decision framework</li>
+          <li data-en="Feed learnings back to Step 1 — refine the audience" data-ru="Верните полученные знания к шагу 1 — уточните аудиторию." data-ar="قم بإرجاع الدروس المستفادة إلى الخطوة 1 - قم بتحسين الجمهور" data-zh="将洞察反哺第1步——持续精炼受众定义">Feed learnings back to Step 1 — refine the audience</li>
         </ul>
       </div>
     </div>
@@ -626,37 +305,37 @@
 <!-- ══ KEY PRINCIPLES ══ -->
 <div class="page-section">
   <div class="section-title"
-       data-en="Five Key Principles"
+       data-en="Five Key Principles" data-ru="Пять ключевых принципов" data-ar="خمسة مبادئ رئيسية"
        data-zh="五大核心原则">Five Key Principles</div>
   <div class="prin-grid">
     <div class="prin-card">
       <div class="pnum">01</div>
-      <h3 data-en="Narrow Before Broad" data-zh="先窄后宽">Narrow Before Broad</h3>
-      <p data-en="Resist expanding your audience until you have deep traction with a narrow one. Premature broadening is a common cause of positioning failure."
+      <h3 data-en="Narrow Before Broad" data-ru="Узкий перед широким" data-ar="الضيق قبل العريض" data-zh="先窄后宽">Narrow Before Broad</h3>
+      <p data-en="Resist expanding your audience until you have deep traction with a narrow one. Premature broadening is a common cause of positioning failure." data-ru="Сопротивляйтесь расширению своей аудитории до тех пор, пока не получите глубокую поддержку узкой аудитории. Преждевременное расширение является частой причиной неудачного позиционирования." data-ar="قاوم توسيع جمهورك حتى تحصل على قوة جذب عميقة بجمهور ضيق. يعد التوسيع المبكر سببًا شائعًا لفشل تحديد المواقع."
          data-zh="在对窄众群体形成深度牵引之前，抵制扩大受众的冲动。过早拓宽是定位失败的常见原因。">Resist expanding your audience until you have deep traction with a narrow one. Premature broadening is a common cause of positioning failure.</p>
     </div>
     <div class="prin-card">
       <div class="pnum">02</div>
-      <h3 data-en="Data Over Intuition" data-zh="数据优于直觉">Data Over Intuition</h3>
-      <p data-en="Every assumption carries a cost. Make assumptions explicit and test them cheaply before committing resources."
+      <h3 data-en="Data Over Intuition" data-ru="Данные важнее интуиции" data-ar="البيانات فوق الحدس" data-zh="数据优于直觉">Data Over Intuition</h3>
+      <p data-en="Every assumption carries a cost. Make assumptions explicit and test them cheaply before committing resources." data-ru="Каждое предположение имеет свою цену. Делайте предположения явными и дешево проверяйте их, прежде чем выделять ресурсы." data-ar="كل افتراض يحمل تكلفة. اجعل الافتراضات واضحة واختبرها بتكلفة زهيدة قبل الالتزام بالموارد."
          data-zh="每个假设都有成本。将假设明确化，在投入资源之前以低成本方式加以验证。">Every assumption carries a cost. Make assumptions explicit and test them cheaply before committing resources.</p>
     </div>
     <div class="prin-card">
       <div class="pnum">03</div>
-      <h3 data-en="Trust Is Infrastructure" data-zh="信任是基础设施">Trust Is Infrastructure</h3>
-      <p data-en="Trust cannot be retrofitted. It must be built deliberately across all three dimensions before commercial conversion is attempted."
+      <h3 data-en="Trust Is Infrastructure" data-ru="Доверие — это инфраструктура" data-ar="الثقة هي البنية التحتية" data-zh="信任是基础设施">Trust Is Infrastructure</h3>
+      <p data-en="Trust cannot be retrofitted. It must be built deliberately across all three dimensions before commercial conversion is attempted." data-ru="Доверие не может быть модернизировано. Прежде чем предпринимать попытку коммерческого преобразования, его необходимо тщательно построить с учетом всех трех измерений." data-ar="لا يمكن تجديد الثقة. ويجب أن يتم بناؤه بشكل متعمد عبر الأبعاد الثلاثة قبل محاولة التحويل التجاري."
          data-zh="信任无法事后补建，必须在尝试商业转化之前，有意识地在三个维度上系统性构建。">Trust cannot be retrofitted. It must be built deliberately across all three dimensions before commercial conversion is attempted.</p>
     </div>
     <div class="prin-card">
       <div class="pnum">04</div>
-      <h3 data-en="The Loop Never Ends" data-zh="循环永不停止">The Loop Never Ends</h3>
-      <p data-en="There is no final state. Step 8 always feeds back into Step 1. Mature operators often run multiple loops in parallel."
+      <h3 data-en="The Loop Never Ends" data-ru="Цикл никогда не заканчивается" data-ar="الدورة لا تنتهي" data-zh="循环永不停止">The Loop Never Ends</h3>
+      <p data-en="There is no final state. Step 8 always feeds back into Step 1. Mature operators often run multiple loops in parallel." data-ru="Конечного состояния нет. Шаг 8 всегда является продолжением шага 1. Опытные операторы часто запускают несколько циклов параллельно." data-ar="لا توجد حالة نهائية. تتغذى الخطوة 8 دائمًا على الخطوة 1. غالبًا ما يقوم المشغلون الناضجون بتشغيل حلقات متعددة بالتوازي."
          data-zh="没有终态。第8步永远反哺第1步。成熟的运营者往往同时并行运行多个循环。">There is no final state. Step 8 always feeds back into Step 1. Mature operators often run multiple loops in parallel.</p>
     </div>
     <div class="prin-card">
       <div class="pnum">05</div>
-      <h3 data-en="Speed of Iteration Wins" data-zh="迭代速度决胜">Speed of Iteration Wins</h3>
-      <p data-en="Competitive advantage is not the quality of any single cycle — it is the speed at which you complete cycles and accumulate learning."
+      <h3 data-en="Speed of Iteration Wins" data-ru="Скорость итерации выигрывает" data-ar="سرعة التكرار تفوز" data-zh="迭代速度决胜">Speed of Iteration Wins</h3>
+      <p data-en="Competitive advantage is not the quality of any single cycle — it is the speed at which you complete cycles and accumulate learning." data-ru="Конкурентное преимущество — это не качество какого-либо отдельного цикла, а скорость, с которой вы завершаете циклы и накапливаете знания." data-ar="الميزة التنافسية ليست جودة أي دورة واحدة، بل هي السرعة التي تكمل بها الدورات وتتراكم التعلم."
          data-zh="竞争优势不在于单次循环的质量，而在于完成循环、积累学习的速度。">Competitive advantage is not the quality of any single cycle — it is the speed at which you complete cycles and accumulate learning.</p>
     </div>
   </div>
@@ -665,116 +344,53 @@
 <!-- ══ HOW TO USE ══ -->
 <div class="page-section">
   <div class="section-title"
-       data-en="How to Use This Framework"
+       data-en="How to Use This Framework" data-ru="Как использовать эту структуру" data-ar="كيفية استخدام هذا الإطار"
        data-zh="如何应用此框架">How to Use This Framework</div>
   <div class="use-grid">
     <div class="use-card">
       <div class="icon">🚀</div>
-      <h3 data-en="New Venture" data-zh="新创业">New Venture</h3>
-      <p data-en="Begin at Step 1 with no product in mind. Run a discovery sprint (Steps 1–2), build sprint (Steps 3–4), launch sprint (Steps 5–6), and scale-and-review sprint (Steps 7–8). Allocate no more than 8–12 weeks to a complete first cycle."
+      <h3 data-en="New Venture" data-ru="Новое предприятие" data-ar="مشروع جديد" data-zh="新创业">New Venture</h3>
+      <p data-en="Begin at Step 1 with no product in mind. Run a discovery sprint (Steps 1–2), build sprint (Steps 3–4), launch sprint (Steps 5–6), and scale-and-review sprint (Steps 7–8). Allocate no more than 8–12 weeks to a complete first cycle." data-ru="Начните с шага 1, не имея в виду продукт. Запустите спринт обнаружения (шаги 1–2), спринт сборки (шаги 3–4), спринт запуска (шаги 5–6) и спринт масштабирования и проверки (шаги 7–8). На полный первый цикл отведите не более 8–12 недель." data-ar="ابدأ بالخطوة الأولى دون وضع أي منتج في الاعتبار. قم بإجراء سباق سريع للاكتشاف (الخطوات 1-2)، وبناء سباق سريع (الخطوات 3-4)، وسباق إطلاق سريع (الخطوات 5-6)، وسباق سريع للقياس والمراجعة (الخطوات 7-8). لا تخصص أكثر من 8 إلى 12 أسبوعًا للدورة الأولى الكاملة."
          data-zh="从第1步开始，不预设产品。依次完成探索冲刺（第1–2步）、构建冲刺（第3–4步）、发布冲刺（第5–6步）和扩展复盘冲刺（第7–8步）。首个完整循环不超过8–12周。">Begin at Step 1 with no product in mind. Run a discovery sprint (Steps 1–2), build sprint (Steps 3–4), launch sprint (Steps 5–6), and scale-and-review sprint (Steps 7–8). Allocate no more than 8–12 weeks to a complete first cycle.</p>
-      <div class="tip" data-en="⏱ 8–12 weeks per cycle" data-zh="⏱ 每轮循环8–12周">⏱ 8–12 weeks per cycle</div>
+      <div class="tip" data-en="⏱ 8–12 weeks per cycle" data-ru="⏱ 8–12 недель на цикл" data-ar="⏱ 8-12 أسبوع لكل دورة" data-zh="⏱ 每轮循环8–12周">⏱ 8–12 weeks per cycle</div>
     </div>
     <div class="use-card">
       <div class="icon">🔧</div>
-      <h3 data-en="Existing Business" data-zh="现有业务">Existing Business</h3>
-      <p data-en="Diagnose which step you are stalled at. Stalled businesses are commonly stuck at Step 2 (shallow pain discovery), Step 5 (over-built MVP), or Step 6 (trust assumed rather than built). Return to that step and work forward."
+      <h3 data-en="Existing Business" data-ru="Существующий бизнес" data-ar="الأعمال القائمة" data-zh="现有业务">Existing Business</h3>
+      <p data-en="Diagnose which step you are stalled at. Stalled businesses are commonly stuck at Step 2 (shallow pain discovery), Step 5 (over-built MVP), or Step 6 (trust assumed rather than built). Return to that step and work forward." data-ru="Определите, на каком этапе вы застопорились. Застопорившиеся предприятия обычно застревают на Шаге 2 (поверхностное открытие), Шаге 5 (чрезмерное MVP) или Шаге 6 (доверие предполагается, а не создается). Вернитесь к этому шагу и работайте дальше." data-ar="قم بتشخيص الخطوة التي توقفت عندها. عادة ما تكون الشركات المتوقفة عالقة في الخطوة 2 (اكتشاف الألم السطحي)، أو الخطوة 5 (الإفراط في البناء MVP)، أو الخطوة 6 (الثقة المفترضة بدلاً من بنائها). العودة إلى تلك الخطوة والعمل إلى الأمام."
          data-zh="诊断您在哪一步陷入停滞。停滞的业务常卡在第2步（痛点挖掘浅薄）、第5步（过度开发MVP）或第6步（预设信任而非主动建立）。回到该步骤，向前推进。">Diagnose which step you are stalled at. Stalled businesses are commonly stuck at Step 2 (shallow pain discovery), Step 5 (over-built MVP), or Step 6 (trust assumed rather than built). Return to that step and work forward.</p>
-      <div class="tip" data-en="🔍 Diagnose the stall point" data-zh="🔍 诊断停滞点">🔍 Diagnose the stall point</div>
+      <div class="tip" data-en="🔍 Diagnose the stall point" data-ru="🔍 Диагностика точки срыва" data-ar="🔍 تشخيص نقطة التوقف" data-zh="🔍 诊断停滞点">🔍 Diagnose the stall point</div>
     </div>
     <div class="use-card">
       <div class="icon">📈</div>
-      <h3 data-en="Scaling Operation" data-zh="规模化运营">Scaling Operation</h3>
-      <p data-en="Run multiple instances of the cycle in parallel — one per customer segment or product line — while maintaining a single data review cadence at Step 8. Use the shared review to identify which cycles to accelerate and which to sunset."
+      <h3 data-en="Scaling Operation" data-ru="Операция масштабирования" data-ar="عملية التحجيم" data-zh="规模化运营">Scaling Operation</h3>
+      <p data-en="Run multiple instances of the cycle in parallel — one per customer segment or product line — while maintaining a single data review cadence at Step 8. Use the shared review to identify which cycles to accelerate and which to sunset." data-ru="Запускайте несколько экземпляров цикла параллельно — по одному на каждый сегмент клиентов или линейку продуктов — сохраняя при этом единую периодичность просмотра данных на этапе 8. Используйте общий обзор, чтобы определить, какие циклы следует ускорить, а какие прекратить." data-ar="قم بتشغيل مثيلات متعددة للدورة بالتوازي - واحدة لكل شريحة عميل أو خط منتج - مع الحفاظ على إيقاع مراجعة بيانات واحد في الخطوة 8. استخدم المراجعة المشتركة لتحديد الدورات التي يجب تسريعها والدورات التي يجب إيقافها."
          data-zh="并行运行多个循环实例——每个客户细分群体或产品线对应一个——同时在第8步保持统一的数据复盘节奏。利用共享复盘确定哪些循环加速推进，哪些需要退出。">Run multiple instances of the cycle in parallel — one per customer segment or product line — while maintaining a single data review cadence at Step 8. Use the shared review to identify which cycles to accelerate and which to sunset.</p>
-      <div class="tip" data-en="♻ Parallel loops per segment" data-zh="♻ 每细分市场并行循环">♻ Parallel loops per segment</div>
+      <div class="tip" data-en="♻ Parallel loops per segment" data-ru="♻ Параллельные петли на сегмент" data-ar="♻ حلقات متوازية لكل قطعة" data-zh="♻ 每细分市场并行循环">♻ Parallel loops per segment</div>
     </div>
   </div>
 </div>
 
 <!-- ══ LEGEND ══ -->
 <div class="legend">
-  <div class="legend-item"><div class="legend-dot" style="background:var(--disc)"></div>  <span data-en="Discovery (Steps 1–2)" data-zh="探索阶段（第1–2步）">Discovery (Steps 1–2)</span></div>
-  <div class="legend-item"><div class="legend-dot" style="background:var(--build)"></div> <span data-en="Build (Steps 3–4)"     data-zh="构建阶段（第3–4步）">Build (Steps 3–4)</span></div>
-  <div class="legend-item"><div class="legend-dot" style="background:var(--launch)"></div><span data-en="Launch (Steps 5–6)"    data-zh="发布阶段（第5–6步）">Launch (Steps 5–6)</span></div>
-  <div class="legend-item"><div class="legend-dot" style="background:var(--scale)"></div> <span data-en="Scale (Steps 7–8)"     data-zh="扩展阶段（第7–8步）">Scale (Steps 7–8)</span></div>
-  <div class="legend-item"><div class="legend-dot" style="background:var(--loop-dash);opacity:.7;border-radius:2px;"></div>
-    <span data-en="Loop-back (8→1): data-driven refinement" data-zh="循环反哺（8→1）：数据驱动的受众精炼">Loop-back (8→1): data-driven refinement</span></div>
+  <div class="legend-item"><div class="legend-dot legend-dot--discovery"></div>  <span data-en="Discovery (Steps 1–2)" data-ru="Открытие (шаги 1–2)" data-ar="الاكتشاف (الخطوات 1-2)" data-zh="探索阶段（第1–2步）">Discovery (Steps 1–2)</span></div>
+  <div class="legend-item"><div class="legend-dot legend-dot--build"></div> <span data-en="Build (Steps 3–4)" data-ru="Сборка (шаги 3–4)" data-ar="البناء (الخطوات 3-4)"     data-zh="构建阶段（第3–4步）">Build (Steps 3–4)</span></div>
+  <div class="legend-item"><div class="legend-dot legend-dot--launch"></div><span data-en="Launch (Steps 5–6)" data-ru="Запуск (шаги 5–6)" data-ar="الإطلاق (الخطوات 5-6)"    data-zh="发布阶段（第5–6步）">Launch (Steps 5–6)</span></div>
+  <div class="legend-item"><div class="legend-dot legend-dot--scale"></div> <span data-en="Scale (Steps 7–8)" data-ru="Масштаб (шаги 7–8)" data-ar="المقياس (الخطوات 7-8)"     data-zh="扩展阶段（第7–8步）">Scale (Steps 7–8)</span></div>
+  <div class="legend-item"><div class="legend-dot legend-dot--loop"></div>
+    <span data-en="Loop-back (8→1): data-driven refinement" data-ru="Обратный цикл (8→1): уточнение на основе данных" data-ar="الاسترجاع (8 → 1): تحسين يعتمد على البيانات" data-zh="循环反哺（8→1）：数据驱动的受众精炼">Loop-back (8→1): data-driven refinement</span></div>
 </div>
 
-<script>
-  let currentLang = 'en';
-  const TITLES = {
-    en: 'Business Growth Circular Framework',
-    zh: '商业增长循环框架'
-  };
-  const DESCRIPTIONS = {
-    en: 'An eight-step circular framework for business growth across discovery, build, launch and scale, with a step-by-step breakdown, five key principles and guidance for new and existing businesses.',
-    zh: '商业增长的八步循环框架，覆盖发现、构建、发布与规模化，包含逐步拆解、五项核心原则，以及面向新业务与既有业务的实践指南。'
-  };
 
-  function setLang(lang, remember) {
-    if (lang !== 'zh') lang = 'en';
-    currentLang = lang;
-    const btnEn = document.getElementById('btn-en');
-    const btnZh = document.getElementById('btn-zh');
-    btnEn.classList.toggle('active', lang === 'en');
-    btnZh.classList.toggle('active', lang === 'zh');
-    btnEn.setAttribute('aria-pressed', String(lang === 'en'));
-    btnZh.setAttribute('aria-pressed', String(lang === 'zh'));
-    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
-    document.title = TITLES[lang];
+<p class="gics-source">
+  <span data-en="Classification source: GICS® — The Global Industry Classification Standard, developed by S&amp;P Dow Jones Indices and MSCI. 11 sectors · 25 industry groups · 74 industries · 163 sub-industries. GICS® is a registered trademark of S&amp;P Dow Jones Indices LLC and MSCI Inc.; this independent site is not affiliated with or endorsed by either." data-zh="分类来源：GICS®——全球行业分类标准，由标普道琼斯指数与 MSCI 编制。11 个行业板块 · 25 个行业组 · 74 个行业 · 163 个子行业。GICS® 是标普道琼斯指数有限责任公司和 MSCI 公司的注册商标；本独立网站与上述机构无关联，亦未获其背书。" data-ru="Источник классификации: GICS® — Глобальный стандарт отраслевой классификации, разработанный S&amp;P Dow Jones Indices и MSCI. 11 секторов · 25 групп отраслей · 74 отрасли · 163 подотрасли. GICS® — зарегистрированная торговая марка S&amp;P Dow Jones Indices LLC и MSCI Inc.; этот независимый сайт не связан с ними и не одобрен ими." data-ar="مصدر التصنيف: GICS® — المعيار العالمي لتصنيف القطاعات، طوّرته S&amp;P Dow Jones Indices وMSCI. 11 قطاعًا · 25 مجموعة صناعية · 74 صناعة · 163 صناعة فرعية. GICS® علامة تجارية مسجلة لـ S&amp;P Dow Jones Indices LLC وMSCI Inc.؛ هذا الموقع المستقل غير تابع لهما ولا يحظى بتأييدهما.">Classification source: GICS® — The Global Industry Classification Standard, developed by S&amp;P Dow Jones Indices and MSCI. 11 sectors · 25 industry groups · 74 industries · 163 sub-industries. GICS® is a registered trademark of S&amp;P Dow Jones Indices LLC and MSCI Inc.; this independent site is not affiliated with or endorsed by either.</span>
+  <span aria-hidden="true"> · </span>
+  <a href="https://www.spglobal.com/spdji/en/landing/topic/gics/" target="_blank" rel="noopener" data-en="Official GICS page" data-zh="GICS 官方页面" data-ru="Официальная страница GICS" data-ar="صفحة GICS الرسمية">Official GICS page</a>
+  <span aria-hidden="true"> · </span>
+  <a href="https://www.msci.com/indexes/index-resources/gics" target="_blank" rel="noopener" data-en="MSCI GICS resource" data-zh="MSCI GICS 资源" data-ru="Ресурс GICS от MSCI" data-ar="مورد GICS من MSCI">MSCI GICS resource</a>
+</p>
 
-    const description = document.querySelector('meta[name="description"]');
-    if (description) description.setAttribute('content', DESCRIPTIONS[lang]);
-
-    document.querySelectorAll('[data-en]').forEach(el => { el.innerHTML = el.dataset[lang]; });
-    document.querySelectorAll('[data-title-en]').forEach(el => {
-      el.setAttribute('title', lang === 'zh' ? el.dataset.titleZh : el.dataset.titleEn);
-    });
-    document.querySelectorAll('[data-aria-en]').forEach(el => {
-      el.setAttribute('aria-label', lang === 'zh' ? el.dataset.ariaZh : el.dataset.ariaEn);
-    });
-
-    if (remember !== false) {
-      try { localStorage.setItem('voltai-lang', lang); } catch (e) {}
-    }
-  }
-
-  (function () {
-    let saved = null;
-    try { saved = localStorage.getItem('voltai-lang'); } catch (e) {}
-    if (location.hash === '#zh') saved = 'zh';
-    if (location.hash === '#en') saved = 'en';
-    if (saved === 'zh') setLang('zh', false);
-    else if (location.hash === '#en') setLang('en', false);
-  })();
-
-  function toggleTheme() {
-    const cur  = document.documentElement.getAttribute('data-theme') || 'dark';
-    const next = cur === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    try { localStorage.setItem('voltai-theme', next); } catch (e) {}
-    updateThemeIcon(next);
-  }
-
-  function updateThemeIcon(theme) {
-    const btn = document.getElementById('theme-btn');
-    if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    updateThemeIcon(document.documentElement.getAttribute('data-theme') || 'dark');
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
-      let stored = null;
-      try { stored = localStorage.getItem('voltai-theme'); } catch (err) {}
-      if (!stored) {
-        const t = e.matches ? 'dark' : 'light';
-        document.documentElement.setAttribute('data-theme', t);
-        updateThemeIcon(t);
-      }
-    });
-  });
-</script>
+<script src="assets/js/page-meta.js"></script>
+<script src="assets/js/site.js"></script>
 </body>
 </html>
