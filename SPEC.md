@@ -3,9 +3,9 @@
 |               |                                                                     |
 | ------------- | ------------------------------------------------------------------- |
 | Site          | https://muhammad-wei.github.io                                      |
-| Owner         | Bruce Wei                                                           |
+| Owner         | Muhammad Wei                                                           |
 | Hosting       | GitHub Pages, static files from `main` (no build step)              |
-| Last reviewed | October 23, 2026 — every page is now bilingual, including the home page; the language choice carries across pages and page metadata follows it (live site last checked October 10 against commit `88ea649`) |
+| Last reviewed | October 23, 2026 — the home page gains a four-branch Vision node tree, a matrix-rain strip and a capital-path note; the AI page is review-dated; every page is bilingual and the language choice carries across pages (live site last checked October 10 against commit `88ea649`) |
 
 This document says what the site is, how every page is built, and what "done" means for a change.
 `CLAUDE.md` is the short working guide; this is the reference behind it.
@@ -29,13 +29,14 @@ The landscapes are educational overviews, not investment, legal or tax advice.
 - **Bilingual parity.** English and 中文 say the same thing, with the same numbers and dates.
 - **Readable everywhere.** Both themes meet WCAG AA contrast, at any width from 360 to 1440 px.
 - **A map, not an article.** Use short cards with one idea each. Depth belongs in the sections below the map.
+- **Vision first, capital second.** The four core landscapes converge. Finance and Business Growth are the capital path that funds the convergence, not part of the four.
 
 ## 3. Site map
 
 | Page | File | Scope | Figures as of | Linked from home |
 | --- | --- | --- | --- | --- |
-| Home | `index.html` | Vision, landscape index, contact (EN/中文) | — | — |
-| AI Industry | `ai-industry-chart.html` | World models → four modalities → four pillars | Undated (reviewed Oct 2026) | Intro card, slider |
+| Home | `index.html` | Vision (convergence), landscape index, capital path, contact (EN/中文) | — | — |
+| AI Industry | `ai-industry-chart.html` | World models → four modalities → four pillars | Undated figures; reviewed October 2026 | Intro card, slider |
 | Energy × China | `energy-industry-chart.html` | Global energy with a China focus; the 2026 Hormuz shock | 2026 (checked Oct 2026) | Intro card, slider |
 | Space Industry | `space-industry-chart.html` | Physics of access → value chain → rocket science, technology, living in space, economy, seven space powers, milestones | October 2026 (figures to Oct 15) | Intro card, slider |
 | Web3 Industry | `web3-industry-chart.html` | Regulation, sectors, exchanges, market-moving news | Oct 8, 2026 | Intro card, slider |
@@ -50,23 +51,36 @@ Every landscape page links back to the home page with "← Home" ("← 首页" i
   - Styles: Sass sources in `assets/css/`, compiled to `assets/css/main.css`.
   - Scripts: jQuery 2.2.4 from the Google CDN, falling back to `assets/js/vendor/`, plus `assets/js/functions-min.js`. Hammer.js 2.0.8 is prepended into that file by CodeKit.
   - Fonts: Montserrat, self-hosted in `assets/css/fonts/`.
-- **Sections** (numbered 01–03 in the side nav):
+- **Sections** (numbered 01–04 in the side nav):
   1. **Home**
      - Headline "Building AI × Energy × Space × Web3" (构建 AI × 能源 × 太空 × Web3), a "Contact Me" (联系我) button and the astronaut visual.
      - Four cards: AI Industry, Energy × China, Space Industry and Web3 Industry, matching the headline's four fields in its order.
-  2. **Entrepreneurship ("Industry Landscapes" / 行业版图)**
+  2. **Landscapes ("Industry Landscapes" / 行业版图)**
      - A slider of six landscapes: Energy, AI (centre), Space, Web3, Business Growth and Finance. The first view shows Energy, AI and Space.
      - Each slide has a thumbnail, a title and a one-line description, in both languages.
      - Thumbnails are 600×600 WebP files in `assets/img/landscape/`.
-  3. **Contact**: "Dubai" (迪拜) and a GitHub link.
+     - A note under the slider frames Finance and Business Growth as the **capital path**: they build the starting fund for the intersection and are not part of the four core landscapes.
+  3. **Vision ("The Convergence" / 交汇)**
+     - Headline "Where the four meet" (四大产业，交汇之处) and a short thesis: the four fields are not separate bets, because AI, energy, space and Web3 are becoming one system.
+     - A **node tree**: the root "One system" sits at the top and branches into four role nodes: AI is demand, Energy is the binding constraint, Space is the next layer, Web3 is the coordination layer. Each branch carries three concept leaf nodes (for example AI: models · agents · autonomy). The tree closes below the leaves on "∞ — every combination is an opening", so the structure stays shallow and open-ended. It is drawn as a node diagram at 901 px and wider and as a compact list at 900 px and below.
+     - A monospace ADT caption below the root reads "TREE · root → leaf = one combination in the search space · 4 × 3 = 12 paths · search → ∞". The 4 × 3 must match the branch and leaf counts.
+     - A matrix-rain strip on the right edge (desktop only) adds texture; it is decorative, `aria-hidden`, paused unless the Vision section is active, and hidden under `prefers-reduced-motion`.
+     - A "Now" block states the sequence: the intersection is both the destination and the starting point. Profitable finance and business-growth ventures build the starting fund and operating judgment; the next company may be one of those businesses.
+  4. **Contact**: "Dubai" (迪拜) and a GitHub link.
 - **Hidden on purpose** (commented out, kept for a possible return): the Traffic globe (ClustrMaps), Connect/LinkedIn and the Hire form.
 - **Navigation:**
   - side nav, the ☰ menu, the mouse wheel, the ↑/↓ keys and swipe (Hammer.js)
   - both "Contact Me" buttons jump to Contact
-  - a notice asks visitors to rotate small phones held in landscape
+  - a notice asks visitors to rotate small phones held in landscape or open the site on a larger screen
 - **Language:** an EN | 中文 toggle sits in the header, left of the ☰ menu. It switches every visible string, the document title, the meta description and keywords, and the slide aria-labels. The choice is shared with the landscape pages (§7).
 - **Scope:** bilingual (EN/中文) and a single dark design.
 - **Card copy:** card and slide descriptions must match each page's actual scope. Update them whenever a page's scope changes, in both languages.
+- **Vision and capital-path copy:**
+  - The Vision tree describes four roles in one system, not four separate business lines.
+  - Its four branches are AI (demand), Energy (constraint), Space (frontier) and Web3 (coordination); each carries three concept leaves, and the open end is ∞ below the leaves. Keep the leaves conceptual, not company or product lists.
+  - The tree note is the ADT reading: root → leaf is one path through the search space, 4 × 3 = 12 paths, then search continues at ∞. Update the count if the branches or leaves change.
+  - Finance and Business Growth are the funding path. Never present them as a fifth core landscape, and never fold them into the four.
+  - Update the Vision tree, the slider note and the "Now" block together when the sequencing changes.
 
 ## 5. Landscape pages
 
@@ -103,7 +117,7 @@ Every landscape page follows the same top-to-bottom order. The Business Growth p
 - **Higher-order card:** World Models.
 - **Modalities:** Language · Voice & Audio · Vision · Embodied / Action.
 - **Pillars:** Data · Algorithms · Compute · Energy (Emerging).
-- No page sections.
+- **No page sections and no dated figures.** The page is review-dated "Reviewed October 2026" in the title and subtitle; keep those stamps together if it is reviewed again. A footnote carries the disclaimer and the review date.
 
 **Energy × China**
 - **Higher-order card:** Geopolitics, Energy Security & System Integration.
@@ -115,7 +129,7 @@ Every landscape page follows the same top-to-bottom order. The Business Growth p
   - Global Regions: US, EU, Middle East/GCC, India
   - Where Software Startups Are Winning: five spaces
   - Decision Framing: bad fits and good fits
-- **Main source:** IEA, with NEA for China.
+- **Main source:** IEA, with NEA for China. The footnote states the as-of date and the disclaimer.
 
 **Finance Industry**
 - **Higher-order card:** Regulation, Central Banks & Financial Plumbing.
@@ -217,8 +231,12 @@ Every landscape page follows the same top-to-bottom order. The Business Growth p
 | Δv diagram | `.dv-wrap` SVG (bilingual `<text>` and `<title>`), `.dv-chips`, `.swipe-hint` | Space |
 | Lens cards | `.cn-card`, `.region-card`, `.opp-card` | Energy; Space (`.opp-card`) |
 | Framework cards | `.step-card`, `.prin-card`, `.use-card`; SVG in `.diagram-wrap` | Business Growth |
+| Vision tree | `.vision-tree`: root at the top, four `.vision-branch` nodes (field, role, three leaf nodes), `∞` below; `.vision--now` for the capital-first note | Home |
+| Tree note | `.vision-tree--note`: monospace ADT caption, 4 × 3 = 12 paths, search → ∞ | Home |
+| Matrix rain | `.vision-rain` > `#matrix-rain` canvas; desktop-only, `aria-hidden`, reduced-motion-safe | Home |
+| Capital path note | `.work--note` under the slider | Home |
 | Legend | `.legend` (Space: dots take token colours via `.dot-*` classes) | All landscape pages |
-| Footnote | `.footnote` | Finance, Web3, Space |
+| Footnote | `.footnote` | AI, Energy, Finance, Web3, Space |
 
 Icons are emoji, for example 🏗️ 💡 🔑 💰 ⚠️, so no icon fonts or images are needed.
 
@@ -243,6 +261,7 @@ Icons are emoji, for example 🏗️ 💡 🔑 💰 ⚠️, so no icon fonts or 
 - **Requirements:**
   - no horizontal scroll at any width from 360 to 1440 px, in either theme or language
   - the fixed controls never cover the `h1` or subtitle
+  - the home's Vision section fits without clipping from 360 to 1440 px, including 375×667 and 360×640. The tree is a four-branch node diagram at 901 px and wider and a compact list at 900 px and below; below 760 px in height the section drops the eyebrow and tightens type and padding. The matrix rain appears only at 1280 px and wider and is hidden under reduced motion.
 
 ## 7. Bilingual text
 
@@ -425,12 +444,14 @@ A change is done when all of these pass locally (`python3 -m http.server 8765 --
    - in dark and light on the landscape pages, in EN and 中文
    - in EN and 中文 on the single-dark home page
    - no clipped card text
+   - the home Vision section fits at 375×667 and 360×640 as well as the nine widths above
+   - the matrix rain shows only at 1280 px and wider, is hidden under reduced motion, and produces no console errors while its section is inactive
 6. **Fixed controls (landscape pages):**
    - `.home-link` doesn't overlap the `h1`, subtitle or controls at 1440, 1100, 1025, 1024, 800, 600, 414, 390 and 360 px
    - a touch tap on it goes home
    - the theme button flips the theme and its icon, and saves the choice
    - the home header's EN | 中文 toggle doesn't overlap the logo or the ☰ menu
-7. **Console:** no JavaScript exceptions, console errors or failed requests. Until a favicon exists, `/favicon.ico` returns 404 (§12).
+7. **Console:** no JavaScript exceptions, console errors or failed requests.
 8. **Contrast:** every new or changed text colour is at least 4.5:1 in both themes, including the home page's language toggle.
 9. **Links:** every `href` and `src` resolves.
 10. **Facts:**
@@ -465,17 +486,16 @@ Numbers are kept from the October 16 list; fixed items are listed below the tabl
 
 | # | Gap | Where | Suggested fix |
 | --- | --- | --- | --- |
-| 1 | No favicon: every first visit logs a 404 for `/favicon.ico` | All pages | Add `<link rel="icon">` (for example `assets/img/logo.png`) to all seven pages |
-| 3 | No footnote with as-of date and disclaimer | AI, Energy | Add one in the Finance/Web3 style |
-| 6 | Finance and Business Growth are reachable from the slider only | Home intro | Add a fifth card, or keep it deliberately |
 | 7 | Web3 thumbnail is 1075×600 and 83 KB; the others are 600×600 and 9–30 KB | `assets/img/landscape/` | Re-export at 600×600 |
-| 8 | README says "Hongbo Wei — ML Engineer & AI/Web3 Engineer"; the site says "Bruce Wei — Entrepreneur" | `README.md` | Align if intended |
 | 9 | Shared controls and scripts are copied into six files (the cost of having no build step) | Landscape pages | Apply any change to all six |
 
 Fixed:
 - **October 10, 2026:** the `<` escaping bug in the bilingual attributes (§7, rule 3).
 - **October 16, 2026:** the missing Space landscape (formerly #6).
+- **October 17, 2026:** the README now credits the template and links the live site only; the old name and title are gone (formerly #8).
 - **October 23, 2026:** the home page became bilingual (formerly English only); page titles and meta descriptions now follow the language (formerly #2); language-specific ARIA labels and tooltips reached all pages (formerly #4); the language choice is remembered across pages (formerly #5).
+- **October 23, 2026:** all seven pages link the site logo as favicon (formerly #1); the home page's duplicate `Layer_1` SVG IDs are gone; AI and Energy gained source/disclaimer footnotes (formerly #3).
+- **October 23, 2026:** Finance and Business Growth are framed as the capital path, not core landscapes (formerly the slider-only row); the home page gained the Vision node tree and its matrix-rain strip; the AI page is review-dated.
 
 ## 13. History
 
@@ -490,5 +510,6 @@ Fixed:
 | Oct 9 | Web3 page brought to October 2026 (exchanges, market-moving news); weekly freshness report started |
 | Oct 10 | Live-site review; bilingual `<` fix; `CLAUDE.md` and this spec added |
 | Oct 16 | Space page added: rocket science, technology, living in space, economy, seven powers, milestones. It replaces Business Growth among the home cards, and its sources ledger is started in `sources/space-industry.md`. A quarterly freshness report was started. |
+| Oct 17 | README reduced to the template credit and live link |
 | Oct 18 | Text contrast raised to AA on AI, Energy, Finance, Web3 and Business Growth by changing token values only; Energy's dark-theme body text had been near 2:1 |
-| Oct 23 | Whole site bilingual: home page EN/中文 toggle and full translations, language remembered across pages under `voltai-lang`, page titles and meta descriptions switch with the language, and language-specific tooltips/ARIA labels added to every page |
+| Oct 23 | Whole site bilingual: home page EN/中文 toggle and full translations, language remembered across pages under `voltai-lang`, page titles and meta descriptions switch with the language, and language-specific tooltips/ARIA labels added to every page. The home page gains a Vision section ("The Convergence": a node tree of AI demand, Energy constraint, Space frontier and Web3 coordination, rooted at "One system" and branching to leaves below, with a 4 × 3 ADT caption) with a matrix-rain strip and a capital-first "Now" block; the slider frames Finance and Business Growth as the capital path; the AI page is stamped "Reviewed October 2026"; all pages gain a favicon, AI and Energy gain footnotes, and the home's duplicate SVG IDs are removed. |

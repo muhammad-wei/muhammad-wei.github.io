@@ -1,13 +1,13 @@
 # CLAUDE.md
 
-Bruce Wei's personal site, https://muhammad-wei.github.io. It is static files on GitHub Pages: no build step, no package manager and no tests to run.
+Muhammad Wei's personal site, https://muhammad-wei.github.io. It is static files on GitHub Pages: no build step, no package manager and no tests to run.
 **[SPEC.md](SPEC.md)** defines the pages, the design system, the content standards and the quality gates. Read it before any non-trivial change.
 
 ## Map
 
 | Path | What it is |
 | --- | --- |
-| `index.html` | Home page, built on the "Global" template. Loads `assets/css/main.css`, jQuery 2.2.4 (CDN with a local fallback) and `assets/js/functions-min.js`. EN/中文 toggle in the header; single dark design. |
+| `index.html` | Home page, built on the "Global" template. Loads `assets/css/main.css`, jQuery 2.2.4 (CDN with a local fallback) and `assets/js/functions-min.js`. Four sections: Home, Landscapes, Vision, Contact. The Vision section — a node tree plus a matrix-rain strip — and the capital-path note under the slider are the site's thesis; keep them aligned with SPEC §4. EN/中文 toggle in the header; single dark design. |
 | `ai-`, `energy-`, `finance-`, `space-`, `web3-industry-chart.html`, `business_growth_circular_flow.html` | Landscape pages. Each is one self-contained file: inline CSS and JS, no external requests, EN/中文, dark and light themes. |
 | `sources/space-industry.md` | The Space page's sources ledger: each figure with its date, source, placements and status. Update it together with the page. |
 | `assets/img/landscape/*.webp` | Home slider thumbnails, 600×600, one per landscape page. |
@@ -42,6 +42,12 @@ Bruce Wei's personal site, https://muhammad-wei.github.io. It is static files on
   - A refresh moves the as-of stamp everywhere it appears: title, `h1`, section titles, footnote.
   - A changed figure is changed everywhere it is repeated: cards, snapshot, scoreboard, scenarios, in both EN and ZH.
 - **Home copy:** if a page's scope changes, update its home card and slide descriptions in EN and ZH.
+- **Vision vs. capital path:**
+  - The four core landscapes are AI, Energy, Space and Web3; the Vision section describes their roles in one system (AI demand, Energy constraint, Space frontier, Web3 coordination), drawn as a node tree rooted at "One system", branching to four field nodes and their leaves, and closing at ∞.
+  - Finance and Business Growth are the **capital path**, not part of the four core landscapes. They build the starting fund for the intersection.
+  - The "Now" block is deliberately candid: the next company may be a profitable finance or business-growth business before the convergence company.
+  - Keep the Vision tree, the "Now" block and the slider note consistent in EN and ZH.
+  - The tree note is the ADT reading: root → leaf is one path in the search space, 4 × 3 = 12 paths, then search continues at ∞. Update the count if branches or leaves change.
 
 ## Check before calling it done (SPEC §10)
 
@@ -51,6 +57,8 @@ Bruce Wei's personal site, https://muhammad-wei.github.io. It is static files on
    - Add `?v=<timestamp>` to URLs to bypass caches.
 3. **Run the checks:**
    - overflow at nine widths, in both themes and both languages on the landscape pages, and in both languages on the home page
+   - the home Vision section at 375×667 and 360×640, where it switches to the compact tree layout
+   - the matrix rain: visible at ≥1280 px only, hidden under reduced motion, and no canvas errors when the section is inactive
    - the EN → 中文 → EN round trip
    - default text equals `data-en`
    - page titles, meta descriptions and tooltips/ARIA labels follow the language

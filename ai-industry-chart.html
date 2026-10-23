@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Industry Overview</title>
+<link rel="icon" type="image/png" href="assets/img/logo.png">
+<title>AI Industry Overview — Reviewed October 2026</title>
 <meta name="description" content="Layered map of the AI industry: world models, four core modalities, and the data, algorithm, compute and energy pillars that sustain them.">
 <!-- Anti-FOUC: set theme before first paint -->
 <script>
@@ -344,6 +345,13 @@
   /* ── LEGEND ── */
   .legend { margin-top: 40px; display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
   .legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--legend-color); }
+  .footnote {
+    width: 100%; max-width: 960px;
+    margin: 28px auto 0; padding-top: 16px;
+    border-top: 1px solid var(--ctrl-border);
+    font-size: 11px; line-height: 1.6;
+    color: var(--legend-color); text-align: center;
+  }
   .legend-dot  { width: 10px; height: 10px; border-radius: 50%; }
 
   @media (max-width: 1024px) { body { padding-top: 72px; } }   /* clear the fixed controls */
@@ -374,7 +382,7 @@
 </div>
 
 <h1 data-en="AI Industry — Full Overview" data-zh="AI 行业全览">AI Industry — Full Overview</h1>
-<p class="subtitle" data-en="Modalities · World Models · Industry Pillars" data-zh="模态 · 世界模型 · 行业支柱">Modalities · World Models · Industry Pillars</p>
+<p class="subtitle" data-en="Reviewed October 2026 · Modalities · World Models · Industry Pillars" data-zh="2026年10月复核 · 模态 · 世界模型 · 行业支柱">Reviewed October 2026 · Modalities · World Models · Industry Pillars</p>
 
 <div class="chart">
 
@@ -547,11 +555,15 @@
   </div>
 </div>
 
+<p class="footnote"
+   data-en="Educational overview — not investment, legal or tax advice. Conceptual map reviewed October 2026; it contains no market figures."
+   data-zh="教育性概览——不构成投资、法律或税务建议。概念图谱于2026年10月复核，不含市场数据。">Educational overview — not investment, legal or tax advice. Conceptual map reviewed October 2026; it contains no market figures.</p>
+
 <script>
   let currentLang = 'en';
   const TITLES = {
-    en: 'AI Industry Overview',
-    zh: 'AI 行业全览'
+    en: 'AI Industry Overview — Reviewed October 2026',
+    zh: 'AI 行业全览——2026年10月复核'
   };
   const DESCRIPTIONS = {
     en: 'Layered map of the AI industry: world models, four core modalities, and the data, algorithm, compute and energy pillars that sustain them.',
