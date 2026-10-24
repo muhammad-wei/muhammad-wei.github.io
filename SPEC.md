@@ -5,7 +5,7 @@
 | Site          | https://muhammad-wei.github.io                                      |
 | Owner         | Muhammad Wei                                                           |
 | Hosting       | GitHub Pages, static files from `main` (no build step)              |
-| Last reviewed | October 24, 2026 — Russian and Arabic (RTL) join English and Chinese across all seven pages; the header/controls use a four-language select; CSS and JS now live in external per-page/shared files with no inline presentation; the landscape pages carry GICS® lenses and sourced GICS attribution; GICS links point to the official S&P Dow Jones Indices and MSCI pages; the home page carries the Vision node tree, matrix-rain strip, capital path and a live OpenStreetMap contact map of Dubai, Guiyang and Hangzhou; the AI page is review-dated (live site last checked October 10 against commit `88ea649`) and adds a model/platform middle layer between its modalities and pillars |
+| Last reviewed | October 24, 2026 — Russian and Arabic (RTL) join English and Chinese across all seven pages; the header/controls use a four-language select; CSS and JS now live in external per-page/shared files with no inline presentation; the landscape pages carry GICS® lenses and sourced GICS attribution; GICS links point to the official S&P Dow Jones Indices and MSCI pages; the home page carries the Vision node tree, matrix-rain strip, capital path and a live OpenStreetMap contact map of Dubai, Guiyang and Hangzhou; the AI page is review-dated (live site last checked October 10 against commit `88ea649`) and adds a model/platform middle layer between its modalities and pillars; the six landscapes are explicitly classified as sector (Energy, Financials), theme (AI, Space, Web3) or framework (Business Growth), and no theme is called an industry |
 
 This document says what the site is, how every page is built, and what "done" means for a change.
 `CLAUDE.md` is the short working guide; this is the reference behind it.
@@ -17,7 +17,7 @@ This document says what the site is, how every page is built, and what "done" me
 The site does two jobs:
 
 1. **Introduce the owner**: an entrepreneur based in Dubai, building at the intersection of AI, Energy, Space and Web3.
-2. **Publish industry landscapes**: one-page maps of an industry, in four languages. Each shows the industry's structure, the forces acting on it, current figures and what they mean for builders.
+2. **Publish landscapes**: one-page maps of a sector, a cross-sector theme or a framework, in four languages. Each shows the field's structure, the forces acting on it, current figures and what they mean for builders.
 
 Readers are founders, investors, partners and peers, reading in English, Chinese, Russian or Arabic, on a desktop or a phone.
 The landscapes are educational overviews, not investment, legal or tax advice.
@@ -36,12 +36,12 @@ The landscapes are educational overviews, not investment, legal or tax advice.
 | Page | File | Scope | Figures as of | Linked from home |
 | --- | --- | --- | --- | --- |
 | Home | `index.html` | Vision (convergence), landscape index, capital path, contact (EN/中文/РУ/العربية) | — | — |
-| AI Industry | `ai-industry-chart.html` | World models → four modalities → model/platform layer → four pillars | Undated figures; reviewed October 2026 | Intro card, slider |
-| Energy × China | `energy-industry-chart.html` | Global energy with a China focus; the 2026 Hormuz shock | 2026 (checked Oct 2026) | Intro card, slider |
-| Space Industry | `space-industry-chart.html` | Physics of access → value chain → rocket science, technology, living in space, economy, seven space powers, milestones | October 2026 (figures to Oct 15) | Intro card, slider |
-| Web3 Industry | `web3-industry-chart.html` | Regulation, sectors, exchanges, market-moving news | Oct 8, 2026 | Intro card, slider |
-| Finance Industry | `finance-industry-chart.html` | Regulation, value chain, money flows, six jurisdictions | October 2026 | Slider |
-| Business Growth | `business_growth_circular_flow.html` | Eight-step growth cycle (a framework, no market data) | Evergreen | Slider |
+| AI (theme) | `ai-industry-chart.html` | World models → four modalities → model/platform layer → four pillars | Undated figures; reviewed October 2026 | Intro card, slider |
+| Energy × China (sector) | `energy-industry-chart.html` | Global energy with a China focus; the 2026 Hormuz shock | 2026 (checked Oct 2026) | Intro card, slider |
+| Space (theme) | `space-industry-chart.html` | Physics of access → value chain → rocket science, technology, living in space, economy, seven space powers, milestones | October 2026 (figures to Oct 15) | Intro card, slider |
+| Web3 (theme) | `web3-industry-chart.html` | Regulation, five segments, exchanges, market-moving news | Oct 8, 2026 | Intro card, slider |
+| Finance (sector) | `finance-industry-chart.html` | Regulation, value chain, money flows, six jurisdictions | October 2026 | Slider |
+| Business Growth (framework) | `business_growth_circular_flow.html` | Eight-step growth cycle (a framework, no market data) | Evergreen | Slider |
 
 Every landscape page links back to the home page with "← Home" ("← 首页" in Chinese).
 
@@ -54,9 +54,9 @@ Every landscape page links back to the home page with "← Home" ("← 首页" i
 - **Sections** (numbered 01–04 in the side nav):
   1. **Home**
      - Headline "Building AI × Energy × Space × Web3" (构建 AI × 能源 × 太空 × Web3), a "Contact Me" (联系我) button and the astronaut visual.
-     - Four cards: AI Industry, Energy × China, Space Industry and Web3 Industry, matching the headline's four fields in its order.
-  2. **Landscapes ("Industry Landscapes" / 行业版图)**
-     - A slider of six landscapes: Energy, AI (centre), Space, Web3, Business Growth and Finance. The first view shows Energy, AI and Space.
+     - Four cards: AI, Energy × China, Space and Web3, matching the headline's four fields in its order. The card names the field, not an "industry".
+  2. **Landscapes ("Landscapes" / 版图)**
+     - A slider of six landscapes: Energy, AI (centre), Space, Web3, Business Growth and Finance. The first view shows Energy, AI and Space. Each is a sector landscape (Energy, Finance), a theme landscape (AI, Space, Web3) or a framework (Business Growth).
      - Each slide has a thumbnail, a title and a one-line description, in all four languages.
      - Thumbnails are 600×600 WebP files in `assets/img/landscape/`.
      - A note under the slider frames Finance and Business Growth as the **capital path**: they build the starting fund for the intersection and are not part of the four core landscapes.
@@ -68,7 +68,7 @@ Every landscape page links back to the home page with "← Home" ("← 首页" i
      - A "Now" block states the sequence: the intersection is both the destination and the starting point. Profitable finance and business-growth ventures build the starting fund and operating judgment; the next company may be one of those businesses.
   4. **Contact**: "Dubai · Guiyang · Hangzhou" (迪拜 · 贵阳 · 杭州), Instagram (`muhammad.x.wei`, linked), WeChat ID (`mohammed-wei`, selectable) and a GitHub link.
   5. **Contact map**: a live Leaflet map on OpenStreetMap tiles, with 200 km circles and pulsing markers at Dubai, Guiyang and Hangzhou; pan/zoom enabled, zoom buttons swap sides in Arabic. The map credit links to OpenStreetMap. Labels follow the chosen language. At 767 px and below the contact panel docks to the bottom, leaving the three circles visible above it.
-  6. **GICS source**: the Industry Landscapes slide carries a small `.work--gics` line. It states that the landscapes are thematic cuts across GICS® sectors and credits S&P Dow Jones Indices and MSCI.
+  6. **Classification and GICS source**: the Landscapes slide carries a small `.work--gics` line. It classifies all six — sectors: Energy, Financials; themes: AI, Space, Web3; framework: Business Growth — and credits S&P Dow Jones Indices and MSCI.
 - **Hidden on purpose** (commented out, kept for a possible return): the Traffic globe (ClustrMaps), Connect/LinkedIn and the Hire form.
 - **Navigation:**
   - side nav, the ☰ menu, the mouse wheel, the ↑/↓ keys and swipe (Hammer.js)
@@ -99,10 +99,10 @@ Every landscape page follows the same top-to-bottom order. The Business Growth p
    - `.home-link` at top left
    - `.controls` at top right: the theme button (☀️ in dark, 🌙 in light) and the four-language select
    - their tooltips and ARIA labels follow the language too
-3. **Header:** an `h1` (page name, plus the as-of date when dated) and a `.subtitle` that lists the page's parts, separated by "·". A `.gics-lens` block follows the subtitle: label + one sentence mapping the landscape to GICS sectors, or stating that it is not a GICS sector.
+3. **Header:** an `h1` (page name, plus the as-of date when dated) and a `.subtitle` that lists the page's parts, separated by "·". The `<html>` element records the type in `data-kind` (`sector`, `theme` or `framework`). A `.gics-lens` block follows the subtitle: a type label (Sector landscape, Theme landscape or Framework) plus one sentence mapping the landscape to GICS sectors, or stating that it is not a GICS sector, industry group or industry. `data-kind` and the lens label must agree.
 4. **Higher-order card:** the field that spans every layer, such as regulation, geopolitics or physics (Space). It has a badge, an `h2`, one paragraph and tag chips.
 5. **Connector** with a label (for example "Integrates & spans across").
-6. **Layer cards**, either value-chain layers or sectors, each with sub-tags. The AI page uses four modality cards here, followed by a four-card model/platform layer.
+6. **Layer cards**, either value-chain layers, market segments or sectors, each with sub-tags. The AI page uses four modality cards here, followed by a four-card model/platform layer.
 7. **Connectors** with labels: "Delivered through" between the AI page's modalities and its model/platform layer, and "Sustained by" between that layer and the pillars.
 8. **Four pillar cards.** The fourth carries the "Emerging" badge.
 9. **Page sections:** `.page-section` blocks with a `.page-section-title`, specific to each page.
@@ -114,14 +114,14 @@ Every landscape page follows the same top-to-bottom order. The Business Growth p
 
 ### 5.2 Page inventory
 
-**AI Industry**
+**AI (theme landscape)**
 - **Higher-order card:** World Models.
 - **Modalities:** Language · Voice & Audio · Vision · Embodied / Action.
 - **Model & platform layer:** Foundation Models · Training & Inference Platforms · Model APIs & MaaS · Agents & Orchestration.
 - **Pillars:** Data · Algorithms · Compute · Energy (Emerging).
 - **No page sections and no dated figures.** The page is review-dated "Reviewed October 2026" in the title and subtitle; keep those stamps together if it is reviewed again. A footnote carries the disclaimer and the review date.
 
-**Energy × China**
+**Energy × China (sector landscape)**
 - **Higher-order card:** Geopolitics, Energy Security & System Integration.
 - **Layers:** Upstream · Midstream · Generation · Grid & Distribution · End-Use.
 - **Pillars:** Resources · Technology · Capital · Policy & Carbon (Emerging).
@@ -133,7 +133,7 @@ Every landscape page follows the same top-to-bottom order. The Business Growth p
   - Decision Framing: bad fits and good fits
 - **Main source:** IEA, with NEA for China. The footnote states the as-of date and the disclaimer.
 
-**Finance Industry**
+**Finance (sector landscape)**
 - **Higher-order card:** Regulation, Central Banks & Financial Plumbing.
 - **Layers:** Capital Formation · Trading & Market Structure · Post-Trade & Custody · Payments & Money Movement · Asset & Wealth Management.
 - **Pillars:** Risk Management · Data & Technology · Accounting & Reporting · Fintech & Digital Assets (Emerging).
@@ -143,20 +143,20 @@ Every landscape page follows the same top-to-bottom order. The Business Growth p
   - Cross-Border Links
   - Trends to Watch
 
-**Web3 Industry**
+**Web3 (theme landscape)**
 - **Higher-order card:** Regulatory Architecture & Institutional Rails.
-- **Sectors:** Infrastructure & Scalability · Sector Depth & Value Capture · Frictionless UX Layer · Capital & Tokenomics · Risk Vectors.
+- **Segments:** Infrastructure & Scalability · Market Depth & Value Capture · Frictionless UX Layer · Capital & Tokenomics · Risk Vectors.
 - **Pillars:** Capital · Technology · Liquidity · Narrative (Emerging).
 - **Sections:**
   - Market Macro Snapshot: three cards
   - Market-Moving News: nine items, newest first, with OKX NOW as the headline
   - Exchange Landscape: Binance, OKX, Coinbase, HTX and Challengers
-  - Sector Scoreboard: DeAI, DePIN, RWA & Tokenization, Restaking, Web3 Consumer
+  - Segment Scoreboard: DeAI, DePIN, RWA & Tokenization, Restaking, Web3 Consumer
   - Consensus Allocation Framework: four cards
   - 12–18 Month Scenarios: bear and bull
 - **Sources:** CoinGecko, DefiLlama, RWA.xyz, SoSoValue and company filings.
 
-**Space Industry**
+**Space (theme landscape)**
 - **Higher-order card:** The Physics of Access: rocket equation, Δv and cost to orbit.
 - **Layers:**
   - Launch & Access to Orbit
@@ -178,7 +178,7 @@ Every landscape page follows the same top-to-bottom order. The Business Growth p
   - Δv values from Curtis, *Orbital Mechanics for Engineering Students* (4th ed.)
   - every figure is listed in `sources/space-industry.md`
 
-**Business Growth**
+**Business Growth (framework)**
 - A circular SVG diagram of eight steps in four phases: Discovery (1–2), Build (3–4), Launch (5–6) and Scale (7–8).
 - **Sections:**
   - Step-by-Step Breakdown: eight cards
@@ -371,8 +371,15 @@ Icons are emoji, for example 🏗️ 💡 🔑 💰 ⚠️, so no icon fonts or 
 ### 8.5 GICS alignment and attribution
 
 - **Source.** GICS® — The Global Industry Classification Standard — was developed by S&P Dow Jones Indices and MSCI. Its four-tier structure is 11 sectors, 25 industry groups, 74 industries and 163 sub-industries (counts per MSCI's published structure). Use the official pages for current methodology: [S&P Dow Jones Indices](https://www.spglobal.com/spdji/en/landing/topic/gics/) and [MSCI](https://www.msci.com/indexes/index-resources/gics).
-- **Thematic, not sectors.** AI, Space, Web3 and Business Growth are cross-sector themes/frameworks, not GICS sectors. Finance and Energy correspond to GICS sectors, but the pages remain thematic landscapes. Never relabel a theme as a GICS sector.
-- **Lens and source on every page.** Each landscape page carries a `.gics-lens` under the subtitle, mapping its scope to the relevant GICS sectors and stating the limits. Each page also carries a `.gics-source` line with the definition, counts, trademark disclaimer and links. The home page carries the shorter `.work--gics` source line.
+- **Classification.** Every landscape is exactly one type:
+  - **Sector landscape** — Energy and Finance. Each is anchored on one of the 11 GICS sectors (Energy; Financials) and may draw on adjacent sectors; the lens names them.
+  - **Theme landscape** — AI, Space and Web3. A theme cuts across sectors. It is not a GICS sector, industry group, industry or sub-industry.
+  - **Framework** — Business Growth. A method, not a sector, industry or theme.
+  - A theme must never be called an industry or a sector. "Industry" is reserved for a GICS level-3 industry (74 of them) or for plain-language prose about an industry, never for a theme.
+  - The type is recorded on `<html data-kind="sector|theme|framework">` and restated in the `.gics-lens` label and first sentence. The two must agree.
+  - Page titles, home cards and slide titles name the field ("AI — Full Overview"), not "<field> Industry".
+  - Filenames keep the `*-industry-chart.html` suffix for stable URLs. The suffix is legacy and is not a classification.
+- **Lens and source on every page.** Each landscape page carries a `.gics-lens` under the subtitle: a translated type label plus a sentence mapping its scope to the relevant GICS sectors and stating the limits. Each page also carries a `.gics-source` line with the definition, counts, trademark disclaimer and links. The home page carries the shorter `.work--gics` line, which is the classification legend plus the source credit.
 - **Attribution.** Keep the GICS trademark notice and the "independent site, not affiliated or endorsed" statement. Link to the official S&P Dow Jones Indices and MSCI GICS pages; do not host third-party GICS infographics without permission.
 - **Currency.** Re-check the sector structure and mappings when GICS is revised; update the counts and page lenses together.
 
@@ -431,8 +438,9 @@ Icons are emoji, for example 🏗️ 💡 🔑 💰 ⚠️, so no icon fonts or 
 
 1. **Start from a copy** of the closest existing page, to keep the head script, tokens, controls and scripts.
 2. **Name and header:**
-   - Name the file `<topic>-industry-chart.html`.
-   - Give it a `<title>`, `h1` and subtitle, with the as-of month if figures are dated, plus a `meta description`.
+   - Name the file `<topic>-industry-chart.html` (legacy suffix kept for URL stability).
+   - Decide the type: sector landscape, theme landscape or framework.
+   - Give it a `<title>`, `h1` and subtitle, with the as-of month if figures are dated, plus a `meta description`. Name the field, not "<field> Industry".
 3. **Themes:** define tokens for both themes and check contrast.
 4. **Text:** make every string available in all four languages (§7).
 5. **Footnote:** sources, as-of date and the disclaimer.
@@ -493,7 +501,7 @@ A change is done when all of these pass locally (`python3 -m http.server 8765 --
     - all four languages agree on every figure and date
     - the as-of stamps agree with each other
 
-12. **GICS:** every landscape page has a translated `.gics-lens` and `.gics-source`; the home has `.work--gics`; the official MSCI/S&P links resolve; the GICS trademark/independent-site disclaimer is present; no theme is described as a GICS sector.
+12. **Classification and GICS:** every landscape page records its type in `<html data-kind>` and has a translated `.gics-lens` whose label states the same type (Sector landscape, Theme landscape or Framework), plus a translated `.gics-source`; the home `.work--gics` line classifies all six; the official MSCI/S&P links resolve; the GICS trademark/independent-site disclaimer is present; no theme is described as a GICS sector, industry group or industry.
 
 After a push:
 
@@ -537,7 +545,7 @@ Fixed:
 - **October 23, 2026:** Finance and Business Growth are framed as the capital path, not core landscapes (formerly the slider-only row); the home page gained the Vision node tree and its matrix-rain strip; the AI page is review-dated.
 - **October 23, 2026:** Russian and Arabic (RTL) reached all seven pages with a four-language select, `dir="rtl"` mirroring and `en`/`zh`/`ru`/`ar` persistence. The translations are a machine-assisted first pass; native review is gap #10.
 - **October 23, 2026:** the contact background is now a live Leaflet map on OpenStreetMap tiles, with Dubai, Guiyang and Hangzhou circled and labelled in all four languages; the contact location reads "Dubai · Guiyang · Hangzhou".
-- **October 23, 2026:** the landscape pages now carry a GICS® lens and a sourced GICS attribution line; the home Industry Landscapes slide credits S&P Dow Jones Indices and MSCI. GICS® is a registered trademark; the site states it is independent. The source links point to the official S&P Dow Jones Indices and MSCI pages; no third-party infographic is hosted.
+- **October 23, 2026:** the landscape pages now carry a GICS® lens and a sourced GICS attribution line; the home Landscapes slide credits S&P Dow Jones Indices and MSCI. GICS® is a registered trademark; the site states it is independent. The source links point to the official S&P Dow Jones Indices and MSCI pages; no third-party infographic is hosted.
 - **October 23, 2026:** inline CSS and JS left the HTML. Each landscape page now links its own `assets/css/pages/` file; language/theme logic is shared in `site.js`, page metadata in `page-meta.js`, pre-paint boot in `boot.js`, and the home modules are `matrix-rain.js` and `contact-map.js`. Inline styles and event handlers are gone; formerly #9.
 
 ## 13. History
@@ -545,7 +553,7 @@ Fixed:
 | Date (2026) | Milestone |
 | --- | --- |
 | Feb 23 | Site created from the Global template |
-| May 8 | Pivot to industry landscapes: AI, Energy and Business Growth pages |
+| May 8 | Pivot to landscape pages: AI, Energy and Business Growth |
 | May 25 | Web3 page added |
 | Oct 2 | Finance page added |
 | Oct 4 | Energy page reframed as global with a China focus; vision "AI × Energy × Space × Web3"; Traffic and LinkedIn hidden |
@@ -562,3 +570,4 @@ Fixed:
 | Oct 23 | Landscape pages aligned to GICS®: a per-page GICS lens, a sourced attribution line with the 11/25/74/163 structure and trademark disclaimer, and a home source line crediting S&P Dow Jones Indices and MSCI. GICS sources link to the official S&P Dow Jones Indices and MSCI pages. |
 | Oct 24 | Accessibility/performance pass: 600×600 Web3 thumbnail (fixed #7), 2× logo with dimensions, WebP introduction image, hidden core-landscape heading, decorative logo alt, and `font-display: swap`. Lighthouse accessibility moved to 100 on the home page. |
 | Oct 24 | AI page gains a model/platform middle layer (Foundation Models · Training & Inference Platforms · Model APIs & MaaS · Agents & Orchestration); the upper/lower labels become Capability Layer and Input Layer; the home AI card and slider copy follow in all four languages. |
+| Oct 24 | Classification pass: every landscape now states its type in the GICS® lens — sector landscape (Energy, Finance/Financials), theme landscape (AI, Space, Web3) or framework (Business Growth). Page titles, meta descriptions, home cards and slider titles drop "Industry" for themes; the home Landscapes heading and `.work--gics` line become the classification legend; Web3's five "industry sectors" become market segments; AI's "Industry Pillars" become AI Pillars. EN/中文/РУ/العربية updated together. |

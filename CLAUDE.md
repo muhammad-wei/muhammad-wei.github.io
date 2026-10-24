@@ -7,7 +7,7 @@ Muhammad Wei's personal site, https://muhammad-wei.github.io. It is static files
 
 | Path | What it is |
 | --- | --- |
-| `index.html` | Home page, built on the "Global" template. Loads `assets/css/main.css`, the shared boot/site scripts, vendored Leaflet/jQuery and `assets/js/functions-min.js`. Four sections: Home, Landscapes, Vision, Contact. The Vision section — a node tree plus a matrix-rain strip — and the capital-path note under the slider are the site's thesis; keep them aligned with SPEC §4. Four-language select (EN/中文/РУ/عربي) in the header; single dark design. Contact is a live Leaflet/OpenStreetMap map of Dubai, Guiyang and Hangzhou; the Industry Landscapes slide carries the GICS® source line. |
+| `index.html` | Home page, built on the "Global" template. Loads `assets/css/main.css`, the shared boot/site scripts, vendored Leaflet/jQuery and `assets/js/functions-min.js`. Four sections: Home, Landscapes, Vision, Contact. The Vision section — a node tree plus a matrix-rain strip — and the capital-path note under the slider are the site's thesis; keep them aligned with SPEC §4. Four-language select (EN/中文/РУ/عربي) in the header; single dark design. Contact is a live Leaflet/OpenStreetMap map of Dubai, Guiyang and Hangzhou; the Landscapes slide carries the GICS® classification legend and source line. |
 | `ai-`, `energy-`, `finance-`, `space-`, `web3-industry-chart.html`, `business_growth_circular_flow.html` | Landscape pages. Each links its own stylesheet in `assets/css/pages/`; shared `boot.js`, `page-meta.js` and `site.js` handle language/theme. No third-party requests, four languages (Arabic RTL), dark and light themes. |
 | `sources/space-industry.md` | The Space page's sources ledger: each figure with its date, source, placements and status. Update it together with the page. |
 | `assets/js/vendor/leaflet.js`, `assets/css/vendor/leaflet.css`, `assets/js/vendor/leaflet.LICENSE` | Vendored Leaflet 1.9.4 (BSD-2-Clause) for the home contact map. Keep the version and licence notice with the files. |
@@ -49,7 +49,12 @@ Muhammad Wei's personal site, https://muhammad-wei.github.io. It is static files
 - **No horizontal scroll** at any width from 360 to 1440 px, in either theme or any of the four languages, including Arabic RTL.
 - **GICS alignment and attribution (SPEC §8.5):**
   - GICS® was developed by S&P Dow Jones Indices and MSCI; the four-tier structure is 11 sectors, 25 industry groups, 74 industries and 163 sub-industries (counts per MSCI's published structure).
-  - AI, Space, Web3 and Business Growth are themes/frameworks, not GICS sectors. Finance and Energy are GICS sectors but remain thematic pages. Never relabel a theme as a sector.
+  - Every landscape is exactly one type: **sector landscape** (Energy, Finance/Financials), **theme landscape** (AI, Space, Web3) or **framework** (Business Growth).
+  - A theme is cross-sector. It is not a GICS sector, industry group, industry or sub-industry. Never call a theme an industry or a sector. A framework is a method, not a sector, industry or theme.
+  - The type is recorded on `<html data-kind="sector|theme|framework">` and stated in the `.gics-lens` label ("Sector landscape", "Theme landscape" or "Framework", then "GICS® lens"); the two must agree.
+  - Page titles, home cards and slide titles name the field ("AI — Full Overview"), not "AI Industry".
+  - Filenames keep the `*-industry-chart.html` suffix for stable URLs; it is legacy, not a classification.
+  - Web3's five upper-layer parts are **segments**, not sectors. AI's four inputs are **pillars**, not industry pillars.
   - Every landscape page keeps a translated `.gics-lens` under the subtitle and a translated `.gics-source` line at the bottom. The home keeps `.work--gics`.
   - Keep the official S&P/MSCI links, the GICS® trademark notice and the independent-site disclaimer. Do not host a third-party GICS infographic without permission.
 - **Contact map (home):**

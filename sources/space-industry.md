@@ -1,4 +1,4 @@
-# Sources ledger — Space Industry page
+# Sources ledger — Space page
 
 Every figure on `space-industry-chart.html` comes from a row in this file (SPEC §8.1, "one figure, every place").
 
