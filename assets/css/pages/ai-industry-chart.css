@@ -434,7 +434,9 @@
   html[dir="rtl"] .home-link { left: auto; right: 24px; }
   html[dir="rtl"] .controls { right: auto; left: 24px; }
   html[dir="rtl"] h1, html[dir="rtl"] .subtitle { text-align: center; }
+  html[dir="rtl"] .lang-toggle select { background-position: 12px 50%, 8px 50%; }
   html[dir="rtl"] svg, html[dir="rtl"] .flow-wrap, html[dir="rtl"] .dv-wrap, html[dir="rtl"] .diagram-wrap { direction: ltr; }
+  html[dir="rtl"] svg text { unicode-bidi: plaintext; }
 
 /* Extracted inline presentation */
 .legend-dot--paradigm { background: #6c3fc7; }

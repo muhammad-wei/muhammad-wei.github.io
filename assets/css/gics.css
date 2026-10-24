@@ -1,12 +1,20 @@
+:root {
+  --gics-muted: #9a9a9a;
+  --gics-link: #6f8cff;
+  --gics-strong: #fff;
+  --gics-border: rgba(127, 127, 127, .26);
+  --gics-tint: rgba(127, 127, 127, .06);
+  --gics-link-border: rgba(111, 140, 255, .4);
+}
 /* GICS® crosswalk and source notes, shared by the home and landscape pages. */
 .gics-lens {
   max-width: 960px;
   margin: 14px auto 0;
   padding: 10px 14px;
-  border: 1px solid rgba(127, 127, 127, .26);
+  border: 1px solid var(--gics-border);
   border-left: 3px solid currentColor;
   border-radius: 6px;
-  background: rgba(127, 127, 127, .06);
+  background: var(--gics-tint);
   color: inherit;
   font-size: 11px;
   line-height: 1.55;
@@ -42,20 +50,26 @@
 .work--gics {
   max-width: 760px;
   margin: 10px auto 0;
-  color: #9a9a9a;
+  color: var(--gics-muted, #9a9a9a);
   font-size: 9px;
   line-height: 1.5;
   text-align: center;
 }
 .work--gics a {
-  color: #6f8cff;
+  color: var(--gics-link, #6f8cff);
   text-decoration: none;
-  border-bottom: 1px solid rgba(111, 140, 255, .4);
+  border-bottom: 1px solid var(--gics-link-border);
 }
 .work--gics a:hover,
 .work--gics a:focus-visible {
-  color: #fff;
-  border-bottom-color: #fff;
+  color: var(--gics-strong, #fff);
+  border-bottom-color: var(--gics-strong, #fff);
+}
+.work--gics-note {
+  display: block;
+  margin-top: 4px;
+  font-size: 9px;
+  line-height: 1.5;
 }
 html[dir="rtl"] .gics-lens {
   border-left: 0;

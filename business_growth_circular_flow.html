@@ -15,7 +15,7 @@
 
 <a class="home-link" href="index.html" title="Back to homepage" data-title-en="Back to homepage" data-title-ru="Вернуться на главную страницу" data-title-ar="العودة إلى الصفحة الرئيسية" data-title-zh="返回首页" data-en="← Home" data-ru="← Главная" data-ar="→ الرئيسية" data-zh="← 首页">← Home</a>
 <div class="controls">
-  <button class="theme-btn" id="theme-btn" title="Switch theme" aria-label="Switch theme" data-title-en="Switch theme" data-title-ru="Переключить тему" data-title-ar="تبديل المظهر" data-title-zh="切换主题" data-aria-en="Switch theme" data-aria-ru="Переключить тему" data-aria-ar="تبديل المظهر" data-aria-zh="切换主题">🌙</button>
+  <button type="button" class="theme-btn" id="theme-btn" title="Switch theme" aria-label="Switch theme" data-title-en="Switch theme" data-title-ru="Переключить тему" data-title-ar="تبديل المظهر" data-title-zh="切换主题" data-aria-en="Switch theme" data-aria-ru="Переключить тему" data-aria-ar="تبديل المظهر" data-aria-zh="切换主题">🌙</button>
   <div class="lang-toggle" role="group" aria-label="Language" data-aria-en="Language" data-aria-ru="Язык" data-aria-ar="اللغة" data-aria-zh="语言">
                     <select id="lang-select" aria-label="Language" data-aria-en="Language" data-aria-zh="语言" data-aria-ru="Язык" data-aria-ar="اللغة">
                       <option value="en" lang="en">EN</option>
@@ -38,7 +38,8 @@
 
 <!-- ══ CIRCULAR SVG DIAGRAM ══ -->
 <div class="diagram-wrap">
-<svg viewBox="0 0 660 660" xmlns="http://www.w3.org/2000/svg" overflow="visible">
+<svg viewBox="0 0 660 660" xmlns="http://www.w3.org/2000/svg" overflow="visible" role="img" aria-labelledby="growth-title">
+  <title id="growth-title" data-en="Business growth cycle: eight steps from target audience to data review, then loop back to step one." data-zh="商业增长循环：从目标受众到数据复盘的八个步骤，再回到第一步。" data-ru="Цикл роста бизнеса: восемь шагов от целевой аудитории до анализа данных, затем возврат к первому шагу." data-ar="دورة نمو الأعمال: ثماني خطوات من الجمهور المستهدف إلى مراجعة البيانات، ثم العودة إلى الخطوة الأولى.">Business growth cycle: eight steps from target audience to data review, then loop back to step one.</title>
   <defs>
     <!-- neutral arrowhead -->
     <marker id="arr" markerWidth="9" markerHeight="6.5" refX="8" refY="3.25" orient="auto">
@@ -166,16 +167,16 @@
 <!-- Phase legend chips -->
 <div class="phase-legend">
   <div class="phase-chip chip-disc"  data-en="● Discovery (1–2)" data-ru="● Открытие (1–2)" data-ar="● الاكتشاف (1-2)" data-zh="● 探索阶段 (1–2)">● Discovery (1–2)</div>
-  <div class="phase-chip chip-build" data-en="● Build (3–4)" data-ru="● Строить (3–4)" data-ar="● بناء (3-4)"     data-zh="● 构建阶段 (3–4)">● Build (3–4)</div>
-  <div class="phase-chip chip-launch"data-en="● Launch (5–6)" data-ru="● Запуск (5–6)" data-ar="● الإطلاق (5-6)"    data-zh="● 发布阶段 (5–6)">● Launch (5–6)</div>
-  <div class="phase-chip chip-scale" data-en="● Scale (7–8)" data-ru="● Масштаб (7–8)" data-ar="● المقياس (7-8)"     data-zh="● 扩展阶段 (7–8)">● Scale (7–8)</div>
+  <div class="phase-chip chip-build" data-en="● Build (3–4)" data-ru="● Сборка (3–4)" data-ar="● بناء (3-4)"     data-zh="● 构建阶段 (3–4)">● Build (3–4)</div>
+  <div class="phase-chip chip-launch" data-en="● Launch (5–6)" data-ru="● Запуск (5–6)" data-ar="● الإطلاق (5-6)"    data-zh="● 发布阶段 (5–6)">● Launch (5–6)</div>
+  <div class="phase-chip chip-scale" data-en="● Scale (7–8)" data-ru="● Масштабирование (7–8)" data-ar="● التوسع (7-8)"     data-zh="● 扩展阶段 (7–8)">● Scale (7–8)</div>
 </div>
 
 <!-- ══ STEP CARDS ══ -->
 <div class="page-section">
-  <div class="section-title"
+  <h2 class="section-title"
        data-en="Step-by-Step Breakdown" data-ru="Пошаговая разбивка" data-ar="تفصيل خطوة بخطوة"
-       data-zh="逐步解析">Step-by-Step Breakdown</div>
+       data-zh="逐步解析">Step-by-Step Breakdown</h2>
 
   <!-- Phase 1: Discovery -->
   <div class="phase-group">
@@ -247,7 +248,7 @@
     <div class="steps-grid">
       <div class="step-card launch">
         <div class="step-badge" data-en="Step 05" data-ru="Шаг 05" data-ar="الخطوة 05" data-zh="第05步">Step 05</div>
-        <div class="phase-label" data-en="【Trial &amp; Error】" data-ru="【Пробная ошибка &amp;】" data-ar="【المحاكمة &amp; خطأ】" data-zh="【试错】">【Trial &amp; Error】</div>
+        <div class="phase-label" data-en="【Trial &amp; Error】" data-ru="【Пробы и ошибки】" data-ar="【التجربة والخطأ】" data-zh="【试错】">【Trial &amp; Error】</div>
         <h3 data-en="Build Minimalist Products" data-ru="Создавайте минималистичные продукты" data-ar="بناء منتجات الحد الأدنى" data-zh="构建最小化产品">Build Minimalist Products</h3>
         <ul>
           <li data-en="Identify the single riskiest assumption to test" data-ru="Определите единственное рискованное предположение для проверки." data-ar="تحديد الافتراض الأكثر خطورة للاختبار" data-zh="识别最需验证的单一高风险假设">Identify the single riskiest assumption to test</li>
@@ -273,7 +274,7 @@
   <!-- Phase 4: Scale -->
   <div class="phase-group">
     <div class="phase-group-header scale"
-         data-en="Phase 4 — Scale · Steps 7–8" data-ru="Этап 4. Масштабирование · Шаги 7–8" data-ar="المرحلة الرابعة – المقياس · الخطوات 7-8"
+         data-en="Phase 4 — Scale · Steps 7–8" data-ru="Этап 4. Масштабирование · Шаги 7–8" data-ar="المرحلة الرابعة – التوسع · الخطوات 7-8"
          data-zh="第四阶段 — 扩展 · 第7–8步">Phase 4 — Scale · Steps 7–8</div>
     <div class="steps-grid">
       <div class="step-card scale">
@@ -304,9 +305,9 @@
 
 <!-- ══ KEY PRINCIPLES ══ -->
 <div class="page-section">
-  <div class="section-title"
+  <h2 class="section-title"
        data-en="Five Key Principles" data-ru="Пять ключевых принципов" data-ar="خمسة مبادئ رئيسية"
-       data-zh="五大核心原则">Five Key Principles</div>
+       data-zh="五大核心原则">Five Key Principles</h2>
   <div class="prin-grid">
     <div class="prin-card">
       <div class="pnum">01</div>
@@ -343,9 +344,9 @@
 
 <!-- ══ HOW TO USE ══ -->
 <div class="page-section">
-  <div class="section-title"
-       data-en="How to Use This Framework" data-ru="Как использовать эту структуру" data-ar="كيفية استخدام هذا الإطار"
-       data-zh="如何应用此框架">How to Use This Framework</div>
+  <h2 class="section-title"
+       data-en="How to Use This Framework" data-ru="Как использовать этот фреймворк" data-ar="كيفية استخدام هذا الإطار"
+       data-zh="如何应用此框架">How to Use This Framework</h2>
   <div class="use-grid">
     <div class="use-card">
       <div class="icon">🚀</div>
@@ -363,7 +364,7 @@
     </div>
     <div class="use-card">
       <div class="icon">📈</div>
-      <h3 data-en="Scaling Operation" data-ru="Операция масштабирования" data-ar="عملية التحجيم" data-zh="规模化运营">Scaling Operation</h3>
+      <h3 data-en="Scaling Operation" data-ru="Масштабирование операций" data-ar="عملية التحجيم" data-zh="规模化运营">Scaling Operation</h3>
       <p data-en="Run multiple instances of the cycle in parallel — one per customer segment or product line — while maintaining a single data review cadence at Step 8. Use the shared review to identify which cycles to accelerate and which to sunset." data-ru="Запускайте несколько экземпляров цикла параллельно — по одному на каждый сегмент клиентов или линейку продуктов — сохраняя при этом единую периодичность просмотра данных на этапе 8. Используйте общий обзор, чтобы определить, какие циклы следует ускорить, а какие прекратить." data-ar="قم بتشغيل مثيلات متعددة للدورة بالتوازي - واحدة لكل شريحة عميل أو خط منتج - مع الحفاظ على إيقاع مراجعة بيانات واحد في الخطوة 8. استخدم المراجعة المشتركة لتحديد الدورات التي يجب تسريعها والدورات التي يجب إيقافها."
          data-zh="并行运行多个循环实例——每个客户细分群体或产品线对应一个——同时在第8步保持统一的数据复盘节奏。利用共享复盘确定哪些循环加速推进，哪些需要退出。">Run multiple instances of the cycle in parallel — one per customer segment or product line — while maintaining a single data review cadence at Step 8. Use the shared review to identify which cycles to accelerate and which to sunset.</p>
       <div class="tip" data-en="♻ Parallel loops per segment" data-ru="♻ Параллельные петли на сегмент" data-ar="♻ حلقات متوازية لكل قطعة" data-zh="♻ 每细分市场并行循环">♻ Parallel loops per segment</div>
@@ -376,11 +377,14 @@
   <div class="legend-item"><div class="legend-dot legend-dot--discovery"></div>  <span data-en="Discovery (Steps 1–2)" data-ru="Открытие (шаги 1–2)" data-ar="الاكتشاف (الخطوات 1-2)" data-zh="探索阶段（第1–2步）">Discovery (Steps 1–2)</span></div>
   <div class="legend-item"><div class="legend-dot legend-dot--build"></div> <span data-en="Build (Steps 3–4)" data-ru="Сборка (шаги 3–4)" data-ar="البناء (الخطوات 3-4)"     data-zh="构建阶段（第3–4步）">Build (Steps 3–4)</span></div>
   <div class="legend-item"><div class="legend-dot legend-dot--launch"></div><span data-en="Launch (Steps 5–6)" data-ru="Запуск (шаги 5–6)" data-ar="الإطلاق (الخطوات 5-6)"    data-zh="发布阶段（第5–6步）">Launch (Steps 5–6)</span></div>
-  <div class="legend-item"><div class="legend-dot legend-dot--scale"></div> <span data-en="Scale (Steps 7–8)" data-ru="Масштаб (шаги 7–8)" data-ar="المقياس (الخطوات 7-8)"     data-zh="扩展阶段（第7–8步）">Scale (Steps 7–8)</span></div>
+  <div class="legend-item"><div class="legend-dot legend-dot--scale"></div> <span data-en="Scale (Steps 7–8)" data-ru="Масштаб (шаги 7–8)" data-ar="التوسع (الخطوات 7-8)"     data-zh="扩展阶段（第7–8步）">Scale (Steps 7–8)</span></div>
   <div class="legend-item"><div class="legend-dot legend-dot--loop"></div>
     <span data-en="Loop-back (8→1): data-driven refinement" data-ru="Обратный цикл (8→1): уточнение на основе данных" data-ar="الاسترجاع (8 → 1): تحسين يعتمد على البيانات" data-zh="循环反哺（8→1）：数据驱动的受众精炼">Loop-back (8→1): data-driven refinement</span></div>
 </div>
 
+
+<p class="footnote"
+   data-en="Educational framework — not investment, legal or tax advice. Evergreen; it contains no market data." data-zh="教育性框架——不构成投资、法律或税务建议。长期适用，不含市场数据。" data-ru="Образовательный фреймворк — не инвестиционная, юридическая или налоговая консультация. Постоянный материал; рыночных данных нет." data-ar="إطار تعليمي — ليس نصيحة استثمارية أو قانونية أو ضريبية. دائم؛ ولا يحتوي على بيانات سوقية.">Educational framework — not investment, legal or tax advice. Evergreen; it contains no market data.</p>
 
 <p class="gics-source">
   <span data-en="Classification source: GICS® — The Global Industry Classification Standard, developed by S&amp;P Dow Jones Indices and MSCI. 11 sectors · 25 industry groups · 74 industries · 163 sub-industries. GICS® is a registered trademark of S&amp;P Dow Jones Indices LLC and MSCI Inc.; this independent site is not affiliated with or endorsed by either." data-zh="分类来源：GICS®——全球行业分类标准，由标普道琼斯指数与 MSCI 编制。11 个行业板块 · 25 个行业组 · 74 个行业 · 163 个子行业。GICS® 是标普道琼斯指数有限责任公司和 MSCI 公司的注册商标；本独立网站与上述机构无关联，亦未获其背书。" data-ru="Источник классификации: GICS® — Глобальный стандарт отраслевой классификации, разработанный S&amp;P Dow Jones Indices и MSCI. 11 секторов · 25 групп отраслей · 74 отрасли · 163 подотрасли. GICS® — зарегистрированная торговая марка S&amp;P Dow Jones Indices LLC и MSCI Inc.; этот независимый сайт не связан с ними и не одобрен ими." data-ar="مصدر التصنيف: GICS® — المعيار العالمي لتصنيف القطاعات، طوّرته S&amp;P Dow Jones Indices وMSCI. 11 قطاعًا · 25 مجموعة صناعية · 74 صناعة · 163 صناعة فرعية. GICS® علامة تجارية مسجلة لـ S&amp;P Dow Jones Indices LLC وMSCI Inc.؛ هذا الموقع المستقل غير تابع لهما ولا يحظى بتأييدهما.">Classification source: GICS® — The Global Industry Classification Standard, developed by S&amp;P Dow Jones Indices and MSCI. 11 sectors · 25 industry groups · 74 industries · 163 sub-industries. GICS® is a registered trademark of S&amp;P Dow Jones Indices LLC and MSCI Inc.; this independent site is not affiliated with or endorsed by either.</span>

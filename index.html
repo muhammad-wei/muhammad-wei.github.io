@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="assets/img/logo.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="Entrepreneur and builder at the intersection of AI, Energy, Space, and Web3 — mapping the next frontier of sector and theme convergence, based in Dubai, UAE.">
-  <meta name="keywords" content="entrepreneurship, AI, energy, space, Web3, sector and theme landscapes for entrepreneurship, the Global Industry Classification Standard (GICS®), Dubai, Abu Dhabi, Guiyang, Hangzhou, Muhammad Wei, FinTech, blockchain">
+  <meta name="description" content="Entrepreneur and builder at the intersection of AI, Energy, Space, and Web3 — mapping the next frontier of sector, theme and framework convergence, based in Dubai, UAE.">
+  <meta name="keywords" content="entrepreneurship, AI, energy, space, Web3, sector, theme and framework landscapes for entrepreneurship, the Global Industry Classification Standard (GICS®), Dubai, Abu Dhabi, Guiyang, Hangzhou, Muhammad Wei, FinTech, blockchain">
   <meta name="author" content="Muhammad Wei">
   <script src="assets/js/boot.js"></script>
   <link rel="stylesheet" href="assets/css/vendor/leaflet.css">
@@ -18,11 +18,11 @@
 
 <!-- notification for small viewports and landscape oriented smartphones -->
 <div class="device-notification">
-  <a class="device-notification--logo" href="#0">
+  <a class="device-notification--logo" href="index.html">
     <img src="assets/img/logo.png" srcset="assets/img/logo@2x.png 2x" alt="" width="30" height="28">
     <p data-en="Muhammad Wei" data-ru="Muhammad Wei" data-ar="محمد وي" data-zh="Muhammad Wei">Muhammad Wei</p>
   </a>
-  <p class="device-notification--message" data-en="Best on a larger screen. Rotate to portrait, or open this on a desktop, to see the landscapes at full size." data-ru="Лучше на большом экране. Поверните устройство в портретный режим или откройте сайт на компьютере, чтобы увидеть отраслевые карты целиком." data-ar="أفضل على شاشة أكبر. أدر الجهاز إلى الوضع الرأسي، أو افتح الموقع على الكمبيوتر لرؤية خرائط القطاعات كاملة." data-zh="建议使用更大的屏幕。请将设备转为竖屏，或在桌面端打开，即可完整查看行业版图。">Best on a larger screen. Rotate to portrait, or open this on a desktop, to see the landscapes at full size.</p>
+  <p class="device-notification--message" data-en="Best on a larger screen. Rotate to portrait, or open this on a desktop, to see the landscapes at full size." data-ru="Лучше на большом экране. Поверните устройство в портретный режим или откройте сайт на компьютере, чтобы увидеть ландшафты целиком." data-ar="أفضل على شاشة أكبر. أدر الجهاز إلى الوضع الرأسي، أو افتح الموقع على الكمبيوتر لرؤية الخرائط كاملة." data-zh="建议使用更大的屏幕。请将设备转为竖屏，或在桌面端打开，即可完整查看版图。">Best on a larger screen. Rotate to portrait, or open this on a desktop, to see the landscapes at full size.</p>
 </div>
 
 <div class="perspective effect-rotate-left">
@@ -30,11 +30,11 @@
     <div id="viewport" class="l-viewport">
       <div class="l-wrapper">
         <header class="header">
-          <a class="header--logo" href="#0">
+          <a class="header--logo" href="index.html">
             <img src="assets/img/logo.png" srcset="assets/img/logo@2x.png 2x" alt="" width="30" height="28">
             <p data-en="Muhammad Wei" data-ru="Muhammad Wei" data-ar="محمد وي" data-zh="Muhammad Wei">Muhammad Wei</p>
           </a>
-          <button class="header--cta cta" data-en="Contact Me" data-ru="Связаться" data-ar="تواصل معي" data-zh="联系我">Contact Me</button>
+          <button type="button" class="header--cta cta" data-en="Contact Me" data-ru="Связаться" data-ar="تواصل معي" data-zh="联系我">Contact Me</button>
           <div class="header--lang">
             <div class="lang-toggle" role="group" aria-label="Language" data-aria-en="Language" data-aria-ru="Язык" data-aria-ar="اللغة" data-aria-zh="语言">
                     <select id="lang-select" aria-label="Language" data-aria-en="Language" data-aria-zh="语言" data-aria-ru="Язык" data-aria-ar="اللغة">
@@ -45,18 +45,18 @@
                     </select>
                   </div>
           </div>
-          <div class="header--nav-toggle">
+          <button type="button" class="header--nav-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu" data-aria-en="Open menu" data-aria-zh="打开菜单" data-aria-ru="Открыть меню" data-aria-ar="افتح القائمة">
             <span></span>
-          </div>
+          </button>
         </header>
         <nav class="l-side-nav">
           <ul class="side-nav">
-            <li class="is-active"><span data-en="Home" data-ru="Главная" data-ar="الرئيسية" data-zh="首页">Home</span></li>
-            <li><span data-en="Landscapes" data-ru="Ландшафты" data-ar="الخرائط" data-zh="版图">Landscapes</span></li>
-            <li><span data-en="Vision" data-ru="Видение" data-ar="الرؤية" data-zh="愿景">Vision</span></li>
+            <li class="is-active"><button type="button" class="side-nav-link" aria-current="page" aria-label="Home" data-aria-en="Home" data-aria-zh="首页" data-aria-ru="Главная" data-aria-ar="الرئيسية"><span data-en="Home" data-ru="Главная" data-ar="الرئيسية" data-zh="首页">Home</span></button></li>
+            <li><button type="button" class="side-nav-link" aria-label="Landscapes" data-aria-en="Landscapes" data-aria-zh="版图" data-aria-ru="Ландшафты" data-aria-ar="الخرائط"><span data-en="Landscapes" data-ru="Ландшафты" data-ar="الخرائط" data-zh="版图">Landscapes</span></button></li>
+            <li><button type="button" class="side-nav-link" aria-label="Vision" data-aria-en="Vision" data-aria-zh="愿景" data-aria-ru="Видение" data-aria-ar="الرؤية"><span data-en="Vision" data-ru="Видение" data-ar="الرؤية" data-zh="愿景">Vision</span></button></li>
             <!-- <li><span>Traffic</span></li> -->
             <!-- <li><span>Connect</span></li> -->
-            <li><span data-en="Contact" data-ru="Контакты" data-ar="التواصل" data-zh="联系">Contact</span></li>
+            <li><button type="button" class="side-nav-link" aria-label="Contact" data-aria-en="Contact" data-aria-zh="联系" data-aria-ru="Контакты" data-aria-ar="التواصل"><span data-en="Contact" data-ru="Контакты" data-ar="التواصل" data-zh="联系">Contact</span></button></li>
           </ul>
         </nav>
         <ul class="l-main-content main-content">
@@ -64,7 +64,7 @@
             <div class="intro">
               <div class="intro--banner">
                 <h1 data-en="Building<br>AI × Energy ×<br>Space × Web3" data-ru="Строю<br>AI × Энергия ×<br>Космос × Web3" data-ar="أبني في تقاطع<br>AI والطاقة<br>والفضاء وWeb3" data-zh="构建<br>AI × 能源 ×<br>太空 × Web3">Building<br>AI × Energy ×<br>Space × Web3</h1>
-                <button class="cta"><span data-en="Contact Me" data-ru="Связаться" data-ar="تواصل معي" data-zh="联系我">Contact Me</span>
+                <button type="button" class="cta"><span data-en="Contact Me" data-ru="Связаться" data-ar="تواصل معي" data-zh="联系我">Contact Me</span>
                   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118" xml:space="preserve">
                   <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
                     <path d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z"/>
@@ -78,7 +78,7 @@
               <div class="intro--options">
                 <a href="ai-industry-chart.html">
                   <h3 data-en="AI" data-ru="AI" data-ar="AI" data-zh="AI">AI</h3>
-                  <p data-en="Layered map of AI: world models, core modalities, the model and platform layer, and the data, algorithm, compute and energy pillars." data-ru="Слоистая карта AI: мировые модели, ключевые модальности, слой моделей и платформ, а также опоры — данные, алгоритмы, вычисления и энергия." data-ar="خريطة متعددة الطبقات للذكاء الاصطناعي: النماذج العالمية، والأنماط الأساسية، وطبقة النماذج والمنصات، ودعائم البيانات والخوارزميات والحوسبة والطاقة." data-zh="AI 的层状图谱：世界模型、核心模态、模型与平台层，以及数据、算法、算力与能源四大支柱。">Layered map of AI: world models, core modalities, the model and platform layer, and the data, algorithm, compute and energy pillars.</p>
+                  <p data-en="Layered map of AI: world models, core modalities, the model and platform layer, and the data, algorithms, compute and energy pillars." data-ru="Слоистая карта AI: мировые модели, ключевые модальности, слой моделей и платформ, а также опоры — данные, алгоритмы, вычисления и энергия." data-ar="خريطة متعددة الطبقات للذكاء الاصطناعي: النماذج العالمية، والأنماط الأساسية، وطبقة النماذج والمنصات، ودعائم البيانات والخوارزميات والحوسبة والطاقة." data-zh="AI 的层状图谱：世界模型、核心模态、模型与平台层，以及数据、算法、算力与能源四大支柱。">Layered map of AI: world models, core modalities, the model and platform layer, and the data, algorithms, compute and energy pillars.</p>
                 </a>
                 <a href="energy-industry-chart.html">
                   <h3 data-en="Energy × China" data-ru="Энергетика × Китай" data-ar="الطاقة × الصين" data-zh="能源 × 中国">Energy × China</h3>
@@ -143,7 +143,7 @@
                     </a>
                   </li>
                 </ul>
-                <div class="slider--prev">
+                <button type="button" class="slider--prev" aria-label="Previous landscape" data-aria-en="Previous landscape" data-aria-zh="上一个版图" data-aria-ru="Предыдущий ландшафт" data-aria-ar="الخريطة السابقة">
                   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                   viewBox="0 0 150 118" xml:space="preserve">
                   <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
@@ -152,20 +152,23 @@
                     c101,99,187,188,193,199c16,30,12,57-12,84C631,1174,595,1183,561,1169z"/>
                   </g>
                   </svg>
-                </div>
-                <div class="slider--next">
+                </button>
+                <button type="button" class="slider--next" aria-label="Next landscape" data-aria-en="Next landscape" data-aria-zh="下一个版图" data-aria-ru="Следующий ландшафт" data-aria-ar="الخريطة التالية">
                   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118" xml:space="preserve">
                   <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
                     <path d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z"/>
                   </g>
                   </svg>
-                </div>
+                </button>
               </div>
-              <p class="work--note" data-en="<strong>Capital path</strong> — Finance and Business Growth are not part of the four core landscapes; they build the starting fund for the intersection." data-ru="<strong>Капитальный путь</strong> — финансы и рост бизнеса не входят в четыре ключевые отрасли; они создают стартовый капитал для пересечения." data-ar="<strong>مسار رأس المال</strong> — المال ونمو الأعمال ليسا جزءًا من القطاعات الأربعة الأساسية؛ بل يبنيان رأس المال الأولي للتقاطع." data-zh="<strong>资本路径</strong>——金融与商业增长不属于四大核心版图，而是为交汇积累启动资金。"><strong>Capital path</strong> — Finance and Business Growth are not part of the four core landscapes; they build the starting fund for the intersection.</p>
+              <p class="work--note" data-en="<strong>Capital path</strong> — Finance and Business Growth are not part of the four core landscapes; they build the starting fund for the intersection." data-ru="<strong>Капитальный путь</strong> — финансы и рост бизнеса не входят в четыре ключевых ландшафта; они создают стартовый капитал для пересечения." data-ar="<strong>مسار رأس المال</strong> — المال ونمو الأعمال ليسا جزءًا من الخرائط الأساسية الأربع؛ بل يبنيان رأس المال الأولي للتقاطع." data-zh="<strong>资本路径</strong>——金融与商业增长不属于四大核心版图，而是为交汇积累启动资金。"><strong>Capital path</strong> — Finance and Business Growth are not part of the four core landscapes; they build the starting fund for the intersection.</p>
               <p class="work--gics">
                 <span data-en="Sectors: Energy, Financials (GICS®) · Themes: AI, Space, Web3 · Framework: Business Growth · Source: S&amp;P Dow Jones Indices and MSCI" data-zh="行业板块：能源、金融（GICS®）· 主题：AI、太空、Web3 · 框架：商业增长 · 来源：标普道琼斯指数与 MSCI" data-ru="Секторы: энергетика, финансы (GICS®) · Темы: AI, космос, Web3 · Фреймворк: рост бизнеса · Источник: S&amp;P Dow Jones Indices и MSCI" data-ar="القطاعات: الطاقة والقطاع المالي (GICS®) · المواضيع: AI والفضاء وWeb3 · الإطار: نمو الأعمال · المصدر: S&amp;P Dow Jones Indices وMSCI">Sectors: Energy, Financials (GICS®) · Themes: AI, Space, Web3 · Framework: Business Growth · Source: S&amp;P Dow Jones Indices and MSCI</span>
                 <span aria-hidden="true"> · </span>
                 <a href="https://www.spglobal.com/spdji/en/landing/topic/gics/" target="_blank" rel="noopener" data-en="GICS® source" data-zh="GICS® 来源" data-ru="Источник GICS®" data-ar="مصدر GICS®">GICS® source</a>
+                <span aria-hidden="true"> · </span>
+                <a href="https://www.msci.com/indexes/index-resources/gics" target="_blank" rel="noopener" data-en="MSCI GICS resource" data-zh="MSCI GICS 资源" data-ru="Ресурс GICS от MSCI" data-ar="مورد GICS من MSCI">MSCI GICS resource</a>
+                <span class="work--gics-note" data-en="GICS® is a registered trademark of S&amp;P Dow Jones Indices LLC and MSCI Inc.; this independent site is not affiliated with or endorsed by either." data-zh="GICS® 是标普道琼斯指数有限责任公司和 MSCI 公司的注册商标；本独立网站与上述机构无关联，亦未获其背书。" data-ru="GICS® — зарегистрированная торговая марка S&amp;P Dow Jones Indices LLC и MSCI Inc.; этот независимый сайт не связан с ними и не одобрен ими." data-ar="GICS® علامة تجارية مسجلة لـ S&amp;P Dow Jones Indices LLC وMSCI Inc.؛ هذا الموقع المستقل غير تابع لهما ولا يحظى بتأييدهما.">GICS® is a registered trademark of S&amp;P Dow Jones Indices LLC and MSCI Inc.; this independent site is not affiliated with or endorsed by either.</span>
               </p>
             </div>
           </li>
@@ -245,7 +248,8 @@
           </li>
           <li class="l-section section">
             <div class="contact">
-              <div class="contact--map" id="contact-map" role="region" aria-label="Map of Dubai, Guiyang and Hangzhou" data-aria-en="Map of Dubai, Guiyang and Hangzhou" data-aria-zh="迪拜、贵阳和杭州地图" data-aria-ru="Карта Дубая, Гуйяна и Ханчжоу" data-aria-ar="خريطة دبي وقوييانغ وهانغتشو"></div>
+              <h2 class="visually-hidden" data-en="Contact" data-zh="联系" data-ru="Контакты" data-ar="التواصل">Contact</h2>
+              <section class="contact--map" id="contact-map" aria-label="Map of Dubai, Guiyang and Hangzhou" data-aria-en="Map of Dubai, Guiyang and Hangzhou" data-aria-zh="迪拜、贵阳和杭州地图" data-aria-ru="Карта Дубая, Гуйяна и Ханчжоу" data-aria-ar="خريطة دبي وقوييانغ وهانغتشو"></section>
               <div class="contact--map-scrim" aria-hidden="true"></div>
               <div class="contact--lockup">
                 <div class="modal">
@@ -268,7 +272,7 @@
                   </div>
                 </div>
               </div>
-              <p class="contact--map-credit">Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors</p>
+              <p class="contact--map-credit"><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener" data-en="Map data © OpenStreetMap contributors" data-zh="地图数据 © OpenStreetMap 贡献者" data-ru="Данные карты © участники OpenStreetMap" data-ar="بيانات الخريطة © مساهمو OpenStreetMap">Map data © OpenStreetMap contributors</a></p>
             </div>
           </li>
           <!-- <li class="l-section section">
@@ -349,12 +353,12 @@
       </div>
     </div>
   </div>
-  <ul class="outer-nav">
-    <li class="is-active" data-en="Home" data-ru="Главная" data-ar="الرئيسية" data-zh="首页">Home</li>
-    <li data-en="Landscapes" data-ru="Отрасли" data-ar="القطاعات" data-zh="行业版图">Landscapes</li>
-    <li data-en="Vision" data-ru="Видение" data-ar="الرؤية" data-zh="愿景">Vision</li>
+  <ul class="outer-nav" id="site-menu">
+    <li class="is-active"><button type="button" class="outer-nav-link" aria-current="page" data-en="Home" data-ru="Главная" data-ar="الرئيسية" data-zh="首页">Home</button></li>
+    <li><button type="button" class="outer-nav-link" data-en="Landscapes" data-ru="Ландшафты" data-ar="الخرائط" data-zh="版图">Landscapes</button></li>
+    <li><button type="button" class="outer-nav-link" data-en="Vision" data-ru="Видение" data-ar="الرؤية" data-zh="愿景">Vision</button></li>
     <!-- <li>Traffic</li> -->
-    <li data-en="Contact" data-ru="Контакты" data-ar="التواصل" data-zh="联系">Contact</li>
+    <li><button type="button" class="outer-nav-link" data-en="Contact" data-ru="Контакты" data-ar="التواصل" data-zh="联系">Contact</button></li>
     <!-- <li>Connect</li> -->
   </ul>
 </div>

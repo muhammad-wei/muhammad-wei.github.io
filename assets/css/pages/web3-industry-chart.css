@@ -58,7 +58,7 @@
     /* macro force cards */
     --force-bg:         #0c0f1a;
     --force-border:     #161b2e;
-    --force-num:        #141830;
+    --force-num:        #6b7280;
     --force-h3:         #8090e0;
     --force-p:          #8088b0;
     --force-stat:       #a0a8e0;
@@ -147,7 +147,7 @@
     --nbadge-color:     #f4eeff;
     --force-bg:         #f0f2fc;
     --force-border:     #d0d8f0;
-    --force-num:        #d0d8f4;
+    --force-num:        #6b7280;
     --force-h3:         #2840a0;
     --force-p:          #485080;
     --force-stat:       #3850a0;
@@ -512,7 +512,9 @@
   html[dir="rtl"] .home-link { left: auto; right: 24px; }
   html[dir="rtl"] .controls { right: auto; left: 24px; }
   html[dir="rtl"] h1, html[dir="rtl"] .subtitle { text-align: center; }
+  html[dir="rtl"] .lang-toggle select { background-position: 12px 50%, 8px 50%; }
   html[dir="rtl"] svg, html[dir="rtl"] .flow-wrap, html[dir="rtl"] .dv-wrap, html[dir="rtl"] .diagram-wrap { direction: ltr; }
+  html[dir="rtl"] svg text { unicode-bidi: plaintext; }
 
 /* Extracted inline presentation */
 .alloc-card .pct--compact { font-size: 20px; line-height: 1.4; }

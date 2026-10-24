@@ -8,13 +8,13 @@ window.PAGE_META = {
       "ar": "محمد وي — رائد أعمال | AI × الطاقة × الفضاء × Web3"
     },
     "descriptions": {
-      "en": "Entrepreneur and builder at the intersection of AI, Energy, Space, and Web3 — mapping the next frontier of sector and theme convergence, based in Dubai, UAE.",
+      "en": "Entrepreneur and builder at the intersection of AI, Energy, Space, and Web3 — mapping the next frontier of sector, theme and framework convergence, based in Dubai, UAE.",
       "zh": "常驻阿联酋迪拜的创业者与建设者，专注于 AI、能源、太空与 Web3 的交汇处，绘制跨行业板块与主题的下一代融合版图。",
       "ru": "Предприниматель и строитель на стыке AI, энергетики, космоса и Web3 — исследую следующий рубеж конвергенции секторов и тем, базируюсь в Дубае (ОАЭ).",
       "ar": "رائد أعمال وبانٍ عند تقاطع AI والطاقة والفضاء وWeb3 — أرسم الحدود التالية للتقارب بين القطاعات والمواضيع، مقيم في دبي، الإمارات."
     },
     "keywords": {
-      "en": "entrepreneurship, AI, energy, space, Web3, sector and theme landscapes for entrepreneurship, the Global Industry Classification Standard (GICS®), Dubai, Abu Dhabi, Guiyang, Hangzhou, Muhammad Wei, FinTech, blockchain",
+      "en": "entrepreneurship, AI, energy, space, Web3, sector, theme and framework landscapes for entrepreneurship, the Global Industry Classification Standard (GICS®), Dubai, Abu Dhabi, Guiyang, Hangzhou, Muhammad Wei, FinTech, blockchain",
       "zh": "创业, 人工智能, 能源, 太空, Web3, 板块与主题版图, 全球行业分类标准（GICS®）, 迪拜, 阿布扎比, 贵阳, 杭州, Muhammad Wei, 金融科技, 区块链",
       "ru": "предпринимательство, AI, энергетика, космос, Web3, ландшафты секторов и тем для предпринимательства, Глобальный стандарт отраслевой классификации (GICS®), Дубай, Абу-Даби, Гуйян, Ханчжоу, Мухаммад Вэй, FinTech, блокчейн",
       "ar": "ريادة الأعمال، AI، الطاقة، الفضاء، Web3، مشاهد القطاعات والمواضيع لريادة الأعمال، معيار التصنيف العالمي للصناعة (GICS®)، دبي، أبو ظبي، قوييانغ، هانغتشو، محمد وي، التكنولوجيا المالية، سلسلة الكتل"
@@ -28,7 +28,7 @@ window.PAGE_META = {
       "ar": "AI — نظرة شاملة — مراجعة أكتوبر 2026"
     },
     "descriptions": {
-      "en": "Layered map of AI, a cross-sector theme: world models, four core modalities, the model and platform layer, and the data, algorithm, compute and energy pillars that sustain them.",
+      "en": "Layered map of AI, a cross-sector theme: world models, four core modalities, the model and platform layer, and the data, algorithms, compute and energy pillars that sustain them.",
       "zh": "AI 作为跨行业主题的层状图谱：世界模型、四大核心模态、模型与平台层，以及支撑它们的数据、算法、算力与能源支柱。",
       "ru": "Многоуровневая карта AI как межотраслевой темы: мировые модели, четыре ключевые модальности, слой моделей и платформ и опоры — данные, алгоритмы, вычисления и энергия.",
       "ar": "خريطة متعددة الطبقات لـ AI كموضوع متعدد القطاعات: النماذج العالمية، والأنماط الأربعة الأساسية، وطبقة النماذج والمنصات، ودعائم البيانات والخوارزميات والحوسبة والطاقة."

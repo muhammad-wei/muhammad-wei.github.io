@@ -26,8 +26,8 @@
     let topLeft;
     let bottomRight;
     if (width <= 767) {
-      topLeft = [26, 76];
-      bottomRight = [26, 310];
+      topLeft = [44, 76];
+      bottomRight = [44, 310];
     } else if (lang === 'ar') {
       topLeft = [430, 92];
       bottomRight = [54, 92];

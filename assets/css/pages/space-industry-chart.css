@@ -85,7 +85,7 @@
     /* economy & milestones (indigo) */
     --force-bg:         #0c0f1a;
     --force-border:     #1a2036;
-    --force-num:        #7480c0;
+    --force-num:        #6b7280;
     --force-h3:         #8c9ae6;
     --force-p:          #8f97bc;
     --force-stat:       #a8b0e6;
@@ -205,7 +205,7 @@
     --life-stat-bd:     rgba(30,138,80,.26);
     --force-bg:         #f0f2fc;
     --force-border:     #d0d8f0;
-    --force-num:        #4a5aa8;
+    --force-num:        #6b7280;
     --force-h3:         #2840a0;
     --force-p:          #404870;
     --force-stat:       #2c44a0;
@@ -676,4 +676,6 @@
   html[dir="rtl"] .home-link { left: auto; right: 24px; }
   html[dir="rtl"] .controls { right: auto; left: 24px; }
   html[dir="rtl"] h1, html[dir="rtl"] .subtitle { text-align: center; }
+  html[dir="rtl"] .lang-toggle select { background-position: 12px 50%, 8px 50%; }
   html[dir="rtl"] svg, html[dir="rtl"] .flow-wrap, html[dir="rtl"] .dv-wrap, html[dir="rtl"] .diagram-wrap { direction: ltr; }
+  html[dir="rtl"] svg text { unicode-bidi: plaintext; }

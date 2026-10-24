@@ -5,7 +5,7 @@
 | Site          | https://muhammad-wei.github.io                                      |
 | Owner         | Muhammad Wei                                                           |
 | Hosting       | GitHub Pages, static files from `main` (no build step)              |
-| Last reviewed | October 24, 2026 — Russian and Arabic (RTL) join English and Chinese across all seven pages; the header/controls use a four-language select; CSS and JS now live in external per-page/shared files with no inline presentation; the landscape pages carry GICS® lenses and sourced GICS attribution; GICS links point to the official S&P Dow Jones Indices and MSCI pages; the home page carries the Vision node tree, matrix-rain strip, capital path and a live OpenStreetMap contact map of Dubai, Guiyang and Hangzhou; the AI page is review-dated (live site last checked October 10 against commit `88ea649`) and adds a model/platform middle layer between its modalities and pillars; the six landscapes are explicitly classified as sector (Energy, Financials), theme (AI, Space, Web3) or framework (Business Growth), and no theme is called an industry |
+| Last reviewed | October 24, 2026 — Russian and Arabic (RTL) join English and Chinese across all seven pages; the header/controls use a four-language select; CSS and JS now live in external per-page/shared files with no inline presentation; the landscape pages carry GICS® lenses and sourced GICS attribution; GICS links point to the official S&P Dow Jones Indices and MSCI pages; the home page carries the Vision node tree, matrix-rain strip, capital path and a live OpenStreetMap contact map of Dubai, Guiyang and Hangzhou; the AI page is review-dated (live site last checked October 24; this revision incorporates the review fixes) and adds a model/platform middle layer between its modalities and pillars; the six landscapes are explicitly classified as sector (Energy, Financials), theme (AI, Space, Web3) or framework (Business Growth), and no theme is called an industry |
 
 This document says what the site is, how every page is built, and what "done" means for a change.
 `CLAUDE.md` is the short working guide; this is the reference behind it.
@@ -38,7 +38,7 @@ The landscapes are educational overviews, not investment, legal or tax advice.
 | Home | `index.html` | Vision (convergence), landscape index, capital path, contact (EN/中文/РУ/العربية) | — | — |
 | AI (theme) | `ai-industry-chart.html` | World models → four modalities → model/platform layer → four pillars | Undated figures; reviewed October 2026 | Intro card, slider |
 | Energy × China (sector) | `energy-industry-chart.html` | Global energy with a China focus; the 2026 Hormuz shock | 2026 (checked Oct 2026) | Intro card, slider |
-| Space (theme) | `space-industry-chart.html` | Physics of access → value chain → rocket science, technology, living in space, economy, seven space powers, milestones | October 2026 (figures to Oct 15) | Intro card, slider |
+| Space (theme) | `space-industry-chart.html` | Physics of access → value chain → rocket science, technology, living in space, economy, seven space powers, milestones | October 2026 (figures to Oct 20) | Intro card, slider |
 | Web3 (theme) | `web3-industry-chart.html` | Regulation, five segments, exchanges, market-moving news | Oct 8, 2026 | Intro card, slider |
 | Finance (sector) | `finance-industry-chart.html` | Regulation, value chain, money flows, six jurisdictions | October 2026 | Slider |
 | Business Growth (framework) | `business_growth_circular_flow.html` | Eight-step growth cycle (a framework, no market data) | Evergreen | Slider |
@@ -250,7 +250,7 @@ Every landscape page follows the same top-to-bottom order. The Business Growth p
 | Contact channels | `.contact--channel` inside `.modal--information` | Home |
 | Contact map | `.contact--map` (`#contact-map`, Leaflet) + `.contact--map-scrim` + `.contact--map-credit`; three circles and pulse markers | Home |
 | Legend | `.legend` (Space: dots take token colours via `.dot-*` classes) | All landscape pages |
-| Footnote | `.footnote` | AI, Energy, Finance, Web3, Space |
+| Footnote | `.footnote` | AI, Energy, Finance, Web3, Space, Business Growth |
 
 Icons are emoji, for example 🏗️ 💡 🔑 💰 ⚠️, so no icon fonts or images are needed.
 
@@ -331,7 +331,7 @@ Icons are emoji, for example 🏗️ 💡 🔑 💰 ⚠️, so no icon fonts or 
   - A figure older than the page's as-of date carries its own date, for example "(Q2 2026)" or "(Sep 25)".
 - **Estimates** are marked: "~", "est." or "unofficial".
 - **Unverifiable or conflicting:** never publish a claim that can't be verified. When sources disagree, use the primary one and date it.
-- **One figure, every place:** a figure appears in several places (cards, snapshot, scoreboard, scenarios, tags; EN and ZH). When it changes, change it everywhere.
+- **One figure, every place:** a figure appears in several places (cards, snapshot, scoreboard, scenarios, tags; all four languages). When it changes, change it everywhere.
 
 ### 8.2 Style
 
@@ -431,7 +431,7 @@ Icons are emoji, for example 🏗️ 💡 🔑 💰 ⚠️, so no icon fonts or 
    - the regulatory card and its tags
    - sectors, pillars, macro snapshot, news (newest on top), exchanges, scoreboard, allocation and scenarios
    - the home card and slide copy, if the scope changed
-3. Edit EN and ZH together (§7).
+3. Edit all four languages together (§7).
 4. Pass the quality gates (§10), then wait for the owner to say "push".
 
 ### 9.4 Adding a landscape page
@@ -524,19 +524,21 @@ After a push:
   - `sources/` is public too. It holds source ledgers only: figures, dates and public source URLs.
   - To keep the docs off the website, list them under `exclude:` in a `_config.yml`.
 
-## 12. Known gaps and backlog (October 23, 2026)
+## 12. Known gaps and backlog (October 24, 2026)
 
-Numbers are kept from the October 16 list; new items continue from #10. Fixed items are listed below the table.
+Numbers are kept from the October 16 list; new items continue from #15. Fixed items are listed below the table.
 
 | # | Gap | Where | Suggested fix |
 | --- | --- | --- | --- |
 | 10 | Russian and Arabic are a machine-assisted first pass; proper nouns, financial terms and tone need a native review | all seven pages | Native review and targeted edits; keep figures and dates unchanged |
 | 11 | The contact map needs network access to OpenStreetMap tiles; without it the three markers show on a plain dark background | `index.html` | Keep the plain background as fallback; consider a self-hosted fallback tile |
 | 12 | Contact map tiles and Leaflet are a new third-party dependency | `assets/js/vendor/leaflet.js`, `assets/css/vendor/leaflet.css` | Keep the version pinned and the BSD-2 licence file with the vendored code |
-| 14 | GICS structure counts can change with annual methodology updates | `SPEC.md` §8.5, page `.gics-source` | Re-check the counts and mappings when GICS is revised |
+| 13 | GICS structure counts can change with annual methodology updates | `SPEC.md` §8.5, page `.gics-source` | Re-check the counts and mappings when GICS is revised |
+| 14 | The documented 360–1440 overflow, keyboard and RTL checks need re-running after every content edit | all seven pages | Re-run SPEC §10 before a push |
 
 Fixed:
 - **October 24, 2026:** the Web3 thumbnail was re-exported at 600×600 (formerly #7); the home logo has a 2× source with explicit dimensions, the astronaut image is WebP, and the intro heading order/logo alt were corrected. Fonts now use `font-display: swap`.
+- **October 24, 2026 (review pass):** Finance now says “Not a layer” (not “Not a sector”); home RU/AR/ZH “Landscapes” labels and the capital-path note use landscape terminology; Arabic ADT/SVG text direction, the Energy Arabic entity/figures, Space Arabic `[3]]`/43% and the Brent/China EV figures were corrected; home navigation and slider are native keyboard controls; the home GICS notice/MSCI link, map-credit translation, map padding and select arrow were fixed; Business Growth gained `h2`s, an SVG name and a footnote; Web3 news is newest-first; Space’s as-of stamp moved to Oct 20; the decorative ordinals now meet contrast.
 - **October 10, 2026:** the `<` escaping bug in the bilingual attributes (§7, rule 3).
 - **October 16, 2026:** the missing Space landscape (formerly #6).
 - **October 17, 2026:** the README now credits the template and links the live site only; the old name and title are gone (formerly #8).
@@ -557,7 +559,7 @@ Fixed:
 | May 25 | Web3 page added |
 | Oct 2 | Finance page added |
 | Oct 4 | Energy page reframed as global with a China focus; vision "AI × Energy × Space × Web3"; Traffic and LinkedIn hidden |
-| Oct 8 | Every page validated (facts, readable palettes, EN/ZH parity); home cards fixed for mobile; "← Home" links added; unused images and the PSD removed |
+| Oct 8 | Every page validated (facts, readable palettes, bilingual parity at the time); home cards fixed for mobile; "← Home" links added; unused images and the PSD removed |
 | Oct 9 | Web3 page brought to October 2026 (exchanges, market-moving news); weekly freshness report started |
 | Oct 10 | Live-site review; bilingual `<` fix; `CLAUDE.md` and this spec added |
 | Oct 16 | Space page added: rocket science, technology, living in space, economy, seven powers, milestones. It replaces Business Growth among the home cards, and its sources ledger is started in `sources/space-industry.md`. A quarterly freshness report was started. |

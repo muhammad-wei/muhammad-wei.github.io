@@ -1288,7 +1288,7 @@ html[dir="rtl"] .contact--map-scrim {
   transform: translateX(-50%);
   color: #aab4c8;
   font-family: inherit;
-  font-size: 8px;
+  font-size: 9px;
   letter-spacing: 0.03em;
   line-height: 1.3;
   text-align: center;
@@ -1409,7 +1409,7 @@ html[dir="rtl"] .contact--map .leaflet-control-zoom {
   .contact--map-credit {
     bottom: 5px;
     width: 90%;
-    font-size: 7px;
+    font-size: 8px;
     line-height: 1.35;
     white-space: normal;
   }
@@ -2446,6 +2446,9 @@ html[dir="rtl"] .work--lockup .slider--prev svg {
 html[dir="rtl"] .vision {
   text-align: right;
 }
+html[dir="rtl"] .lang-toggle select {
+  background-position: 12px 50%, 8px 50%;
+}
 html[dir="rtl"] .vision-rain {
   right: auto;
   left: 0;
@@ -2456,8 +2459,9 @@ html[dir="rtl"] .vision-tree {
   direction: rtl;
 }
 html[dir="rtl"] .vision-tree--note {
-  direction: ltr;
+  direction: rtl;
   text-align: right;
+  unicode-bidi: plaintext;
 }
 html[dir="rtl"] .vision--now {
   padding-left: 0;
@@ -2560,6 +2564,52 @@ html[dir="rtl"] .outer-nav > li.is-vis {
   html[dir="rtl"] .vision-branch::after {
     right: -17px;
   }
+}
+
+
+/* Keyboard affordances for the home navigation and slider. */
+.header--nav-toggle {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.slider--prev,
+.slider--next {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.side-nav li:focus-visible,
+.outer-nav li:focus-visible,
+.side-nav-link:focus-visible,
+.outer-nav-link:focus-visible,
+.header--nav-toggle:focus-visible,
+.slider--prev:focus-visible,
+.slider--next:focus-visible {
+  outline: 2px solid #6f8cff;
+  outline-offset: 4px;
+}
+
+.side-nav-link,
+.outer-nav-link {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.side-nav-link {
+  text-align: left;
+}
+.outer-nav-link {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  text-align: center;
 }
 
 /*# sourceMappingURL=main.css.map */

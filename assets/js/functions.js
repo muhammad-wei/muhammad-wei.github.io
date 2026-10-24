@@ -278,3 +278,36 @@ $( document ).ready(function() {
   transitionLabels();
 
 });
+
+/* Keyboard affordances and menu state for the home navigation. */
+(function () {
+  function syncMenuState() {
+    var btn = document.querySelector('.header--nav-toggle');
+    var menu = document.querySelector('.outer-nav');
+    if (btn && menu) btn.setAttribute('aria-expanded', menu.classList.contains('is-vis') ? 'true' : 'false');
+  }
+  document.addEventListener('click', function (event) {
+    var target = event.target;
+    if (!target || !target.closest) return;
+    if (target.closest('.header--nav-toggle') || target.closest('.outer-nav li')) setTimeout(syncMenuState, 60);
+  });
+  function syncCurrent() {
+    var items = document.querySelectorAll('.side-nav li, .outer-nav li');
+    for (var i = 0; i < items.length; i++) {
+      var button = items[i].querySelector('button');
+      if (items[i].classList.contains('is-active')) {
+        items[i].setAttribute('aria-current', 'page');
+        if (button) button.setAttribute('aria-current', 'page');
+      } else {
+        items[i].removeAttribute('aria-current');
+        if (button) button.removeAttribute('aria-current');
+      }
+    }
+  }
+  document.addEventListener('click', function (event) {
+    var target = event.target;
+    if (!target || !target.closest) return;
+    if (target.closest('.side-nav li, .outer-nav li')) setTimeout(syncCurrent, 120);
+  });
+
+})();

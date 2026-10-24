@@ -2,8 +2,8 @@
 
 Every figure on `space-industry-chart.html` comes from a row in this file (SPEC §8.1, "one figure, every place").
 
-- **Checked:** October 15–16, 2026. The page's as-of stamp is "October 2026"; a row's own date applies where it is older.
-- **Placements** name the card or element on the page. Every placement exists in both EN and ZH.
+- **Checked:** October 15–20, 2026. The page's as-of stamp is "October 2026"; a row's own date applies where it is older.
+- **Placements** name the card or element on the page. Every placement exists in all four languages (EN/ZH/RU/AR).
 
 ## Gate 1 decisions (owner, October 16, 2026)
 
@@ -16,7 +16,7 @@ Every figure on `space-industry-chart.html` comes from a row in this file (SPEC 
 
 1. Re-check every row against its source. Re-run the McDowell counts (§E).
 2. Update the value, the date and the status here first.
-3. Change the page in every listed placement, in EN and ZH together.
+3. Change the page in every listed placement, in all four languages together.
 4. Move rows that no longer hold to §I with the reason.
 
 ## Status legend
