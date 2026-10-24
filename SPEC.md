@@ -5,7 +5,7 @@
 | Site          | https://muhammad-wei.github.io                                      |
 | Owner         | Muhammad Wei                                                           |
 | Hosting       | GitHub Pages, static files from `main` (no build step)              |
-| Last reviewed | October 23, 2026 — Russian and Arabic (RTL) join English and Chinese across all seven pages; the header/controls use a four-language select; CSS and JS now live in external per-page/shared files with no inline presentation; the landscape pages carry GICS® lenses and sourced GICS attribution; GICS links point to the official S&P Dow Jones Indices and MSCI pages; the home page carries the Vision node tree, matrix-rain strip, capital path and a live OpenStreetMap contact map of Dubai, Guiyang and Hangzhou; the AI page is review-dated (live site last checked October 10 against commit `88ea649`) |
+| Last reviewed | October 24, 2026 — Russian and Arabic (RTL) join English and Chinese across all seven pages; the header/controls use a four-language select; CSS and JS now live in external per-page/shared files with no inline presentation; the landscape pages carry GICS® lenses and sourced GICS attribution; GICS links point to the official S&P Dow Jones Indices and MSCI pages; the home page carries the Vision node tree, matrix-rain strip, capital path and a live OpenStreetMap contact map of Dubai, Guiyang and Hangzhou; the AI page is review-dated (live site last checked October 10 against commit `88ea649`) and adds a model/platform middle layer between its modalities and pillars |
 
 This document says what the site is, how every page is built, and what "done" means for a change.
 `CLAUDE.md` is the short working guide; this is the reference behind it.
@@ -36,7 +36,7 @@ The landscapes are educational overviews, not investment, legal or tax advice.
 | Page | File | Scope | Figures as of | Linked from home |
 | --- | --- | --- | --- | --- |
 | Home | `index.html` | Vision (convergence), landscape index, capital path, contact (EN/中文/РУ/العربية) | — | — |
-| AI Industry | `ai-industry-chart.html` | World models → four modalities → four pillars | Undated figures; reviewed October 2026 | Intro card, slider |
+| AI Industry | `ai-industry-chart.html` | World models → four modalities → model/platform layer → four pillars | Undated figures; reviewed October 2026 | Intro card, slider |
 | Energy × China | `energy-industry-chart.html` | Global energy with a China focus; the 2026 Hormuz shock | 2026 (checked Oct 2026) | Intro card, slider |
 | Space Industry | `space-industry-chart.html` | Physics of access → value chain → rocket science, technology, living in space, economy, seven space powers, milestones | October 2026 (figures to Oct 15) | Intro card, slider |
 | Web3 Industry | `web3-industry-chart.html` | Regulation, sectors, exchanges, market-moving news | Oct 8, 2026 | Intro card, slider |
@@ -102,8 +102,8 @@ Every landscape page follows the same top-to-bottom order. The Business Growth p
 3. **Header:** an `h1` (page name, plus the as-of date when dated) and a `.subtitle` that lists the page's parts, separated by "·". A `.gics-lens` block follows the subtitle: label + one sentence mapping the landscape to GICS sectors, or stating that it is not a GICS sector.
 4. **Higher-order card:** the field that spans every layer, such as regulation, geopolitics or physics (Space). It has a badge, an `h2`, one paragraph and tag chips.
 5. **Connector** with a label (for example "Integrates & spans across").
-6. **Five layer cards**, either value-chain layers or sectors, each with sub-tags. The AI page has four modality cards here instead.
-7. **Connector** ("Sustained by").
+6. **Layer cards**, either value-chain layers or sectors, each with sub-tags. The AI page uses four modality cards here, followed by a four-card model/platform layer.
+7. **Connectors** with labels: "Delivered through" between the AI page's modalities and its model/platform layer, and "Sustained by" between that layer and the pillars.
 8. **Four pillar cards.** The fourth carries the "Emerging" badge.
 9. **Page sections:** `.page-section` blocks with a `.page-section-title`, specific to each page.
 10. **Legend, footnote and GICS source.** The footnote states the as-of date, the sources and the disclaimer. A `.gics-source` line follows it with the GICS definition, the 11/25/74/163 structure, the trademark disclaimer and links to the official S&P Dow Jones Indices and MSCI GICS pages.
@@ -117,6 +117,7 @@ Every landscape page follows the same top-to-bottom order. The Business Growth p
 **AI Industry**
 - **Higher-order card:** World Models.
 - **Modalities:** Language · Voice & Audio · Vision · Embodied / Action.
+- **Model & platform layer:** Foundation Models · Training & Inference Platforms · Model APIs & MaaS · Agents & Orchestration.
 - **Pillars:** Data · Algorithms · Compute · Energy (Emerging).
 - **No page sections and no dated figures.** The page is review-dated "Reviewed October 2026" in the title and subtitle; keep those stamps together if it is reviewed again. A footnote carries the disclaimer and the review date.
 
@@ -225,9 +226,10 @@ Every landscape page follows the same top-to-bottom order. The Business Growth p
 | Home link | `a.home-link` | All landscape pages |
 | Controls | `.controls` > `#theme-btn.theme-btn` + `.lang-toggle` (`#lang-select`) | All landscape pages |
 | Badges | `.badge` (higher-order card); `.new-badge` ("Emerging", "Headline") | AI, Energy, Finance, Web3, Space |
-| Tag chips | `.tag` (higher-order card), `.sub-tag` (layer and pillar cards) | AI, Energy, Finance, Web3, Space |
+| Tag chips | `.tag` (higher-order card), `.sub-tag` (layer, modality, model and pillar cards) | AI, Energy, Finance, Web3, Space |
 | Layer cards | `.layer-card` × 5 | Energy, Finance, Web3, Space |
 | Modality cards | `.modality-card` × 4 | AI |
+| Model cards | `.model-card` × 4 | AI |
 | Pillar cards | `.pillar-card` × 4 | AI, Energy, Finance, Web3, Space |
 | Page section | `.page-section` + `.page-section-title` (Business Growth: `.section-title`) | Energy, Finance, Web3, Space, Business Growth |
 | Force cards | `.force-card` | Energy (3), Finance (9), Web3 (3), Space (3) |
@@ -559,3 +561,4 @@ Fixed:
 | Oct 23 | CSS and JS separated from HTML: per-page landscape stylesheets, shared boot/page-meta/site scripts, and home matrix/map modules. No inline `<style>`, `<script>` blocks, `style` attributes or `on*` handlers remain. |
 | Oct 23 | Landscape pages aligned to GICS®: a per-page GICS lens, a sourced attribution line with the 11/25/74/163 structure and trademark disclaimer, and a home source line crediting S&P Dow Jones Indices and MSCI. GICS sources link to the official S&P Dow Jones Indices and MSCI pages. |
 | Oct 24 | Accessibility/performance pass: 600×600 Web3 thumbnail (fixed #7), 2× logo with dimensions, WebP introduction image, hidden core-landscape heading, decorative logo alt, and `font-display: swap`. Lighthouse accessibility moved to 100 on the home page. |
+| Oct 24 | AI page gains a model/platform middle layer (Foundation Models · Training & Inference Platforms · Model APIs & MaaS · Agents & Orchestration); the upper/lower labels become Capability Layer and Input Layer; the home AI card and slider copy follow in all four languages. |

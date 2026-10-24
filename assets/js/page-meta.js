@@ -28,10 +28,10 @@ window.PAGE_META = {
       "ar": "نظرة عامة على قطاع AI — مراجعة أكتوبر 2026"
     },
     "descriptions": {
-      "en": "Layered map of the AI industry: world models, four core modalities, and the data, algorithm, compute and energy pillars that sustain them.",
-      "zh": "AI 行业的层状图谱：世界模型、四大核心模态，以及支撑它们的数据、算法、算力与能源支柱。",
-      "ru": "Многоуровневая карта AI-индустрии: мировые модели, четыре ключевые модальности и опоры — данные, алгоритмы, вычисления и энергия.",
-      "ar": "خريطة متعددة الطبقات لقطاع AI: النماذج العالمية، والأنماط الأربعة الأساسية، ودعائم البيانات والخوارزميات والحوسبة والطاقة."
+      "en": "Layered map of the AI industry: world models, four core modalities, the model and platform layer, and the data, algorithm, compute and energy pillars that sustain them.",
+      "zh": "AI 行业的层状图谱：世界模型、四大核心模态、模型与平台层，以及支撑它们的数据、算法、算力与能源支柱。",
+      "ru": "Многоуровневая карта AI-индустрии: мировые модели, четыре ключевые модальности, слой моделей и платформ и опоры — данные, алгоритмы, вычисления и энергия.",
+      "ar": "خريطة متعددة الطبقات لقطاع AI: النماذج العالمية، والأنماط الأربعة الأساسية، وطبقة النماذج والمنصات، ودعائم البيانات والخوارزميات والحوسبة والطاقة."
     }
   },
   "energy": {

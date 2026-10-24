@@ -28,13 +28,16 @@
     --wm-tag-color:   #c5adff;
     /* connectors */
     --conn1:          linear-gradient(to bottom, #6c3fc7, #3b6fd4);
-    --conn2:          linear-gradient(to bottom, #3b6fd4, #2da884);
+    --conn2:          linear-gradient(to bottom, #3b6fd4, #d9a441);
+    --conn3:          linear-gradient(to bottom, #d9a441, #2da884);
     --conn-arrow-1:   #3b6fd4;
-    --conn-arrow-2:   #2da884;
+    --conn-arrow-2:   #d9a441;
+    --conn-arrow-3:   #2da884;
     --conn-label:     #707cac;
     --conn-label-bd:  #2a3050;
     /* section headers */
     --mod-hdr:        #3b8de8;
+    --mdl-hdr:        #d9a441;
     --pil-hdr:        #2da884;
     /* modality cards */
     --mod-bg:         linear-gradient(160deg, #111c38 0%, #0d1628 100%);
@@ -44,6 +47,14 @@
     --mod-p:          #7f91ba;
     --stag-color:     #668fde;
     --stag-bg:        rgba(59,111,212,.12);
+    /* model & platform cards */
+    --mdl-bg:         linear-gradient(160deg, #2a2110 0%, #1b150a 100%);
+    --mdl-border:     #5c4718;
+    --mdl-hover:      #d9a441;
+    --mdl-h3:         #e8c06a;
+    --mdl-p:          #b8a071;
+    --mdl-stag-color: #e0b860;
+    --mdl-stag-bg:    rgba(217,164,65,.12);
     /* pillar cards */
     --pil-bg:         linear-gradient(160deg, #0d2620 0%, #091a14 100%);
     --pil-border:     #184030;
@@ -81,12 +92,15 @@
     --wm-tag-border:  rgba(108,63,199,.22);
     --wm-tag-color:   #5030a0;
     --conn1:          linear-gradient(to bottom, #8060d0, #4070d4);
-    --conn2:          linear-gradient(to bottom, #4070d4, #1a8060);
+    --conn2:          linear-gradient(to bottom, #4070d4, #b07a10);
+    --conn3:          linear-gradient(to bottom, #b07a10, #1a8060);
     --conn-arrow-1:   #4070d4;
-    --conn-arrow-2:   #1a8060;
+    --conn-arrow-2:   #b07a10;
+    --conn-arrow-3:   #1a8060;
     --conn-label:     #616d92;
     --conn-label-bd:  #c8d0e8;
     --mod-hdr:        #2060c0;
+    --mdl-hdr:        #8a5a00;
     --pil-hdr:        #197d5e;
     --mod-bg:         linear-gradient(160deg, #eef4ff 0%, #e8f0ff 100%);
     --mod-border:     #b8cef0;
@@ -95,6 +109,14 @@
     --mod-p:          #4060a0;
     --stag-color:     #2050b0;
     --stag-bg:        rgba(32,80,176,.09);
+    /* model & platform cards */
+    --mdl-bg:         linear-gradient(160deg, #fdf7e6 0%, #f8efd6 100%);
+    --mdl-border:     #e2cd96;
+    --mdl-hover:      #b07a10;
+    --mdl-h3:         #6e4a00;
+    --mdl-p:          #5e4a1a;
+    --mdl-stag-color: #6e4a00;
+    --mdl-stag-bg:    rgba(138,90,0,.09);
     --pil-bg:         linear-gradient(160deg, #eaf6ef 0%, #e0f2e8 100%);
     --pil-border:     #98d4b8;
     --pil-hover:      #1a8060;
@@ -246,6 +268,7 @@
     background: var(--conn1);
   }
   .conn-2 .line { background: var(--conn2); }
+  .conn-3 .line { background: var(--conn3); }
   .connector .arrow {
     width: 0; height: 0;
     border-left: 6px solid transparent;
@@ -253,6 +276,7 @@
   }
   .connector.down .arrow  { border-top: 8px solid var(--conn-arrow-1); }
   .conn-2.down .arrow     { border-top-color: var(--conn-arrow-2); }
+  .conn-3.down .arrow     { border-top-color: var(--conn-arrow-3); }
   .connector-label {
     font-size: 10px;
     color: var(--conn-label);
@@ -279,6 +303,7 @@
   .section-header::before,
   .section-header::after { content: ""; flex: 1; height: 1px; background: currentColor; opacity: 0.2; }
   .modalities-header { color: var(--mod-hdr); }
+  .models-header     { color: var(--mdl-hdr); }
   .pillars-header    { color: var(--pil-hdr); }
 
   .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
@@ -300,6 +325,28 @@
     font-size: 10px;
     color: var(--stag-color);
     background: var(--stag-bg);
+    border-radius: 4px;
+    padding: 2px 7px;
+    width: fit-content;
+  }
+
+  /* ── MODEL & PLATFORM CARDS ── */
+  .model-card {
+    background: var(--mdl-bg);
+    border: 1.5px solid var(--mdl-border);
+    border-radius: 12px;
+    padding: 18px 16px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .model-card:hover { border-color: var(--mdl-hover); transform: translateY(-2px); }
+  .model-card .icon { font-size: 24px; margin-bottom: 10px; }
+  .model-card h3 { font-size: 14px; font-weight: 600; color: var(--mdl-h3); margin-bottom: 6px; }
+  .model-card p  { font-size: 11.5px; color: var(--mdl-p); line-height: 1.55; }
+  .model-card .sub-tags { display: flex; flex-direction: column; gap: 4px; margin-top: 10px; }
+  .model-card .sub-tag {
+    font-size: 10px;
+    color: var(--mdl-stag-color);
+    background: var(--mdl-stag-bg);
     border-radius: 4px;
     padding: 2px 7px;
     width: fit-content;
@@ -392,5 +439,6 @@
 /* Extracted inline presentation */
 .legend-dot--paradigm { background: #6c3fc7; }
 .legend-dot--modalities { background: #3b6fd4; }
+.legend-dot--models { background: #d9a441; }
 .legend-dot--pillars { background: #2da884; }
 .legend-dot--emerging { background: #2da884; opacity: .5; }
