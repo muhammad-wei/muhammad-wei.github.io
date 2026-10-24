@@ -520,13 +520,13 @@ Numbers are kept from the October 16 list; new items continue from #10. Fixed it
 
 | # | Gap | Where | Suggested fix |
 | --- | --- | --- | --- |
-| 7 | Web3 thumbnail is 1075×600 and 83 KB; the others are 600×600 and 9–30 KB | `assets/img/landscape/` | Re-export at 600×600 |
 | 10 | Russian and Arabic are a machine-assisted first pass; proper nouns, financial terms and tone need a native review | all seven pages | Native review and targeted edits; keep figures and dates unchanged |
 | 11 | The contact map needs network access to OpenStreetMap tiles; without it the three markers show on a plain dark background | `index.html` | Keep the plain background as fallback; consider a self-hosted fallback tile |
 | 12 | Contact map tiles and Leaflet are a new third-party dependency | `assets/js/vendor/leaflet.js`, `assets/css/vendor/leaflet.css` | Keep the version pinned and the BSD-2 licence file with the vendored code |
 | 14 | GICS structure counts can change with annual methodology updates | `SPEC.md` §8.5, page `.gics-source` | Re-check the counts and mappings when GICS is revised |
 
 Fixed:
+- **October 24, 2026:** the Web3 thumbnail was re-exported at 600×600 (formerly #7); the home logo has a 2× source with explicit dimensions, the astronaut image is WebP, and the intro heading order/logo alt were corrected. Fonts now use `font-display: swap`.
 - **October 10, 2026:** the `<` escaping bug in the bilingual attributes (§7, rule 3).
 - **October 16, 2026:** the missing Space landscape (formerly #6).
 - **October 17, 2026:** the README now credits the template and links the live site only; the old name and title are gone (formerly #8).
@@ -558,3 +558,4 @@ Fixed:
 | Oct 23 | Contact background replaced with a live Leaflet/OpenStreetMap map: Dubai, Guiyang and Hangzhou circled with pulsing markers and labels in all four languages; the unused static Dubai background was removed from the repository. |
 | Oct 23 | CSS and JS separated from HTML: per-page landscape stylesheets, shared boot/page-meta/site scripts, and home matrix/map modules. No inline `<style>`, `<script>` blocks, `style` attributes or `on*` handlers remain. |
 | Oct 23 | Landscape pages aligned to GICS®: a per-page GICS lens, a sourced attribution line with the 11/25/74/163 structure and trademark disclaimer, and a home source line crediting S&P Dow Jones Indices and MSCI. GICS sources link to the official S&P Dow Jones Indices and MSCI pages. |
+| Oct 24 | Accessibility/performance pass: 600×600 Web3 thumbnail (fixed #7), 2× logo with dimensions, WebP introduction image, hidden core-landscape heading, decorative logo alt, and `font-display: swap`. Lighthouse accessibility moved to 100 on the home page. |
