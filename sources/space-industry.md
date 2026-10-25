@@ -24,6 +24,7 @@ Every figure on `space-industry-chart.html` comes from a row in this file (SPEC 
 | Status | Meaning |
 | --- | --- |
 | verified | Fetched from the named source and matched. |
+| secondary | Matched reputable secondary coverage or an official summary; the primary document was not opened. |
 | textbook (not fetched) | Δv rows only. The value, edition and chapter are recorded, but the book was not opened to confirm the page or table. A computed check is given. |
 | failed | Could not be verified from a primary source, or the sources conflict. The reason and the proposed replacement are recorded. |
 
@@ -39,6 +40,10 @@ Every figure on `space-industry-chart.html` comes from a row in this file (SPEC 
 | Space Foundation 2026 | Global Space Economy report, July 2026: <https://www.spacefoundation.org/wp-content/uploads/2026/07/SF-GSE-REPORT-2026July-FOR-RELEASE.pdf>. |
 
 ---
+
+## Note on secondary rows
+
+SIA and Space Foundation rows marked `secondary` were matched to reputable coverage and official summaries, but the primary PDFs/images were not parsed line by line. Do not relabel them `verified` without opening the named document.
 
 ## A. Physics of Access and Rocket Science 101
 
@@ -77,13 +82,13 @@ Computed checks use Earth GM 398,600 km³/s², Moon GM 4,900 km³/s², Moon mean
 
 | ID | Claim | Value | Date | Source | Placement | Status |
 | --- | --- | --- | --- | --- | --- | --- |
-| VC-01 | Satellite-industry revenue | $303B in 2025 (71% of SIA's $429B space economy; SIA's scope differs from the Space Foundation's, see ECO-01) | FY2025 | SIA 2026 | Layers (context) | verified |
-| VC-02 | Ground equipment: the largest segment | $165.2B, 54% of satellite-industry revenue: GNSS equipment $125.8B, consumer equipment $20.3B, network equipment $19.1B | FY2025 | SIA 2026 | Layer 3 `.hot`: "Largest revenue pool (SIA 2026)" | verified |
-| VC-03 | Satellite services | $105B (35%): consumer $80.2B, enterprise $21.1B, remote sensing $3.6B | FY2025 | SIA 2026 | Layer 4 | verified |
-| VC-04 | Satellite manufacturing | $20.4B (7%); 4,434 satellites launched in 2025 (in SIA's study) | FY2025 | SIA 2026 | Layer 2 | verified |
-| VC-05 | Launch industry | $12.4B (4%); 296 commercially procured launches of 325 | FY2025 | SIA 2026 | Layer 1 | verified. SIA's 325 differs from McDowell's 329; the page uses McDowell for every launch count. |
+| VC-01 | Satellite-industry revenue | $303B in 2025 (71% of SIA's $429B space economy; SIA's scope differs from the Space Foundation's, see ECO-01) | FY2025 | SIA 2026 | Layers (context) | secondary |
+| VC-02 | Ground equipment: the largest segment | $165.2B, 54% of satellite-industry revenue: GNSS equipment $125.8B, consumer equipment $20.3B, network equipment $19.1B | FY2025 | SIA 2026 | Layer 3 `.hot`: "Largest revenue pool (SIA 2026)" | secondary |
+| VC-03 | Satellite services | $105B (35%): consumer $80.2B, enterprise $21.1B, remote sensing $3.6B | FY2025 | SIA 2026 | Layer 4 | secondary |
+| VC-04 | Satellite manufacturing | $20.4B (7%); 4,434 satellites launched in 2025 (in SIA's study) | FY2025 | SIA 2026 | Layer 2 | secondary |
+| VC-05 | Launch industry | $12.4B (4%); 296 commercially procured launches of 325 | FY2025 | SIA 2026 | Layer 1 | secondary. SIA's 325 differs from McDowell's 329; the page uses McDowell for every launch count. |
 | VC-06 | Space sustainability (servicing, debris removal, SSA) | ~$500M | FY2025 | SIA 2026 | Startups "Space domain awareness & debris" | verified |
-| PIL-01 | Government space budgets | ~$141B across 53 budgets (+7.4%) | 2025 | Space Foundation 2026 | Pillar "Capital & anchor customers" | verified |
+| PIL-01 | Government space budgets | ~$141B across 53 budgets (+7.4%) | 2025 | Space Foundation 2026 | Pillar "Capital & anchor customers" | secondary |
 | PIL-02 | Outer Space Treaty (1967) | 118 States Parties, 23 signatories | Jan 1, 2026 | UNOOSA status of treaties, A/AC.105/C.2/2026/CRP.9/Rev.1, <https://www.unoosa.org/res/oosadoc/data/documents/2026/aac_105c_22026crp/aac_105c_22026crp_9rev_1_0_html/AC105_C2_2026_CRP09Rev01E.pdf> | Pillar "Policy, spectrum & law" | verified |
 | PIL-03 | Moon Agreement (1979) | 17 States Parties | Jan 1, 2026 | Same as PIL-02 | Pillar "Policy, spectrum & law" (optional) | verified |
 | PIL-04 | Artemis Accords | 76 signatories (San Marino, Sep 25, 2026) | Sep 25, 2026 | NASA, <https://www.nasa.gov/artemis-accords/> | Pillar "Policy"; Powers "US" | verified |
@@ -146,7 +151,7 @@ Computed checks use Earth GM 398,600 km³/s², Moon GM 4,900 km³/s², Moon mean
 
 | ID | Claim | Value | Date | Source | Placement | Status |
 | --- | --- | --- | --- | --- | --- | --- |
-| ECO-01 | Global space economy | $686B in 2025 (+12%): commercial $544.3B (79%), governments ~$141B | 2025 (report Jul 2026) | Space Foundation 2026 | Economy 01 | verified |
+| ECO-01 | Global space economy | $686B in 2025 (+12%): commercial $544.3B (79%), governments ~$141B | 2025 (report Jul 2026) | Space Foundation 2026 | Economy 01 | secondary |
 | ECO-02 | Orbital launch attempts (record cadence) | 2024: 264; 2025: 329 (a record, +25%); 2026 through Oct 14: 245 (240 in the same period of 2025) | Oct 15, 2026 | McDowell log (computed) | Economy 02; Layer 1 | verified |
 | ECO-03 | 2025 launches by launcher state | US 181 (SpaceX 170: 165 Falcon 9 + 5 Starship); China 92; Russia 17; New Zealand (Electron) 17; Europe 8; India 5; Japan 4 | 2025 | McDowell log (Europe = France 7 + Germany 1) | Economy 02; Powers KPIs | verified |
 | ECO-04 | 2026 launches to date by launcher state | US 130 (SpaceX 119: 113 Falcon 9, 3 Falcon Heavy, 3 Starship); China 72; New Zealand 15; Russia 14; Europe 7; India 3; Japan 3; South Korea 1 | Oct 14, 2026 | McDowell log (Europe = France 4 + Italy 2 + Germany 1) | Economy 02 | verified |

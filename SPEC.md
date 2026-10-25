@@ -5,7 +5,7 @@
 | Site          | https://muhammad-wei.github.io                                      |
 | Owner         | Muhammad Wei                                                           |
 | Hosting       | GitHub Pages, static files from `main` (no build step)              |
-| Last reviewed | October 24, 2026 — Russian and Arabic (RTL) join English and Chinese across all seven pages; the header/controls use a four-language select; CSS and JS now live in external per-page/shared files with no inline presentation; the landscape pages carry GICS® lenses and sourced GICS attribution; GICS links point to the official S&P Dow Jones Indices and MSCI pages; the home page carries the Vision node tree, matrix-rain strip, capital path and a live OpenStreetMap contact map of Dubai, Guiyang and Hangzhou; the AI page is review-dated (live site last checked October 24; this revision incorporates the review fixes) and adds a model/platform middle layer between its modalities and pillars; the six landscapes are explicitly classified as sector (Energy, Financials), theme (AI, Space, Web3) or framework (Business Growth), and no theme is called an industry |
+| Last reviewed | October 25, 2026 — Russian and Arabic (RTL) join English and Chinese across all seven pages; the header/controls use a four-language select; CSS and JS now live in external per-page/shared files with no inline presentation; the landscape pages carry GICS® lenses and sourced GICS attribution; GICS links point to the official S&P Dow Jones Indices and MSCI pages; the home page carries the Vision node tree, matrix-rain strip, capital path and a live OpenStreetMap contact map of Dubai, Guiyang and Hangzhou; the AI page is review-dated (live site last checked October 25; this revision incorporates the review fixes) and adds a model/platform middle layer between its modalities and pillars; the six landscapes are explicitly classified as sector (Energy, Financials), theme (AI, Space, Web3) or framework (Business Growth), and no theme is called an industry |
 
 This document says what the site is, how every page is built, and what "done" means for a change.
 `CLAUDE.md` is the short working guide; this is the reference behind it.
@@ -332,6 +332,8 @@ Icons are emoji, for example 🏗️ 💡 🔑 💰 ⚠️, so no icon fonts or 
 - **Estimates** are marked: "~", "est." or "unofficial".
 - **Unverifiable or conflicting:** never publish a claim that can't be verified. When sources disagree, use the primary one and date it.
 - **One figure, every place:** a figure appears in several places (cards, snapshot, scoreboard, scenarios, tags; all four languages). When it changes, change it everywhere.
+- **Source ledgers:** every landscape's headline figures are recorded in `sources/<page>.md` with a date, source, placement and status; the page footnote links its ledger. A figure with no ledger row is not audited. `sources/README.md` defines the status labels; `sources/research-artifacts.md` records where the local research lives without copying private sessions.
+- **Status honesty:** `verified` means the named primary source was fetched and matched. If only reputable secondary coverage or an official summary was opened, use `secondary`. Do not promote a row to `verified` because the number is plausible.
 
 ### 8.2 Style
 
@@ -538,6 +540,7 @@ Numbers are kept from the October 16 list; new items continue from #15. Fixed it
 
 Fixed:
 - **October 24, 2026:** the Web3 thumbnail was re-exported at 600×600 (formerly #7); the home logo has a 2× source with explicit dimensions, the astronaut image is WebP, and the intro heading order/logo alt were corrected. Fonts now use `font-display: swap`.
+- **October 25, 2026:** Energy EV share corrected to 30% (IEA 2026); "largest oil-supply disruption on record" softened; SMR grammar fixed; source ledgers for Energy, Finance and Web3 added; Space ledger SIA/Space Foundation rows marked `secondary`; provenance record added; per-page ledger links added.
 - **October 24, 2026 (review pass):** Finance now says “Not a layer” (not “Not a sector”); home RU/AR/ZH “Landscapes” labels and the capital-path note use landscape terminology; Arabic ADT/SVG text direction, the Energy Arabic entity/figures, Space Arabic `[3]]`/43% and the Brent/China EV figures were corrected; home navigation and slider are native keyboard controls; the home GICS notice/MSCI link, map-credit translation, map padding and select arrow were fixed; Business Growth gained `h2`s, an SVG name and a footnote; Web3 news is newest-first; Space’s as-of stamp moved to Oct 20; the decorative ordinals now meet contrast.
 - **October 10, 2026:** the `<` escaping bug in the bilingual attributes (§7, rule 3).
 - **October 16, 2026:** the missing Space landscape (formerly #6).

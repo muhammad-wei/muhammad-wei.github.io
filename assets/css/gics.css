@@ -90,3 +90,22 @@ html[dir="rtl"] .gics-lens {
     font-size: 8.5px;
   }
 }
+
+.source-ledger {
+  max-width: 960px;
+  margin: 8px auto 0;
+  padding: 0 4px;
+  text-align: center;
+  font-size: 10px;
+  line-height: 1.5;
+}
+.source-ledger a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+@media (max-width: 767px) {
+  .source-ledger {
+    font-size: 9.5px;
+  }
+}

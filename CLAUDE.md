@@ -10,6 +10,9 @@ Muhammad Wei's personal site, https://muhammad-wei.github.io. It is static files
 | `index.html` | Home page, built on the "Global" template. Loads `assets/css/main.css`, the shared boot/site scripts, vendored Leaflet/jQuery and `assets/js/functions-min.js`. Four sections: Home, Landscapes, Vision, Contact. The Vision section — a node tree plus a matrix-rain strip — and the capital-path note under the slider are the site's thesis; keep them aligned with SPEC §4. Four-language select (EN/中文/РУ/عربي) in the header; single dark design. Contact is a live Leaflet/OpenStreetMap map of Dubai, Guiyang and Hangzhou; the Landscapes slide carries the GICS® classification legend and source line. |
 | `ai-`, `energy-`, `finance-`, `space-`, `web3-industry-chart.html`, `business_growth_circular_flow.html` | Landscape pages. Each links its own stylesheet in `assets/css/pages/`; shared `boot.js`, `page-meta.js` and `site.js` handle language/theme. No third-party requests, four languages (Arabic RTL), dark and light themes. |
 | `sources/space-industry.md` | The Space page's sources ledger: each figure with its date, source, placements and status. Update it together with the page. |
+| `sources/README.md` | Status legend and the index of per-page ledgers. |
+| `sources/energy-industry.md`, `sources/finance-industry.md`, `sources/web3-industry.md` | Per-page source ledgers for the other landscapes: headline figures, dates, sources, placements and status. Update them with the page. |
+| `sources/research-artifacts.md` | Provenance record for the local research trail; paths and counts only, no private session content. |
 | `assets/js/vendor/leaflet.js`, `assets/css/vendor/leaflet.css`, `assets/js/vendor/leaflet.LICENSE` | Vendored Leaflet 1.9.4 (BSD-2-Clause) for the home contact map. Keep the version and licence notice with the files. |
 | `assets/img/landscape/*.webp` | Home slider thumbnails, 600×600, one per landscape page. |
 | `assets/css/pages/*.css` | One stylesheet per landscape page, linked from the page head. |
@@ -66,7 +69,8 @@ Muhammad Wei's personal site, https://muhammad-wei.github.io. It is static files
   - Tiles need network access. If they fail, the circles and labels remain on the dark background; that is the fallback.
 - **Hidden on purpose** in `index.html`: Traffic globe, LinkedIn, Connect and the Hire form are commented out. Keep them hidden unless asked.
 - **Dated content** (SPEC §8):
-  - Every figure needs a source.
+  - Every changed figure needs a source and a row in its page ledger (`sources/<page>.md`). The ledgers currently cover the headline figures; a number not listed is not audited.
+  - `verified` means the primary source was opened; use `secondary` when only coverage/summary was opened.
   - A refresh moves the as-of stamp everywhere it appears: title, `h1`, section titles, footnote.
   - A changed figure is changed everywhere it is repeated: cards, snapshot, scoreboard, scenarios, in all four languages.
 - **GICS refresh:** when GICS is revised, update the counts, the page lenses and the home source line together.
